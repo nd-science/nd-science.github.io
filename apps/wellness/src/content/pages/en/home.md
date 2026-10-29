@@ -4,21 +4,29 @@ locale: en
 seoTitle: Natalia Dolgova — Psychologist and Neurointegration Trainer
 seoDescription: Individual consultations, neurointegration, breathing practices and health qigong for adults. Online and in person in Belgrade.
 h1: Clear steps towards a more stable state
-summary: Psychological consultation, neurointegration, breathing and movement for adults aged 18+.
-audience: [B2C, B2B]
-ctaLabel: Book a paid first consultation
+summary: "Integrative approach to self-regulation: Brain, Psyche and Body for adults 18+."
+audience: [B2C]
+ctaLabel: Book an introductory consultation
 ctaHref: /booking/#enquiry
-ctaSecondaryLabel: Explore all formats
+ctaSecondaryLabel: Explore formats and pricing
 ctaSecondaryHref: /for-individuals/
+relatedServices: [consultation, four-week-support, five-session-package, individual-qigong, breathing-session]
 sections: [services, methods]
 updatedAt: 2026-10-29
 publicationScope: public
 ---
 
-When demands build up, it can become difficult to think, feel and act at the same time. I help adults understand their situation, define a realistic goal and choose tools they can use in everyday life.
+I help adults understand their inner state, recover resources when faced with overload and burnout, and master reliable self-regulation skills.
 
-My work combines psychological consultation, neurointegration, breathing, movement and adult-learning expertise. The process is adapted to the individual, their circumstances and their feedback.
+Working in adult education and research for over 10 years, I observed a consistent pattern: we can spend a lot of time analyzing stress at a cognitive level, but if the body is tense, breathing is shallow, and the nervous system is depleted, cognitive tools often falter. That is why my practice unites three levels: **Brain — Psyche — Body**.
 
-**Key facts:** Dr. phil. · Candidate of Economic Sciences · practical psychologist · neurointegration trainer · professional work with people since 2011.
+My methodology is rooted in an evidence-based approach, combining practical psychology, neurointegration, breathwork, and gentle qigong movement. As a researcher and educator, I translate complex scientific findings into clear, manageable actions without pressure or self-coercion.
 
-You can bring overload and burnout, stress, difficulty relaxing or sleeping, reduced concentration, relocation adjustment, professional and life transitions, sustainable habits and self-regulation.
+**Credentials and verified background:** Dr. phil. (Germany, magna cum laude) · Candidate of Economic Sciences (Russia) · Practical psychologist (MPGU diploma, 1080h) · Certified Neurointegration Trainer · Certified Health Qigong Instructor (Ba Duan Jin) · 15+ years in adult education and research.
+
+**Common reasons to reach out:**
+- Emotional and professional burnout, chronic fatigue.
+- Elevated background anxiety, inner tension, sleep and relaxation difficulties.
+- Difficulties with focus, procrastination, and severe self-criticism.
+- Adjustment after relocation, navigating career and personal transitions.
+- Establishing healthy habits and pursuing goals in harmony with oneself.

@@ -14,8 +14,8 @@ updatedAt: 2026-10-29
 publicationScope: public
 ---
 
-Natalia designs organisational formats focused on state regulation, overload prevention, sustainable performance and self-regulation skills. The first product is a 60–90 minute introductory workshop; the price is set in the proposal.
+I develop organizational programs focused on self-regulation, emotional stability, burnout prevention, and team resilience. My primary format for teams is an introductory 60–90 minute workshop; specific scope and conditions are tailored in a commercial proposal.
 
-The work draws on experience designing 40+ programmes and working with 2,000+ educators, educational leaders and digital-transformation teams.
+My approach draws on 15+ years in adult education, designing 40+ professional development programs, training over 2,000 educators and leaders, and facilitating digital transformation initiatives.
 
-After an initial brief, the audience, task, duration, format, materials and feedback criteria are agreed.
+Following an initial briefing, we define the target audience, core objectives, duration, delivery mode (online or on-site), practice materials, and feedback metrics.

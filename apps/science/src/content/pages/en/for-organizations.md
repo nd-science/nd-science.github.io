@@ -11,8 +11,8 @@ updatedAt: 2026-10-29
 publicationScope: public
 ---
 
-Natalia works with universities, TVET organisations, professional communities, corporate universities and development teams.
+I collaborate with universities, TVET organisations, academic associations, corporate universities, and educational development teams.
 
-Possible challenges include audience and learning-needs research, data analysis, programme design, competence assessment, educator development, digital transformation, and strategy or project sessions.
+Potential partnership areas include audience and learning-needs research, qualitative and quantitative data analysis, curriculum and programme design, competence frameworks, educator training, digital transformation support, and strategy facilitation.
 
-After an initial conversation, the organisation receives a proposal covering the task, deliverable, stages, timeline and budget. Cases and logos are published only with permission.
+Following an introductory meeting and briefing, your organisation receives a tailored proposal detailing the objectives, deliverables, timeline, milestones, and budget. Institutional cases and logos are published strictly with prior consent.

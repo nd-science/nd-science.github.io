@@ -11,14 +11,14 @@ updatedAt: 2026-10-29
 publicationScope: public
 ---
 
-Natalia accepts enquiries in five areas:
+I collaborate across five primary areas:
 
-1. applied research;
-2. analytics and analytical materials;
-3. learning programme design;
+1. applied research in vocational and higher education;
+2. analytical reports, literature reviews, and educational data analysis;
+3. curriculum and learning programme design for adults;
 4. facilitation of project and strategy sessions;
-5. speaking, lectures and panel discussions.
+5. invited talks, lectures, and academic panel discussions.
 
-Work begins with a brief. The question, deliverable, sources, methods, stages, timeline, authorship, material rights and number of revisions are then agreed. Pricing is set in an individual proposal.
+Partnerships begin with a shared brief. We then agree on the research question, deliverables, data sources, methodology, milestones, timeline, authorship, and revisions. Pricing is defined in a formal individual proposal.
 
-Ghostwriting and work that breaches academic integrity or the rules of a particular venue are excluded.
+Ghostwriting and any work that breaches academic integrity or publisher standards are strictly excluded.

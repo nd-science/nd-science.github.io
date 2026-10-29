@@ -5,7 +5,7 @@ seoTitle: Конференции и доклады Наталии Долгово
 seoDescription: Выступления Наталии Долговой и участие в профессиональных исследовательских сообществах.
 h1: Доклады и профессиональные сообщества
 summary: Темы выступлений по профессиональному образованию, подготовке педагогов и онлайн-обучению.
-ctaLabel: Пригласить Наталию выступить
+ctaLabel: Обсудить участие в конференции
 ctaHref: /contact/#enquiry
 updatedAt: 2026-10-29
 publicationScope: public
@@ -18,4 +18,4 @@ publicationScope: public
 - 16th International JVET Conference 2025, Oxford.
 - STORIES 2025, University of Oxford: *Future-Ready TVET Engineering Educators*.
 
-Наталия участвует в VETNET, European Emerging Researchers Network of VETNET и JVET Early Career Researchers network.
+Я участвую в международных исследовательских объединениях VETNET, European Emerging Researchers Network of VETNET и JVET Early Career Researchers network.

@@ -2,7 +2,7 @@ import type { Locale } from "@natali/profile";
 
 export const scienceCopy = {
   ru: {
-    siteLabel: "Science", fallbackSiteUrl: "https://science.invalid", crossSiteLabel: "Wellness — практический профиль", crossSiteHrefBase: "https://wellness.invalid",
+    siteLabel: "Science", fallbackSiteUrl: "https://science.invalid", crossSiteLabel: "Практика саморегуляции и консультации", crossSiteHrefBase: "https://wellness.invalid",
     nav: [
       { href: "/ru/", label: "Главная" }, { href: "/ru/about/", label: "Биография" }, { href: "/ru/research/", label: "Исследования" },
       { href: "/ru/publications/", label: "Публикации" }, { href: "/ru/education/", label: "Образование" }, { href: "/ru/projects/", label: "Проекты" },
@@ -35,7 +35,7 @@ export const scienceCopy = {
     ],
   },
   en: {
-    siteLabel: "Science", fallbackSiteUrl: "https://science.invalid", crossSiteLabel: "Wellness — practice profile", crossSiteHrefBase: "https://wellness.invalid",
+    siteLabel: "Science", fallbackSiteUrl: "https://science.invalid", crossSiteLabel: "Wellbeing Practice & Counselling", crossSiteHrefBase: "https://wellness.invalid",
     nav: [
       { href: "/en/", label: "Home" }, { href: "/en/about/", label: "Biography" }, { href: "/en/research/", label: "Research" },
       { href: "/en/publications/", label: "Publications" }, { href: "/en/education/", label: "Education" }, { href: "/en/projects/", label: "Projects" },

@@ -74,18 +74,30 @@ if (!isHome) {
 }
 
 const sections = entry.data.sections;
-const related = entry.data.relatedServices.length
-  ? services.filter((service) =>
-      entry.data.relatedServices.includes(service.id),
-    )
-  : [];
+const b2cDefaultOrder = [
+  "consultation",
+  "four-week-support",
+  "five-session-package",
+  "individual-qigong",
+  "breathing-session",
+];
+
+const targetServiceIds =
+  entry.data.relatedServices.length > 0
+    ? entry.data.relatedServices
+    : isHome
+      ? b2cDefaultOrder
+      : services.map((s) => s.id);
+
 const servicesToShow = sections.includes("services")
-  ? related.length > 0
-    ? related
-    : services
+  ? targetServiceIds
+      .map((id) => services.find((s) => s.id === id))
+      .filter((s): s is NonNullable<typeof s> => Boolean(s))
   : [];
 const servicesHeading =
-  related.length > 0 ? copy.sections.relatedServices : copy.sections.services;
+  entry.data.relatedServices.length > 0
+    ? copy.sections.relatedServices
+    : copy.sections.services;
 
 function localizeHref(href: string): string {
   return href.startsWith("/") ? `/${locale}${href}` : href;
@@ -151,26 +163,51 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
   {
     isHome ? (
       <section class="hero">
-        <div class="hero-content">
-          <h1>{entry.data.h1}</h1>
-          <p class="page-meta">{authorLine}</p>
-          <div class="prose">
-            <Content />
-          </div>
-          {(cta || ctaSecondary) && (
-            <div class="cta-block">
-              {cta && (
-                <a class="button" href={cta.href}>
-                  {cta.label}
-                </a>
-              )}
-              {ctaSecondary && (
-                <a class="button secondary" href={ctaSecondary.href}>
-                  {ctaSecondary.label}
-                </a>
-              )}
+        <div class="hero-layout">
+          <div class="hero-content">
+            <h1>{entry.data.h1}</h1>
+            <p class="page-meta">{authorLine}</p>
+            <div class="prose">
+              <Content />
             </div>
-          )}
+            {(cta || ctaSecondary) && (
+              <div class="cta-block">
+                {cta && (
+                  <a class="button" href={cta.href}>
+                    {cta.label}
+                  </a>
+                )}
+                {ctaSecondary && (
+                  <a class="button secondary" href={ctaSecondary.href}>
+                    {ctaSecondary.label}
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+          <aside class="hero-media" aria-label={locale === "ru" ? "Портрет Наталии Долговой" : "Portrait of Natalia Dolgova"}>
+            <div class="portrait-card">
+              <div class="portrait-frame">
+                <div class="portrait-placeholder" aria-hidden="true">
+                  <div class="portrait-mark">ND</div>
+                  <p class="portrait-name">{nataliaProfile.displayName[locale]}</p>
+                  <p class="portrait-title">
+                    {locale === "ru"
+                      ? "Dr. phil. · Практический психолог · Тренер по нейроинтеграции"
+                      : "Dr. phil. · Practical Psychologist · Neurointegration Trainer"}
+                  </p>
+                </div>
+              </div>
+              <div class="portrait-caption">
+                <span class="portrait-pill">
+                  {locale === "ru" ? "Мозг · Психика · Тело" : "Brain · Psyche · Body"}
+                </span>
+                <span class="portrait-location">
+                  {locale === "ru" ? "Онлайн по всему миру · Очно в Белграде" : "Online worldwide · In person in Belgrade"}
+                </span>
+              </div>
+            </div>
+          </aside>
         </div>
       </section>
     ) : (

@@ -16,4 +16,4 @@ publicationScope: public
 
 A personal format focused on restoring resources, reducing overload and developing sustainable changes. The content, frequency of contact, exercises, materials and scope of feedback are agreed individually.
 
-The price for four weeks of support is €600. Natalia and the client clarify the request and working format before payment.
+The fee for four weeks of support is €600. Before payment, we jointly clarify your goals, agree on the interaction schedule, and establish criteria for success.

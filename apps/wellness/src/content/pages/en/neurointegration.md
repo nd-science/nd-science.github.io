@@ -18,6 +18,6 @@ Neurointegration is an applied system of self-regulation and life-context manage
 
 The work is organised around three elements: NeuroBalance for observing and regulating state; NeuroSurfing for working with self-sabotage and repeated patterns; and NeuroSprints for organising goals in short cycles with regular reflection.
 
-Natalia is qualified as a neurointegration trainer and holds Neurointegration Expert and Neurointegration Trainer certificates. The price is agreed after the request has been discussed.
+I hold the qualification of Neurointegration Trainer (250h) and international certificates as a Neurointegration Expert (NIE) and Neurointegration Trainer (NIT). My goal is to help you build reliable contact with your nervous system, manage your cognitive resources effectively, and achieve meaningful goals without exhaustion.
 
 Certification is verified in the [Neurointegration Institute Alumni Registry](https://trainer.neurointegration.org/profile/966067701912-nataliya-dolgova).

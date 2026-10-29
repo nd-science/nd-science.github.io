@@ -46,29 +46,50 @@ const ctaHref = data.cta.href.startsWith("/")
   ? `/${locale}${data.cta.href}`
   : data.cta.href;
 
-const availabilityLabel =
-  data.serviceAvailability === "pilot"
-    ? copy.availability.pilot
-    : data.serviceAvailability === "planned"
-      ? copy.availability.planned
-      : null;
+const isRecommended = service.id === "consultation";
+const isFlagship = service.id === "four-week-support";
+
+const badgeText = isRecommended
+  ? locale === "ru" ? "Рекомендуемый старт" : "Recommended Start"
+  : isFlagship
+    ? locale === "ru" ? "Флагманская программа" : "Flagship Program"
+    : data.serviceAvailability === "pilot"
+      ? copy.availability.pilot
+      : data.serviceAvailability === "planned"
+        ? copy.availability.planned
+        : null;
 ---
 
-<article class="service-card">
-  {availabilityLabel && <span class="badge">{availabilityLabel}</span>}
-  <h3>{data.name[locale]}</h3>
-  <p>{data.task[locale]}</p>
-  <dl>
-    <dt>{copy.serviceFields.audience}</dt>
-    <dd>{data.audience[locale]}</dd>
-    <dt>{copy.serviceFields.format}</dt>
-    <dd>
-      {deliveryLabel}{data.duration ? ` · ${data.duration[locale]}` : ""}
-    </dd>
-    <dt>{copy.serviceFields.price}</dt>
-    <dd class="price-line">{priceText ?? data.priceLabel?.[locale]}</dd>
-    <dt>{copy.serviceFields.outcome}</dt>
-    <dd>{data.outcome[locale]}</dd>
-  </dl>
-  <a class="button" href={ctaHref}>{data.cta.label[locale]}</a>
+<article class={`service-card ${isRecommended ? "service-card--featured" : ""}`}>
+  <div class="service-card-header">
+    {badgeText && <span class={`badge ${isRecommended ? "badge--featured" : ""}`}>{badgeText}</span>}
+    <h3 class="service-card-title">{data.name[locale]}</h3>
+  </div>
+
+  <div class="service-price-block">
+    <span class="price-value">{priceText ?? data.priceLabel?.[locale]}</span>
+  </div>
+
+  <p class="service-task">{data.task[locale]}</p>
+
+  <ul class="service-features" role="list">
+    <li>
+      <span class="feature-label">{copy.serviceFields.format}:</span>
+      <span class="feature-value">{deliveryLabel}{data.duration ? ` · ${data.duration[locale]}` : ""}</span>
+    </li>
+    <li>
+      <span class="feature-label">{copy.serviceFields.audience}:</span>
+      <span class="feature-value">{data.audience[locale]}</span>
+    </li>
+    <li>
+      <span class="feature-label">{copy.serviceFields.outcome}:</span>
+      <span class="feature-value">{data.outcome[locale]}</span>
+    </li>
+  </ul>
+
+  <div class="service-card-footer">
+    <a class={`button ${isRecommended ? "button--primary" : "button--secondary"}`} href={ctaHref}>
+      {data.cta.label[locale]}
+    </a>
+  </div>
 </article>

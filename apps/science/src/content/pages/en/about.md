@@ -12,9 +12,9 @@ updatedAt: 2026-10-29
 publicationScope: public
 ---
 
-Natalia Dolgova has worked in education, research and adult development since 2011. She has taught economics, studied international academic mobility and university development, designed programmes for educators and leaders, and supported digital transformation in educational organisations.
+I have worked in vocational and higher education, applied research, and adult learning since 2011. I have taught economics, studied international academic mobility and university development, designed programmes for educators and leaders, and supported digital transformation across educational organisations.
 
-She became a Candidate of Economic Sciences in 2014. In 2026, she completed her doctoral work at Europa-Universität Flensburg and received the Dr. phil. degree with an overall magna cum laude result. Her education also includes economics, law and a master’s programme in higher education management.
+I earned the Candidate of Economic Sciences degree in Russia in 2014. In 2026, I completed my doctoral research at Europa-Universität Flensburg in Germany and was awarded the Dr. phil. degree with an overall magna cum laude result. My educational background also encompasses economics, law (degree with honours), and a master’s degree in Higher Education Management from HSE University.
 
 **Author identity:** Natalia Dolgova, published also as Nataliia Ovchinnikova.
 

@@ -5,7 +5,7 @@ seoTitle: Natalia Dolgova’s conferences and presentations
 seoDescription: Natalia Dolgova’s presentations and participation in professional research communities.
 h1: Presentations and professional communities
 summary: Speaking topics in vocational education, educator preparation and online learning.
-ctaLabel: Invite Natalia to speak
+ctaLabel: Discuss conference participation
 ctaHref: /contact/#enquiry
 updatedAt: 2026-10-29
 publicationScope: public
@@ -18,4 +18,4 @@ publicationScope: public
 - 16th International JVET Conference 2025, Oxford.
 - STORIES 2025, University of Oxford: *Future-Ready TVET Engineering Educators*.
 
-Natalia participates in VETNET, the European Emerging Researchers Network of VETNET and the JVET Early Career Researchers network.
+I actively participate in international research networks including VETNET, the European Emerging Researchers Network of VETNET, and the JVET Early Career Researchers network.

@@ -8,7 +8,7 @@ summary: Первая платная встреча, пакет из пяти в
 audience: [B2C]
 ctaLabel: Оставить первичную заявку
 ctaHref: /booking/#enquiry
-relatedServices: [consultation, five-session-package, four-week-support, neurointegration-support, individual-qigong, group-qigong, breathing-session]
+relatedServices: [consultation, four-week-support, five-session-package, individual-qigong, breathing-session]
 sections: [services]
 updatedAt: 2026-10-29
 publicationScope: public

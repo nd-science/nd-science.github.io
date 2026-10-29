@@ -13,4 +13,4 @@ updatedAt: 2026-10-29
 publicationScope: public
 ---
 
-If your question is not listed, submit a short enquiry without sensitive details. Natalia will respond within three working days.
+If your question is not listed, submit a short enquiry through the form or message me on Telegram [@natali_tvet_pro](https://t.me/natali_tvet_pro). I will get back to you personally within one to two working days.

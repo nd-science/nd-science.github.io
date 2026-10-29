@@ -138,6 +138,8 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
     <meta property="og:description" content={description} />
     <meta property="og:url" content={seo.canonical} />
     <meta property="og:locale" content={locale === "ru" ? "ru_RU" : "en_US"} />
+    <meta name="google-site-verification" content={import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION || "g0Sulf8O9jo-GoN5JoHKC_DdFmAsHSjDIxx-Rr-WBEo"} />
+    <meta name="msvalidate.01" content={import.meta.env.PUBLIC_BING_SITE_VERIFICATION || "bing-verification-pending"} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="canonical" href={seo.canonical} />
     {
@@ -177,10 +179,6 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
           <span class="brand-mark identity-mark" aria-hidden="true">ND</span>
           <span class="brand-name">{nataliaProfile.displayName[locale]}</span>
         </a>
-        <div class="site-indicator" aria-label={`Сайт: ${siteLabel}`}>
-          <span class="site-dot" aria-hidden="true"></span>
-          <span class="site-label brand-site">{siteLabel}</span>
-        </div>
         <div class="header-tools">
           <div class="locale-switcher language-switcher" aria-label={labels.language}>
             <a href={paths.ru} lang="ru" aria-current={locale === "ru" ? "page" : undefined}>RU</a>
@@ -218,21 +216,23 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
         </ul>
       </nav>
     </header>
-    <div class="context-bar breadcrumbs" role="navigation" aria-label={labels.breadcrumbs}>
-      <span class="context-label">{labels.path}:</span>
-      <ol class="context-crumbs">
-        {breadcrumbChain.map((item, index) => (
-          <li>
-            {item.href && index < breadcrumbChain.length - 1 ? (
-              <a href={item.href}>{item.label}</a>
-            ) : (
-              <span aria-current="page">{item.label}</span>
-            )}
-          </li>
-        ))}
-      </ol>
-      <code class="context-path">{currentPath}</code>
-    </div>
+    {
+      breadcrumbChain.length > 1 && (
+        <nav class="context-bar breadcrumbs" aria-label={labels.breadcrumbs}>
+          <ol class="context-crumbs">
+            {breadcrumbChain.map((item, index) => (
+              <li>
+                {item.href && index < breadcrumbChain.length - 1 ? (
+                  <a href={item.href}>{item.label}</a>
+                ) : (
+                  <span aria-current="page">{item.label}</span>
+                )}
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )
+    }
     <main id="main-content">
       <slot />
     </main>

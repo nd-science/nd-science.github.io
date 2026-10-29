@@ -14,7 +14,7 @@ updatedAt: 2026-10-29
 publicationScope: public
 ---
 
-The session combines gentle movement, breathing and attention. Natalia trained with Viktor Borisovich Sterlikov through the All-Russian Federation of Qigong, Health Qigong, Daoyin and Taijiquan in the Ba Duan Jin, Summer Fire and Autumn Weiqi sequences.
+The session combines gentle movement, breathing, and focused attention. I completed instructor training with Master Viktor Borisovich Sterlikov through the All-Russian Federation of Qigong in the traditional health-cultivation sequences Ba Duan Jin ("Eight Pieces of Brocade"), Summer Fire, and Autumn Weiqi.
 
 An individual 45-minute session costs €80. A group session costs €35 per participant and starts when at least four people have joined. Online participation requires free space, a stable connection and comfortable clothing.
 

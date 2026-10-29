@@ -15,9 +15,9 @@ publicationScope: public
 ---
 
 1. Complete the short form and describe your request without unnecessary sensitive detail.
-2. Natalia will manually confirm that the format is suitable.
-3. Clients in Russia receive a YooKassa link in RUB converted from EUR at the Central Bank rate on the invoice date; the message shows both the EUR amount and the fixed RUB amount. Other countries receive a manual bank invoice from the Serbian status. A manual PayPal Invoice may be offered after business-account availability is confirmed.
-4. After payment is confirmed manually, Natalia sends a private Google Calendar link.
+2. I will personally review your situation and confirm that the format suits your needs.
+3. Clients in Russia receive a YooKassa link in RUB converted from EUR at the Central Bank rate on the invoice date; the message shows both the EUR amount and the fixed RUB amount. Other countries receive a direct bank invoice from my Serbian tax status. PayPal Invoice may be arranged after business-account verification.
+4. After payment is confirmed, I will send you a private Google Calendar link to select a convenient meeting slot.
 
 The first meeting lasts 60 minutes and costs €100 online or €120 in person. Online meetings are available to adults aged 18+ worldwide where permitted by applicable law; in-person meetings take place in Belgrade.
 

@@ -12,7 +12,7 @@ interface SectionHeadingCopy {
 export const wellnessCopy = {
   ru: {
     siteLabel: "Wellness",
-    crossSiteLabel: "Science — научный профиль",
+    crossSiteLabel: "Академический профиль (Dr. phil.)",
     crossSiteHrefBase: "https://science.invalid",
     fallbackSiteUrl: "https://wellness.invalid",
     nav: [
@@ -133,7 +133,7 @@ export const wellnessCopy = {
   },
   en: {
     siteLabel: "Wellness",
-    crossSiteLabel: "Science — research profile",
+    crossSiteLabel: "Academic & Research Profile (Dr. phil.)",
     crossSiteHrefBase: "https://science.invalid",
     fallbackSiteUrl: "https://wellness.invalid",
     nav: [

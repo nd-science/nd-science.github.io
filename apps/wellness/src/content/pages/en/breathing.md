@@ -14,10 +14,10 @@ updatedAt: 2026-10-29
 publicationScope: public
 ---
 
-In an individual session, we define the task, discuss your current condition and choose an appropriate practice. Natalia uses approaches from the Buteyko and Strelnikova schools, Eastern health practices, box breathing and extended-exhalation exercises.
+In an individual session, we define the task, discuss your current condition and select an appropriate practice. In my work, I draw on proven approaches from the Buteyko and Strelnikova schools, Eastern health traditions, functional breathing, box breathing, and extended-exhalation methods.
 
-The practice is introduced gradually. Intensity, breath holds and duration are adapted to the individual. People with serious respiratory or cardiovascular conditions, epilepsy, pregnancy or other contraindications should consult an appropriate medical professional first.
+The practice is introduced gradually. Intensity, breath holds and duration are tailored to each individual. People with serious respiratory or cardiovascular conditions, epilepsy, pregnancy or other contraindications should consult a medical professional first.
 
-Natalia is continuing her Oxygen Advantage Advanced Instructor and Functional Breathing Instructor training.
+I am currently undertaking advanced instructor training with Oxygen Advantage® (Advanced Instructor and Functional Breathing Instructor).
 
 For ongoing practice, you may join the [Healthy Breathing Club waitlist](https://forms.yandex.ru/u/6aabc44f90fa7b004ca6d189).
