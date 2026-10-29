@@ -1,0 +1,13 @@
+{
+  "name": { "ru": "Групповой цигун", "en": "Group qigong" },
+  "audience": { "ru": "Группа от четырёх взрослых участников", "en": "A group of at least four adult participants" },
+  "task": { "ru": "Практиковать мягкое движение и дыхание в группе.", "en": "Practise gentle movement and breathing in a group." },
+  "includes": [{ "ru": "Групповое занятие запускается после набора минимум четырёх участников", "en": "The group starts once at least four participants have joined" }],
+  "delivery": ["online", "in_person"],
+  "price": { "amount": 35, "currency": "EUR", "unit": "participant" },
+  "outcome": { "ru": "Групповая практика с адаптацией движений.", "en": "A group practice with movement adaptations." },
+  "relatedMethods": ["movement-qigong", "breathing"],
+  "serviceAvailability": "pilot",
+  "publicationScope": "public",
+  "cta": { "label": { "ru": "Присоединиться к набору", "en": "Join the forming group" }, "href": "/booking/#enquiry" }
+}

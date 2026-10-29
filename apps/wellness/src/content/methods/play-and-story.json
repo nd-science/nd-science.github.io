@@ -1,0 +1,32 @@
+{
+  "order": 5,
+  "name": { "ru": "Игра, метафора и история", "en": "Play, metaphor and story" },
+  "summary": {
+    "ru": "Иногда ситуацию легче исследовать через образ, сюжет или роль, чем через прямое объяснение; в консультации могут использоваться метафорические ассоциативные карты, создание и переписывание историй, ролевые модели и нарративная рефлексия",
+    "en": "Sometimes a situation is easier to explore through an image, story or role than through direct explanation; a consultation may include metaphorical associative cards, creating or rewriting stories, role-based models and narrative reflection"
+  },
+  "useCases": [
+    {
+      "ru": "Образная рефлексия и обсуждение ассоциаций",
+      "en": "Image-based reflection and discussion of associations"
+    },
+    {
+      "ru": "Работа с сюжетами, ролями и альтернативными сценариями",
+      "en": "Working with plots, roles and alternative scenarios"
+    }
+  ],
+  "typicalPractice": {
+    "ru": "Значение образа определяет сам клиент; метод используется только с его согласия и в связи с конкретным запросом",
+    "en": "The client determines what an image means; the method is used only with their agreement and in relation to a specific request"
+  },
+  "limitations": [
+    {
+      "ru": "Это не тест с единственно правильной интерпретацией и не диагностика",
+      "en": "This is not a test with one correct interpretation, and not a diagnosis"
+    }
+  ],
+  "credentials": ["thousand-projections"],
+  "relatedServices": ["consultation"],
+  "lifecycleStatus": "current",
+  "publicationScope": "public"
+}

@@ -1,0 +1,74 @@
+---
+import type { Locale } from "@natali/profile";
+import { formatMoney } from "@natali/seo";
+import type { CollectionEntry } from "astro:content";
+import { wellnessCopy } from "../i18n";
+
+interface Props {
+  service: CollectionEntry<"services">;
+  locale: Locale;
+}
+
+const { service, locale } = Astro.props;
+const copy = wellnessCopy[locale];
+const data = service.data;
+
+const prices = data.price
+  ? Array.isArray(data.price)
+    ? data.price
+    : [data.price]
+  : [];
+
+const priceText =
+  prices.length > 0
+    ? prices
+        .map((price) => {
+          let text = formatMoney(price.amount, locale);
+          if (price.unit === "participant") {
+            text += ` ${copy.units.participant}`;
+          }
+          if (price.delivery === "online") {
+            text += ` · ${copy.delivery.online}`;
+          }
+          if (price.delivery === "in_person") {
+            text += ` · ${copy.delivery.in_person}`;
+          }
+          return text;
+        })
+        .join(" · ")
+    : null;
+
+const deliveryLabel = data.delivery
+  .map((mode) => copy.delivery[mode])
+  .join(" · ");
+
+const ctaHref = data.cta.href.startsWith("/")
+  ? `/${locale}${data.cta.href}`
+  : data.cta.href;
+
+const availabilityLabel =
+  data.serviceAvailability === "pilot"
+    ? copy.availability.pilot
+    : data.serviceAvailability === "planned"
+      ? copy.availability.planned
+      : null;
+---
+
+<article class="service-card">
+  {availabilityLabel && <span class="badge">{availabilityLabel}</span>}
+  <h3>{data.name[locale]}</h3>
+  <p>{data.task[locale]}</p>
+  <dl>
+    <dt>{copy.serviceFields.audience}</dt>
+    <dd>{data.audience[locale]}</dd>
+    <dt>{copy.serviceFields.format}</dt>
+    <dd>
+      {deliveryLabel}{data.duration ? ` · ${data.duration[locale]}` : ""}
+    </dd>
+    <dt>{copy.serviceFields.price}</dt>
+    <dd class="price-line">{priceText ?? data.priceLabel?.[locale]}</dd>
+    <dt>{copy.serviceFields.outcome}</dt>
+    <dd>{data.outcome[locale]}</dd>
+  </dl>
+  <a class="button" href={ctaHref}>{data.cta.label[locale]}</a>
+</article>

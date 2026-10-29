@@ -1,0 +1,25 @@
+{
+  "name": "@natali/wellness",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "3.7.4",
+    "@natali/profile": "workspace:*",
+    "@natali/forms": "workspace:*",
+    "@natali/seo": "workspace:*",
+    "@natali/ui": "workspace:*",
+    "astro": "6.4.8"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.11",
+    "typescript": "6.0.3"
+  }
+}
+

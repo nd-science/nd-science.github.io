@@ -1,0 +1,301 @@
+---
+import { credentials, nataliaProfile } from "@natali/profile";
+import { absoluteUrl, formatUpdated } from "@natali/seo";
+import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "@natali/ui/BaseLayout.astro";
+import SectionHeading from "@natali/ui/SectionHeading.astro";
+import CredentialsList from "./CredentialsList.astro";
+import EnquiryForm from "./EnquiryForm.astro";
+import FaqList from "./FaqList.astro";
+import MethodCard from "./MethodCard.astro";
+import ServiceCard from "./ServiceCard.astro";
+import { wellnessCopy } from "../i18n";
+import { faqPageJsonLd, servicesJsonLd, webPageJsonLd } from "../jsonld";
+import { wellnessSiteConfig } from "../site-config";
+
+interface Props {
+  entry: CollectionEntry<"pages">;
+}
+
+const { entry } = Astro.props;
+const { locale, route } = entry.data;
+const copy = wellnessCopy[locale];
+const { Content } = await render(entry);
+
+const allPages = await getCollection("pages");
+const services = (await getCollection("services")).filter(
+  (item) => item.data.publicationScope === "public",
+);
+const methods = (await getCollection("methods"))
+  .filter((item) => item.data.publicationScope === "public")
+  .sort((a, b) => a.data.order - b.data.order);
+const faq = (await getCollection("faq"))
+  .filter((item) => item.data.publicationScope === "public")
+  .sort((a, b) => a.id.localeCompare(b.id));
+
+const wellnessCredentials = credentials
+  .filter(
+    (credential) =>
+      credential.sites.includes("wellness") &&
+      credential.publicationScope === "public",
+  )
+  .sort((a, b) => b.year - a.year || a.id.localeCompare(b.id));
+
+const isHome = route === "home";
+const localePath = `/${locale}/`;
+const currentPath = isHome ? localePath : `/${locale}/${route}/`;
+const paths = {
+  ru: isHome ? "/ru/" : `/ru/${route}/`,
+  en: isHome ? "/en/" : `/en/${route}/`,
+};
+
+const parentRoute = route.includes("/")
+  ? route.split("/").slice(0, -1).join("/")
+  : null;
+const parentEntry = parentRoute
+  ? allPages.find(
+      (page) => page.data.locale === locale && page.data.route === parentRoute,
+    )
+  : undefined;
+const navLabels = new Map<string, string>(
+  copy.nav.map((item) => [item.href, item.label]),
+);
+const breadcrumbs: { label: string; href?: string | undefined }[] = [];
+if (parentEntry) {
+  const parentPath = `/${locale}/${parentEntry.data.route}/`;
+  breadcrumbs.push({
+    label: navLabels.get(parentPath) ?? parentEntry.data.h1,
+    href: parentPath,
+  });
+}
+if (!isHome) {
+  breadcrumbs.push({ label: entry.data.h1 });
+}
+
+const sections = entry.data.sections;
+const related = entry.data.relatedServices.length
+  ? services.filter((service) =>
+      entry.data.relatedServices.includes(service.id),
+    )
+  : [];
+const servicesToShow = sections.includes("services")
+  ? related.length > 0
+    ? related
+    : services
+  : [];
+const servicesHeading =
+  related.length > 0 ? copy.sections.relatedServices : copy.sections.services;
+
+function localizeHref(href: string): string {
+  return href.startsWith("/") ? `/${locale}${href}` : href;
+}
+
+const cta =
+  entry.data.ctaLabel && entry.data.ctaHref
+    ? { label: entry.data.ctaLabel, href: localizeHref(entry.data.ctaHref) }
+    : null;
+const ctaSecondary =
+  entry.data.ctaSecondaryLabel && entry.data.ctaSecondaryHref
+    ? {
+        label: entry.data.ctaSecondaryLabel,
+        href: localizeHref(entry.data.ctaSecondaryHref),
+      }
+    : null;
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || copy.fallbackSiteUrl;
+const pageUrl = absoluteUrl(siteUrl, currentPath);
+
+const jsonLd: Record<string, unknown>[] = [
+  webPageJsonLd({
+    siteUrl,
+    path: currentPath,
+    name: entry.data.h1,
+    description: entry.data.seoDescription,
+    locale,
+    dateModified: entry.data.updatedAt.toISOString().slice(0, 10),
+  }),
+];
+if (sections.includes("faq")) {
+  jsonLd.push(faqPageJsonLd(faq, locale, pageUrl));
+}
+if (servicesToShow.length > 0) {
+  jsonLd.push(servicesJsonLd(servicesToShow, locale, pageUrl));
+}
+
+const scienceOrigin = (
+  import.meta.env.PUBLIC_SCIENCE_SITE_URL || copy.crossSiteHrefBase
+).replace(/\/+$/, "");
+
+const authorLine = `${nataliaProfile.displayName[locale]} · ${copy.updatedPrefix} ${formatUpdated(entry.data.updatedAt, locale)}`;
+const enquiryEndpoint =
+  import.meta.env.PUBLIC_FORMS_ENABLED === "true" ? "/api/enquiry" : undefined;
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+---
+
+<BaseLayout
+  locale={locale}
+  theme="wellness"
+  siteLabel={copy.siteLabel}
+  title={`${entry.data.seoTitle} · ${wellnessSiteConfig.name}`}
+  description={entry.data.seoDescription}
+  paths={paths}
+  fallbackSiteUrl={copy.fallbackSiteUrl}
+  navItems={copy.nav}
+  currentPath={currentPath}
+  crossSite={route === "about" ? { label: copy.crossSiteLabel, href: `${scienceOrigin}/${locale}/about/` } : undefined}
+  breadcrumbs={isHome ? undefined : breadcrumbs}
+  jsonLd={jsonLd}
+  footerText={copy.footer}
+>
+  {
+    isHome ? (
+      <section class="hero">
+        <div class="hero-content">
+          <h1>{entry.data.h1}</h1>
+          <p class="page-meta">{authorLine}</p>
+          <div class="prose">
+            <Content />
+          </div>
+          {(cta || ctaSecondary) && (
+            <div class="cta-block">
+              {cta && (
+                <a class="button" href={cta.href}>
+                  {cta.label}
+                </a>
+              )}
+              {ctaSecondary && (
+                <a class="button secondary" href={ctaSecondary.href}>
+                  {ctaSecondary.label}
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+      </section>
+    ) : (
+      <section class="page-section">
+        <div class="section-inner">
+          <h1>{entry.data.h1}</h1>
+          <p class="page-meta">{authorLine}</p>
+          <div class="prose">
+            <Content />
+          </div>
+          {(cta || ctaSecondary) && (
+            <div class="cta-block">
+              {cta && (
+                <a class="button" href={cta.href}>
+                  {cta.label}
+                </a>
+              )}
+              {ctaSecondary && (
+                <a class="button secondary" href={ctaSecondary.href}>
+                  {ctaSecondary.label}
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+      </section>
+    )
+  }
+
+  {
+    servicesToShow.length > 0 && (
+      <section class="page-section">
+        <div class="section-inner">
+          <SectionHeading
+            title={servicesHeading.title}
+            description={servicesHeading.description}
+          />
+          <div class="service-grid">
+            {servicesToShow.map((service) => (
+              <ServiceCard service={service} locale={locale} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    sections.includes("methods") && (
+      <section class="page-section">
+        <div class="section-inner">
+          <SectionHeading
+            title={copy.sections.methods.title}
+            description={copy.sections.methods.description}
+          />
+          <div class="card-grid">
+            {methods.map((method) => (
+              <MethodCard method={method} locale={locale} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    sections.includes("credentials") && (
+      <section class="page-section">
+        <div class="section-inner">
+          <SectionHeading
+            title={copy.sections.credentials.title}
+            description={copy.sections.credentials.description}
+          />
+          <CredentialsList items={wellnessCredentials} locale={locale} />
+        </div>
+      </section>
+    )
+  }
+
+  {
+    sections.includes("faq") && (
+      <section class="page-section">
+        <div class="section-inner">
+          <FaqList items={faq} locale={locale} />
+        </div>
+      </section>
+    )
+  }
+
+  {
+    sections.includes("enquiry") && (
+      <section class="page-section" id="enquiry">
+        <div class="section-inner">
+          <SectionHeading
+            title={copy.sections.enquiry.title}
+            description={copy.sections.enquiry.description}
+          />
+          <EnquiryForm
+            variant="private"
+            locale={locale}
+            endpoint={enquiryEndpoint}
+            services={services}
+            turnstileSiteKey={turnstileSiteKey}
+          />
+        </div>
+      </section>
+    )
+  }
+
+  {
+    sections.includes("organisation-form") && (
+      <section class="page-section" id="enquiry">
+        <div class="section-inner">
+          <SectionHeading
+            title={copy.sections.organisationForm.title}
+            description={copy.sections.organisationForm.description}
+          />
+          <EnquiryForm
+            variant="organisation"
+            locale={locale}
+            endpoint={enquiryEndpoint}
+            turnstileSiteKey={turnstileSiteKey}
+          />
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>

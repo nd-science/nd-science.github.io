@@ -1,0 +1,245 @@
+---
+import { nataliaProfile, type Locale } from "@natali/profile";
+import {
+  buildSeo,
+  createBreadcrumbJsonLd,
+  createPersonJsonLd,
+  type LocalizedPaths,
+  type PersonJsonLdDetails,
+  type SiteStatus,
+} from "@natali/seo";
+import "../styles/base.css";
+import "../styles/themes.css";
+
+interface NavItem {
+  href: string;
+  label: string;
+}
+
+interface BreadcrumbItem {
+  label: string;
+  href?: string | undefined;
+}
+
+interface CrossSiteLink {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  locale: Locale;
+  theme: "wellness" | "science";
+  siteLabel: string;
+  title: string;
+  description: string;
+  paths: LocalizedPaths;
+  fallbackSiteUrl: string;
+  navItems: NavItem[];
+  currentPath: string;
+  crossSite?: CrossSiteLink | undefined;
+  breadcrumbs?: BreadcrumbItem[] | undefined;
+  personDetails?: PersonJsonLdDetails | undefined;
+  jsonLd?: Record<string, unknown>[] | undefined;
+  footerText: string;
+}
+
+const {
+  locale,
+  theme,
+  siteLabel,
+  title,
+  description,
+  paths,
+  fallbackSiteUrl,
+  navItems,
+  currentPath,
+  crossSite,
+  breadcrumbs,
+  personDetails,
+  jsonLd,
+  footerText,
+} = Astro.props;
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || fallbackSiteUrl;
+const status: SiteStatus =
+  import.meta.env.PUBLIC_SITE_STATUS === "public" ? "public" : "draft";
+const seo = buildSeo({ siteUrl, locale, paths, status });
+const personJsonLd = createPersonJsonLd(
+  nataliaProfile,
+  locale,
+  seo.canonical,
+  personDetails,
+);
+
+const labels =
+  locale === "ru"
+    ? {
+        skip: "Перейти к содержанию",
+        draft: "Черновик: сайт ещё не выпущен, контент и условия уточняются",
+        nav: "Основная навигация",
+        language: "Язык",
+        breadcrumbs: "Хлебные крошки",
+        home: "Главная",
+        path: "Путь",
+        crossSite: "Перейти на второй сайт Наталии Долговой",
+      }
+    : {
+        skip: "Skip to content",
+        draft: "Draft: the site has not launched yet; content and terms are being finalised",
+        nav: "Primary navigation",
+        language: "Language",
+        breadcrumbs: "Breadcrumbs",
+        home: "Home",
+        path: "Path",
+        crossSite: "Go to Natalia Dolgova’s second website",
+      };
+
+const breadcrumbChain = [
+  { label: labels.home, href: `/${locale}/` },
+  ...(breadcrumbs ?? []),
+];
+
+const breadcrumbJsonLd =
+  breadcrumbChain.length > 1
+    ? createBreadcrumbJsonLd(siteUrl, breadcrumbChain, seo.canonical)
+    : undefined;
+
+const allJsonLd = [
+  personJsonLd,
+  ...(breadcrumbJsonLd ? [breadcrumbJsonLd] : []),
+  ...(jsonLd ?? []),
+];
+
+const currentYear = new Date().getUTCFullYear();
+const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
+---
+
+<!doctype html>
+<html lang={locale} data-theme={theme}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="robots" content={seo.robots} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={seo.canonical} />
+    <meta property="og:locale" content={locale === "ru" ? "ru_RU" : "en_US"} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={seo.canonical} />
+    {
+      seo.alternates.map((alternate) => (
+        <link
+          rel="alternate"
+          hreflang={alternate.hreflang}
+          href={alternate.href}
+        />
+      ))
+    }
+    <title>{title}</title>
+    {
+      allJsonLd.map((block) => (
+        <script
+          is:inline
+          type="application/ld+json"
+          set:html={JSON.stringify(block)}
+        />
+      ))
+    }
+    {status === "public" && analyticsToken && (
+      <script
+        is:inline
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={JSON.stringify({ token: analyticsToken })}
+      />
+    )}
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">{labels.skip}</a>
+    {status === "draft" && <div class="draft-banner" role="status">{labels.draft}</div>}
+    <header class="site-header">
+      <div class="site-topbar">
+        <a class="brand identity" href={`/${locale}/`}>
+          <span class="brand-mark identity-mark" aria-hidden="true">ND</span>
+          <span class="brand-name">{nataliaProfile.displayName[locale]}</span>
+        </a>
+        <div class="site-indicator" aria-label={`Сайт: ${siteLabel}`}>
+          <span class="site-dot" aria-hidden="true"></span>
+          <span class="site-label brand-site">{siteLabel}</span>
+        </div>
+        <div class="header-tools">
+          <div class="locale-switcher language-switcher" aria-label={labels.language}>
+            <a href={paths.ru} lang="ru" aria-current={locale === "ru" ? "page" : undefined}>RU</a>
+            <span class="locale-sep" aria-hidden="true">/</span>
+            <a href={paths.en} lang="en" aria-current={locale === "en" ? "page" : undefined}>EN</a>
+          </div>
+          {
+            crossSite && (
+              <a
+                class="cross-site-link"
+                href={crossSite.href}
+                aria-label={labels.crossSite}
+              >
+                <span>{crossSite.label}</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            )
+          }
+        </div>
+      </div>
+      <nav class="page-nav" aria-label={labels.nav}>
+        <ul class="page-tabs nav-list">
+          {
+            navItems.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  aria-current={item.href === currentPath ? "page" : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </header>
+    <div class="context-bar breadcrumbs" role="navigation" aria-label={labels.breadcrumbs}>
+      <span class="context-label">{labels.path}:</span>
+      <ol class="context-crumbs">
+        {breadcrumbChain.map((item, index) => (
+          <li>
+            {item.href && index < breadcrumbChain.length - 1 ? (
+              <a href={item.href}>{item.label}</a>
+            ) : (
+              <span aria-current="page">{item.label}</span>
+            )}
+          </li>
+        ))}
+      </ol>
+      <code class="context-path">{currentPath}</code>
+    </div>
+    <main id="main-content">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>© {currentYear} {nataliaProfile.displayName[locale]}</p>
+      <p>{footerText}</p>
+    </footer>
+    <script is:inline>
+      (() => {
+        const activeTab = document.querySelector('.page-tabs a[aria-current="page"]');
+        if (activeTab) {
+          const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          activeTab.scrollIntoView({
+            block: 'nearest',
+            inline: 'center',
+            behavior: prefersReducedMotion ? 'instant' : 'smooth'
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

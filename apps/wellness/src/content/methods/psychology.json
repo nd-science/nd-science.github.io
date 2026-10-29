@@ -1,0 +1,12 @@
+{
+  "order": 1,
+  "name": { "ru": "Психологическое консультирование", "en": "Psychological consultation" },
+  "summary": { "ru": "Структурированная работа с запросом, мыслями, эмоциями и действиями.", "en": "Structured work with a request, thoughts, emotions and actions." },
+  "useCases": [{ "ru": "Стресс, перегрузка, адаптация и профессиональные переходы", "en": "Stress, overload, adjustment and professional transitions" }],
+  "typicalPractice": { "ru": "Интегративный подход, инструменты КПТ и ACT, осознанность, метафорические и нарративные методы.", "en": "An integrative approach, CBT and ACT tools, mindfulness, and metaphorical and narrative methods." },
+  "adaptation": { "ru": "Подход меняется по запросу и обратной связи клиента.", "en": "The approach changes with the request and client feedback." },
+  "credentials": ["mphu-psychology"],
+  "relatedServices": ["consultation", "five-session-package", "four-week-support"],
+  "lifecycleStatus": "current",
+  "publicationScope": "public"
+}

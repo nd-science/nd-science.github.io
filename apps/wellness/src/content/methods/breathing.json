@@ -1,0 +1,13 @@
+{
+  "order": 3,
+  "name": { "ru": "Дыхательные практики", "en": "Breathing practices" },
+  "summary": { "ru": "Постепенно осваиваемые дыхательные упражнения для саморегуляции.", "en": "Breathing exercises learned gradually as self-regulation tools." },
+  "useCases": [{ "ru": "Расслабление, внимание и формирование регулярной практики", "en": "Relaxation, attention and establishing regular practice" }],
+  "typicalPractice": { "ru": "Подходы Бутейко и Стрельниковой, квадратное дыхание и удлинённый выдох.", "en": "Buteyko and Strelnikova approaches, box breathing and extended exhalation." },
+  "adaptation": { "ru": "Интенсивность, задержки и длительность подбираются индивидуально.", "en": "Intensity, holds and duration are adapted individually." },
+  "limitations": [{ "ru": "При серьёзных состояниях и противопоказаниях требуется консультация профильного врача.", "en": "Serious conditions and contraindications require advice from an appropriate medical professional." }],
+  "credentials": ["oxygen-advantage", "functional-breathing"],
+  "relatedServices": ["breathing-session", "four-week-support"],
+  "lifecycleStatus": "in_progress",
+  "publicationScope": "public"
+}

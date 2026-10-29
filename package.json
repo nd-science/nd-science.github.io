@@ -1,0 +1,22 @@
+{
+  "name": "natali-websites",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.25.0",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev:wellness": "pnpm --filter @natali/wellness dev",
+    "dev:science": "pnpm --filter @natali/science dev",
+    "check": "pnpm validate:content && pnpm -r --if-present check",
+    "build": "pnpm -r --if-present build && node scripts/validate-build.mjs",
+    "test": "pnpm check && pnpm --filter @natali/forms test && pnpm build",
+    "test:forms": "pnpm --filter @natali/forms test",
+    "validate:content": "node scripts/validate-content.mjs",
+    "release:check:wellness": "node scripts/validate-production-env.mjs wellness",
+    "release:check:science": "node scripts/validate-production-env.mjs science"
+  }
+}
+

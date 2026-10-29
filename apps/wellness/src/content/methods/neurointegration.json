@@ -1,0 +1,12 @@
+{
+  "order": 2,
+  "name": { "ru": "Нейроинтеграция", "en": "Neurointegration" },
+  "summary": { "ru": "Прикладная система саморегуляции и организации жизненного контекста.", "en": "An applied system for self-regulation and life-context management." },
+  "useCases": [{ "ru": "Состояние, повторяющиеся паттерны и организация действий", "en": "State, repeated patterns and organising action" }],
+  "typicalPractice": { "ru": "НейроБаланс, НейроСёрфинг и НейроСпринты.", "en": "NeuroBalance, NeuroSurfing and NeuroSprints." },
+  "adaptation": { "ru": "Инструменты выбираются под согласованный запрос.", "en": "Tools are selected around the agreed request." },
+  "credentials": ["neurointegration-trainer", "neurointegration-expert-trainer", "neurointegration-coach-cpd"],
+  "relatedServices": ["neurointegration-support", "four-week-support"],
+  "lifecycleStatus": "current",
+  "publicationScope": "public"
+}

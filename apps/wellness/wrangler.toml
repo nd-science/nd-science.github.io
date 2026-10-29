@@ -1,0 +1,7 @@
+name = "natalia-dolgova-wellness"
+compatibility_date = "2026-10-29"
+pages_build_output_dir = "./dist"
+
+[vars]
+PUBLIC_SITE_STATUS = "draft"
+PUBLIC_FORMS_ENABLED = "false"

@@ -1,0 +1,16 @@
+{
+  "name": { "ru": "Пакет из пяти встреч", "en": "Five-session package" },
+  "audience": { "ru": "Взрослые, которым подходит серия встреч", "en": "Adults for whom a series of meetings is appropriate" },
+  "task": { "ru": "Последовательно работать с одним согласованным запросом.", "en": "Work progressively with one agreed request." },
+  "includes": [{ "ru": "Пять индивидуальных встреч", "en": "Five individual meetings" }],
+  "delivery": ["online", "in_person"],
+  "price": [
+    { "amount": 500, "currency": "EUR", "unit": "programme", "delivery": "online" },
+    { "amount": 600, "currency": "EUR", "unit": "programme", "delivery": "in_person" }
+  ],
+  "outcome": { "ru": "Серия встреч с регулярной обратной связью.", "en": "A series of meetings with regular feedback." },
+  "relatedMethods": ["psychology", "neurointegration"],
+  "serviceAvailability": "available",
+  "publicationScope": "public",
+  "cta": { "label": { "ru": "Обсудить пакет", "en": "Discuss the package" }, "href": "/booking/#enquiry" }
+}

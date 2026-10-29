@@ -1,0 +1,7 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import SitePage from "../../components/SitePage.astro";
+export async function getStaticPaths() { return (await getCollection("pages")).filter((entry) => entry.data.route !== "home").map((entry) => ({ params: { locale: entry.data.locale, slug: entry.data.route }, props: { entry } })); }
+const { entry } = Astro.props as { entry: CollectionEntry<"pages"> };
+---
+<SitePage {entry} />

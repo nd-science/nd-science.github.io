@@ -1,0 +1,32 @@
+{
+  "order": 4,
+  "name": { "ru": "Движение и цигун", "en": "Movement and qigong" },
+  "summary": {
+    "ru": "Оздоровительный цигун сочетает плавные движения, дыхание и внимание; подготовка пройдена во Всероссийской Федерации Цигун, Оздоровительного Цигун, Даоинь и Тайцзицюань",
+    "en": "Health qigong combines gentle movement, breathing and attention; the training was completed through the All-Russian Federation of Qigong, Health Qigong, Daoyin and Taijiquan"
+  },
+  "useCases": [
+    {
+      "ru": "Индивидуальные и групповые занятия по комплексам «Ба Дуань Цзин», «Лето. ОГОНЬ» и «Осень Вэйци»",
+      "en": "Individual and group sessions based on the Ba Duan Jin, Summer Fire and Autumn Weiqi sequences"
+    },
+    {
+      "ru": "Мягкая мобилизация, внимание к ощущениям и координация",
+      "en": "Gentle mobilisation, attention to sensations and coordination"
+    }
+  ],
+  "adaptation": {
+    "ru": "Амплитуда и формат упражнений адаптируются под возможности участника",
+    "en": "The range and format of movement are adapted to the participant"
+  },
+  "limitations": [
+    {
+      "ru": "При травмах, обострениях и ограничениях движения формат предварительно согласуется",
+      "en": "Injuries, acute conditions and movement limitations should be discussed in advance"
+    }
+  ],
+  "credentials": ["qigong-instructor"],
+  "relatedServices": ["individual-qigong", "group-qigong"],
+  "lifecycleStatus": "current",
+  "publicationScope": "public"
+}

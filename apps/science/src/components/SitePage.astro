@@ -1,0 +1,50 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import { nataliaProfile, professionalIdentifiers, sameAsLinks } from "@natali/profile";
+import BaseLayout from "@natali/ui/BaseLayout.astro";
+import SectionHeading from "@natali/ui/SectionHeading.astro";
+import { absoluteUrl, createWebPageJsonLd, formatUpdated } from "@natali/seo";
+import { scienceCopy } from "../i18n";
+import { scienceSiteConfig } from "../site-config";
+import ScienceProfile from "./ScienceProfile.astro";
+import PublicationList from "./PublicationList.astro";
+import ScienceEnquiryForm from "./ScienceEnquiryForm.astro";
+
+interface Props { entry: CollectionEntry<"pages"> }
+const { entry } = Astro.props;
+const { locale, route } = entry.data;
+const copy = scienceCopy[locale];
+const { Content } = await render(entry);
+const publications = (await getCollection("publications", ({ data }) => data.publicationScope === "public"));
+const isHome = route === "home";
+const currentPath = isHome ? `/${locale}/` : `/${locale}/${route}/`;
+const paths = { ru: isHome ? "/ru/" : `/ru/${route}/`, en: isHome ? "/en/" : `/en/${route}/` };
+const localizeHref = (href: string) => href.startsWith("/") ? `/${locale}${href}` : href;
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || scienceSiteConfig.fallbackUrl;
+const jsonLd: Record<string, unknown>[] = [createWebPageJsonLd({ name: entry.data.h1, description: entry.data.seoDescription, url: absoluteUrl(siteUrl, currentPath), locale, dateModified: entry.data.updatedAt.toISOString() })];
+if (route === "publications") publications.forEach((publication) => jsonLd.push({ "@context": "https://schema.org", "@type": "ScholarlyArticle", headline: publication.data.title, author: publication.data.authors, datePublished: String(publication.data.year), isPartOf: publication.data.venue, identifier: publication.data.doi ? `https://doi.org/${publication.data.doi}` : publication.data.url }));
+if (route === "projects") jsonLd.push({ "@context": "https://schema.org", "@type": "ResearchProject", name: locale === "ru" ? "Факторы воспринимаемой эффективности онлайн-подготовки педагогов СПО" : "Factors shaping the perceived effectiveness of online preparation for TVET educators", member: { "@type": "Person", name: nataliaProfile.displayName[locale] } });
+if (route === "expert-services") jsonLd.push({ "@context": "https://schema.org", "@type": "Service", name: locale === "ru" ? "Исследовательские и образовательные услуги" : "Research and education services", provider: { "@type": "Person", name: nataliaProfile.displayName[locale] } });
+if (route === "research/dissertation") jsonLd.push({ "@context": "https://schema.org", "@type": "Thesis", name: "Key Factors of Online Course Perceived Effectiveness for Preparing TVET Engineering Teachers in Russia", author: { "@type": "Person", name: "Natalia Dolgova" }, datePublished: "2025", url: "https://www.zhb-flensburg.de/dissert/dolgova" });
+const wellnessOrigin = (import.meta.env.PUBLIC_WELLNESS_SITE_URL || copy.crossSiteHrefBase).replace(/\/$/, "");
+const crossSite = route === "about" ? { label: copy.crossSiteLabel, href: `${wellnessOrigin}/${locale}/about/` } : undefined;
+const endpoint = import.meta.env.PUBLIC_FORMS_ENABLED === "true" ? "/api/enquiry" : undefined;
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+const cta = entry.data.ctaLabel && entry.data.ctaHref ? { label: entry.data.ctaLabel, href: localizeHref(entry.data.ctaHref) } : undefined;
+const secondary = entry.data.ctaSecondaryLabel && entry.data.ctaSecondaryHref ? { label: entry.data.ctaSecondaryLabel, href: localizeHref(entry.data.ctaSecondaryHref) } : undefined;
+---
+<BaseLayout
+  locale={locale} theme="science" siteLabel={copy.siteLabel}
+  title={`${entry.data.seoTitle} · ${scienceSiteConfig.name}`} description={entry.data.seoDescription}
+  {paths} fallbackSiteUrl={scienceSiteConfig.fallbackUrl} navItems={copy.nav} {currentPath} {crossSite}
+  breadcrumbs={isHome ? undefined : [{ label: entry.data.h1 }]}
+  personDetails={{ jobTitle: nataliaProfile.scienceRole[locale], alternateName: "Nataliia Ovchinnikova", knowsAbout: ["vocational education", "adult learning", "TVET educator training", "digital transformation in education"], sameAs: sameAsLinks }}
+  {jsonLd} footerText={copy.footer}
+>
+  <section class={isHome ? "hero" : "hero page-hero"}><div class="hero-content"><p class="eyebrow">{scienceSiteConfig.name}</p><h1>{entry.data.h1}</h1><p class="hero-copy">{entry.data.summary}</p>{(cta || secondary) && <div class="actions">{cta && <a class="button" href={cta.href}>{cta.label}</a>}{secondary && <a class="button secondary" href={secondary.href}>{secondary.label}</a>}</div>}<p class="page-meta">{copy.updatedPrefix}: {formatUpdated(entry.data.updatedAt, locale)}</p></div></section>
+  <section class="page-section"><div class="section-inner prose"><Content /></div></section>
+  {entry.data.sections.includes("credentials") && <section class="page-section"><div class="section-inner"><SectionHeading {...copy.sections.credentials} /><ScienceProfile {locale} /></div></section>}
+  {entry.data.sections.includes("publications") && <section class="page-section"><div class="section-inner"><SectionHeading {...copy.sections.publications} /><PublicationList items={publications} {locale} /></div></section>}
+  {entry.data.sections.includes("profiles") && <section class="page-section"><div class="section-inner"><SectionHeading {...copy.sections.profiles} /><ul class="profile-list"><li><span class="profile-name">ORCID</span><a href={professionalIdentifiers.orcidUrl}>{professionalIdentifiers.orcid}</a></li><li><span class="profile-name">ResearcherID</span><span class="profile-value">{professionalIdentifiers.researcherId}</span></li><li><span class="profile-name">Scopus Author ID</span><span class="profile-value">{professionalIdentifiers.scopusAuthorId}</span></li></ul><p class="notice-panel">{locale === "ru" ? "h-index не выводится без значения, ссылки на конкретную базу и даты актуальности." : "The h-index is not shown without a value, a database-specific source link and an as-of date."}</p></div></section>}
+  {entry.data.sections.includes("contact-form") && <section class="page-section" id="enquiry"><div class="section-inner"><SectionHeading {...copy.sections.form} /><ScienceEnquiryForm {locale} {endpoint} {turnstileSiteKey} /></div></section>}
+</BaseLayout>

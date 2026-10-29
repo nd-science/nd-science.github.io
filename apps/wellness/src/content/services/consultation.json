@@ -1,0 +1,17 @@
+{
+  "name": { "ru": "Первая консультация", "en": "First consultation" },
+  "audience": { "ru": "Взрослые 18+", "en": "Adults 18+" },
+  "task": { "ru": "Уточнить запрос, реалистичную цель и следующий шаг.", "en": "Clarify the request, a realistic goal and the next step." },
+  "includes": [{ "ru": "60-минутная первая встреча", "en": "A 60-minute first meeting" }],
+  "duration": { "ru": "60 минут", "en": "60 minutes" },
+  "delivery": ["online", "in_person"],
+  "price": [
+    { "amount": 100, "currency": "EUR", "unit": "session", "delivery": "online" },
+    { "amount": 120, "currency": "EUR", "unit": "session", "delivery": "in_person" }
+  ],
+  "outcome": { "ru": "Понимание формата и согласованный следующий шаг.", "en": "A clear understanding of the format and an agreed next step." },
+  "relatedMethods": ["psychology", "neurointegration", "breathing", "movement-qigong", "play-and-story"],
+  "serviceAvailability": "available",
+  "publicationScope": "public",
+  "cta": { "label": { "ru": "Оставить заявку", "en": "Submit an enquiry" }, "href": "/booking/#enquiry" }
+}

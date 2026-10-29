@@ -1,0 +1,14 @@
+{
+  "name": { "ru": "Индивидуальный оздоровительный цигун", "en": "Individual health qigong" },
+  "audience": { "ru": "Взрослые 18+", "en": "Adults 18+" },
+  "task": { "ru": "Освоить мягкое движение, дыхание и внимание.", "en": "Learn gentle movement, breathing and attention." },
+  "includes": [{ "ru": "Индивидуально адаптированное занятие", "en": "An individually adapted session" }],
+  "duration": { "ru": "45 минут", "en": "45 minutes" },
+  "delivery": ["online", "in_person"],
+  "price": { "amount": 80, "currency": "EUR", "unit": "session" },
+  "outcome": { "ru": "Освоенная последовательность для самостоятельной практики.", "en": "A sequence learned for independent practice." },
+  "relatedMethods": ["movement-qigong", "breathing"],
+  "serviceAvailability": "available",
+  "publicationScope": "public",
+  "cta": { "label": { "ru": "Записаться", "en": "Book a session" }, "href": "/booking/#enquiry" }
+}

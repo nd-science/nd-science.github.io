@@ -1,0 +1,13 @@
+{
+  "name": { "ru": "Индивидуальная дыхательная практика", "en": "Individual breathing practice" },
+  "audience": { "ru": "Взрослые 18+ после учёта противопоказаний", "en": "Adults 18+ after contraindications are considered" },
+  "task": { "ru": "Подобрать и освоить подходящий вариант дыхательной практики.", "en": "Choose and learn an appropriate breathing practice." },
+  "includes": [{ "ru": "Оценка задачи, постепенное освоение и адаптация интенсивности", "en": "Task review, gradual learning and adapted intensity" }],
+  "delivery": ["online", "in_person"],
+  "priceLabel": { "ru": "По согласованию", "en": "By agreement" },
+  "outcome": { "ru": "Понятная и адаптированная самостоятельная практика.", "en": "A clear and adapted independent practice." },
+  "relatedMethods": ["breathing"],
+  "serviceAvailability": "available",
+  "publicationScope": "public",
+  "cta": { "label": { "ru": "Обсудить занятие", "en": "Discuss a session" }, "href": "/booking/#enquiry" }
+}

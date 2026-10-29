@@ -1,0 +1,14 @@
+{
+  "name": { "ru": "Четырёхнедельное сопровождение", "en": "Four-week support" },
+  "audience": { "ru": "Взрослые со стрессом и перегрузкой", "en": "Adults experiencing stress and overload" },
+  "task": { "ru": "Восстановление ресурсов и формирование устойчивых изменений.", "en": "Restore resources and develop sustainable change." },
+  "includes": [{ "ru": "Индивидуально согласованные встречи, упражнения, материалы и обратная связь", "en": "Individually agreed meetings, exercises, materials and feedback" }],
+  "duration": { "ru": "4 недели", "en": "4 weeks" },
+  "delivery": ["online", "in_person"],
+  "price": { "amount": 600, "currency": "EUR", "unit": "programme" },
+  "outcome": { "ru": "Персональный рабочий ритм и набор применимых инструментов.", "en": "A personal working rhythm and a set of usable tools." },
+  "relatedMethods": ["psychology", "neurointegration", "breathing", "movement-qigong"],
+  "serviceAvailability": "available",
+  "publicationScope": "public",
+  "cta": { "label": { "ru": "Обсудить участие", "en": "Discuss participation" }, "href": "/booking/#enquiry" }
+}

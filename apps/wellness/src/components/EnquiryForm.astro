@@ -1,0 +1,112 @@
+---
+import type { Locale } from "@natali/profile";
+import type { CollectionEntry } from "astro:content";
+import { formatMoney } from "@natali/seo";
+import { wellnessCopy } from "../i18n";
+
+interface Props {
+  variant: "private" | "organisation";
+  locale: Locale;
+  endpoint?: string | undefined;
+  services?: CollectionEntry<"services">[];
+  turnstileSiteKey?: string | undefined;
+}
+
+const { variant, locale, endpoint, services = [], turnstileSiteKey } = Astro.props;
+const copy = wellnessCopy[locale];
+const privateForm = copy.forms.private;
+const organisationForm = copy.forms.organisation;
+const serviceOptions = [...services]
+  .sort((a, b) => a.data.name[locale].localeCompare(b.data.name[locale], locale))
+  .map((service) => {
+    const price = service.data.price
+      ? Array.isArray(service.data.price) ? service.data.price[0] : service.data.price
+      : undefined;
+    const suffix = price ? ` — ${formatMoney(price.amount, locale)}` : "";
+    return { id: service.id, label: `${service.data.name[locale]}${suffix}` };
+  });
+---
+
+{!endpoint || !turnstileSiteKey ? (
+  <div class="notice-panel">
+    <h3>{copy.forms.notConnected.title}</h3>
+    <p>{copy.forms.notConnected.text}</p>
+  </div>
+) : (
+  <form class="enquiry-form" method="post" action={endpoint} data-enquiry-form>
+    <input type="hidden" name="locale" value={locale} />
+    <input type="hidden" name="enquiryKind" value={variant} />
+    <div class="form-honeypot" aria-hidden="true">
+      <label for={`website-${variant}`}>{variant === "private" ? privateForm.honeypot : organisationForm.honeypot}</label>
+      <input type="text" id={`website-${variant}`} name="website" tabindex={-1} autocomplete="off" />
+    </div>
+
+    {variant === "private" ? (
+      <>
+        <div class="field"><label for="wellness-name">{privateForm.name}</label><input id="wellness-name" name="name" autocomplete="name" required /></div>
+        <div class="field"><label for="wellness-email">{privateForm.contact}</label><input id="wellness-email" name="email" type="email" autocomplete="email" required /></div>
+        <div class="field">
+          <label for="wellness-language">{privateForm.language}</label>
+          <select id="wellness-language" name="language" required>{copy.forms.languageOptions.map((option) => <option value={option.value}>{option.label}</option>)}</select>
+        </div>
+        <div class="field"><label for="wellness-timezone">{privateForm.timezone}</label><input id="wellness-timezone" name="timezone" required /></div>
+        <div class="field">
+          <label for="wellness-delivery">{privateForm.format}</label>
+          <select id="wellness-delivery" name="delivery" required>{copy.forms.formatOptions.map((option) => <option value={option.value}>{option.label}</option>)}</select>
+        </div>
+        <div class="field">
+          <label for="wellness-service">{privateForm.service}</label>
+          <select id="wellness-service" name="service" required><option value="">{privateForm.servicePlaceholder}</option>{serviceOptions.map((option) => <option value={option.id}>{option.label}</option>)}</select>
+        </div>
+        <div class="field"><label for="wellness-request">{privateForm.request}</label><textarea id="wellness-request" name="request" maxlength="2000" required></textarea><span class="field-hint">{privateForm.requestHint}</span></div>
+        <div class="checkbox-field"><input id="wellness-adult" name="adultConfirmed" type="checkbox" value="yes" required /><label for="wellness-adult">{privateForm.adult}</label></div>
+      </>
+    ) : (
+      <>
+        <div class="field"><label for="org-name">{organisationForm.organisation}</label><input id="org-name" name="organisation" autocomplete="organization" required /></div>
+        <div class="field"><label for="org-role">{organisationForm.role}</label><input id="org-role" name="role" autocomplete="organization-title" required /></div>
+        <div class="field"><label for="org-email">{organisationForm.contact}</label><input id="org-email" name="email" type="email" autocomplete="email" required /></div>
+        <div class="field">
+          <label for="org-language">{organisationForm.language}</label>
+          <select id="org-language" name="language" required>{copy.forms.languageOptions.map((option) => <option value={option.value}>{option.label}</option>)}</select>
+        </div>
+        <div class="field"><label for="org-task">{organisationForm.task}</label><textarea id="org-task" name="request" maxlength="2000" required></textarea></div>
+        <div class="field"><label for="org-audience">{organisationForm.groupSize}</label><input id="org-audience" name="audience" required /></div>
+        <div class="field">
+          <label for="org-delivery">{organisationForm.format}</label>
+          <select id="org-delivery" name="delivery" required>{copy.forms.formatOptions.map((option) => <option value={option.value}>{option.label}</option>)}</select>
+        </div>
+        <div class="field"><label for="org-timeline">{organisationForm.timeline}</label><input id="org-timeline" name="timeline" required /></div>
+        <div class="field"><label for="org-comment">{organisationForm.comment}</label><textarea id="org-comment" name="comment" maxlength="2000"></textarea></div>
+      </>
+    )}
+
+    <div class="checkbox-field"><input id={`consent-${variant}`} name="consent" type="checkbox" value="yes" required /><label for={`consent-${variant}`}>{variant === "private" ? privateForm.consent : organisationForm.consent}</label></div>
+    <div class="cf-turnstile" data-sitekey={turnstileSiteKey}></div>
+    <div><button type="submit" class="button">{variant === "private" ? privateForm.submit : organisationForm.submit}</button></div>
+    <p class="form-status" role="status" aria-live="polite" data-form-status></p>
+  </form>
+)}
+
+{endpoint && turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+<script>
+  document.querySelectorAll<HTMLFormElement>("[data-enquiry-form]").forEach((form) => {
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const status = form.querySelector<HTMLElement>("[data-form-status]");
+      const button = form.querySelector<HTMLButtonElement>("button[type='submit']");
+      if (button) button.disabled = true;
+      if (status) status.textContent = document.documentElement.lang === "ru" ? "Отправляем…" : "Sending…";
+      try {
+        const response = await fetch(form.action, { method: "POST", body: new FormData(form) });
+        const result = await response.json() as { message?: string };
+        if (status) status.textContent = result.message ?? (response.ok ? "OK" : "Error");
+        if (response.ok) form.reset();
+      } catch {
+        if (status) status.textContent = document.documentElement.lang === "ru" ? "Не удалось отправить заявку. Попробуйте позже." : "The enquiry could not be sent. Please try again later.";
+      } finally {
+        if (button) button.disabled = false;
+      }
+    });
+  });
+</script>

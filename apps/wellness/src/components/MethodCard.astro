@@ -1,0 +1,18 @@
+---
+import type { Locale } from "@natali/profile";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  method: CollectionEntry<"methods">;
+  locale: Locale;
+}
+
+const { method, locale } = Astro.props;
+const href = `/${locale}/practices/${method.id}/`;
+---
+
+<article class="card">
+  <h3>{method.data.name[locale]}</h3>
+  <p>{method.data.summary[locale]}</p>
+  <p><a href={href}>{method.data.name[locale]} →</a></p>
+</article>

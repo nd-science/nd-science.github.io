@@ -1,0 +1,14 @@
+{
+  "name": { "ru": "Вводный воркшоп для команды", "en": "Introductory team workshop" },
+  "audience": { "ru": "Руководители и команды организаций", "en": "Leaders and organisational teams" },
+  "task": { "ru": "Познакомить команду с практическими навыками саморегуляции и профилактики перегрузки.", "en": "Introduce practical self-regulation and overload-prevention skills." },
+  "includes": [{ "ru": "Бриф, воркшоп и согласованный формат обратной связи", "en": "Brief, workshop and an agreed feedback format" }],
+  "duration": { "ru": "60–90 минут", "en": "60–90 minutes" },
+  "delivery": ["online", "in_person"],
+  "priceLabel": { "ru": "По коммерческому предложению", "en": "By proposal" },
+  "outcome": { "ru": "Общий язык и первые инструменты для команды.", "en": "Shared language and initial tools for the team." },
+  "relatedMethods": ["psychology", "neurointegration", "breathing", "movement-qigong"],
+  "serviceAvailability": "available",
+  "publicationScope": "public",
+  "cta": { "label": { "ru": "Запросить предложение", "en": "Request a proposal" }, "href": "/for-organizations/#enquiry" }
+}

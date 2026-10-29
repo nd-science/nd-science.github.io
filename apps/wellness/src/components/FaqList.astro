@@ -1,0 +1,22 @@
+---
+import type { Locale } from "@natali/profile";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  items: CollectionEntry<"faq">[];
+  locale: Locale;
+}
+
+const { items, locale } = Astro.props;
+---
+
+<div class="faq-list">
+  {
+    items.map((item) => (
+      <details class="faq-item">
+        <summary>{item.data.question[locale]}</summary>
+        <p>{item.data.answer[locale]}</p>
+      </details>
+    ))
+  }
+</div>

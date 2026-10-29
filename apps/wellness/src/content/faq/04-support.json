@@ -1,0 +1,5 @@
+{
+  "question": { "ru": "Есть ли поддержка между встречами?", "en": "Is there support between sessions?" },
+  "answer": { "ru": "Только если она входит в выбранную программу или отдельно согласована.", "en": "Only when it is included in the selected programme or agreed separately." },
+  "publicationScope": "public"
+}

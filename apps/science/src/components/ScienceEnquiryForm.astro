@@ -1,0 +1,41 @@
+---
+import type { Locale } from "@natali/profile";
+import { scienceCopy } from "../i18n";
+interface Props { locale: Locale; endpoint?: string | undefined; turnstileSiteKey?: string | undefined }
+const { locale, endpoint, turnstileSiteKey } = Astro.props;
+const form = scienceCopy[locale].form;
+---
+{!endpoint || !turnstileSiteKey ? <div class="notice-panel"><p>{form.notConnected}</p></div> : (
+  <form class="enquiry-form" method="post" action={endpoint} data-enquiry-form>
+    <input type="hidden" name="locale" value={locale} />
+    <div class="form-honeypot" aria-hidden="true"><label for="science-website">{form.honeypot}</label><input id="science-website" name="website" tabindex={-1} autocomplete="off" /></div>
+    <div class="field"><label for="science-name">{form.name}</label><input id="science-name" name="name" autocomplete="name" required /></div>
+    <div class="field"><label for="science-organisation">{form.organisation}</label><input id="science-organisation" name="organisation" autocomplete="organization" required /></div>
+    <div class="field"><label for="science-role">{form.role}</label><input id="science-role" name="role" autocomplete="organization-title" required /></div>
+    <div class="field"><label for="science-email">{form.email}</label><input id="science-email" name="email" type="email" autocomplete="email" required /></div>
+    <div class="field">
+      <label for="science-language">{form.language}</label>
+      <select id="science-language" name="language" required>{scienceCopy[locale].languageOptions.map((option) => <option value={option.value}>{option.label}</option>)}</select>
+    </div>
+    <div class="field"><label for="science-type">{form.projectType}</label><select id="science-type" name="projectType" required>{scienceCopy[locale].projectTypeOptions.map((option) => <option value={option.value}>{option.label}</option>)}</select></div>
+    <div class="field"><label for="science-result">{form.result}</label><textarea id="science-result" name="intendedResult" maxlength="2000" required></textarea></div>
+    <div class="field"><label for="science-audience">{form.audience}</label><input id="science-audience" name="audience" required /></div>
+    <div class="field"><label for="science-timeline">{form.timeline}</label><input id="science-timeline" name="timeline" required /></div>
+    <div class="field"><label for="science-budget">{form.budget}</label><select id="science-budget" name="budgetRange" required>{scienceCopy[locale].budgetOptions.map((option) => <option value={option.value}>{option.label}</option>)}</select></div>
+    <div class="field"><label for="science-comment">{form.comment}</label><textarea id="science-comment" name="comment" maxlength="2000"></textarea></div>
+    <div class="checkbox-field"><input id="science-consent" name="consent" type="checkbox" value="yes" required /><label for="science-consent">{form.consent}</label></div>
+    <div class="cf-turnstile" data-sitekey={turnstileSiteKey}></div>
+    <button class="button" type="submit">{form.submit}</button>
+    <p class="form-status" role="status" aria-live="polite" data-form-status></p>
+  </form>
+)}
+{endpoint && turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+<script>
+  document.querySelectorAll<HTMLFormElement>("[data-enquiry-form]").forEach((form) => form.addEventListener("submit", async (event) => {
+    event.preventDefault(); const status = form.querySelector<HTMLElement>("[data-form-status]"); const button = form.querySelector<HTMLButtonElement>("button");
+    if (button) button.disabled = true; if (status) status.textContent = document.documentElement.lang === "ru" ? "Отправляем…" : "Sending…";
+    try { const response = await fetch(form.action, { method: "POST", body: new FormData(form) }); const result = await response.json() as { message?: string }; if (status) status.textContent = result.message ?? ""; if (response.ok) form.reset(); }
+    catch { if (status) status.textContent = document.documentElement.lang === "ru" ? "Не удалось отправить запрос. Попробуйте позже." : "The enquiry could not be sent. Please try again later."; }
+    finally { if (button) button.disabled = false; }
+  }));
+</script>

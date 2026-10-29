@@ -1,0 +1,5 @@
+{
+  "question": { "ru": "Сколько встреч потребуется?", "en": "How many meetings will I need?" },
+  "answer": { "ru": "Количество зависит от запроса, цели и обратной связи. Работа ориентирована на один согласованный запрос.", "en": "The number depends on the request, goal and feedback. The work is organised around one agreed request." },
+  "publicationScope": "public"
+}

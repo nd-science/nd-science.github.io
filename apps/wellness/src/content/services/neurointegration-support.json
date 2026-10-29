@@ -1,0 +1,13 @@
+{
+  "name": { "ru": "Нейроинтеграционное сопровождение", "en": "Neurointegration support" },
+  "audience": { "ru": "Взрослые, работающие с состоянием, мышлением и действиями", "en": "Adults working with state, thinking and action" },
+  "task": { "ru": "Организовать саморегуляцию и действия короткими циклами.", "en": "Organise self-regulation and action in short cycles." },
+  "includes": [{ "ru": "НейроБаланс, НейроСёрфинг и НейроСпринты по согласованному запросу", "en": "NeuroBalance, NeuroSurfing and NeuroSprints around the agreed request" }],
+  "delivery": ["online", "in_person"],
+  "priceLabel": { "ru": "По согласованию", "en": "By agreement" },
+  "outcome": { "ru": "Согласованная система наблюдения, рефлексии и действий.", "en": "An agreed system for observation, reflection and action." },
+  "relatedMethods": ["neurointegration"],
+  "serviceAvailability": "available",
+  "publicationScope": "public",
+  "cta": { "label": { "ru": "Обсудить сопровождение", "en": "Discuss support" }, "href": "/booking/#enquiry" }
+}
