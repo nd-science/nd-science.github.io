@@ -282,58 +282,63 @@
     align-items: end;
   }
 
-  /* Folder Tabs with classic folder slanted shoulder */
+  /* Folder Tabs: classic file-folder divider tab with slanted left shoulder / ---- | */
   .page-tabs a,
   .nav-list a {
     position: relative;
     display: inline-flex;
     align-items: center;
     min-height: 2.75rem;
-    padding: 0.65rem 1.15rem;
+    padding: 0.65rem 1.15rem 0.65rem 1.55rem;
     color: var(--muted-text);
     background: transparent;
-    border-left: 1px solid transparent;
-    border-top: 1px solid transparent;
-    border-top-left-radius: 8px;
     font-size: 0.92rem;
     font-weight: 700;
     text-decoration: none;
-    transition: color 140ms ease, background-color 140ms ease;
+    transition: color 140ms ease;
     white-space: nowrap;
     z-index: 1;
   }
 
+  /* Outer shape: acts as the 1px border for / ---- | */
   .page-tabs a::before,
   .nav-list a::before {
     content: "";
     position: absolute;
-    top: -1px;
-    right: -13px;
-    bottom: 0;
-    width: 14px;
+    inset: 0;
+    clip-path: polygon(14px 0%, calc(100% - 3px) 0%, 100% 3px, 100% 100%, 0% 100%);
     background: transparent;
-    border-top: 1px solid transparent;
-    border-right: 1px solid transparent;
-    border-top-right-radius: 5px;
-    transform: skewX(-24deg);
-    transform-origin: bottom left;
-    transition: background-color 140ms ease, border-color 140ms ease;
+    transition: background-color 140ms ease;
     pointer-events: none;
+    z-index: -2;
+  }
+
+  /* Inner shape: fills tab body, inset by 1px at top/left/right, open at bottom */
+  .page-tabs a::after,
+  .nav-list a::after {
+    content: "";
+    position: absolute;
+    inset: 1px 1px 0 1px;
+    clip-path: polygon(13px 0%, calc(100% - 3px) 0%, 100% 3px, 100% 100%, 0% 100%);
+    background: transparent;
+    transition: background-color 140ms ease;
+    pointer-events: none;
+    z-index: -1;
   }
 
   .page-tabs a:hover,
   .nav-list a:hover {
     color: var(--heading);
-    background: var(--surface-strong);
-    border-left-color: var(--border);
-    border-top-color: var(--border);
   }
 
   .page-tabs a:hover::before,
   .nav-list a:hover::before {
+    background: var(--border);
+  }
+
+  .page-tabs a:hover::after,
+  .nav-list a:hover::after {
     background: var(--surface-strong);
-    border-top-color: var(--border);
-    border-right-color: var(--border);
   }
 
   /* Active Folder Tab: joins seamlessly to the context-bar / surface below */
@@ -342,33 +347,27 @@
     position: relative;
     margin-block-end: -1px;
     color: var(--heading);
-    background: var(--surface);
-    border-left-color: var(--border);
-    border-top-color: var(--border);
-    border-block-end-color: var(--surface);
     font-weight: 800;
     z-index: 2;
-    box-shadow: 0 -2px 6px color-mix(in oklch, var(--shadow) 40%, transparent);
   }
 
   .page-tabs a[aria-current="page"]::before,
   .nav-list a[aria-current="page"]::before {
+    background: var(--border);
+  }
+
+  .page-tabs a[aria-current="page"]::after,
+  .nav-list a[aria-current="page"]::after {
     background: var(--surface);
-    border-top-color: var(--border);
-    border-right-color: var(--border);
   }
 
   /* Accent stripe indicator inside active tab */
-  .page-tabs a[aria-current="page"]::after,
-  .nav-list a[aria-current="page"]::after {
-    position: absolute;
-    inset-inline-start: 0.85rem;
-    inset-inline-end: 0.2rem;
-    inset-block-end: 0.22rem;
-    height: 0.2rem;
-    content: "";
-    background: var(--accent-strong);
-    border-radius: 999px;
+  .page-tabs a[aria-current="page"] > span,
+  .nav-list a[aria-current="page"] > span {
+    position: relative;
+    display: inline-block;
+    border-bottom: 2.5px solid var(--accent-strong);
+    padding-bottom: 2px;
   }
 
   .page-tabs a:focus-visible,

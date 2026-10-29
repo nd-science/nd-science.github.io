@@ -172,7 +172,6 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
   </head>
   <body>
     <a class="skip-link" href="#main-content">{labels.skip}</a>
-    {status === "draft" && <div class="draft-banner" role="status">{labels.draft}</div>}
     <header class="site-header">
       <div class="site-topbar">
         <a class="brand identity" href={`/${locale}/`}>
@@ -255,16 +254,17 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
             </p>
             <div class="footer-status-pill">
               <span class="site-dot" aria-hidden="true"></span>
-              <span>{siteLabel} · {labels.statusBadge}</span>
+              <span>{siteLabel}</span>
             </div>
           </div>
 
           <div class="footer-col nav-col">
             <h4 class="footer-heading">{labels.navHeading}</h4>
             <ul class="footer-nav-list">
-              {navItems.slice(0, 6).map((item) => (
+              {navItems.map((item) => (
                 <li><a href={item.href}>{item.label}</a></li>
               ))}
+              <li><a href={`/${locale}/sitemap.xml`}>{locale === "ru" ? "Карта сайта (Sitemap)" : "Sitemap"}</a></li>
             </ul>
           </div>
 
@@ -282,6 +282,7 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
                 <li><a href="https://orcid.org/0000-0003-0816-2103" target="_blank" rel="noopener noreferrer">ORCID: 0000-0003-0816-2103 ↗</a></li>
                 <li><a href="https://www.scopus.com/authid/detail.uri?authorId=57202091034" target="_blank" rel="noopener noreferrer">Scopus: 57202091034 ↗</a></li>
                 <li><a href="https://www.webofscience.com/wos/author/record/A-9484-2016" target="_blank" rel="noopener noreferrer">ResearcherID: A-9484-2016 ↗</a></li>
+                <li><a href="https://www.linkedin.com/in/natalidolgova" target="_blank" rel="noopener noreferrer">LinkedIn: natalidolgova ↗</a></li>
                 <li><a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">Telegram: @natali_tvet_pro</a></li>
               </ul>
             )}
@@ -294,7 +295,7 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
                 <li><a href="https://disk.yandex.ru/i/kHnE1PbPWDsADA" target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Договор-оферта" : "Service Agreement"} ↗</a></li>
                 <li><a href="https://disk.yandex.ru/i/BYRuqg6yed5EvA" target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Информированное согласие" : "Informed Consent"} ↗</a></li>
                 <li><a href="https://disk.yandex.ru/i/15FgjGfGxgZ6MQ" target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Политика обработки ПДн" : "Privacy Policy"} ↗</a></li>
-                <li><span class="tax-info">{locale === "ru" ? "Самозанятая Долгова Н. А. · ИНН 772076044719" : "Self-employed N. Dolgova · Tax ID 772076044719"}</span></li>
+                <li><span class="tax-info">{locale === "ru" ? "Самозанятая Долгова Н. Э. · ИНН 772076044719" : "Self-employed N. E. Dolgova · Tax ID 772076044719"}</span></li>
               </ul>
             ) : (
               <ul class="footer-legal-list">

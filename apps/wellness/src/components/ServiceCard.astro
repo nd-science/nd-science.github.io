@@ -48,16 +48,19 @@ const ctaHref = data.cta.href.startsWith("/")
 
 const isRecommended = service.id === "consultation";
 const isFlagship = service.id === "four-week-support";
+const isB2B = service.id === "b2b-workshop";
 
 const badgeText = isRecommended
   ? locale === "ru" ? "Рекомендуемый старт" : "Recommended Start"
   : isFlagship
     ? locale === "ru" ? "Флагманская программа" : "Flagship Program"
-    : data.serviceAvailability === "pilot"
-      ? copy.availability.pilot
-      : data.serviceAvailability === "planned"
-        ? copy.availability.planned
-        : null;
+    : isB2B
+      ? locale === "ru" ? "Для команд и бизнеса" : "Teams & Leadership"
+      : data.serviceAvailability === "pilot"
+        ? copy.availability.pilot
+        : data.serviceAvailability === "planned"
+          ? copy.availability.planned
+          : null;
 ---
 
 <article class={`service-card ${isRecommended ? "service-card--featured" : ""}`}>

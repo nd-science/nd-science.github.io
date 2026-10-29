@@ -6,7 +6,7 @@ export const scienceCopy = {
     nav: [
       { href: "/ru/", label: "Главная" }, { href: "/ru/about/", label: "Биография" }, { href: "/ru/research/", label: "Исследования" },
       { href: "/ru/publications/", label: "Публикации" }, { href: "/ru/education/", label: "Образование" }, { href: "/ru/projects/", label: "Проекты" },
-      { href: "/ru/expert-services/", label: "Услуги" }, { href: "/ru/contact/", label: "Контакт" },
+      { href: "/ru/expert-services/", label: "Услуги" }, { href: "/ru/contact/", label: "Контакты" },
     ],
     updatedPrefix: "Обновлено", footer: "Научный и экспертный профиль Наталии Долговой.",
     sections: {
@@ -39,7 +39,7 @@ export const scienceCopy = {
     nav: [
       { href: "/en/", label: "Home" }, { href: "/en/about/", label: "Biography" }, { href: "/en/research/", label: "Research" },
       { href: "/en/publications/", label: "Publications" }, { href: "/en/education/", label: "Education" }, { href: "/en/projects/", label: "Projects" },
-      { href: "/en/expert-services/", label: "Services" }, { href: "/en/contact/", label: "Contact" },
+      { href: "/en/expert-services/", label: "Services" }, { href: "/en/contact/", label: "Contacts" },
     ],
     updatedPrefix: "Updated", footer: "Natalia Dolgova’s research and expert profile.",
     sections: {
