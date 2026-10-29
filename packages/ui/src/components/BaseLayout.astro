@@ -82,6 +82,12 @@ const labels =
         home: "Главная",
         path: "Путь",
         crossSite: "Перейти на второй сайт Наталии Долговой",
+        statusBadge: "Черновик (noindex)",
+        navHeading: "Навигация",
+        contactsHeading: "Связь и профили",
+        scienceHeading: "Научные профили",
+        legalHeading: "Правовая информация",
+        backToTop: "Наверх",
       }
     : {
         skip: "Skip to content",
@@ -92,6 +98,12 @@ const labels =
         home: "Home",
         path: "Path",
         crossSite: "Go to Natalia Dolgova’s second website",
+        statusBadge: "Draft (noindex)",
+        navHeading: "Navigation",
+        contactsHeading: "Contacts & Profiles",
+        scienceHeading: "Research Identifiers",
+        legalHeading: "Legal & Documents",
+        backToTop: "Back to top",
       };
 
 const breadcrumbChain = [
@@ -225,8 +237,80 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
       <slot />
     </main>
     <footer class="site-footer">
-      <p>© {currentYear} {nataliaProfile.displayName[locale]}</p>
-      <p>{footerText}</p>
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-col brand-col">
+            <a class="brand identity" href={`/${locale}/`}>
+              <span class="brand-mark identity-mark" aria-hidden="true">ND</span>
+              <span class="brand-name">{nataliaProfile.displayName[locale]}</span>
+            </a>
+            <p class="footer-tagline">
+              {theme === "wellness"
+                ? (locale === "ru"
+                  ? "Психологическое консультирование, нейроинтеграция, дыхание и оздоровительное движение."
+                  : "Psychological counselling, neurointegration, breathing and movement.")
+                : (locale === "ru"
+                  ? "Исследования профессионального образования, подготовка педагогов и обучение взрослых."
+                  : "Research in vocational education, educator training and adult learning.")}
+            </p>
+            <div class="footer-status-pill">
+              <span class="site-dot" aria-hidden="true"></span>
+              <span>{siteLabel} · {labels.statusBadge}</span>
+            </div>
+          </div>
+
+          <div class="footer-col nav-col">
+            <h4 class="footer-heading">{labels.navHeading}</h4>
+            <ul class="footer-nav-list">
+              {navItems.slice(0, 6).map((item) => (
+                <li><a href={item.href}>{item.label}</a></li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="footer-col resources-col">
+            <h4 class="footer-heading">{theme === "wellness" ? labels.contactsHeading : labels.scienceHeading}</h4>
+            {theme === "wellness" ? (
+              <ul class="footer-contact-list">
+                <li><a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">Telegram: @natali_tvet_pro</a></li>
+                <li><a href="https://t.me/natalicompass" target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Канал" : "Channel"}: @natalicompass</a></li>
+                <li><a href="https://www.b17.ru/dolgova_nataliya/" target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Анкета B17" : "B17 Profile"} ↗</a></li>
+                <li><a href="https://trainer.neurointegration.org/profile/966067701912-nataliya-dolgova" target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Реестр тренеров" : "Trainers Register"} ↗</a></li>
+              </ul>
+            ) : (
+              <ul class="footer-contact-list">
+                <li><a href="https://orcid.org/0000-0003-0816-2103" target="_blank" rel="noopener noreferrer">ORCID: 0000-0003-0816-2103 ↗</a></li>
+                <li><span>Scopus: 57200282038</span></li>
+                <li><span>ResearcherID: J-2586-2018</span></li>
+                <li><span>Dr. phil. (magna cum laude)</span></li>
+              </ul>
+            )}
+          </div>
+
+          <div class="footer-col legal-col">
+            <h4 class="footer-heading">{labels.legalHeading}</h4>
+            {theme === "wellness" ? (
+              <ul class="footer-legal-list">
+                <li><a href="https://disk.yandex.ru/i/kHnE1PbPWDsADA" target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Договор-оферта" : "Service Agreement"} ↗</a></li>
+                <li><a href="https://disk.yandex.ru/i/BYRuqg6yed5EvA" target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Информированное согласие" : "Informed Consent"} ↗</a></li>
+                <li><a href="https://disk.yandex.ru/i/15FgjGfGxgZ6MQ" target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Политика обработки ПДн" : "Privacy Policy"} ↗</a></li>
+                <li><span class="tax-info">{locale === "ru" ? "Самозанятая Долгова Н. А. · ИНН 772076044719" : "Self-employed N. Dolgova · Tax ID 772076044719"}</span></li>
+              </ul>
+            ) : (
+              <ul class="footer-legal-list">
+                <li><a href="https://www.zhb-flensburg.de/dissert/dolgova" target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Диссертация (Flensburg)" : "Dissertation Repository"} ↗</a></li>
+                <li><span>{locale === "ru" ? "Публикации: Dolgova / Ovchinnikova" : "Published as: Dolgova / Ovchinnikova"}</span></li>
+                <li><span class="tax-info">© {currentYear} {nataliaProfile.displayName[locale]}</span></li>
+              </ul>
+            )}
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© {currentYear} {nataliaProfile.displayName[locale]}. {footerText}</p>
+          <a class="back-to-top" href="#main-content">↑ {labels.backToTop}</a>
+        </div>
+      </div>
     </footer>
     <script is:inline>
       (() => {

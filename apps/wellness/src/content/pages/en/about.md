@@ -18,3 +18,8 @@ I began my professional career in education in 2011, teaching, conducting resear
 I later expanded this experience through professional training in psychology, neurointegration, qigong and breathing practices. In 2026, I qualified as a practical psychologist at Moscow Pedagogical State University. I am also a neurointegration trainer, hold a Dr. phil. from Europa-Universität Flensburg and am a Candidate of Economic Sciences. My practice is supported by regular supervision and peer consultation.
 
 It matters to me that people understand what we are doing and why, can give feedback and retain the right to choose a pace that works for them.
+
+### Professional registries and credentials
+
+- [Practical psychologist profile on B17.ru](https://www.b17.ru/dolgova_nataliya/) — professional profile and verification on the primary directory for psychologists.
+- [Verified trainer profile in the Neurointegration Institute Register](https://trainer.neurointegration.org/profile/966067701912-nataliya-dolgova) — certification verification in the alumni directory.
