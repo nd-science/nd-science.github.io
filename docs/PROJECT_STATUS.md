@@ -60,7 +60,10 @@
 - Добавлен доступный скрипт плавной центровки активной вкладки на мобильных экранах.
 - Исправлена верстка hero (устранена пустота сверху, центрирование контента, улучшенный ритм) и карточек (`.card-grid` и `.service-grid` выровнены с одинаковой высотой и двухколоночными параметрами).
 - Интегрированы прямые контакты и профили из действующей визитки `natalicompass.aqulas.me` (сводка в `docs/sources/aqulas-contacts-2026-10-29.md`).
-- Настроены GitHub Actions для независимого деплоя в GitHub Pages: `.github/workflows/deploy-wellness.yml` и `.github/workflows/deploy-science.yml`.
+- Настроены GitHub Actions и успешно опубликованы сайты в GitHub Pages:
+  - Wellness: [`https://wellnessnd.github.io/ru/`](https://wellnessnd.github.io/ru/) и [`https://wellnessnd.github.io/en/`](https://wellnessnd.github.io/en/)
+  - Science: [`https://nd-science.github.io/ru/`](https://nd-science.github.io/ru/) и [`https://nd-science.github.io/en/`](https://nd-science.github.io/en/)
+- Проверены в реальном браузере: переключение вкладок, сквозная навигация между сайтами, переключение RU↔EN, мобильное выравнивание и прямой блок контактов на странице бронирования.
 
 ## Принятые решения
 
@@ -87,7 +90,7 @@
 - Не собраны финальные публичные медиа, consent на отзывы и downloadable-файлы Science.
 - Не определён точный состав корпоративной линейки и экспертных пакетов.
 - Пользовательские тесты вкладок и полный master-аудит не выполнены.
-- Preview, staging, production, CI/CD и rollback не настроены.
+- CI/CD для GitHub Pages развёрнут и активен; пользовательские домены, production-контуры (DNS) и rollback-регламент ждут подтверждения.
 
 ## Открытые решения
 
