@@ -11,8 +11,8 @@ updatedAt: 2026-10-29
 publicationScope: public
 ---
 
-Nataliia designs content, learning materials, scenarios, competence models and assessment procedures for in-person, online and blended learning.
+I design curriculum content, learning materials, instructional scenarios, competence models, and assessment frameworks for in-person, online, and blended learning.
 
-Her experience includes 40+ programmes and 37 education projects, work with 2,000+ educators across 35 regions, development for educational leaders and support for digital-transformation teams.
+My professional experience includes 40+ programmes and 37 education projects, training over 2,000 educators across 35 regions, professional development for educational leaders, and advisory support for digital transformation teams.
 
 Formats include learning modules, professional-development programmes, webinars, project or strategy sessions, facilitation and project-work support.

@@ -11,8 +11,8 @@ updatedAt: 2026-10-29
 publicationScope: public
 ---
 
-Nataliia’s research trajectory includes banking-system resilience, regional development, education finance and management, international academic mobility, university–industry relations, human capital, digital transformation and TVET educator preparation.
+My research trajectory spans banking-system resilience, regional economic development, higher-education financing and governance, international academic mobility, university–industry collaboration, human capital models, institutional digital transformation, and TVET educator preparation.
 
-Her main recent focus is the perceived effectiveness of online preparation for TVET engineering educators.
+My primary research focus centres on the factors shaping the perceived effectiveness of online preparation for TVET engineering educators.
 
 Methods include quantitative and qualitative analysis, surveys, interviews, mixed methods, triangulation and literature synthesis.
