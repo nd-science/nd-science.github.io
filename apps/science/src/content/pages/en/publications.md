@@ -20,8 +20,44 @@ The complete corpus of 64 publications and monographs is indexed in the [Russian
 
 Research by Nataliia Dolgova (published as Nataliia Ovchinnikova) on university-industry partnerships, technology transfer, flagship universities, and regional human capital is cited across leading peer-reviewed journals and monographs:
 
-- **Higher Education in Russia (Peer-reviewed Q1 / Scopus):** studies examining modern higher education ecosystems (*Kravchenko S. A., 2026*) cite *«University-Industry Interaction 2.0»* to analyze collaborative frameworks between academic institutions and industrial employers.
-- **RSUH Bulletin (Economics and Management Series):** research on student career development and human potential across colleges and universities (*Frolova I. I., Arslanova S. K., 2026*) references *«Universities as Key Drivers of Regional Human Capital...»* regarding institutional roles in workforce development.
-- **Academic Monographs on Technology Transfer & Entrepreneurship:** scholarly monographs including *«University Technological Entrepreneurship: AI, Mentorship, Standards» (Gumerova G. I., Shaimieva E. Sh., Ksenofontov A. A., 2026/2027)* and *«Efficiency Mechanisms for University Technology Transfer Centers» (Kuimov V. V. et al., 2026)* rely on comparative analyses of international technology transfer models (*Ovchinnikova & Lazarenko, 2021*).
-- **Journal of Creative Economy:** research on University 3.0 institutional transformations (*Smirnov D. Yu., 2026*) builds upon *«The Role of Modern Universities in Regional Innovation Development»* regarding territorial innovation ecosystems.
-- **International Higher Education Management Reviews (SUSU Bulletin):** comprehensive surveys on university management efficiency (*Loginovskiy O. V., 2025*) evaluate technology transfer models and engineering education frameworks.
+<div class="citation-grid">
+  <article class="citation-card">
+    <div class="citation-card-header">
+      <span class="citation-source">Higher Education in Russia</span>
+      <span class="badge">Peer-reviewed Q1 / Scopus</span>
+    </div>
+    <p class="citation-body">Studies examining modern higher education ecosystems (<em>Kravchenko S. A., 2026</em>) cite <em>«University-Industry Interaction 2.0»</em> to analyze collaborative frameworks between academic institutions and industrial employers.</p>
+  </article>
+
+  <article class="citation-card">
+    <div class="citation-card-header">
+      <span class="citation-source">RSUH Bulletin (Economics & Management)</span>
+      <span class="badge">Peer-reviewed / RSCI</span>
+    </div>
+    <p class="citation-body">Research on student career development and human potential across colleges and universities (<em>Frolova I. I., Arslanova S. K., 2026</em>) references <em>«Universities as Key Drivers of Regional Human Capital...»</em> regarding institutional roles in workforce development.</p>
+  </article>
+
+  <article class="citation-card">
+    <div class="citation-card-header">
+      <span class="citation-source">Academic Monographs on Technology Transfer</span>
+      <span class="badge">Monographs</span>
+    </div>
+    <p class="citation-body">Scholarly monographs including <em>«University Technological Entrepreneurship: AI, Mentorship, Standards» (Gumerova G. I., Shaimieva E. Sh., Ksenofontov A. A., 2026/2027)</em> and <em>«Efficiency Mechanisms for University Technology Transfer Centers» (Kuimov V. V. et al., 2026)</em> rely on comparative analyses of international technology transfer models (<em>Ovchinnikova & Lazarenko, 2021</em>).</p>
+  </article>
+
+  <article class="citation-card">
+    <div class="citation-card-header">
+      <span class="citation-source">Journal of Creative Economy</span>
+      <span class="badge">Peer-reviewed</span>
+    </div>
+    <p class="citation-body">Research on University 3.0 institutional transformations (<em>Smirnov D. Yu., 2026</em>) builds upon <em>«The Role of Modern Universities in Regional Innovation Development»</em> regarding territorial innovation ecosystems.</p>
+  </article>
+
+  <article class="citation-card">
+    <div class="citation-card-header">
+      <span class="citation-source">Higher Education Management Reviews</span>
+      <span class="badge">SUSU Bulletin / Scopus</span>
+    </div>
+    <p class="citation-body">Comprehensive surveys on university management efficiency (<em>Loginovskiy O. V., 2025</em>) evaluate technology transfer models and engineering education frameworks.</p>
+  </article>
+</div>

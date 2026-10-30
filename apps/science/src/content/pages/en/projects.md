@@ -13,29 +13,81 @@ publicationScope: public
 
 My track record spans more than 37 implemented education and research projects, 40+ designed professional-development programmes, and over 2,000 educators trained across 35 regions. Below are five representative flagship initiatives in educator training, institutional digital transformation, and educational research.
 
-### 1. Professional Development for TVET Educators (2017–2019)
-- **Scale:** 2,000+ educators across 35 regions.
-- **Role & Scope:** curriculum design, coordination, and delivery of large-scale blended professional learning for vocational and technical college teachers.
-- **Outcome:** implementation of contemporary pedagogical frameworks across regional vocational institutions.
+<div class="service-grid">
+  <article class="service-card service-card--featured">
+    <div class="service-card-header">
+      <span class="badge badge--featured">Research · 2022–2026</span>
+      <h3 class="service-card-title">Doctoral Research on Online Training Effectiveness</h3>
+    </div>
+    <ul class="service-features">
+      <li><span class="feature-label">Institution:</span> <span class="feature-value">Europa-Universität Flensburg (Germany), Dr. phil. (magna cum laude)</span></li>
+      <li><span class="feature-label">Focus:</span> <span class="feature-value">Factors shaping the perceived effectiveness of online courses for TVET engineering educators</span></li>
+      <li><span class="feature-label">Outcome:</span> <span class="feature-value">Doctoral dissertation, mixed-methods triangulation (quantitative and qualitative), international publications in Scopus, Zenodo, VTE</span></li>
+    </ul>
+    <div class="service-card-footer">
+      <a class="button button--primary" href="/en/research/dissertation/">View dissertation details →</a>
+    </div>
+  </article>
 
-### 2. Financial Literacy & Entrepreneurship Training (2021)
-- **Scale:** 320 educators, 144 academic hours.
-- **Role & Scope:** development of subject curricula, interactive instructional scenarios, and competence assessment tools.
-- **Outcome:** a trained cohort of educators prepared to deliver financial literacy courses.
+  <article class="service-card">
+    <div class="service-card-header">
+      <span class="badge">TVET · 2017–2019</span>
+      <h3 class="service-card-title">Professional Development for TVET Educators</h3>
+    </div>
+    <ul class="service-features">
+      <li><span class="feature-label">Scale:</span> <span class="feature-value">2,000+ educators across 35 regions</span></li>
+      <li><span class="feature-label">Role:</span> <span class="feature-value">Curriculum design, coordination, and blended learning delivery for vocational colleges</span></li>
+      <li><span class="feature-label">Outcome:</span> <span class="feature-value">Adoption of modern pedagogical methodologies across regional vocational institutions</span></li>
+    </ul>
+    <div class="service-card-footer">
+      <a class="button button--secondary" href="/en/contact/#enquiry">Discuss project →</a>
+    </div>
+  </article>
 
-### 3. Digital Transformation of Educational Organisations (2020–2023)
-- **Focus:** universities, colleges, and educational development institutes (RANEPA, GINFO, University 20.35).
-- **Role & Scope:** design of learning materials, facilitation of institutional project intensives, and advisory support for leadership teams.
-- **Outcome:** defended digital strategy projects and adoption of modern digital learning environments.
+  <article class="service-card">
+    <div class="service-card-header">
+      <span class="badge">Education · 2021</span>
+      <h3 class="service-card-title">Financial Literacy & Entrepreneurship Training</h3>
+    </div>
+    <ul class="service-features">
+      <li><span class="feature-label">Scale:</span> <span class="feature-value">320 educators, 144 academic hours</span></li>
+      <li><span class="feature-label">Role:</span> <span class="feature-value">Development of curricula, interactive scenarios, and competence assessment instruments</span></li>
+      <li><span class="feature-label">Outcome:</span> <span class="feature-value">A prepared cohort of educators for scaling financial literacy education</span></li>
+    </ul>
+    <div class="service-card-footer">
+      <a class="button button--secondary" href="/en/contact/#enquiry">Discuss programme →</a>
+    </div>
+  </article>
 
-### 4. Education Transformation Research (SKOLKOVO, 2014–2019)
-- **Focus:** international student mobility, human capital models, university institutional strategy, and higher education economics.
-- **Role & Scope:** research and senior analyst responsibilities, empirical data collection, policy papers, and book chapters.
-- **Outcome:** peer-reviewed publications and strategic analytical reports for university leaders.
+  <article class="service-card">
+    <div class="service-card-header">
+      <span class="badge">Transformation · 2020–2023</span>
+      <h3 class="service-card-title">Digital Transformation of Educational Organisations</h3>
+    </div>
+    <ul class="service-features">
+      <li><span class="feature-label">Focus:</span> <span class="feature-value">Universities, colleges, and development institutes (RANEPA, GINFO, University 20.35)</span></li>
+      <li><span class="feature-label">Role:</span> <span class="feature-value">Design of learning materials, facilitation of project intensives, and leadership coaching</span></li>
+      <li><span class="feature-label">Outcome:</span> <span class="feature-value">Defended institutional digital strategies and deployment of modern learning environments</span></li>
+    </ul>
+    <div class="service-card-footer">
+      <a class="button button--secondary" href="/en/contact/#enquiry">Discuss transformation →</a>
+    </div>
+  </article>
 
-### 5. Doctoral Research on Online Training Effectiveness (2022–2026)
-- **Institution:** Europa-Universität Flensburg (Germany), Dr. phil. (magna cum laude).
-- **Focus:** factors shaping the perceived effectiveness of online courses for TVET engineering educators.
-- **Outcome:** doctoral dissertation, mixed-methods triangulation (quantitative and qualitative), and international publications (Scopus, Zenodo, VTE journal).
+  <article class="service-card">
+    <div class="service-card-header">
+      <span class="badge">Analytics · SKOLKOVO 2014–2019</span>
+      <h3 class="service-card-title">Education Transformation Research</h3>
+    </div>
+    <ul class="service-features">
+      <li><span class="feature-label">Focus:</span> <span class="feature-value">International student mobility, human capital models, and higher education economics</span></li>
+      <li><span class="feature-label">Role:</span> <span class="feature-value">Senior analyst, empirical data collection, policy papers, and analytical monographs</span></li>
+      <li><span class="feature-label">Outcome:</span> <span class="feature-value">Peer-reviewed publications and strategic research reports for university rectors</span></li>
+    </ul>
+    <div class="service-card-footer">
+      <a class="button button--secondary" href="/en/contact/#enquiry">Discuss research →</a>
+    </div>
+  </article>
+</div>
 
 *Institutional cases and partner logos are published strictly with prior written consent.*

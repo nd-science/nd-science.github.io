@@ -119,6 +119,23 @@ const organisationForm = copy.forms.organisation;
 
 {endpoint && turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
 <script>
+  // Auto-fill selected service from URL param (?service=...)
+  const urlParams = new URLSearchParams(window.location.search);
+  const requestedService = urlParams.get("service");
+  if (requestedService) {
+    const serviceInput = document.querySelector<HTMLInputElement>('input[name="service"]');
+    const requestTextarea = document.querySelector<HTMLTextAreaElement>('textarea[name="request"]');
+    if (serviceInput) {
+      serviceInput.value = requestedService;
+    }
+    if (requestTextarea && !requestTextarea.value) {
+      const isRu = document.documentElement.lang === "ru";
+      requestTextarea.value = isRu
+        ? `Здравствуйте! Интересует формат: «${requestedService}». `
+        : `Hello! I am interested in: "${requestedService}". `;
+    }
+  }
+
   document.querySelectorAll<HTMLFormElement>("[data-enquiry-form]").forEach((form) => {
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
