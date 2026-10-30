@@ -42,9 +42,14 @@ const deliveryLabel = data.delivery
   .map((mode) => copy.delivery[mode])
   .join(", ");
 
-const ctaHref = data.cta.href.startsWith("/")
+const baseHref = data.cta.href.startsWith("/")
   ? `/${locale}${data.cta.href}`
   : data.cta.href;
+
+const serviceParam = `service=${encodeURIComponent(data.name[locale])}`;
+const ctaHref = baseHref.includes("#")
+  ? baseHref.replace("#", `?${serviceParam}#`)
+  : `${baseHref}${baseHref.includes("?") ? "&" : "?"}${serviceParam}`;
 
 const isRecommended = service.id === "consultation";
 const isFlagship = service.id === "four-week-support";

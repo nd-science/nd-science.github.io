@@ -53,15 +53,58 @@ function formatType(type: string): string {
       <div class="publication-links">
         {item.data.doi && <a href={`https://doi.org/${item.data.doi}`} target="_blank" rel="noopener noreferrer">DOI ↗</a>}
         {item.data.url && <a href={item.data.url} target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Источник ↗" : "Source ↗"}</a>}
+        <button
+          type="button"
+          class="cite-button"
+          data-copy-cite={`${item.data.authors.join(", ")} (${item.data.year}). ${item.data.title}. ${item.data.venue}.${item.data.doi ? ` https://doi.org/${item.data.doi}` : ""}`}
+          title={locale === "ru" ? "Скопировать библиографическое описание в буфер обмена" : "Copy citation to clipboard"}
+        >
+          {locale === "ru" ? "Цитировать ⎘" : "Cite ⎘"}
+        </button>
       </div>
     </li>
   ))}
 </ul>
+<style>
+  .cite-button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: var(--accent-strong);
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+    font-family: inherit;
+    transition: color 150ms ease;
+  }
+  .cite-button:hover {
+    color: var(--heading);
+  }
+</style>
 <script>
   const filter = document.querySelector<HTMLSelectElement>("[data-publication-filter]");
   filter?.addEventListener("change", () => {
     document.querySelectorAll<HTMLElement>("[data-publication-list] [data-type]").forEach((item) => {
       item.hidden = filter.value !== "all" && item.dataset.type !== filter.value;
+    });
+  });
+
+  document.querySelectorAll<HTMLButtonElement>("[data-copy-cite]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const text = button.dataset.copyCite;
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        const original = button.innerText;
+        button.innerText = original.includes("Цитировать") ? "Скопировано!" : "Copied!";
+        setTimeout(() => {
+          button.innerText = original;
+        }, 2000);
+      } catch (err) {
+        console.error("Failed to copy citation:", err);
+      }
     });
   });
 </script>
