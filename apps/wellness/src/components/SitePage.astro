@@ -198,17 +198,25 @@ const pageTitle = isHome
             <aside class="hero-media" aria-label={locale === "ru" ? "Портрет Наталии Долговой" : "Portrait of Nataliia Dolgova"}>
               <div class="portrait-card">
                 <div class="portrait-frame">
-                  <div class="portrait-placeholder" aria-hidden="true">
-                    <div class="portrait-mark">ND</div>
-                    <p class="portrait-name">{nataliaProfile.displayName[locale]}</p>
-                    <p class="portrait-title">
-                      {locale === "ru"
-                        ? "Dr. phil. · Практический психолог · Тренер по нейроинтеграции"
-                        : "Dr. phil. · Practical Psychologist · Neurointegration Trainer"}
-                    </p>
-                  </div>
+                  <img
+                    src="/images/natalia-portrait.png"
+                    alt={locale === "ru"
+                      ? "Наталия Долгова — Dr. phil., практический психолог и тренер по нейроинтеграции"
+                      : "Nataliia Dolgova — Dr. phil., Practical Psychologist and Neurointegration Trainer"}
+                    width="440"
+                    height="520"
+                    loading="eager"
+                    decoding="async"
+                    class="portrait-img"
+                  />
                 </div>
                 <div class="portrait-caption">
+                  <p class="portrait-name">{nataliaProfile.displayName[locale]}</p>
+                  <p class="portrait-title">
+                    {locale === "ru"
+                      ? "Dr. phil. · Практический психолог · Тренер по нейроинтеграции"
+                      : "Dr. phil. · Practical Psychologist · Neurointegration Trainer"}
+                  </p>
                   <span class="portrait-pill">
                     {locale === "ru" ? "Мозг · Психика · Тело" : "Brain · Psyche · Body"}
                   </span>

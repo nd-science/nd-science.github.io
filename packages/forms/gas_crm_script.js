@@ -96,7 +96,7 @@ function doPost(e) {
     // --- 1. ОБРАБОТКА ВХОДЯЩИХ СООБЩЕНИЙ ИЗ TELEGRAM ---
     if (data.update_id) {
       handleTelegramUpdate(data);
-      return createJsonResponse({ ok: true });
+      return HtmlService.createHtmlOutput("OK");
     }
 
     // --- 2. ОБРАБОТКА ЗАЯВКИ С ВЕБ-САЙТА ---
@@ -442,12 +442,15 @@ function testTelegram() {
   });
 }
 
+function doGet(e) {
+  return HtmlService.createHtmlOutput("Webhook is active.");
+}
+
 function escapeMd(text) {
   if (!text) return "";
   return String(text).replace(/[_*[\]()~`>#+\-=|{}.!]/g, "\\$&");
 }
 
 function createJsonResponse(data) {
-  return ContentService.createTextOutput(JSON.stringify(data))
-    .setMimeType(ContentService.MimeType.JSON);
+  return HtmlService.createHtmlOutput(JSON.stringify(data));
 }

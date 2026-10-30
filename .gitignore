@@ -16,4 +16,8 @@ Thumbs.db
 # Internal source questionnaires may contain private operational context.
 /Профессиональная_анкета_*.docx
 /Профессиональная_анкета_*.md
+/исходники/
+
+# Local scratch directory
+scratch/
 
