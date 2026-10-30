@@ -9,7 +9,8 @@ ctaLabel: Discuss a research or education project
 ctaHref: /contact/#enquiry
 ctaSecondaryLabel: View publications
 ctaSecondaryHref: /publications/
-updatedAt: 2026-10-29
+sections: [publications, profiles]
+updatedAt: 2026-10-30
 publicationScope: public
 ---
 
