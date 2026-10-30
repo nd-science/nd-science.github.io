@@ -258,6 +258,8 @@ export const professionalIdentifiers = {
   elibraryAuthorId: "687073",
   elibraryUrl: "https://www.elibrary.ru/author_profile.asp?id=687073",
   elibraryItemsUrl: "https://www.elibrary.ru/author_items.asp?authorid=687073&show_refs=1",
+  googleScholarUserId: "BtLwD8UAAAAJ",
+  googleScholarUrl: "https://scholar.google.com/citations?user=BtLwD8UAAAAJ",
 } as const;
 
 export interface ScientificMetric {
@@ -272,6 +274,18 @@ export interface ScientificMetric {
 
 /** Подтверждённые наукометрические показатели по состоянию на 30.10.2026. */
 export const verifiedMetrics: ScientificMetric[] = [
+  {
+    database: "Google Scholar",
+    databaseUrl: professionalIdentifiers.googleScholarUrl,
+    hIndex: 13,
+    documents: 71,
+    citations: 486,
+    checkedAt: "2026-10-30",
+    notes: {
+      ru: "Верифицированный профиль цитирований Google Академии (Europa-Universität Flensburg)",
+      en: "Verified Google Scholar citation profile (Europa-Universität Flensburg)",
+    },
+  },
   {
     database: "РИНЦ / eLibrary",
     databaseUrl: "https://www.elibrary.ru/author_profile.asp?id=687073",

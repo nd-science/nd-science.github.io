@@ -28,19 +28,19 @@ const priceText =
             text += ` ${copy.units.participant}`;
           }
           if (price.delivery === "online") {
-            text += ` · ${copy.delivery.online}`;
+            text += ` ${copy.delivery.online}`;
           }
           if (price.delivery === "in_person") {
-            text += ` · ${copy.delivery.in_person}`;
+            text += ` ${copy.delivery.in_person}`;
           }
           return text;
         })
-        .join(" · ")
+        .join(" / ")
     : null;
 
 const deliveryLabel = data.delivery
   .map((mode) => copy.delivery[mode])
-  .join(" · ");
+  .join(", ");
 
 const ctaHref = data.cta.href.startsWith("/")
   ? `/${locale}${data.cta.href}`
@@ -78,7 +78,7 @@ const badgeText = isRecommended
   <ul class="service-features" role="list">
     <li>
       <span class="feature-label">{copy.serviceFields.format}:</span>
-      <span class="feature-value">{deliveryLabel}{data.duration ? ` · ${data.duration[locale]}` : ""}</span>
+      <span class="feature-value">{deliveryLabel}{data.duration ? `, ${data.duration[locale]}` : ""}</span>
     </li>
     <li>
       <span class="feature-label">{copy.serviceFields.audience}:</span>

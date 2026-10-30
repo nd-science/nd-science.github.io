@@ -139,7 +139,7 @@ const scienceOrigin = (
   import.meta.env.PUBLIC_SCIENCE_SITE_URL || copy.crossSiteHrefBase
 ).replace(/\/+$/, "");
 
-const authorLine = `${nataliaProfile.displayName[locale]} · ${copy.updatedPrefix} ${formatUpdated(entry.data.updatedAt, locale)}`;
+const authorLine = `${nataliaProfile.displayName[locale]}, ${copy.updatedPrefix} ${formatUpdated(entry.data.updatedAt, locale)}`;
 const enquiryEndpoint =
   import.meta.env.PUBLIC_ENQUIRY_WEBHOOK_URL ||
   "https://script.google.com/macros/s/AKfycbzeq7In-ycmZ-Fw7Sl2LTpVcltlaFePSIGrLnZlEVxhNMsMyyaBxNaYtn2ac6u10zmeGQ/exec";
@@ -147,8 +147,8 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 const pageTitle = isHome
   ? entry.data.seoTitle
   : (entry.data.seoTitle.includes("Долгов") || entry.data.seoTitle.includes("Dolgova")
-    ? `${entry.data.seoTitle} · Wellness`
-    : `${entry.data.seoTitle} · ${wellnessSiteConfig.name}`);
+    ? `${entry.data.seoTitle} | Wellness`
+    : `${entry.data.seoTitle} | ${wellnessSiteConfig.name}`);
 ---
 
 <BaseLayout
@@ -175,10 +175,6 @@ const pageTitle = isHome
               <span class="hero-eyebrow">{copy.siteLabel}</span>
               <h1>{entry.data.h1}</h1>
               <p class="hero-lead">{entry.data.summary}</p>
-              <div class="hero-pricing-pill">
-                <span class="price-highlight">{locale === "ru" ? "100 € онлайн · 120 € очно" : "€100 online · €120 in person"}</span>
-                <span class="duration-highlight">{locale === "ru" ? "60 минут · Индивидуально" : "60 minutes · Individual"}</span>
-              </div>
               {(cta || ctaSecondary) && (
                 <div class="cta-block">
                   {cta && (
@@ -214,14 +210,14 @@ const pageTitle = isHome
                   <p class="portrait-name">{nataliaProfile.displayName[locale]}</p>
                   <p class="portrait-title">
                     {locale === "ru"
-                      ? "Dr. phil. · Практический психолог · Тренер по нейроинтеграции"
-                      : "Dr. phil. · Practical Psychologist · Neurointegration Trainer"}
+                      ? "Dr. phil., практический психолог, тренер по нейроинтеграции"
+                      : "Dr. phil., Practical Psychologist, Neurointegration Trainer"}
                   </p>
                   <span class="portrait-pill">
-                    {locale === "ru" ? "Мозг · Психика · Тело" : "Brain · Psyche · Body"}
+                    {locale === "ru" ? "Мозг — Психика — Тело" : "Brain — Psyche — Body"}
                   </span>
                   <span class="portrait-location">
-                    {locale === "ru" ? "Онлайн по всему миру · Очно в Белграде" : "Online worldwide · In person in Belgrade"}
+                    {locale === "ru" ? "Онлайн по всему миру / Очно в Белграде" : "Online worldwide / In person in Belgrade"}
                   </span>
                 </div>
               </div>

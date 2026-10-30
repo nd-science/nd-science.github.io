@@ -1,9 +1,9 @@
 ---
 route: for-individuals
 locale: en
-seoTitle: Individual work for adults
-seoDescription: Nataliia Dolgova’s consultations and programmes for adults 18+, online and in person in Belgrade.
-h1: Individual work for adults
+seoTitle: Individual consultations and self-regulation programmes
+seoDescription: Individual psychological consultations and self-regulation programmes with Nataliia Dolgova. Online and in person in Belgrade.
+h1: Individual consultations and programmes
 summary: A paid first meeting, a five-session package and four-week support.
 audience: [B2C]
 ctaLabel: Submit an initial enquiry
@@ -20,4 +20,4 @@ The first meeting lasts 60 minutes. We meet, review the working terms, clarify t
 
 Prices are €100 online and €120 in person; the five-session package is €500 online and €600 in person. Corporate workshops and team wellbeing sessions are also available for organisations (details in the For organisations section). Support between sessions is provided only when it is part of the selected format.
 
-I work with adults aged 18+. Online meetings are available worldwide where permitted by applicable law; in-person meetings take place in Belgrade. I do not take child, family, clinical or crisis cases.
+The practice is dedicated to individual work with adult clients (18+). Online consultations are available worldwide where permitted by applicable law; in-person sessions take place in Belgrade. I do not work with children or adolescents, nor do I take family, clinical, or crisis cases.
