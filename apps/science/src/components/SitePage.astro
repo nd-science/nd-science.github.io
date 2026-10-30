@@ -63,17 +63,25 @@ const pageTitle = isHome
         <aside class="hero-media" aria-label={locale === "ru" ? "Академический профиль Наталии Долговой" : "Academic profile of Nataliia Dolgova"}>
           <div class="portrait-card">
             <div class="portrait-frame">
-              <div class="portrait-placeholder" aria-hidden="true">
-                <div class="portrait-mark">ND</div>
-                <p class="portrait-name">{nataliaProfile.displayName[locale]}</p>
-                <p class="portrait-title">
-                  {locale === "ru"
-                    ? "Dr. phil. (magna cum laude) · к.э.н. · Исследователь образования"
-                    : "Dr. phil. (magna cum laude) · Cand. Sc. · TVET Researcher"}
-                </p>
-              </div>
+              <img
+                src="/images/natalia-portrait.png"
+                alt={locale === "ru"
+                  ? "Наталия Долгова — Dr. phil. (magna cum laude), исследователь образования"
+                  : "Nataliia Dolgova — Dr. phil. (magna cum laude), TVET Researcher"}
+                width="440"
+                height="520"
+                loading="eager"
+                decoding="async"
+                class="portrait-img"
+              />
             </div>
             <div class="portrait-caption">
+              <p class="portrait-name">{nataliaProfile.displayName[locale]}</p>
+              <p class="portrait-title">
+                {locale === "ru"
+                  ? "Dr. phil. (magna cum laude) · к.э.н. · Исследователь образования"
+                  : "Dr. phil. (magna cum laude) · Cand. Sc. · TVET Researcher"}
+              </p>
               <span class="portrait-pill">
                 Europa-Universität Flensburg
               </span>

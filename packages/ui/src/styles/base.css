@@ -28,7 +28,7 @@
 @layer base {
   :root {
     color-scheme: light;
-    font-family: Inter, "Segoe UI", system-ui, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
   }
@@ -45,8 +45,11 @@
   h2,
   h3 {
     color: var(--heading);
-    font-family: Georgia, "Times New Roman", serif;
-    line-height: 1.08;
+    font-family: 'Fraunces', Georgia, serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
     text-wrap: balance;
   }
 
@@ -136,7 +139,8 @@
     align-items: center;
     min-height: 2.4rem;
     color: var(--heading);
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: 'Fraunces', Georgia, serif;
+    font-optical-sizing: auto;
     font-size: 1.05rem;
     font-weight: 700;
     text-decoration: none;
@@ -536,25 +540,33 @@
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 1.15rem;
-    box-shadow: 0 1rem 3rem var(--shadow);
+    box-shadow: 0 1.25rem 2.5rem var(--shadow);
     transition: transform 160ms ease, box-shadow 160ms ease;
   }
 
   .portrait-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 1.25rem 3.5rem var(--shadow);
+    box-shadow: 0 1.5rem 3.5rem var(--shadow);
   }
 
-  .portrait-frame {
+  .portrait-frame,
+  .portrait-image-wrapper {
     position: relative;
     aspect-ratio: 4 / 5;
-    background: linear-gradient(145deg, color-mix(in oklch, var(--surface) 80%, transparent), color-mix(in oklch, var(--surface-strong) 90%, transparent));
-    border: 1px dashed var(--border-strong);
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: var(--radius-small);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     overflow: hidden;
+  }
+
+  .portrait-frame img,
+  .portrait-image-wrapper img,
+  .portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 55% 15%;
+    display: block;
   }
 
   .portrait-placeholder {
@@ -580,7 +592,8 @@
   }
 
   .portrait-name {
-    font-family: Georgia, serif;
+    font-family: 'Fraunces', Georgia, serif;
+    font-optical-sizing: auto;
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--heading);
@@ -727,30 +740,6 @@
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
-  }
-
-  .hero::before,
-  .hero::after {
-    position: absolute;
-    z-index: -1;
-    width: 24rem;
-    height: 24rem;
-    content: "";
-    background: var(--hero-orb);
-    border-radius: 50%;
-    filter: blur(8px);
-    opacity: 0.6;
-    pointer-events: none;
-  }
-
-  .hero::before {
-    inset-block-start: -8rem;
-    inset-inline-end: -6rem;
-  }
-
-  .hero::after {
-    inset-block-end: -12rem;
-    inset-inline-start: 15%;
   }
 
   .hero-content {
@@ -1158,6 +1147,16 @@
 
   .prose strong {
     color: var(--heading);
+  }
+
+  .prose img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: 0 0.5rem 1.5rem var(--shadow);
+    margin-block: 1.5rem;
+    display: block;
   }
 
   .service-grid {

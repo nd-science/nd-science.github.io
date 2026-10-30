@@ -16,4 +16,6 @@ publicationScope: public
 
 Sometimes a situation is easier to explore through an image, story or role than through direct explanation. A consultation may include metaphorical associative cards, creating or rewriting stories, role-based models and narrative reflection.
 
+![Metaphorical associative cards and narrative practices in Nataliia Dolgova’s psychological work](/images/natalia-cards.jpg)
+
 This is not a test with one correct interpretation. The client determines what an image means, and the method is used only with their agreement and in relation to a specific request.
