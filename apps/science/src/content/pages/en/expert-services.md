@@ -2,7 +2,7 @@
 route: expert-services
 locale: en
 seoTitle: Research and education services
-seoDescription: Natalia Dolgova’s research, analytics, programme design, facilitation and speaking services.
+seoDescription: Nataliia Dolgova’s research, analytics, programme design, facilitation and speaking services.
 h1: Research and education services
 summary: Five collaboration formats delivered through an individual brief and proposal.
 ctaLabel: Submit a brief

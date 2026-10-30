@@ -1,7 +1,7 @@
 ---
 route: research/dissertation
 locale: en
-seoTitle: Natalia Dolgova’s doctoral research
+seoTitle: Nataliia Dolgova’s doctoral research
 seoDescription: Key Factors of Online Course Perceived Effectiveness for Preparing TVET Engineering Teachers in Russia.
 h1: Key Factors of Online Course Perceived Effectiveness for Preparing TVET Engineering Teachers in Russia
 summary: Factors shaping perceived effectiveness in online preparation for TVET engineering educators.
@@ -11,7 +11,7 @@ updatedAt: 2026-10-29
 publicationScope: public
 ---
 
-Natalia’s doctoral research examines the factors shaping the perceived effectiveness of online courses for preparing TVET engineering educators in Russia.
+Nataliia’s doctoral research examines the factors shaping the perceived effectiveness of online courses for preparing TVET engineering educators in Russia.
 
 The study systematises and empirically examines feedback, accessibility, motivation, practical relevance and institutional conditions in online professional learning. Europa-Universität Flensburg awarded the Dr. phil. degree in 2026 with an overall magna cum laude result.
 

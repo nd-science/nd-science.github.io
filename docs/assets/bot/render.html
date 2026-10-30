@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Avatar Renderer</title>
+</head>
+<body style="background:#222; margin:0; padding:20px; color:#fff;">
+  <canvas id="c1" width="512" height="512"></canvas>
+  <canvas id="c2" width="512" height="512"></canvas>
+  <div id="status">Starting...</div>
+
+  <script>
+    const svg1 = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="bgGrad1" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#FCFAF7"/>
+      <stop offset="70%" stop-color="#F4ECE1"/>
+      <stop offset="100%" stop-color="#E8DDD0"/>
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A65B32"/>
+      <stop offset="50%" stop-color="#874428"/>
+      <stop offset="100%" stop-color="#5E2C17"/>
+    </linearGradient>
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#332720" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <rect width="512" height="512" fill="url(#bgGrad1)"/>
+  <circle cx="256" cy="256" r="226" fill="none" stroke="#E2D4C3" stroke-width="2"/>
+  <circle cx="256" cy="256" r="214" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.6"/>
+  <circle cx="256" cy="256" r="185" fill="#FAF6F0" filter="url(#softShadow)"/>
+  <circle cx="256" cy="256" r="180" fill="none" stroke="#EADDCF" stroke-width="2"/>
+  <g font-family="Georgia, 'Times New Roman', serif" font-weight="bold" text-anchor="middle" fill="#332720">
+    <text x="256" y="275" font-size="124" letter-spacing="4">ND</text>
+  </g>
+  <path d="M 180 306 L 240 306 M 272 306 L 332 306" stroke="url(#goldGrad)" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="256" cy="306" r="4" fill="#874428"/>
+  <g font-family="'Segoe UI', -apple-system, sans-serif" font-weight="700" text-anchor="middle" fill="#755647">
+    <text x="256" y="338" font-size="16" letter-spacing="6">АССИСТЕНТ</text>
+    <text x="256" y="165" font-size="14" letter-spacing="5" fill="#874428">НАТАЛИЯ ДОЛГОВА</text>
+  </g>
+</svg>`;
+
+    const svg2 = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="bgGrad2" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#42332B"/>
+      <stop offset="60%" stop-color="#31251E"/>
+      <stop offset="100%" stop-color="#231914"/>
+    </radialGradient>
+    <linearGradient id="warmGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2DEC9"/>
+      <stop offset="40%" stop-color="#DDAF8A"/>
+      <stop offset="100%" stop-color="#9C5D38"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect width="512" height="512" fill="url(#bgGrad2)"/>
+  <circle cx="256" cy="256" r="226" fill="none" stroke="#5E4B40" stroke-width="2"/>
+  <circle cx="256" cy="256" r="214" fill="none" stroke="url(#warmGold)" stroke-width="1.5" stroke-dasharray="5 5" opacity="0.8"/>
+  <circle cx="256" cy="256" r="185" fill="#2B201A" stroke="url(#warmGold)" stroke-width="2" filter="url(#glow)"/>
+  <g font-family="Georgia, 'Times New Roman', serif" font-weight="bold" text-anchor="middle" fill="url(#warmGold)">
+    <text x="256" y="278" font-size="126" letter-spacing="4">ND</text>
+  </g>
+  <g fill="url(#warmGold)">
+    <polygon points="256,120 262,135 256,150 250,135"/>
+    <polygon points="256,362 262,377 256,392 250,377"/>
+  </g>
+  <path d="M 185 306 L 240 306 M 272 306 L 327 306" stroke="url(#warmGold)" stroke-width="1.8" stroke-linecap="round" opacity="0.9"/>
+  <circle cx="256" cy="306" r="3.5" fill="url(#warmGold)"/>
+  <g font-family="'Segoe UI', -apple-system, sans-serif" font-weight="600" text-anchor="middle" fill="#E6D3C0">
+    <text x="256" y="340" font-size="15" letter-spacing="6">АССИСТЕНТ</text>
+    <text x="256" y="172" font-size="13.5" letter-spacing="5" fill="#CFA88A">НАТАЛИЯ ДОЛГОВА</text>
+  </g>
+</svg>`;
+
+    function draw(svgString, canvasId) {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => {
+          const cvs = document.getElementById(canvasId);
+          const ctx = cvs.getContext('2d');
+          ctx.drawImage(img, 0, 0, 512, 512);
+          resolve(cvs.toDataURL('image/png'));
+        };
+        img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgString)));
+      });
+    }
+
+    async function init() {
+      window.data1 = await draw(svg1, 'c1');
+      window.data2 = await draw(svg2, 'c2');
+      window.isReady = true;
+      document.getElementById('status').innerText = 'Ready!';
+    }
+    init();
+  </script>
+</body>
+</html>

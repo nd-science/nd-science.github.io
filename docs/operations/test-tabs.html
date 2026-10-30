@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Combined Folder Tabs: Главная (| ---- \) + Остальные (/ ---- |)</title>
+<style>
+  :root {
+    --background: #fbf9f5;
+    --surface: #f4efe6;
+    --surface-strong: #ebe4d8;
+    --border: #dfd7ca;
+    --border-strong: #c8bdab;
+    --heading: #2d261e;
+    --text: #4a4036;
+    --muted-text: #766a5e;
+    --accent: #c4683c;
+    --accent-strong: #a85228;
+  }
+
+  body {
+    margin: 0;
+    padding: 2rem;
+    font-family: Inter, system-ui, sans-serif;
+    background: var(--background);
+    color: var(--text);
+  }
+
+  h1 {
+    font-family: Georgia, serif;
+    color: var(--heading);
+  }
+
+  .tabs-tray {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    gap: 0.25rem;
+    border-bottom: 1px solid var(--border-strong);
+    padding: 0 1rem;
+    overflow-x: auto;
+    overflow-y: clip;
+    scrollbar-width: none !important;
+  }
+  .tabs-tray::-webkit-scrollbar { display: none !important; width: 0; height: 0; }
+
+  /* Общие стили для всех вкладок */
+  .page-tab {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.45rem;
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--muted-text);
+    text-decoration: none;
+    margin-bottom: -1px;
+    white-space: nowrap;
+    background: transparent;
+    transition: color 140ms ease;
+    z-index: 1;
+  }
+
+  .page-tab:hover {
+    color: var(--heading);
+  }
+
+  .page-tab.active {
+    color: var(--heading);
+    font-weight: 800;
+    z-index: 2;
+  }
+
+  .page-tab span {
+    position: relative;
+  }
+
+  .page-tab.active span::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    height: 2.5px;
+    background: var(--accent-strong);
+    border-radius: 2px;
+  }
+
+  /* -------------------------------------------------------------
+     1. ПЕРВАЯ ВКЛАДКА («Главная»): Классический скос папки справа | ---- \
+     ------------------------------------------------------------- */
+  .page-tab.tab-first {
+    padding: 0.45rem 1.45rem 0.45rem 1.05rem;
+    border-top-left-radius: 6px;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 100%, 0 100%);
+  }
+
+  .page-tab.tab-first::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 100%, 0 100%);
+    border-top-left-radius: 6px;
+    z-index: -2;
+    transition: background-color 140ms ease;
+  }
+
+  .page-tab.tab-first::after {
+    content: "";
+    position: absolute;
+    inset: 1px 1px 0 1px;
+    background: transparent;
+    clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 100%, 0 100%);
+    border-top-left-radius: 5px;
+    z-index: -1;
+    transition: background-color 140ms ease;
+  }
+
+  .page-tab.tab-first:hover::before { background: var(--border); }
+  .page-tab.tab-first:hover::after { background: var(--surface-strong); }
+  .page-tab.tab-first.active::before { background: var(--border-strong); }
+  .page-tab.tab-first.active::after { background: var(--surface); }
+
+  /* -------------------------------------------------------------
+     2. ОСТАЛЬНЫЕ ВКЛАДКИ: Скос слева / ---- |
+     ------------------------------------------------------------- */
+  .page-tab.tab-other {
+    padding: 0.45rem 1.05rem 0.45rem 1.45rem;
+    border-top-right-radius: 6px;
+    clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .page-tab.tab-other::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%);
+    border-top-right-radius: 6px;
+    z-index: -2;
+    transition: background-color 140ms ease;
+  }
+
+  .page-tab.tab-other::after {
+    content: "";
+    position: absolute;
+    inset: 1px 1px 0 1px;
+    background: transparent;
+    clip-path: polygon(13px 0, 100% 0, 100% 100%, 0 100%);
+    border-top-right-radius: 5px;
+    z-index: -1;
+    transition: background-color 140ms ease;
+  }
+
+  .page-tab.tab-other:hover::before { background: var(--border); }
+  .page-tab.tab-other:hover::after { background: var(--surface-strong); }
+  .page-tab.tab-other.active::before { background: var(--border-strong); }
+  .page-tab.tab-other.active::after { background: var(--surface); }
+
+  /* Содержимое под вкладками */
+  .panel-body {
+    background: var(--surface);
+    padding: 1.5rem;
+    border: 1px solid var(--border-strong);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    font-size: 0.95rem;
+  }
+</style>
+</head>
+<body>
+
+  <h1>Главная — скос папки справа <code>| ---- \</code>, остальные — скос слева <code>/ ---- |</code></h1>
+
+  <!-- Состояние 1: Активна «Главная» -->
+  <div style="margin-bottom: 3rem;">
+    <h3>1. Активна «Главная»:</h3>
+    <div class="tabs-tray">
+      <a href="#" class="page-tab tab-first active"><span>Главная</span></a>
+      <a href="#" class="page-tab tab-other"><span>Для частных клиентов</span></a>
+      <a href="#" class="page-tab tab-other"><span>Психология</span></a>
+      <a href="#" class="page-tab tab-other"><span>Нейроинтеграция</span></a>
+      <a href="#" class="page-tab tab-other"><span>Дыхание</span></a>
+      <a href="#" class="page-tab tab-other"><span>Движение и цигун</span></a>
+      <a href="#" class="page-tab tab-other"><span>Игра и сказка</span></a>
+      <a href="#" class="page-tab tab-other"><span>Для организаций</span></a>
+      <a href="#" class="page-tab tab-other"><span>Контакты</span></a>
+    </div>
+    <div class="panel-body">
+      Страница «Главная». Вкладка имеет вертикальный левый край и скос справа, бесшовно соединяясь с подложкой.
+    </div>
+  </div>
+
+  <!-- Состояние 2: Активна вторая вкладка («Для частных клиентов») -->
+  <div style="margin-bottom: 3rem;">
+    <h3>2. Активна «Для частных клиентов»:</h3>
+    <div class="tabs-tray">
+      <a href="#" class="page-tab tab-first"><span>Главная</span></a>
+      <a href="#" class="page-tab tab-other active"><span>Для частных клиентов</span></a>
+      <a href="#" class="page-tab tab-other"><span>Психология</span></a>
+      <a href="#" class="page-tab tab-other"><span>Нейроинтеграция</span></a>
+      <a href="#" class="page-tab tab-other"><span>Дыхание</span></a>
+      <a href="#" class="page-tab tab-other"><span>Движение и цигун</span></a>
+      <a href="#" class="page-tab tab-other"><span>Игра и сказка</span></a>
+      <a href="#" class="page-tab tab-other"><span>Для организаций</span></a>
+      <a href="#" class="page-tab tab-other"><span>Контакты</span></a>
+    </div>
+    <div class="panel-body">
+      Страница «Для частных клиентов». Вкладка имеет скос слева и вертикальный край справа.
+    </div>
+  </div>
+
+</body>
+</html>

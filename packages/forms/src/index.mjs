@@ -23,9 +23,9 @@ const copy = {
     subjectScience: "New Science enquiry",
     replySubject: "We received your enquiry",
     replyWellness:
-      "Natalia will respond within three working days. This email does not confirm a booking. Do not reply with medical, payment or other confidential information.",
+      "Nataliia will respond within three working days. This email does not confirm a booking. Do not reply with medical, payment or other confidential information.",
     replyScience:
-      "Natalia will respond within three working days. This email does not confirm acceptance of a project. Do not reply with manuscripts, participant personal data or confidential material.",
+      "Nataliia will respond within three working days. This email does not confirm acceptance of a project. Do not reply with manuscripts, participant personal data or confidential material.",
   },
 };
 
@@ -114,7 +114,7 @@ export async function handleEnquiry(request, env, kind, fetchImpl = fetch) {
     isOrganisation
       ? ["organisation", "role", "email", "language", "request", "audience", "delivery", "timeline"]
       : kind === "wellness"
-      ? ["name", "email", "language", "timezone", "service", "delivery", "request"]
+      ? ["name", "request"]
       : [
           "name",
           "organisation",
@@ -128,9 +128,13 @@ export async function handleEnquiry(request, env, kind, fetchImpl = fetch) {
           "budgetRange",
         ];
 
+  const contactProvided = clean(values.contact || values.email).length >= 3;
+  const emailValid = values.email ? isEmail(values.email) : true;
+
   if (
     !required(values, requiredFields) ||
-    !isEmail(values.email) ||
+    !contactProvided ||
+    !emailValid ||
     values.consent !== "yes" ||
     (kind === "wellness" && !isOrganisation && values.adultConfirmed !== "yes")
   ) {

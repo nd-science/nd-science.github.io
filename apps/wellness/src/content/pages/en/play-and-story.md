@@ -2,7 +2,7 @@
 route: practices/play-and-story
 locale: en
 seoTitle: Play, metaphor and story in consultation
-seoDescription: Image-based and narrative methods in Natalia Dolgova’s psychological consultation.
+seoDescription: Image-based and narrative methods in Nataliia Dolgova’s psychological consultation.
 h1: Image-based ways to see a situation differently
 summary: Metaphorical cards, stories, roles and narrative reflection used with the client’s agreement.
 audience: [B2C]

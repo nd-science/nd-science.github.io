@@ -101,7 +101,7 @@ const labels =
         breadcrumbs: "Breadcrumbs",
         home: "Home",
         path: "Path",
-        crossSite: "Go to Natalia Dolgova’s second website",
+        crossSite: "Go to Nataliia Dolgova’s second website",
         statusBadge: "Draft (noindex)",
         navHeading: "Navigation",
         contactsHeading: "Contacts & Profiles",
@@ -311,10 +311,11 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
               </ul>
             ) : (
               <ul class="footer-legal-list">
+                <li><a href={`/${locale}/privacy/`}>{locale === "ru" ? "Политика обработки ПДн" : "Privacy Policy"}</a></li>
+                <li><a href={`/${locale}/consent/`}>{locale === "ru" ? "Согласие на обработку ПДн" : "Data Consent"}</a></li>
                 <li><a href="https://macau.uni-kiel.de/receive/macau_mods_00002008" target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Диссертация (MACAU)" : "Dissertation Repository"} ↗</a></li>
                 <li><a href="https://www.researchgate.net/profile/Natalia-Dolgova-2" target="_blank" rel="noopener noreferrer">ResearchGate ↗</a></li>
-                <li><span>{locale === "ru" ? "Публикации: Dolgova / Ovchinnikova" : "Published as: Dolgova / Ovchinnikova"}</span></li>
-                <li><span class="tax-info">Dr. phil. (magna cum laude) · Europa-Universität Flensburg</span></li>
+                <li><span class="tax-info">{locale === "ru" ? "Самозанятая Долгова Н. Э. · ИНН 575210528203" : "Self-employed N. E. Dolgova · Tax ID 575210528203"}</span></li>
               </ul>
             )}
           </div>

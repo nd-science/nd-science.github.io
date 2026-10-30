@@ -58,9 +58,9 @@ export const scienceCopy = {
       { href: "/en/publications/", label: "Publications" }, { href: "/en/education/", label: "Education" }, { href: "/en/projects/", label: "Projects" },
       { href: "/en/expert-services/", label: "Services" }, { href: "/en/contact/", label: "Contacts" },
     ],
-    updatedPrefix: "Updated", footer: "Natalia Dolgova’s research and expert profile.",
+    updatedPrefix: "Updated", footer: "Nataliia Dolgova’s research and expert profile.",
     sections: {
-      credentials: { title: "Qualifications and academic path", description: "Natalia’s qualifications and professional chronology." },
+      credentials: { title: "Qualifications and academic path", description: "Nataliia’s qualifications and professional chronology." },
       publications: { title: "Bibliographic register", description: "Works published under Dolgova and Ovchinnikova belong to one author profile." },
       profiles: { title: "Research profiles", description: "Metrics are shown separately by database and always with an as-of date." },
       form: { title: "Collaboration brief", description: "Do not attach manuscripts, research-participant personal data or confidential material." },
@@ -70,7 +70,7 @@ export const scienceCopy = {
       notConnected: {
         title: "Direct contact for project inquiries",
         intro: "While the enquiry form is being configured, expert proposals can be sent directly via messaging or academic networks:",
-        telegramBtn: "Message Natalia on Telegram (@natali_tvet_pro)",
+        telegramBtn: "Message Nataliia on Telegram (@natali_tvet_pro)",
         telegramUrl: "https://t.me/natali_tvet_pro",
         linkedinLabel: "LinkedIn Profile",
         linkedinUrl: "https://www.linkedin.com/in/natalidolgova",

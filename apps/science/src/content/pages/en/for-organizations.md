@@ -2,7 +2,7 @@
 route: for-organizations
 locale: en
 seoTitle: Research and programmes for organisations
-seoDescription: Natalia Dolgova’s collaboration with universities, TVET organisations, professional communities and development teams.
+seoDescription: Nataliia Dolgova’s collaboration with universities, TVET organisations, professional communities and development teams.
 h1: Research, programmes and educational change
 summary: An individual proposal covering the task, deliverable, stages, timeline and budget.
 ctaLabel: Request a proposal

@@ -1,7 +1,7 @@
 ---
 route: home
 locale: en
-seoTitle: Natalia Dolgova — Psychologist and Neurointegration Trainer
+seoTitle: Nataliia Dolgova — Psychologist and Neurointegration Trainer
 seoDescription: Individual consultations, neurointegration, breathing practices and health qigong for adults. Online and in person in Belgrade.
 h1: Clear steps towards a more stable state
 summary: "Integrative approach to self-regulation: Brain, Psyche and Body for adults 18+."

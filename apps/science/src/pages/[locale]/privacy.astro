@@ -1,0 +1,159 @@
+---
+import BaseLayout from "@natali/ui/BaseLayout.astro";
+import { scienceSiteConfig } from "../../site-config";
+import { scienceCopy } from "../../i18n";
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: "ru" } },
+    { params: { locale: "en" } },
+  ];
+}
+
+const { locale } = Astro.params as { locale: "ru" | "en" };
+const copy = scienceCopy[locale];
+const paths = { ru: "/ru/privacy/", en: "/en/privacy/" };
+const currentPath = `/${locale}/privacy/`;
+const isRu = locale === "ru";
+
+const breadcrumbs = [
+  { label: isRu ? "Политика конфиденциальности" : "Privacy Policy" },
+];
+---
+
+<BaseLayout
+  locale={locale}
+  theme="science"
+  siteLabel={copy.siteLabel}
+  title={`${isRu ? "Политика обработки персональных данных" : "Privacy Policy"} · ${scienceSiteConfig.name}`}
+  description={isRu ? "Политика обработки и защиты персональных данных при направлении экспертных запросов через академический сайт Наталии Долговой." : "Personal data processing and privacy policy for expert and research inquiries to Natalia Dolgova."}
+  paths={paths}
+  fallbackSiteUrl={scienceSiteConfig.fallbackUrl}
+  navItems={copy.nav}
+  currentPath={currentPath}
+  breadcrumbs={breadcrumbs}
+  footerText={copy.footer}
+>
+  <section class="page-hero">
+    <div class="section-inner">
+      <span class="hero-eyebrow">{copy.siteLabel} · {isRu ? "Правовая информация" : "Legal Information"}</span>
+      <h1>{isRu ? "Политика обработки персональных данных" : "Privacy Policy"}</h1>
+      <p class="hero-lead">
+        {isRu
+          ? "Порядок обработки, хранения и защиты персональных данных при использовании академического сайта и отправке форм экспертного сотрудничества."
+          : "Principles and procedures of personal data collection, processing, and protection for research inquiries and academic collaboration."}
+      </p>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="section-inner legal-layout">
+      <div class="legal-actions-bar">
+        <span class="legal-doc-date">{isRu ? "Действующая редакция · Октябрь 2026 г." : "Current Edition · October 2026"}</span>
+      </div>
+
+      <div class="legal-prose">
+        {isRu ? (
+          <>
+            <h2>1. Общие положения</h2>
+            <p>1.1. Настоящая Политика определяет порядок обработки и защиты персональных данных физических лиц и представителей организаций, направляющих запросы через сайт <strong>nd-science.github.io</strong>.</p>
+            <p>
+              <strong>Оператор персональных данных:</strong><br />
+              Самозанятая Долгова Наталия Эдуардовна<br />
+              ИНН: 575210528203<br />
+              Электронная почта: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+              Telegram для связи: <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+            </p>
+            <p>1.2. Обработка персональных данных осуществляется в строгом соответствии с Федеральным законом № 152-ФЗ «О персональных данных» и применимыми нормами международного права.</p>
+
+            <h2>2. Цели обработки персональных данных</h2>
+            <p>Персональные данные обрабатываются исключительно в следующих целях:</p>
+            <ul>
+              <li>рассмотрение входящих запросов на академическое, образовательное и экспертное сотрудничество;</li>
+              <li>направление обратной связи, согласование брифов, исследовательских задач и условий взаимодействия;</li>
+              <li>предоставление дополнительной информации о публикациях, образовательных программах и выступлениях.</li>
+            </ul>
+
+            <h2>3. Состав обрабатываемых данных</h2>
+            <p>При отправке формы обратной связи Оператор вправе обрабатывать:</p>
+            <ul>
+              <li>имя (фамилию, имя, отчество);</li>
+              <li>адрес электронной почты (email);</li>
+              <li>наименование организации и должность / профессиональную роль;</li>
+              <li>сведения о типе проекта, ожидаемом результате, целевой аудитории, сроках и бюджете проекта;</li>
+              <li>текст комментария или описания задачи, добровольно предоставленный пользователем.</li>
+            </ul>
+
+            <h2>4. Порядок и условия обработки</h2>
+            <p>4.1. Обработка осуществляется с использованием средств автоматизации и без таковых, включая сбор, запись, систематизацию, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, блокирование, удаление и уничтожение.</p>
+            <p>4.2. Оператор не передает полученные персональные данные третьим лицам, за исключением случаев, прямо предусмотренных действующим законодательством РФ.</p>
+            <p>4.3. Персональные данные хранятся в течение срока, необходимого для достижения целей обработки, либо до момента отзыва согласия субъектом данных.</p>
+
+            <h2>5. Права субъекта персональных данных</h2>
+            <p>Субъект персональных данных имеет право на получение информации, касающейся обработки его персональных данных, требовать их уточнения, блокирования или уничтожения в случае, если данные являются неполными, устаревшими или неточными, а также отозвать данное согласие, направив письменное уведомление по адресу электронной почты: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a>.</p>
+
+            <div class="legal-requisites">
+              <h3>Реквизиты оператора</h3>
+              <p>
+                <strong>Самозанятая Долгова Наталия Эдуардовна</strong><br />
+                ИНН: 575210528203<br />
+                Статус: плательщик налога на профессиональный доход<br />
+                Электронная почта: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+                Telegram: <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+              </p>
+            </div>
+          </>
+        ) : (
+          <>
+            <h2>1. General Provisions</h2>
+            <p>1.1. This Privacy Policy governs the processing and protection of personal data submitted by individuals and institutional representatives via <strong>nd-science.github.io</strong>.</p>
+            <p>
+              <strong>Data Controller:</strong><br />
+              Self-employed Natalia Eduardovna Dolgova<br />
+              Tax ID (INN): 575210528203<br />
+              Email: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+              Telegram: <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+            </p>
+            <p>1.2. Personal data processing complies with applicable data protection legislation (including Federal Law No. 152-FZ and general GDPR data minimisation principles).</p>
+
+            <h2>2. Purposes of Data Processing</h2>
+            <p>Personal data is processed exclusively for the purposes of:</p>
+            <ul>
+              <li>reviewing inbound inquiries for academic collaboration, research partnerships, and educational consulting;</li>
+              <li>communicating back, clarifying briefs, discussing project timelines and cooperation deliverables;</li>
+              <li>sharing supplementary scholarly materials, publications, and conference presentation details.</li>
+            </ul>
+
+            <h2>3. Categories of Data Processed</h2>
+            <p>When you submit an enquiry, the Controller may collect and process:</p>
+            <ul>
+              <li>name and professional title;</li>
+              <li>email address;</li>
+              <li>institution or organisation name;</li>
+              <li>project type, target audience, timeline, and scope;</li>
+              <li>accompanying commentary and project brief description voluntarily provided by the user.</li>
+            </ul>
+
+            <h2>4. Processing Terms and Data Retention</h2>
+            <p>4.1. Data processing is carried out using secure automated and manual workflows.</p>
+            <p>4.2. Personal data is never sold or transferred to third parties, except where required by law.</p>
+            <p>4.3. Data is retained only for as long as required to fulfil the collaboration inquiry or until the user requests its erasure.</p>
+
+            <h2>5. Your Rights</h2>
+            <p>You have the right to request access to, rectification of, or erasure of your personal data at any time by contacting: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a>.</p>
+
+            <div class="legal-requisites">
+              <h3>Operator Details</h3>
+              <p>
+                <strong>Self-employed Natalia E. Dolgova</strong><br />
+                Tax ID (INN): 575210528203<br />
+                Email: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+                Telegram: <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+              </p>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

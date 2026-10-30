@@ -2,7 +2,7 @@
 route: booking
 locale: en
 seoTitle: Booking and consultation terms
-seoDescription: Enquiry, manual confirmation, payment, calendar, rescheduling and refunds for Natalia Dolgova’s consultations.
+seoDescription: Enquiry, manual confirmation, payment, calendar, rescheduling and refunds for Nataliia Dolgova’s consultations.
 h1: Book a first meeting
 summary: A short enquiry, manual suitability confirmation, invoice, payment and a private calendar link.
 audience: [B2C]
@@ -16,7 +16,7 @@ publicationScope: public
 
 1. Complete the short form and describe your request without unnecessary sensitive detail.
 2. I will personally review your situation and confirm that the format suits your needs.
-3. Clients in Russia receive a YooKassa link in RUB converted from EUR at the Central Bank rate on the invoice date; the message shows both the EUR amount and the fixed RUB amount. Other countries receive a direct bank invoice from my Serbian tax status. PayPal Invoice may be arranged after business-account verification.
+3. Clients in Russia receive a YooKassa link in RUB converted from EUR at the Central Bank rate on the invoice date (the message shows both the EUR amount and the fixed RUB amount). Other countries receive an invoice for an international bank transfer or PayPal.
 4. After payment is confirmed, I will send you a private Google Calendar link to select a convenient meeting slot.
 
 The first meeting lasts 60 minutes and costs €100 online or €120 in person. Online meetings are available to adults aged 18+ worldwide where permitted by applicable law; in-person meetings take place in Belgrade.
