@@ -255,6 +255,9 @@ export const professionalIdentifiers = {
   researcherIdUrl: "https://www.webofscience.com/wos/author/record/A-9484-2016",
   scopusAuthorId: "57202091034",
   scopusUrl: "https://www.scopus.com/authid/detail.uri?authorId=57202091034",
+  elibraryAuthorId: "687073",
+  elibraryUrl: "https://www.elibrary.ru/author_profile.asp?id=687073",
+  elibraryItemsUrl: "https://www.elibrary.ru/author_items.asp?authorid=687073&show_refs=1",
 } as const;
 
 export interface ScientificMetric {
@@ -267,8 +270,20 @@ export interface ScientificMetric {
   notes: LocalizedText;
 }
 
-/** Подтверждённые наукометрические показатели по состоянию на 29.10.2026. */
+/** Подтверждённые наукометрические показатели по состоянию на 30.10.2026. */
 export const verifiedMetrics: ScientificMetric[] = [
+  {
+    database: "РИНЦ / eLibrary",
+    databaseUrl: "https://www.elibrary.ru/author_profile.asp?id=687073",
+    hIndex: 12,
+    documents: 64,
+    citations: 475,
+    checkedAt: "2026-10-30",
+    notes: {
+      ru: "Российский индекс научного цитирования (eLibrary.ru): 64 работы, 475 цитирований, публикации по экономике, управлению университетами и образованию",
+      en: "Russian Science Citation Index (eLibrary.ru): 64 publications, 475 citations across higher education, management and economics",
+    },
+  },
   {
     database: "Scopus (Elsevier)",
     databaseUrl: "https://www.scopus.com/authid/detail.uri?authorId=57202091034",
