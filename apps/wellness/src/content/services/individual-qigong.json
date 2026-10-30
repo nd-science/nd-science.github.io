@@ -1,6 +1,6 @@
 {
   "name": { "ru": "Индивидуальный оздоровительный цигун", "en": "Individual health qigong" },
-  "audience": { "ru": "Взрослые 18+", "en": "Adults 18+" },
+  "audience": { "ru": "Индивидуальные клиенты для освоения мягкой двигательной практики", "en": "Individual clients learning gentle movement practices" },
   "task": { "ru": "Освоить мягкое движение, дыхание и внимание.", "en": "Learn gentle movement, breathing and attention." },
   "includes": [{ "ru": "Индивидуально адаптированное занятие", "en": "An individually adapted session" }],
   "duration": { "ru": "45 минут", "en": "45 minutes" },

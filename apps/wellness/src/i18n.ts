@@ -30,9 +30,9 @@ export const wellnessCopy = {
     footer: "Черновой wellness-сайт. Не является медицинской рекомендацией.",
     sections: {
       services: {
-        title: "Форматы и цены",
+        title: "Форматы и стоимость",
         description:
-          "Для каждого формата указаны длительность, стоимость и следующий шаг. Первая встреча платная.",
+          "Прозрачные условия, длительность и этапы работы. Индивидуальная практика начинается с первичной установочной консультации.",
       } satisfies SectionHeadingCopy,
       methods: {
         title: "Направления работы",
@@ -179,9 +179,9 @@ export const wellnessCopy = {
     footer: "Draft wellness website. It does not provide medical advice.",
     sections: {
       services: {
-        title: "Formats and prices",
+        title: "Formats and pricing",
         description:
-          "Each format lists its duration, price and next step. The first meeting is paid.",
+          "Transparent pricing, duration, and structure. Individual work begins with an initial consultation.",
       } satisfies SectionHeadingCopy,
       methods: {
         title: "Areas of work",

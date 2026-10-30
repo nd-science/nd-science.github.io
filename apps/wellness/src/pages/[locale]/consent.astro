@@ -25,7 +25,7 @@ const breadcrumbs = [
   locale={locale}
   theme="wellness"
   siteLabel={copy.siteLabel}
-  title={`${isRu ? "Информированное согласие клиента" : "Informed Consent"} · ${wellnessSiteConfig.name}`}
+  title={`${isRu ? "Информированное согласие клиента" : "Informed Consent"} | ${wellnessSiteConfig.name}`}
   description={isRu ? "Информированное согласие на получение психологических и консультационных услуг Наталии Долговой." : "Informed consent for psychological and consulting services by Nataliia Dolgova."}
   paths={paths}
   fallbackSiteUrl={copy.fallbackSiteUrl}
@@ -36,7 +36,7 @@ const breadcrumbs = [
 >
   <section class="page-hero">
     <div class="section-inner">
-      <span class="hero-eyebrow">{copy.siteLabel} · {isRu ? "Правовая информация" : "Legal Information"}</span>
+      <span class="hero-eyebrow">{copy.siteLabel} — {isRu ? "Правовая информация" : "Legal Information"}</span>
       <h1>{isRu ? "Информированное согласие клиента" : "Client Informed Consent"}</h1>
       <p class="hero-lead">
         {isRu
@@ -49,7 +49,7 @@ const breadcrumbs = [
   <section class="page-section">
     <div class="section-inner legal-layout">
       <div class="legal-actions-bar">
-        <span class="legal-doc-date">{isRu ? "Действующая редакция · Июль 2026 г." : "Current Edition · July 2026"}</span>
+        <span class="legal-doc-date">{isRu ? "Действующая редакция: июль 2026 г." : "Current Edition: July 2026"}</span>
         <a class="legal-download-link" href="/legal/informirovannoe-soglasie.docx" download>
           <span>↓</span> {isRu ? "Скачать оригинал документа (.docx)" : "Download document (.docx)"}
         </a>

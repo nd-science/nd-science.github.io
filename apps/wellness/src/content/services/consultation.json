@@ -1,6 +1,6 @@
 {
   "name": { "ru": "Первая консультация", "en": "First consultation" },
-  "audience": { "ru": "Взрослые 18+", "en": "Adults 18+" },
+  "audience": { "ru": "Клиенты с запросом на саморегуляцию и восстановление ресурса", "en": "Clients seeking self-regulation and resource restoration" },
   "task": { "ru": "Уточнить запрос, реалистичную цель и следующий шаг.", "en": "Clarify the request, a realistic goal and the next step." },
   "includes": [{ "ru": "60-минутная первая встреча", "en": "A 60-minute first meeting" }],
   "duration": { "ru": "60 минут", "en": "60 minutes" },

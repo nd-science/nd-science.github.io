@@ -35,8 +35,8 @@ const secondary = entry.data.ctaSecondaryLabel && entry.data.ctaSecondaryHref ? 
 const pageTitle = isHome
   ? entry.data.seoTitle
   : (entry.data.seoTitle.includes("Долгов") || entry.data.seoTitle.includes("Dolgova")
-    ? `${entry.data.seoTitle} · Science`
-    : `${entry.data.seoTitle} · ${scienceSiteConfig.name}`);
+    ? `${entry.data.seoTitle} | Science`
+    : `${entry.data.seoTitle} | ${scienceSiteConfig.name}`);
 ---
 <BaseLayout
   locale={locale} theme="science" siteLabel={copy.siteLabel}
@@ -79,14 +79,14 @@ const pageTitle = isHome
               <p class="portrait-name">{nataliaProfile.displayName[locale]}</p>
               <p class="portrait-title">
                 {locale === "ru"
-                  ? "Dr. phil. (magna cum laude) · к.э.н. · Исследователь образования"
-                  : "Dr. phil. (magna cum laude) · Cand. Sc. · TVET Researcher"}
+                  ? "Dr. phil. (magna cum laude), к.э.н., исследователь образования"
+                  : "Dr. phil. (magna cum laude), Cand. Sc., TVET Researcher"}
               </p>
               <span class="portrait-pill">
                 Europa-Universität Flensburg
               </span>
               <span class="portrait-location">
-                ORCID: 0000-0003-0816-2103 · Scopus: 57202091034
+                ORCID: 0000-0003-0816-2103 | Scopus: 57202091034
               </span>
             </div>
           </div>
