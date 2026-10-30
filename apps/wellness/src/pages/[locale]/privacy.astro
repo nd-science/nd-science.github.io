@@ -1,0 +1,184 @@
+---
+import BaseLayout from "@natali/ui/BaseLayout.astro";
+import { wellnessSiteConfig } from "../../site-config";
+import { wellnessCopy } from "../../i18n";
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: "ru" } },
+    { params: { locale: "en" } },
+  ];
+}
+
+const { locale } = Astro.params as { locale: "ru" | "en" };
+const copy = wellnessCopy[locale];
+const paths = { ru: "/ru/privacy/", en: "/en/privacy/" };
+const currentPath = `/${locale}/privacy/`;
+const isRu = locale === "ru";
+
+const breadcrumbs = [
+  { label: isRu ? "Политика конфиденциальности" : "Privacy Policy" },
+];
+---
+
+<BaseLayout
+  locale={locale}
+  theme="wellness"
+  siteLabel={copy.siteLabel}
+  title={`${isRu ? "Политика обработки персональных данных" : "Privacy Policy"} · ${wellnessSiteConfig.name}`}
+  description={isRu ? "Политика обработки и защиты персональных данных клиентов и посетителей сайта Наталии Долговой." : "Personal data processing and protection policy by Natalia Dolgova."}
+  paths={paths}
+  fallbackSiteUrl={copy.fallbackSiteUrl}
+  navItems={copy.nav}
+  currentPath={currentPath}
+  breadcrumbs={breadcrumbs}
+  footerText={copy.footer}
+>
+  <section class="page-hero">
+    <div class="section-inner">
+      <span class="hero-eyebrow">{copy.siteLabel} · {isRu ? "Правовая информация" : "Legal Information"}</span>
+      <h1>{isRu ? "Политика обработки персональных данных" : "Privacy Policy"}</h1>
+      <p class="hero-lead">
+        {isRu
+          ? "Порядок сбора, обработки, защиты и хранения персональных данных в соответствии с Федеральным законом № 152-ФЗ."
+          : "Principles and procedures of personal data collection, processing, protection, and retention."}
+      </p>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="section-inner legal-layout">
+      <div class="legal-actions-bar">
+        <span class="legal-doc-date">{isRu ? "Редакция от 01 июля 2026 г." : "Edition of July 1, 2026"}</span>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a class="legal-download-link" href="/legal/politika-obrabotki-pdn.docx" download>
+            <span>↓</span> {isRu ? "Политика ПДн (.docx)" : "Policy (.docx)"}
+          </a>
+          <a class="legal-download-link" href="/legal/soglasie-na-obrabotku-pdn.docx" download>
+            <span>↓</span> {isRu ? "Согласие на обработку (.docx)" : "Consent Form (.docx)"}
+          </a>
+        </div>
+      </div>
+
+      <div class="legal-prose">
+        {isRu ? (
+          <>
+            <h2>1. Общие положения</h2>
+            <p>1.1. Настоящая Политика обработки персональных данных (далее — «Политика») определяет порядок обработки и защиты персональных данных физических лиц Самозанятым:</p>
+            <p>
+              <strong>Ф.И.О.:</strong> Долгова Наталия Эдуардовна<br />
+              <strong>ИНН:</strong> 575210528203<br />
+              <strong>Электронная почта:</strong> <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+              <strong>Telegram для связи:</strong> <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a><br />
+              далее именуемым «Оператор».
+            </p>
+            <p>1.2. Политика разработана в соответствии с Конституцией Российской Федерации, Федеральным законом № 152-ФЗ «О персональных данных», Федеральным законом № 149-ФЗ «Об информации, информационных технологиях и о защите информации» и иными нормативными актами РФ.</p>
+            <p>1.3. Настоящая Политика применяется ко всем персональным данным, которые Оператор получает через сайт, формы обратной связи, сервисы онлайн-записи, мессенджеры, электронную почту и в ходе индивидуальных или групповых консультаций.</p>
+
+            <h2>2. Категории субъектов персональных данных</h2>
+            <p>Оператор обрабатывает персональные данные следующих категорий лиц:</p>
+            <ul>
+              <li>посетителей сайта;</li>
+              <li>клиентов и потенциальных клиентов;</li>
+              <li>участников консультаций, индивидуального сопровождения, мастер-классов и групповых программ.</li>
+            </ul>
+
+            <h2>3. Правовые основания обработки</h2>
+            <p>Обработка персональных данных осуществляется на основании:</p>
+            <ul>
+              <li>добровольного согласия субъекта персональных данных;</li>
+              <li>заключенных договоров на оказание консультационных услуг (Договор-оферта);</li>
+              <li>требований законодательства Российской Федерации.</li>
+            </ul>
+
+            <h2>4. Категории обрабатываемых данных</h2>
+            <p>Оператор вправе обрабатывать:</p>
+            <ul>
+              <li>фамилию, имя, отчество;</li>
+              <li>контактный номер телефона и адрес электронной почты;</li>
+              <li>никнеймы и идентификаторы в мессенджерах (Telegram и др.) и социальных сетях;</li>
+              <li>город проживания и часовой пояс;</li>
+              <li>информацию, предоставленную в анкетах предварительной записи и опросниках;</li>
+              <li>историю обращений и переписки с Оператором;</li>
+              <li>технические данные (IP-адрес, cookie-файлы, сведения об используемом браузере и устройстве).</li>
+            </ul>
+
+            <h2>5. Специальные категории данных</h2>
+            <p>5.1. В рамках психологической работы, телесных и дыхательных практик клиент может добровольно сообщать сведения о психологическом и эмоциональном состоянии, жизненных обстоятельствах и запросах.</p>
+            <p>5.2. Оператор не требует обязательного предоставления специальных категорий данных. Если субъект сообщает их добровольно, обработка ведётся исключительно в объёме, необходимом для безопасного и профессионального оказания услуг.</p>
+
+            <h2>6. Цели обработки</h2>
+            <p>Персональные данные обрабатываются для:</p>
+            <ul>
+              <li>приёма обращений и предварительной записи на консультации;</li>
+              <li>оказания услуг психологического консультирования и проведения нейроинтеграционных практик;</li>
+              <li>согласования организационных вопросов, даты и времени встреч;</li>
+              <li>направления методических материалов и ссылок на видеосвязь;</li>
+              <li>исполнения договора и соблюдения налогового законодательства РФ (формирование чеков плательщика НПД).</li>
+            </ul>
+
+            <h2>7. Защита и конфиденциальность</h2>
+            <p>7.1. Оператор принимает необходимые правовые, организационные и технические меры для защиты персональных данных от неправомерного или случайного доступа, уничтожения, изменения, блокирования, копирования и распространения.</p>
+            <p>7.2. Персональные данные не передаются третьим лицам, за исключением случаев, прямо предусмотренных законодательством РФ либо необходимых для технической доставки сообщений (провайдеры электронной почты, мессенджеры).</p>
+
+            <h2>8. Права субъекта и отзыв согласия</h2>
+            <p>8.1. Субъект персональных данных имеет право на получение информации, касающейся обработки его данных, уточнение, блокирование или уничтожение неполных, устаревших или неточных данных.</p>
+            <p>8.2. Согласие на обработку персональных данных может быть отозвано субъектом в любой момент путем направления письменного заявления по адресу электронной почты: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a>.</p>
+
+            <div class="legal-requisites">
+              <h3>Реквизиты оператора</h3>
+              <p>
+                <strong>Самозанятая Долгова Наталия Эдуардовна</strong><br />
+                ИНН: 575210528203<br />
+                Email для обращений: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+                Telegram: <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+              </p>
+            </div>
+          </>
+        ) : (
+          <>
+            <h2>1. General Provisions</h2>
+            <p>1.1. This Personal Data Processing Policy (the “Policy”) defines the procedure and measures for protecting personal data processed by self-employed practitioner:</p>
+            <p>
+              <strong>Full Name:</strong> Natalia Eduardovna Dolgova<br />
+              <strong>Tax ID (ИНН):</strong> 575210528203<br />
+              <strong>Email:</strong> <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+              <strong>Telegram:</strong> <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a><br />
+              hereinafter referred to as the “Operator”.
+            </p>
+            <p>1.2. The Policy is developed in accordance with applicable data protection laws and international best practices.</p>
+            <p>1.3. This Policy applies to all personal information obtained via the website, communication channels, forms, and consulting sessions.</p>
+
+            <h2>2. Categories of Data Subjects</h2>
+            <p>The Operator processes data of website visitors, clients, and participants in individual consultations or group programs.</p>
+
+            <h2>3. Legal Grounds for Processing</h2>
+            <p>Data processing is conducted based on voluntary consent, contract performance (Service Agreement), and statutory compliance.</p>
+
+            <h2>4. Categories of Processed Data</h2>
+            <p>Processed data may include: full name, contact phone number, email address, messenger handles (Telegram, etc.), city and timezone, intake questionnaire answers, communication history, and technical data (IP address, cookies, device info).</p>
+
+            <h2>5. Purposes of Processing</h2>
+            <p>Data is used exclusively to handle consultation requests, provide consulting and neurointegration services, coordinate schedules, send agreed materials, and fulfill tax reporting requirements.</p>
+
+            <h2>6. Confidentiality and Security</h2>
+            <p>Technical and organizational measures are in place to safeguard personal data against unauthorized access, alteration, or disclosure. Data is never sold or shared with unauthorized third parties.</p>
+
+            <h2>7. Rights of Data Subjects</h2>
+            <p>Clients have the right to access, rectify, or request deletion of their personal data. Consent may be withdrawn at any time by contacting: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a>.</p>
+
+            <div class="legal-requisites">
+              <h3>Operator Details</h3>
+              <p>
+                <strong>Natalia Dolgova (Self-employed)</strong><br />
+                Tax ID (ИНН): 575210528203<br />
+                Email: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+                Telegram: <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+              </p>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

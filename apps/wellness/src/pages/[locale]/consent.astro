@@ -1,0 +1,119 @@
+---
+import BaseLayout from "@natali/ui/BaseLayout.astro";
+import { wellnessSiteConfig } from "../../site-config";
+import { wellnessCopy } from "../../i18n";
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: "ru" } },
+    { params: { locale: "en" } },
+  ];
+}
+
+const { locale } = Astro.params as { locale: "ru" | "en" };
+const copy = wellnessCopy[locale];
+const paths = { ru: "/ru/consent/", en: "/en/consent/" };
+const currentPath = `/${locale}/consent/`;
+const isRu = locale === "ru";
+
+const breadcrumbs = [
+  { label: isRu ? "Информированное согласие" : "Informed Consent" },
+];
+---
+
+<BaseLayout
+  locale={locale}
+  theme="wellness"
+  siteLabel={copy.siteLabel}
+  title={`${isRu ? "Информированное согласие клиента" : "Informed Consent"} · ${wellnessSiteConfig.name}`}
+  description={isRu ? "Информированное согласие на получение психологических и консультационных услуг Наталии Долговой." : "Informed consent for psychological and consulting services by Natalia Dolgova."}
+  paths={paths}
+  fallbackSiteUrl={copy.fallbackSiteUrl}
+  navItems={copy.nav}
+  currentPath={currentPath}
+  breadcrumbs={breadcrumbs}
+  footerText={copy.footer}
+>
+  <section class="page-hero">
+    <div class="section-inner">
+      <span class="hero-eyebrow">{copy.siteLabel} · {isRu ? "Правовая информация" : "Legal Information"}</span>
+      <h1>{isRu ? "Информированное согласие клиента" : "Client Informed Consent"}</h1>
+      <p class="hero-lead">
+        {isRu
+          ? "Границы профессиональной помощи, принципы совместной работы, безопасность и взаимные обязательства сторон."
+          : "Professional boundaries, principles of collaboration, safety, and mutual obligations."}
+      </p>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="section-inner legal-layout">
+      <div class="legal-actions-bar">
+        <span class="legal-doc-date">{isRu ? "Действующая редакция · Июль 2026 г." : "Current Edition · July 2026"}</span>
+        <a class="legal-download-link" href="/legal/informirovannoe-soglasie.docx" download>
+          <span>↓</span> {isRu ? "Скачать оригинал документа (.docx)" : "Download document (.docx)"}
+        </a>
+      </div>
+
+      <div class="legal-prose">
+        {isRu ? (
+          <>
+            <p><strong>Принимая настоящее Информированное согласие, я подтверждаю следующее:</strong></p>
+            <ol>
+              <li><strong>Возраст и дееспособность:</strong> Мне исполнилось 18 лет, я дееспособен(на) и принимаю решение об участии добровольно.</li>
+              <li><strong>Немедицинский характер услуг:</strong> Я понимаю, что получаю психологические и информационно-консультационные услуги немедицинского характера.</li>
+              <li><strong>Отсутствие диагнозов и фармакотерапии:</strong> Я понимаю, что специалист не оказывает медицинскую или психиатрическую помощь, не устанавливает медицинские диагнозы, не назначает лекарства и не отменяет назначения врача.</li>
+              <li><strong>Не является экстренной помощью:</strong> Я понимаю, что психологическое консультирование не является экстренной помощью. При непосредственной угрозе жизни или здоровью я обязуюсь незамедлительно обратиться в экстренную службу (по номеру 112) или медицинскую организацию.</li>
+              <li><strong>Возможные эмоциональные реакции:</strong> Я понимаю, что в процессе работы могут возникать сильные эмоции, временный дискомфорт, усталость, сопротивление, переосмысление отношений и жизненных решений.</li>
+              <li><strong>Право на остановку и паузу:</strong> Я вправе задавать вопросы, сообщать о дискомфорте, отказываться от конкретного упражнения, делать паузу и прекратить работу.</li>
+              <li><strong>Отсутствие гарантии конкретного результата:</strong> Мне не гарантирован конкретный результат. Результат зависит от характера запроса, моего участия, регулярности работы, индивидуальных особенностей и обстоятельств, не зависящих от специалиста.</li>
+              <li><strong>Личная ответственность:</strong> Я самостоятельно принимаю решения и несу ответственность за действия, совершенные вне консультаций.</li>
+              <li><strong>Сообщение о здоровье и ограничениях:</strong> Я обязуюсь сообщить специалисту о существенных заболеваниях, состояниях, беременности, принимаемых препаратах или иных обстоятельствах, которые могут повлиять на безопасность проведения психологического консультирования, нейроинтеграционных, телесных или дыхательных практик.</li>
+              <li><strong>Конфиденциальность:</strong> Я понимаю правила конфиденциальности и предусмотренные договором исключения (угроза жизни, требования закона).</li>
+              <li><strong>Правила аудио- и видеозаписи:</strong> Я понимаю, что индивидуальная встреча не записывается без отдельного предварительного согласия обеих сторон.</li>
+              <li><strong>Ознакомление с договором:</strong> Я ознакомился(лась) с Договором-офертой и Правилами психологического консультирования и нейроинтеграционных практик, получил(а) возможность задать вопросы и принимаю их условия.</li>
+            </ol>
+
+            <div class="legal-requisites">
+              <h3>Исполнитель</h3>
+              <p>
+                <strong>Самозанятая Долгова Наталия Эдуардовна</strong><br />
+                ИНН: 575210528203<br />
+                Электронная почта: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+                Telegram для связи: <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+              </p>
+            </div>
+          </>
+        ) : (
+          <>
+            <p><strong>By accepting this Informed Consent, I confirm the following:</strong></p>
+            <ol>
+              <li><strong>Age and Capacity:</strong> I am at least 18 years of age, legally competent, and make the decision to participate voluntarily.</li>
+              <li><strong>Non-Medical Nature of Services:</strong> I understand that I am receiving non-medical psychological and informational consulting services.</li>
+              <li><strong>No Medical Diagnosis or Prescription:</strong> I understand that the practitioner does not provide medical or psychiatric care, does not make clinical diagnoses, does not prescribe medication, and does not alter doctor's prescriptions.</li>
+              <li><strong>Not an Emergency Service:</strong> I understand that psychological consultations are not crisis or emergency intervention. In situations involving immediate risk to life or health, I undertake to contact emergency services (e.g. 112) or medical institutions immediately.</li>
+              <li><strong>Potential Emotional Reactions:</strong> I understand that the process may involve strong emotions, temporary discomfort, fatigue, resistance, and re-evaluation of relationships and life choices.</li>
+              <li><strong>Right to Pause and Refuse:</strong> I have the right to ask questions, report discomfort, refuse specific exercises, take a pause, or terminate the consultation at any time.</li>
+              <li><strong>No Guarantee of Specific Outcomes:</strong> Specific outcomes cannot be guaranteed. Results depend on the nature of the request, client engagement, regularity, personal characteristics, and circumstances beyond the practitioner's control.</li>
+              <li><strong>Personal Autonomy and Responsibility:</strong> I make decisions independently and take responsibility for actions taken outside of consultations.</li>
+              <li><strong>Disclosure of Health Conditions:</strong> I undertake to inform the practitioner of significant medical conditions, pregnancy, medications, or any circumstances that may affect the safety of psychological, neurointegration, body-oriented, or breathwork practices.</li>
+              <li><strong>Confidentiality and Exceptions:</strong> I understand confidentiality standards and lawful exceptions (threat to life, statutory disclosure obligations).</li>
+              <li><strong>Recording Policy:</strong> Individual sessions are never recorded without explicit prior consent from both parties.</li>
+              <li><strong>Acceptance of Service Terms:</strong> I have reviewed the Service Agreement (Public Offer), had the opportunity to ask questions, and agree to its terms.</li>
+            </ol>
+
+            <div class="legal-requisites">
+              <h3>Practitioner</h3>
+              <p>
+                <strong>Natalia Dolgova (Self-employed)</strong><br />
+                Tax ID (ИНН): 575210528203<br />
+                Email: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+                Telegram: <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+              </p>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

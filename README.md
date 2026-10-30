@@ -5,7 +5,18 @@
 - `apps/wellness` — практика, индивидуальное сопровождение и материалы;
 - `apps/science` — научный профиль, публикации и авторские услуги.
 
-Оба сайта находятся в статусе черновика, используют маршруты `/ru/` и `/en/` и по умолчанию закрыты от индексации. Публикация, аналитика, оплата и реальные внешние интеграции не подключены.
+Оба сайта находятся в статусе черновика, используют маршруты `/ru/` и `/en/` и по умолчанию закрыты от индексации. Draft опубликован на GitHub Pages; аналитика, оплата и реальные внешние интеграции не подключены.
+
+## Рабочие адреса
+
+- Science: [https://nd-science.github.io](https://nd-science.github.io)
+  - RU: [https://nd-science.github.io/ru/](https://nd-science.github.io/ru/)
+  - EN: [https://nd-science.github.io/en/](https://nd-science.github.io/en/)
+- Wellness: [https://wellnessnd.github.io](https://wellnessnd.github.io)
+  - RU: [https://wellnessnd.github.io/ru/](https://wellnessnd.github.io/ru/)
+  - EN: [https://wellnessnd.github.io/en/](https://wellnessnd.github.io/en/)
+
+Это действующие GitHub Pages draft-адреса. Сайты сохраняют `noindex`; отдельные production-домены, формы, оплата и остальные внешние интеграции требуют самостоятельного release-решения.
 
 Актуальная точка входа для команды и агентов: [текущий статус, решения, открытые вопросы и слепые зоны](docs/PROJECT_STATUS.md).
 

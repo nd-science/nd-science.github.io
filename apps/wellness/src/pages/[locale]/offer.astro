@@ -1,0 +1,166 @@
+---
+import BaseLayout from "@natali/ui/BaseLayout.astro";
+import { wellnessSiteConfig } from "../../site-config";
+import { wellnessCopy } from "../../i18n";
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: "ru" } },
+    { params: { locale: "en" } },
+  ];
+}
+
+const { locale } = Astro.params as { locale: "ru" | "en" };
+const copy = wellnessCopy[locale];
+const paths = { ru: "/ru/offer/", en: "/en/offer/" };
+const currentPath = `/${locale}/offer/`;
+const isRu = locale === "ru";
+
+const breadcrumbs = [
+  { label: isRu ? "Договор-оферта" : "Service Agreement" },
+];
+---
+
+<BaseLayout
+  locale={locale}
+  theme="wellness"
+  siteLabel={copy.siteLabel}
+  title={`${isRu ? "Договор-оферта" : "Service Agreement"} · ${wellnessSiteConfig.name}`}
+  description={isRu ? "Публичный договор-оферта на оказание услуг психологического консультирования и нейроинтеграционных практик." : "Public offer and service agreement for consulting and neurointegration services."}
+  paths={paths}
+  fallbackSiteUrl={copy.fallbackSiteUrl}
+  navItems={copy.nav}
+  currentPath={currentPath}
+  breadcrumbs={breadcrumbs}
+  footerText={copy.footer}
+>
+  <section class="page-hero">
+    <div class="section-inner">
+      <span class="hero-eyebrow">{copy.siteLabel} · {isRu ? "Правовая информация" : "Legal Information"}</span>
+      <h1>{isRu ? "Договор-оферта" : "Service Agreement (Public Offer)"}</h1>
+      <p class="hero-lead">
+        {isRu
+          ? "Об оказании услуг психологического консультирования и проведении нейроинтеграционных практик."
+          : "Terms and conditions for psychological consulting and neurointegration practice services."}
+      </p>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="section-inner legal-layout">
+      <div class="legal-actions-bar">
+        <span class="legal-doc-date">{isRu ? "Редакция от 01 июля 2026 г." : "Edition of July 1, 2026"}</span>
+        <a class="legal-download-link" href="/legal/dogovor-oferta.docx" download>
+          <span>↓</span> {isRu ? "Скачать Договор-оферту (.docx)" : "Download Agreement (.docx)"}
+        </a>
+      </div>
+
+      <div class="legal-prose">
+        {isRu ? (
+          <>
+            <p>
+              Настоящий документ является предложением плательщика налога на профессиональный доход:<br />
+              <strong>Ф.И.О.:</strong> Долговой Наталии Эдуардовны<br />
+              <strong>ИНН:</strong> 575210528203<br />
+              <strong>Адрес электронной почты:</strong> <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+              <strong>Telegram для связи:</strong> <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a><br />
+              <strong>Страница с информацией об услугах:</strong> <a href="https://www.b17.ru/dolgova_nataliya/" target="_blank" rel="noopener noreferrer">b17.ru/dolgova_nataliya/</a><br />
+              далее — «Исполнитель», заключить договор об оказании услуг с совершеннолетним дееспособным физическим лицом, далее — «Клиент».
+            </p>
+
+            <h2>1. Термины и заключение договора</h2>
+            <p>1.1. <strong>Услуги</strong> — психологическое консультирование немедицинского характера, нейроинтеграционные, телесно-ориентированные, дыхательные и иные согласованные практики, индивидуальное или групповое сопровождение, а также связанные с ними информационно-консультационные услуги.</p>
+            <p>1.2. <strong>Сессия</strong> — индивидуальная или групповая встреча Исполнителя и Клиента, проводимая очно либо дистанционно посредством сервиса видеосвязи, телефонной связи или мессенджера.</p>
+            <p>1.3. <strong>Заявка</strong> — заполненная Клиентом анкета предварительной записи либо обращение к Исполнителю по согласованному каналу связи.</p>
+            <p>1.4. Заполнение анкеты не обязывает Исполнителя принять заявителя в работу. Исполнитель вправе до оплаты отказать в начале работы, если запрос находится за пределами компетенции, отсутствует свободное время либо Клиенту целесообразно обратиться к другому специалисту.</p>
+            <p>1.5. Договор считается заключенным после совершения Клиентом в совокупности: направления заявки, подтверждения согласия с Договором и приложениями, получения подтверждения записи и внесения оплаты.</p>
+
+            <h2>2. Предмет договора</h2>
+            <p>2.1. Исполнитель обязуется оказать Клиенту выбранные услуги, а Клиент обязуется принять и оплатить их на условиях настоящего Договора.</p>
+            <p>2.2. Конкретный формат, продолжительность, количество сессий и стоимость сообщаются Клиенту до оплаты в описании услуги, счете или переписке.</p>
+            <p>2.3. Услуги оказываются только совершеннолетним лицам (18+). Исполнитель не принимает в работу несовершеннолетних лиц в рамках настоящего Договора.</p>
+            <p>2.4. Клиент понимает, что психологическое консультирование является совместным процессом. Исполнитель не гарантирует достижение конкретного результата, изменение состояния к определённой дате или наступление иных заранее определенных последствий.</p>
+
+            <h2>3. Немедицинский характер услуг</h2>
+            <p>3.1. Услуги Исполнителя не являются медицинской или психиатрической помощью, не включают установление медицинских диагнозов, назначение или отмену лекарственных препаратов и не заменяют обращение к врачу.</p>
+            <p>3.2. Настоящий Договор не предназначен для оказания экстренной психологической помощи. В ситуации угрозы жизни или здоровью Клиент обязуется незамедлительно обратиться по единому номеру экстренных служб 112 либо в профильные медицинские учреждения.</p>
+
+            <h2>4. Порядок проведения сессий</h2>
+            <p>4.1. Дата и время каждой сессии согласовываются сторонами индивидуально.</p>
+            <p>4.2. Стандартная продолжительность индивидуальной сессии составляет 55–60 минут.</p>
+            <p>4.3. Сессия начинается и заканчивается вовремя. Опоздание Клиента не продлевает сессию и не уменьшает ее стоимость. При опоздании более чем на 15 минут без предупреждения Исполнитель вправе считать встречу несостоявшейся по инициативе Клиента.</p>
+            <p>4.4. Клиент обязан обеспечить устойчивую связь, приватное и безопасное помещение, а также неучастие под воздействием алкоголя или веществ, препятствующих осознанному процессу.</p>
+
+            <h2>5. Стоимость и оплата</h2>
+            <p>5.1. Стоимость услуги сообщается Клиенту до оплаты и фиксируется для выбранного и оплаченного формата.</p>
+            <p>5.2. Оплата производится в порядке, установленном законодательством РФ для плательщиков налога на профессиональный доход, с предоставлением фискального чека.</p>
+
+            <h2>6. Перенос и отмена сессии</h2>
+            <p>6.1. Клиент вправе перенести или отменить сессию, уведомив Исполнителя не позднее чем за 24 часа до её начала.</p>
+            <p>6.2. При своевременном уведомлении (более чем за 24 часа) оплата переносится на другую согласованную дату либо возвращается Клиенту.</p>
+            <p>6.3. При отмене встречи менее чем за 24 часа Исполнитель вправе удержать стоимость сессии в качестве компенсации за забронированное время и подготовительную работу.</p>
+            <p>6.4. Если встречу отменяет Исполнитель, Клиенту предлагается перенос либо полный возврат оплаты за отменённую встречу.</p>
+
+            <h2>7. Отказ от договора и возврат средств</h2>
+            <p>7.1. Клиент вправе отказаться от договора в любое время с возвратом оплаты за вычетом фактически оказанных к моменту отказа сессий.</p>
+            <p>7.2. Заявление о возврате направляется по адресу: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a>.</p>
+
+            <h2>8. Конфиденциальность и запись сессий</h2>
+            <p>8.1. Исполнитель сохраняет конфиденциальность сведений, полученных от Клиента. Исключения составляют предусмотренные законодательством РФ случаи реальной угрозы жизни или здоровью.</p>
+            <p>8.2. Индивидуальные встречи не записываются аудио- или видеосредствами ни одной из сторон без отдельного предварительного согласия.</p>
+
+            <h2>9. Телесные и дыхательные практики</h2>
+            <p>9.1. Перед началом упражнений Исполнитель разъясняет технику безопасности. Клиент вправе отказаться от выполнения любого упражнения или прекратить его при появлении малейшего дискомфорта.</p>
+
+            <h2>10. Реквизиты Исполнителя</h2>
+            <div class="legal-requisites">
+              <p>
+                <strong>Самозанятая Долгова Наталия Эдуардовна</strong><br />
+                Статус: плательщик налога на профессиональный доход<br />
+                ИНН: 575210528203<br />
+                Email: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+                Telegram для связи: <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+              </p>
+            </div>
+          </>
+        ) : (
+          <>
+            <p>
+              This document is a public offer by a self-employed specialist:<br />
+              <strong>Full Name:</strong> Natalia Eduardovna Dolgova<br />
+              <strong>Tax ID (ИНН):</strong> 575210528203<br />
+              <strong>Email:</strong> <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+              <strong>Telegram:</strong> <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a><br />
+              hereinafter referred to as the “Practitioner”, to conclude an agreement with an adult individual (“Client”).
+            </p>
+
+            <h2>1. Terms and Formation of Agreement</h2>
+            <p>1.1. Services comprise non-medical psychological counselling, neurointegration practices, breathwork, somatic practices, and individual support.</p>
+            <p>1.2. The agreement is deemed concluded upon submission of an intake request, acceptance of terms, booking confirmation, and payment.</p>
+
+            <h2>2. Scope and Nature of Services</h2>
+            <p>2.1. Services are strictly non-medical, do not involve pharmacological prescription, and do not replace psychiatric or crisis services.</p>
+            <p>2.2. In emergency situations involving danger to life or health, the Client must immediately contact national emergency services (e.g. 112).</p>
+
+            <h2>3. Sessions and Rescheduling Policy</h2>
+            <p>3.1. Standard individual sessions last 55–60 minutes.</p>
+            <p>3.2. Sessions may be rescheduled or cancelled without penalty at least 24 hours prior to the scheduled start time. Cancellations made with less than 24 hours notice may be billed in full.</p>
+
+            <h2>4. Confidentiality</h2>
+            <p>All information shared during consultations remains strictly confidential, subject only to statutory exceptions regarding imminent danger to human life.</p>
+
+            <div class="legal-requisites">
+              <h3>Practitioner Details</h3>
+              <p>
+                <strong>Natalia Dolgova (Self-employed)</strong><br />
+                Tax ID (ИНН): 575210528203<br />
+                Email: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+                Telegram: <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+              </p>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

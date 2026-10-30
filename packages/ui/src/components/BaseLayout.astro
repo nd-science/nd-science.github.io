@@ -292,10 +292,10 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
             <h4 class="footer-heading">{labels.legalHeading}</h4>
             {theme === "wellness" ? (
               <ul class="footer-legal-list">
-                <li><a href="https://disk.yandex.ru/i/kHnE1PbPWDsADA" target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Договор-оферта" : "Service Agreement"} ↗</a></li>
-                <li><a href="https://disk.yandex.ru/i/BYRuqg6yed5EvA" target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Информированное согласие" : "Informed Consent"} ↗</a></li>
-                <li><a href="https://disk.yandex.ru/i/15FgjGfGxgZ6MQ" target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Политика обработки ПДн" : "Privacy Policy"} ↗</a></li>
-                <li><span class="tax-info">{locale === "ru" ? "Самозанятая Долгова Н. Э. · ИНН 772076044719" : "Self-employed N. E. Dolgova · Tax ID 772076044719"}</span></li>
+                <li><a href={`/${locale}/offer/`}>{locale === "ru" ? "Договор-оферта" : "Service Agreement"}</a></li>
+                <li><a href={`/${locale}/consent/`}>{locale === "ru" ? "Информированное согласие" : "Informed Consent"}</a></li>
+                <li><a href={`/${locale}/privacy/`}>{locale === "ru" ? "Политика обработки ПДн" : "Privacy Policy"}</a></li>
+                <li><span class="tax-info">{locale === "ru" ? "Самозанятая Долгова Н. Э. · ИНН 575210528203" : "Self-employed N. E. Dolgova · Tax ID 575210528203"}</span></li>
               </ul>
             ) : (
               <ul class="footer-legal-list">
