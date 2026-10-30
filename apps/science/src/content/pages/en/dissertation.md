@@ -11,8 +11,8 @@ updatedAt: 2026-10-29
 publicationScope: public
 ---
 
-Nataliia’s doctoral research examines the factors shaping the perceived effectiveness of online courses for preparing TVET engineering educators in Russia.
+My doctoral dissertation examines the factors shaping the perceived effectiveness of online courses for preparing TVET engineering educators.
 
-The study systematises and empirically examines feedback, accessibility, motivation, practical relevance and institutional conditions in online professional learning. Europa-Universität Flensburg awarded the Dr. phil. degree in 2026 with an overall magna cum laude result.
+The study systematises and empirically examines feedback, accessibility, motivation, practical relevance, and institutional conditions in online professional learning using mixed-methods triangulation. Europa-Universität Flensburg awarded the Dr. phil. degree in 2026 with an overall magna cum laude distinction.
 
-A local PDF will be published only after rights are checked; the official repository is used for now.
+The complete dissertation text is available via open access in the official repository of the ZHB Flensburg / MACAU library.

@@ -11,7 +11,7 @@ updatedAt: 2026-10-30
 publicationScope: public
 ---
 
-Nataliia’s track record spans more than 37 implemented education and research projects, 40+ designed professional-development programmes, and over 2,000 educators trained across 35 regions. Below are five representative flagship initiatives in educator training, institutional digital transformation, and educational research.
+My track record spans more than 37 implemented education and research projects, 40+ designed professional-development programmes, and over 2,000 educators trained across 35 regions. Below are five representative flagship initiatives in educator training, institutional digital transformation, and educational research.
 
 ### 1. Professional Development for TVET Educators (2017–2019)
 - **Scale:** 2,000+ educators across 35 regions.
