@@ -127,21 +127,21 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 0.75rem 1.5rem;
-    padding: 0.75rem clamp(1rem, 4vw, 4rem) 0.5rem;
+    gap: 0.5rem 1.25rem;
+    padding: 0.45rem clamp(1rem, 4vw, 4rem) 0.35rem;
     border-block-end: 1px solid color-mix(in oklch, var(--border) 60%, transparent);
   }
 
   .brand,
   .identity {
     display: inline-flex;
-    gap: 0.65rem;
+    gap: 0.55rem;
     align-items: center;
-    min-height: 2.4rem;
+    min-height: 2.1rem;
     color: var(--heading);
     font-family: 'Fraunces', Georgia, serif;
     font-optical-sizing: auto;
-    font-size: 1.05rem;
+    font-size: 1rem;
     font-weight: 700;
     text-decoration: none;
   }
@@ -150,13 +150,13 @@
   .identity-mark {
     display: inline-grid;
     place-items: center;
-    width: 1.85rem;
-    height: 1.85rem;
+    width: 1.7rem;
+    height: 1.7rem;
     color: var(--button-text);
     background: var(--accent-strong);
     border-radius: var(--radius-small);
     font-family: Inter, "Segoe UI", system-ui, sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 900;
     letter-spacing: 0.05em;
   }
@@ -203,7 +203,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.15rem;
-    padding: 0.15rem;
+    padding: 0.12rem;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 999px;
@@ -213,12 +213,12 @@
   .language-switcher a {
     display: inline-grid;
     place-items: center;
-    min-width: 2.2rem;
-    min-height: 2.2rem;
-    padding-inline: 0.5rem;
+    min-width: 1.95rem;
+    min-height: 1.95rem;
+    padding-inline: 0.45rem;
     color: var(--muted-text);
     border-radius: 999px;
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     font-weight: 800;
     text-decoration: none;
     transition: background-color 140ms ease, color 140ms ease;
@@ -239,13 +239,13 @@
     display: inline-flex;
     gap: 0.4rem;
     align-items: center;
-    min-height: 2.2rem;
-    padding: 0.25rem 0.75rem;
+    min-height: 1.95rem;
+    padding: 0.2rem 0.65rem;
     color: var(--muted-text);
     background: transparent;
     border: 1px dashed var(--border-strong);
     border-radius: var(--radius-small);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
     text-decoration: none;
     transition: color 140ms ease, border-color 140ms ease, background-color 140ms ease;
@@ -262,7 +262,7 @@
     position: relative;
     overflow-x: auto;
     overflow-y: clip;
-    padding: 0.35rem clamp(1rem, 4vw, 4rem) 0;
+    padding: 0.2rem clamp(1rem, 4vw, 4rem) 0;
     scrollbar-width: none !important;
     -ms-overflow-style: none;
     -webkit-overflow-scrolling: touch;
@@ -306,101 +306,33 @@
     align-items: end;
   }
 
-  /* Folder Tabs: Base styles */
+  /* Folder Tabs: Softened geometry with seamless folder tab baseline */
   .page-tabs a,
   .nav-list a {
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 2.45rem;
+    min-height: 2.25rem;
+    padding: 0.35rem clamp(0.75rem, 1vw, 1.15rem);
     color: var(--muted-text);
     background: transparent;
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
     font-size: clamp(0.8rem, 0.85vw, 0.86rem);
     font-weight: 700;
     text-decoration: none;
-    transition: color 140ms ease;
+    transition: color 140ms ease, background-color 140ms ease, border-color 140ms ease;
     white-space: nowrap;
     z-index: 1;
-  }
-
-  /* Outer shape: acts as the 1px border */
-  .page-tabs a::before,
-  .nav-list a::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: transparent;
-    transition: background-color 140ms ease;
-    pointer-events: none;
-    z-index: -2;
-  }
-
-  /* Inner shape: fills tab body, inset by 1px at top/left/right, open at bottom */
-  .page-tabs a::after,
-  .nav-list a::after {
-    content: "";
-    position: absolute;
-    inset: 1px 1px 0 1px;
-    background: transparent;
-    transition: background-color 140ms ease;
-    pointer-events: none;
-    z-index: -1;
-  }
-
-  /* 1. Первая вкладка («Главная»): классический скос папки справа | ---- \ */
-  .page-tabs li:first-child a,
-  .nav-list li:first-child a {
-    padding: 0.45rem clamp(1.15rem, 1.4vw, 1.45rem) 0.45rem clamp(0.75rem, 1vw, 1.05rem);
-    border-top-left-radius: 6px;
-    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 100%, 0 100%);
-  }
-
-  .page-tabs li:first-child a::before,
-  .nav-list li:first-child a::before {
-    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 100%, 0 100%);
-    border-top-left-radius: 6px;
-  }
-
-  .page-tabs li:first-child a::after,
-  .nav-list li:first-child a::after {
-    clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 100%, 0 100%);
-    border-top-left-radius: 5px;
-  }
-
-  /* 2. Остальные вкладки: скос слева / ---- | */
-  .page-tabs li:not(:first-child) a,
-  .nav-list li:not(:first-child) a {
-    padding: 0.45rem clamp(0.65rem, 0.9vw, 0.85rem) 0.45rem clamp(1.05rem, 1.3vw, 1.35rem);
-    border-top-right-radius: 6px;
-    clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%);
-  }
-
-  .page-tabs li:not(:first-child) a::before,
-  .nav-list li:not(:first-child) a::before {
-    clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%);
-    border-top-right-radius: 6px;
-  }
-
-  .page-tabs li:not(:first-child) a::after,
-  .nav-list li:not(:first-child) a::after {
-    clip-path: polygon(13px 0, 100% 0, 100% 100%, 0 100%);
-    border-top-right-radius: 5px;
   }
 
   .page-tabs a:hover,
   .nav-list a:hover {
     color: var(--heading);
-  }
-
-  .page-tabs a:hover::before,
-  .nav-list a:hover::before {
-    background: var(--border);
-  }
-
-  .page-tabs a:hover::after,
-  .nav-list a:hover::after {
-    background: var(--surface-strong);
+    background: color-mix(in oklch, var(--surface) 60%, transparent);
+    border-color: color-mix(in oklch, var(--border) 60%, transparent);
   }
 
   /* Active Folder Tab: joins seamlessly to the context-bar / surface below */
@@ -409,18 +341,12 @@
     position: relative;
     margin-block-end: -1px;
     color: var(--heading);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-bottom: 1px solid var(--surface);
     font-weight: 800;
     z-index: 2;
-  }
-
-  .page-tabs a[aria-current="page"]::before,
-  .nav-list a[aria-current="page"]::before {
-    background: var(--border);
-  }
-
-  .page-tabs a[aria-current="page"]::after,
-  .nav-list a[aria-current="page"]::after {
-    background: var(--surface);
+    box-shadow: 0 -2px 6px color-mix(in oklch, var(--shadow) 50%, transparent);
   }
 
   /* Accent stripe indicator inside active tab */
@@ -760,30 +686,44 @@
     margin-block-start: 2rem;
   }
 
-  .button {
+  .button,
+  .button--primary,
+  .button.primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 3rem;
-    padding: 0.75rem 1.15rem;
+    min-height: 2.85rem;
+    padding: 0.7rem 1.25rem;
     color: var(--button-text);
     background: var(--accent-strong);
     border: 1px solid transparent;
     border-radius: 999px;
     font-weight: 800;
     text-decoration: none;
-    transition: transform 180ms ease, box-shadow 180ms ease;
+    transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease, border-color 180ms ease, background-color 180ms ease, color 180ms ease;
   }
 
-  .button:hover {
+  .button:hover,
+  .button--primary:hover,
+  .button.primary:hover {
     box-shadow: 0 0.75rem 1.5rem var(--shadow);
     transform: translateY(-2px);
+    filter: brightness(1.05);
   }
 
+  .button--secondary,
   .button.secondary {
     color: var(--heading);
     background: transparent;
-    border-color: var(--border-strong);
+    border: 1.5px solid var(--border-strong);
+  }
+
+  .button--secondary:hover,
+  .button.secondary:hover {
+    color: var(--accent-strong);
+    background: var(--surface);
+    border-color: var(--accent-strong);
+    box-shadow: 0 0.5rem 1.25rem var(--shadow);
   }
 
   .section-heading {
@@ -1137,61 +1077,83 @@
 
   .service-grid {
     display: grid;
-    gap: 1.25rem;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20.5rem), 1fr));
+    align-items: stretch;
   }
 
   .service-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     height: 100%;
-    gap: 0.65rem;
-    padding: clamp(1.4rem, 2.5vw, 1.85rem);
+    gap: 0.75rem;
+    padding: clamp(1.5rem, 2.8vw, 2.1rem);
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: 0 0.5rem 1.75rem var(--shadow);
-    transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
-  }
-
-  .service-card--featured {
-    border: 2px solid var(--accent-strong);
-    box-shadow: 0 0.75rem 2rem color-mix(in oklch, var(--accent) 25%, transparent);
+    transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
   }
 
   .service-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0.85rem 2.25rem var(--shadow);
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2.5rem var(--shadow);
+    border-color: var(--border-strong);
+  }
+
+  .service-card--featured {
+    background: color-mix(in oklch, var(--card) 95%, var(--accent) 5%);
+    border: 2px solid var(--accent-strong);
+    box-shadow: 0 0.85rem 2.25rem color-mix(in oklch, var(--accent) 18%, transparent);
+  }
+
+  .service-card--featured:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1.25rem 3rem color-mix(in oklch, var(--accent) 26%, transparent);
   }
 
   .service-card-header {
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
 
   .service-card-title,
   .service-card h3 {
     margin: 0;
-    font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+    font-family: 'Fraunces', Georgia, serif;
+    font-optical-sizing: auto;
+    font-size: clamp(1.22rem, 1.8vw, 1.48rem);
+    font-weight: 700;
+    line-height: 1.25;
     color: var(--heading);
   }
 
   .service-price-block {
     display: inline-flex;
-    align-items: center;
-    padding: 0.35rem 0.65rem;
-    margin-block: 0.15rem;
-    background: color-mix(in oklch, var(--surface) 90%, transparent);
+    align-items: baseline;
+    gap: 0.35rem;
+    padding: 0.4rem 0.85rem;
+    margin-block: 0.25rem 0.15rem;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-small);
     width: fit-content;
   }
 
+  .service-card--featured .service-price-block {
+    background: color-mix(in oklch, var(--surface-strong) 95%, var(--accent) 5%);
+    border-color: color-mix(in oklch, var(--accent-strong) 40%, var(--border));
+    box-shadow: inset 0 1px 2px color-mix(in oklch, var(--accent) 10%, transparent);
+  }
+
   .service-price-block .price-value {
-    font-weight: 850;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 750;
     color: var(--accent-strong);
-    font-size: 1.15rem;
+    font-size: 1.28rem;
     letter-spacing: -0.01em;
   }
 
@@ -1230,7 +1192,7 @@
 
   .service-card-footer {
     margin-block-start: auto;
-    padding-block-start: 0.5rem;
+    padding-block-start: 0.75rem;
   }
 
   .service-card .button {
@@ -1270,15 +1232,24 @@
     display: inline-flex;
     align-items: center;
     width: fit-content;
-    padding: 0.15rem 0.6rem;
+    padding: 0.2rem 0.65rem;
     color: var(--accent-strong);
     background: var(--surface-strong);
     border: 1px solid var(--border-strong);
     border-radius: 999px;
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     font-weight: 800;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+  }
+
+  .badge--featured {
+    background: var(--accent-strong);
+    color: var(--button-text);
+    border: 1px solid var(--accent-strong);
+    box-shadow: 0 2px 8px color-mix(in oklch, var(--accent-strong) 25%, transparent);
+    font-weight: 850;
+    letter-spacing: 0.05em;
   }
 
   .price-line {
