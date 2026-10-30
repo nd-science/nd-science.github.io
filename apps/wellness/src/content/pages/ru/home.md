@@ -10,7 +10,7 @@ ctaLabel: Записаться на установочную встречу
 ctaHref: /booking/#enquiry
 ctaSecondaryLabel: Посмотреть форматы и цены
 ctaSecondaryHref: /for-individuals/
-relatedServices: [consultation, four-week-support, five-session-package, individual-qigong, breathing-session, b2b-workshop]
+relatedServices: [consultation, four-week-support, five-session-package]
 sections: [services, methods]
 updatedAt: 2026-10-29
 publicationScope: public

@@ -1,6 +1,7 @@
 ---
 import { nataliaProfile, type Locale } from "@natali/profile";
 import {
+  absoluteUrl,
   buildSeo,
   createBreadcrumbJsonLd,
   createPersonJsonLd,
@@ -40,6 +41,7 @@ interface Props {
   breadcrumbs?: BreadcrumbItem[] | undefined;
   personDetails?: PersonJsonLdDetails | undefined;
   jsonLd?: Record<string, unknown>[] | undefined;
+  ogImage?: string | undefined;
   footerText: string;
 }
 
@@ -57,6 +59,7 @@ const {
   breadcrumbs,
   personDetails,
   jsonLd,
+  ogImage,
   footerText,
 } = Astro.props;
 
@@ -64,6 +67,7 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || fallbackSiteUrl;
 const status: SiteStatus =
   import.meta.env.PUBLIC_SITE_STATUS === "public" ? "public" : "draft";
 const seo = buildSeo({ siteUrl, locale, paths, status });
+const socialImage = ogImage || absoluteUrl(siteUrl, "/favicon.svg");
 const personJsonLd = createPersonJsonLd(
   nataliaProfile,
   locale,
@@ -131,6 +135,8 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="description" content={description} />
     <meta name="robots" content={seo.robots} />
     <meta property="og:type" content="website" />
@@ -138,6 +144,11 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
     <meta property="og:description" content={description} />
     <meta property="og:url" content={seo.canonical} />
     <meta property="og:locale" content={locale === "ru" ? "ru_RU" : "en_US"} />
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
     <meta name="google-site-verification" content={import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION || "g0Sulf8O9jo-GoN5JoHKC_DdFmAsHSjDIxx-Rr-WBEo"} />
     <meta name="msvalidate.01" content={import.meta.env.PUBLIC_BING_SITE_VERIFICATION || "bing-verification-pending"} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -179,11 +190,11 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
           <span class="brand-name">{nataliaProfile.displayName[locale]}</span>
         </a>
         <div class="header-tools">
-          <div class="locale-switcher language-switcher" aria-label={labels.language}>
+          <nav class="locale-switcher language-switcher" aria-label={labels.language}>
             <a href={paths.ru} lang="ru" aria-current={locale === "ru" ? "page" : undefined}>RU</a>
             <span class="locale-sep" aria-hidden="true">/</span>
             <a href={paths.en} lang="en" aria-current={locale === "en" ? "page" : undefined}>EN</a>
-          </div>
+          </nav>
           {
             crossSite && (
               <a
@@ -232,7 +243,7 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
         </nav>
       )
     }
-    <main id="main-content">
+    <main id="main-content" tabindex="-1">
       <slot />
     </main>
     <footer class="site-footer">
@@ -259,7 +270,7 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
           </div>
 
           <div class="footer-col nav-col">
-            <h4 class="footer-heading">{labels.navHeading}</h4>
+            <h2 class="footer-heading">{labels.navHeading}</h2>
             <ul class="footer-nav-list">
               {navItems.map((item) => (
                 <li><a href={item.href}>{item.label}</a></li>
@@ -269,7 +280,7 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
           </div>
 
           <div class="footer-col resources-col">
-            <h4 class="footer-heading">{theme === "wellness" ? labels.contactsHeading : labels.scienceHeading}</h4>
+            <h2 class="footer-heading">{theme === "wellness" ? labels.contactsHeading : labels.scienceHeading}</h2>
             {theme === "wellness" ? (
               <ul class="footer-contact-list">
                 <li><a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">Telegram: @natali_tvet_pro</a></li>
@@ -289,7 +300,7 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
           </div>
 
           <div class="footer-col legal-col">
-            <h4 class="footer-heading">{labels.legalHeading}</h4>
+            <h2 class="footer-heading">{labels.legalHeading}</h2>
             {theme === "wellness" ? (
               <ul class="footer-legal-list">
                 <li><a href={`/${locale}/offer/`}>{locale === "ru" ? "Договор-оферта" : "Service Agreement"}</a></li>
@@ -316,15 +327,22 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
     </footer>
     <script is:inline>
       (() => {
-        const nav = document.querySelector('.page-nav');
-        const activeTab = document.querySelector('.page-tabs a[aria-current="page"]');
-        if (nav && activeTab && nav.scrollWidth > nav.clientWidth) {
-          const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-          const targetLeft = activeTab.offsetLeft - (nav.clientWidth / 2) + (activeTab.offsetWidth / 2);
-          nav.scrollTo({
-            left: Math.max(0, targetLeft),
-            behavior: prefersReducedMotion ? 'instant' : 'smooth'
-          });
+        const centerActiveTab = () => {
+          const nav = document.querySelector('.page-nav');
+          const activeTab = document.querySelector('.page-tabs a[aria-current="page"]');
+          if (nav && activeTab && nav.scrollWidth > nav.clientWidth) {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const targetLeft = activeTab.offsetLeft - (nav.clientWidth / 2) + (activeTab.offsetWidth / 2);
+            nav.scrollTo({
+              left: Math.max(0, targetLeft),
+              behavior: prefersReducedMotion ? 'instant' : 'smooth'
+            });
+          }
+        };
+        if (typeof requestAnimationFrame === 'function') {
+          requestAnimationFrame(() => requestAnimationFrame(centerActiveTab));
+        } else {
+          centerActiveTab();
         }
       })();
     </script>

@@ -5,7 +5,35 @@ interface Props { locale: Locale; endpoint?: string | undefined; turnstileSiteKe
 const { locale, endpoint, turnstileSiteKey } = Astro.props;
 const form = scienceCopy[locale].form;
 ---
-{!endpoint || !turnstileSiteKey ? <div class="notice-panel"><p>{form.notConnected}</p></div> : (
+{!endpoint || !turnstileSiteKey ? (
+  <div class="direct-contact-card">
+    <div class="direct-contact-header">
+      <h3>{form.notConnected.title}</h3>
+      <p class="direct-contact-intro">{form.notConnected.intro}</p>
+    </div>
+
+    <div class="direct-contact-action">
+      <a class="button button--primary direct-contact-btn" href={form.notConnected.telegramUrl} target="_blank" rel="noopener noreferrer">
+        <span aria-hidden="true">✈️</span>
+        <span>{form.notConnected.telegramBtn}</span>
+        <span aria-hidden="true">↗</span>
+      </a>
+      <div class="direct-contact-secondary">
+        <a href={form.notConnected.linkedinUrl} target="_blank" rel="noopener noreferrer">{form.notConnected.linkedinLabel} ↗</a>
+      </div>
+    </div>
+
+    <div class="direct-contact-checklist">
+      <p class="checklist-title"><strong>{form.notConnected.checklistTitle}</strong></p>
+      <ul>
+        {form.notConnected.checklistItems.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+      <p class="direct-contact-response"><small>⏱ {form.notConnected.responseTime}</small></p>
+    </div>
+  </div>
+) : (
   <form class="enquiry-form" method="post" action={endpoint} data-enquiry-form>
     <input type="hidden" name="locale" value={locale} />
     <div class="form-honeypot" aria-hidden="true"><label for="science-website">{form.honeypot}</label><input id="science-website" name="website" tabindex={-1} autocomplete="off" /></div>
@@ -39,3 +67,73 @@ const form = scienceCopy[locale].form;
     finally { if (button) button.disabled = false; }
   }));
 </script>
+
+<style>
+  .direct-contact-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card, 12px);
+    padding: clamp(1.25rem, 3vw, 2rem);
+    display: grid;
+    gap: 1.25rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  }
+  .direct-contact-header h3 {
+    margin: 0 0 0.5rem;
+    color: var(--heading);
+    font-size: 1.35rem;
+  }
+  .direct-contact-intro {
+    margin: 0;
+    color: var(--text);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .direct-contact-action {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    padding-block: 0.5rem;
+  }
+  .direct-contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 0.75rem 1.4rem;
+  }
+  .direct-contact-secondary {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--muted-text);
+  }
+  .direct-contact-secondary a {
+    color: var(--accent-strong);
+    font-weight: 600;
+  }
+  .direct-contact-checklist {
+    background: color-mix(in oklch, var(--background) 50%, var(--surface));
+    border-inline-start: 3px solid var(--accent-strong);
+    padding: 0.9rem 1.25rem;
+    border-radius: 4px;
+    font-size: 0.92rem;
+  }
+  .direct-contact-checklist ul {
+    margin: 0.4rem 0 0.6rem;
+    padding-inline-start: 1.25rem;
+  }
+  .direct-contact-checklist li {
+    margin-bottom: 0.25rem;
+    color: var(--text);
+  }
+  .direct-contact-response {
+    margin: 0;
+    color: var(--muted-text);
+  }
+</style>

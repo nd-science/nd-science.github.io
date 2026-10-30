@@ -32,16 +32,74 @@ const endpoint = import.meta.env.PUBLIC_FORMS_ENABLED === "true" ? "/api/enquiry
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 const cta = entry.data.ctaLabel && entry.data.ctaHref ? { label: entry.data.ctaLabel, href: localizeHref(entry.data.ctaHref) } : undefined;
 const secondary = entry.data.ctaSecondaryLabel && entry.data.ctaSecondaryHref ? { label: entry.data.ctaSecondaryLabel, href: localizeHref(entry.data.ctaSecondaryHref) } : undefined;
+const pageTitle = isHome
+  ? entry.data.seoTitle
+  : (entry.data.seoTitle.includes("Долгов") || entry.data.seoTitle.includes("Dolgova")
+    ? `${entry.data.seoTitle} · Science`
+    : `${entry.data.seoTitle} · ${scienceSiteConfig.name}`);
 ---
 <BaseLayout
   locale={locale} theme="science" siteLabel={copy.siteLabel}
-  title={`${entry.data.seoTitle} · ${scienceSiteConfig.name}`} description={entry.data.seoDescription}
+  title={pageTitle} description={entry.data.seoDescription}
   {paths} fallbackSiteUrl={scienceSiteConfig.fallbackUrl} navItems={copy.nav} {currentPath} {crossSite}
   breadcrumbs={isHome ? undefined : [{ label: entry.data.h1 }]}
   personDetails={{ jobTitle: nataliaProfile.scienceRole[locale], alternateName: "Nataliia Ovchinnikova", knowsAbout: ["vocational education", "adult learning", "TVET educator training", "digital transformation in education"], sameAs: sameAsLinks }}
   {jsonLd} footerText={copy.footer}
 >
-  <section class={isHome ? "hero" : "hero page-hero"}><div class="hero-content"><p class="eyebrow">{scienceSiteConfig.name}</p><h1>{entry.data.h1}</h1><p class="hero-copy">{entry.data.summary}</p>{(cta || secondary) && <div class="actions">{cta && <a class="button" href={cta.href}>{cta.label}</a>}{secondary && <a class="button secondary" href={secondary.href}>{secondary.label}</a>}</div>}<p class="page-meta">{copy.updatedPrefix}: {formatUpdated(entry.data.updatedAt, locale)}</p></div></section>
+  <section class={isHome ? "hero" : "hero page-hero"}>
+    {isHome ? (
+      <div class="hero-layout">
+        <div class="hero-content">
+          <p class="eyebrow">{scienceSiteConfig.name}</p>
+          <h1>{entry.data.h1}</h1>
+          <p class="hero-copy">{entry.data.summary}</p>
+          {(cta || secondary) && (
+            <div class="actions">
+              {cta && <a class="button" href={cta.href}>{cta.label}</a>}
+              {secondary && <a class="button secondary" href={secondary.href}>{secondary.label}</a>}
+            </div>
+          )}
+          <p class="page-meta">{copy.updatedPrefix}: {formatUpdated(entry.data.updatedAt, locale)}</p>
+        </div>
+        <aside class="hero-media" aria-label={locale === "ru" ? "Академический профиль Наталии Долговой" : "Academic profile of Natalia Dolgova"}>
+          <div class="portrait-card">
+            <div class="portrait-frame">
+              <div class="portrait-placeholder" aria-hidden="true">
+                <div class="portrait-mark">ND</div>
+                <p class="portrait-name">{nataliaProfile.displayName[locale]}</p>
+                <p class="portrait-title">
+                  {locale === "ru"
+                    ? "Dr. phil. (magna cum laude) · к.э.н. · Исследователь образования"
+                    : "Dr. phil. (magna cum laude) · Cand. Sc. · TVET Researcher"}
+                </p>
+              </div>
+            </div>
+            <div class="portrait-caption">
+              <span class="portrait-pill">
+                Europa-Universität Flensburg
+              </span>
+              <span class="portrait-location">
+                ORCID: 0000-0003-0816-2103 · Scopus: 57202091034
+              </span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    ) : (
+      <div class="hero-content">
+        <p class="eyebrow">{scienceSiteConfig.name}</p>
+        <h1>{entry.data.h1}</h1>
+        <p class="hero-copy">{entry.data.summary}</p>
+        {(cta || secondary) && (
+          <div class="actions">
+            {cta && <a class="button" href={cta.href}>{cta.label}</a>}
+            {secondary && <a class="button secondary" href={secondary.href}>{secondary.label}</a>}
+          </div>
+        )}
+        <p class="page-meta">{copy.updatedPrefix}: {formatUpdated(entry.data.updatedAt, locale)}</p>
+      </div>
+    )}
+  </section>
   <section class="page-section"><div class="section-inner prose"><Content /></div></section>
   {entry.data.sections.includes("credentials") && <section class="page-section"><div class="section-inner"><SectionHeading {...copy.sections.credentials} /><ScienceProfile {locale} /></div></section>}
   {entry.data.sections.includes("publications") && <section class="page-section"><div class="section-inner"><SectionHeading {...copy.sections.publications} /><PublicationList items={publications} {locale} /></div></section>}

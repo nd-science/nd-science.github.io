@@ -10,7 +10,7 @@ ctaLabel: Book an introductory consultation
 ctaHref: /booking/#enquiry
 ctaSecondaryLabel: Explore formats and pricing
 ctaSecondaryHref: /for-individuals/
-relatedServices: [consultation, four-week-support, five-session-package, individual-qigong, breathing-session, b2b-workshop]
+relatedServices: [consultation, four-week-support, five-session-package]
 sections: [services, methods]
 updatedAt: 2026-10-29
 publicationScope: public

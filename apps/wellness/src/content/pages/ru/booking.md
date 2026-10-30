@@ -6,7 +6,7 @@ seoDescription: Заявка, ручное подтверждение, опла�
 h1: Запись на первую встречу
 summary: Короткая заявка, ручное подтверждение формата, счёт, оплата и приватная ссылка на календарь.
 audience: [B2C]
-ctaLabel: Перейти к форме
+ctaLabel: Способы записи и контакты
 ctaHref: '#enquiry'
 relatedServices: [consultation, five-session-package, four-week-support, neurointegration-support, individual-qigong, group-qigong, breathing-session]
 sections: [enquiry]

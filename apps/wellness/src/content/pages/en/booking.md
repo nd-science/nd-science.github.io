@@ -6,7 +6,7 @@ seoDescription: Enquiry, manual confirmation, payment, calendar, rescheduling an
 h1: Book a first meeting
 summary: A short enquiry, manual suitability confirmation, invoice, payment and a private calendar link.
 audience: [B2C]
-ctaLabel: Go to the form
+ctaLabel: Booking options & contacts
 ctaHref: '#enquiry'
 relatedServices: [consultation, five-session-package, four-week-support, neurointegration-support, individual-qigong, group-qigong, breathing-session]
 sections: [enquiry]

@@ -97,6 +97,10 @@
     transform: translateY(0);
   }
 
+  #main-content:focus {
+    outline: none;
+  }
+
   .draft-banner {
     padding: 0.5rem 1rem;
     color: var(--draft-text);
@@ -257,6 +261,14 @@
     padding: 0.35rem clamp(1rem, 4vw, 4rem) 0;
     scrollbar-width: none;
     -ms-overflow-style: none;
+  }
+
+  @media (max-width: 899px) {
+    .page-nav {
+      /* Visual affordance: subtle edge fade cue to indicate swipable tab ribbon */
+      mask-image: linear-gradient(to right, black calc(100% - 2.5rem), transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, black calc(100% - 2.5rem), transparent 100%);
+    }
   }
 
   .page-nav::-webkit-scrollbar {

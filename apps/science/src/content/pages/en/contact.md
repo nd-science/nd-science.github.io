@@ -5,7 +5,7 @@ seoTitle: Discuss collaboration with Natalia Dolgova
 seoDescription: Brief for a research, analytics, education, facilitation or speaking enquiry.
 h1: Discuss collaboration
 summary: Natalia responds to suitable enquiries within three working days.
-ctaLabel: Go to the form
+ctaLabel: Contact options & brief
 ctaHref: '#enquiry'
 sections: [contact-form]
 updatedAt: 2026-10-29

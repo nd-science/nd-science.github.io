@@ -47,6 +47,32 @@ jobs:
           PUBLIC_SCIENCE_SITE_URL: https://nd-science.github.io
         run: pnpm --filter @natali/wellness build
 
+      - name: Restore previous hashed assets from cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .astro-asset-cache-wellness
+          key: astro-assets-wellness-${{ github.sha }}
+          restore-keys: |
+            astro-assets-wellness-
+
+      - name: Preserve previous hashed assets to prevent 404 during HTML cache TTL
+        run: |
+          mkdir -p .astro-asset-cache-wellness
+          if [ -d ".astro-asset-cache-wellness" ] && [ "$(ls -A .astro-asset-cache-wellness 2>/dev/null)" ]; then
+            mkdir -p apps/wellness/dist/_astro
+            cp -n .astro-asset-cache-wellness/* apps/wellness/dist/_astro/ 2>/dev/null || true
+          fi
+          if [ -d "apps/wellness/dist/_astro" ]; then
+            cp -r apps/wellness/dist/_astro/* .astro-asset-cache-wellness/ 2>/dev/null || true
+          fi
+
+      - name: Save updated assets cache
+        uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: .astro-asset-cache-wellness
+          key: astro-assets-wellness-${{ github.sha }}
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

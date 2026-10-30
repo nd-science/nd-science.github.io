@@ -143,13 +143,18 @@ const authorLine = `${nataliaProfile.displayName[locale]} · ${copy.updatedPrefi
 const enquiryEndpoint =
   import.meta.env.PUBLIC_FORMS_ENABLED === "true" ? "/api/enquiry" : undefined;
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+const pageTitle = isHome
+  ? entry.data.seoTitle
+  : (entry.data.seoTitle.includes("Долгов") || entry.data.seoTitle.includes("Dolgova")
+    ? `${entry.data.seoTitle} · Wellness`
+    : `${entry.data.seoTitle} · ${wellnessSiteConfig.name}`);
 ---
 
 <BaseLayout
   locale={locale}
   theme="wellness"
   siteLabel={copy.siteLabel}
-  title={`${entry.data.seoTitle} · ${wellnessSiteConfig.name}`}
+  title={pageTitle}
   description={entry.data.seoDescription}
   paths={paths}
   fallbackSiteUrl={copy.fallbackSiteUrl}
@@ -260,6 +265,13 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
               <ServiceCard service={service} locale={locale} />
             ))}
           </div>
+          {isHome && (
+            <div class="services-more-cta">
+              <a class="button secondary" href={`/${locale}/for-individuals/`}>
+                {locale === "ru" ? "Смотреть все форматы и цены (цигун, дыхание, B2B) →" : "View all formats and pricing (qigong, breathwork, B2B) →"}
+              </a>
+            </div>
+          )}
         </div>
       </section>
     )
@@ -346,3 +358,11 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     )
   }
 </BaseLayout>
+
+<style>
+  .services-more-cta {
+    margin-block-start: 2rem;
+    display: flex;
+    justify-content: center;
+  }
+</style>
