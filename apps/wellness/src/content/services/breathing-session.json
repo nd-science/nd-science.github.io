@@ -1,6 +1,6 @@
 {
   "name": { "ru": "Индивидуальная дыхательная практика", "en": "Individual breathing practice" },
-  "audience": { "ru": "Взрослые 18+ после учёта противопоказаний", "en": "Adults 18+ after contraindications are considered" },
+  "audience": { "ru": "Индивидуальные клиенты при отсутствии медицинских противопоказаний", "en": "Individual clients without medical contraindications" },
   "task": { "ru": "Подобрать и освоить подходящий вариант дыхательной практики.", "en": "Choose and learn an appropriate breathing practice." },
   "includes": [{ "ru": "Оценка задачи, постепенное освоение и адаптация интенсивности", "en": "Task review, gradual learning and adapted intensity" }],
   "delivery": ["online", "in_person"],

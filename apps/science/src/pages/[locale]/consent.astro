@@ -25,7 +25,7 @@ const breadcrumbs = [
   locale={locale}
   theme="science"
   siteLabel={copy.siteLabel}
-  title={`${isRu ? "Согласие на обработку персональных данных" : "Data Processing Consent"} · ${scienceSiteConfig.name}`}
+  title={`${isRu ? "Согласие на обработку персональных данных" : "Data Processing Consent"} | ${scienceSiteConfig.name}`}
   description={isRu ? "Согласие на обработку персональных данных при направлении экспертного запроса через сайт Наталии Долговой." : "Consent to personal data processing when submitting an expert inquiry to Natalia Dolgova."}
   paths={paths}
   fallbackSiteUrl={scienceSiteConfig.fallbackUrl}
@@ -36,7 +36,7 @@ const breadcrumbs = [
 >
   <section class="page-hero">
     <div class="section-inner">
-      <span class="hero-eyebrow">{copy.siteLabel} · {isRu ? "Правовая информация" : "Legal Information"}</span>
+      <span class="hero-eyebrow">{copy.siteLabel} — {isRu ? "Правовая информация" : "Legal Information"}</span>
       <h1>{isRu ? "Согласие на обработку персональных данных" : "Data Processing Consent"}</h1>
       <p class="hero-lead">
         {isRu
@@ -49,7 +49,7 @@ const breadcrumbs = [
   <section class="page-section">
     <div class="section-inner legal-layout">
       <div class="legal-actions-bar">
-        <span class="legal-doc-date">{isRu ? "Действующая редакция · Октябрь 2026 г." : "Current Edition · October 2026"}</span>
+        <span class="legal-doc-date">{isRu ? "Действующая редакция: октябрь 2026 г." : "Current Edition: October 2026"}</span>
       </div>
 
       <div class="legal-prose">

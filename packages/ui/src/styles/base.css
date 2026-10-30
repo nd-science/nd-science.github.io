@@ -483,30 +483,6 @@
     max-width: 48ch;
   }
 
-  .hero-pricing-pill {
-    display: inline-flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1rem;
-    align-items: center;
-    padding: 0.45rem 1rem;
-    background: var(--surface);
-    border: 1px solid var(--border-strong);
-    border-radius: 999px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--heading);
-    margin-block-end: 1.5rem;
-  }
-
-  .hero-pricing-pill .price-highlight {
-    color: var(--accent-strong);
-    font-weight: 850;
-  }
-
-  .hero-pricing-pill .duration-highlight {
-    color: var(--muted-text);
-  }
-
   .hero-narrative-section {
     background: var(--background);
     border-block-end: 1px solid var(--border);

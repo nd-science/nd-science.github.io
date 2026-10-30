@@ -12,7 +12,7 @@ export const scienceCopy = {
     sections: {
       credentials: { title: "Квалификации и академический путь", description: "Квалификации и профессиональная хронология Наталии." },
       publications: { title: "Библиографический реестр", description: "Работы под фамилиями Dolgova и Ovchinnikova относятся к одному авторскому профилю." },
-      profiles: { title: "Научные профили", description: "Метрики публикуются только раздельно по базе и с датой обновления." },
+      profiles: { title: "Научные профили и показатели", description: "Профили исследователя в международных базах данных и верифицированная наукометрия." },
       form: { title: "Бриф сотрудничества", description: "Не прикладывайте рукописи, персональные данные участников исследования или конфиденциальные материалы." },
     },
     form: {
@@ -62,7 +62,7 @@ export const scienceCopy = {
     sections: {
       credentials: { title: "Qualifications and academic path", description: "Nataliia’s qualifications and professional chronology." },
       publications: { title: "Bibliographic register", description: "Works published under Dolgova and Ovchinnikova belong to one author profile." },
-      profiles: { title: "Research profiles", description: "Metrics are shown separately by database and always with an as-of date." },
+      profiles: { title: "Research profiles and metrics", description: "Author profiles across international scholarly databases and verified bibliometrics." },
       form: { title: "Collaboration brief", description: "Do not attach manuscripts, research-participant personal data or confidential material." },
     },
     form: {

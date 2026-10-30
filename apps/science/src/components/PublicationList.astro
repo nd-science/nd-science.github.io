@@ -49,7 +49,7 @@ function formatType(type: string): string {
     <li class="publication-item" data-type={item.data.type}>
       <span class="publication-title">{item.data.title}</span>
       <span>{item.data.authors.join(", ")}</span>
-      <span class="publication-meta">{item.data.year} · {formatType(item.data.type)} · {item.data.venue} · {item.data.language.toUpperCase()}</span>
+      <span class="publication-meta">{item.data.year}, {formatType(item.data.type)}, {item.data.venue}, {item.data.language.toUpperCase()}</span>
       <div class="publication-links">
         {item.data.doi && <a href={`https://doi.org/${item.data.doi}`} target="_blank" rel="noopener noreferrer">DOI ↗</a>}
         {item.data.url && <a href={item.data.url} target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Источник ↗" : "Source ↗"}</a>}
