@@ -114,9 +114,10 @@ const pageTitle = isHome
       <div class="section-inner">
         <SectionHeading {...copy.sections.profiles} />
         <ul class="profile-list">
+          <li><span class="profile-name">Google Scholar</span><a href={professionalIdentifiers.googleScholarUrl} target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Профиль цитирований" : "Citation profile"} ↗</a></li>
+          <li><span class="profile-name">РИНЦ / eLibrary</span><a href={professionalIdentifiers.elibraryUrl} target="_blank" rel="noopener noreferrer">{professionalIdentifiers.elibraryAuthorId} ↗</a></li>
           <li><span class="profile-name">ORCID</span><a href={professionalIdentifiers.orcidUrl} target="_blank" rel="noopener noreferrer">{professionalIdentifiers.orcid} ↗</a></li>
           <li><span class="profile-name">Scopus Author ID</span><a href={professionalIdentifiers.scopusUrl} target="_blank" rel="noopener noreferrer">{professionalIdentifiers.scopusAuthorId} ↗</a></li>
-          <li><span class="profile-name">РИНЦ / eLibrary</span><a href={professionalIdentifiers.elibraryUrl} target="_blank" rel="noopener noreferrer">{professionalIdentifiers.elibraryAuthorId} ↗</a></li>
           <li><span class="profile-name">ResearcherID</span><a href={professionalIdentifiers.researcherIdUrl} target="_blank" rel="noopener noreferrer">{professionalIdentifiers.researcherId} ↗</a></li>
           <li><span class="profile-name">LinkedIn</span><a href="https://www.linkedin.com/in/natalidolgova" target="_blank" rel="noopener noreferrer">natalidolgova ↗</a></li>
         </ul>

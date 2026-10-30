@@ -2,13 +2,13 @@
 route: home
 locale: en
 seoTitle: Nataliia Dolgova — Psychologist and Neurointegration Trainer
-seoDescription: Individual consultations, neurointegration, breathing practices and health qigong for adults. Online and in person in Belgrade.
+seoDescription: "Practical psychology, neurointegration, breathwork and health qigong: evidence-informed support for stress, burnout, and resilience. Online and in person in Belgrade."
 h1: Clear steps towards a more stable state
-summary: "Integrative approach to self-regulation: Brain, Psyche and Body for adults 18+."
+summary: "An integrative approach to self-regulation: evidence-informed support for stress and burnout through Brain, Psyche, and Body."
 audience: [B2C]
 ctaLabel: Book an introductory consultation
 ctaHref: /booking/#enquiry
-ctaSecondaryLabel: Explore formats and pricing
+ctaSecondaryLabel: View formats and pricing
 ctaSecondaryHref: /for-individuals/
 relatedServices: [consultation, four-week-support, five-session-package]
 sections: [services, methods]
@@ -22,7 +22,7 @@ Working in adult education and research for over 10 years, I observed a consiste
 
 My methodology is rooted in an evidence-based approach, combining practical psychology, neurointegration, breathwork, and gentle qigong movement. As a researcher and educator, I translate complex scientific findings into clear, manageable actions without pressure or self-coercion.
 
-**Credentials and verified background:** Dr. phil. (Germany, magna cum laude) · Candidate of Economic Sciences (Russia) · Practical psychologist (MPGU diploma, 1080h) · Certified Neurointegration Trainer · Certified Health Qigong Instructor (Ba Duan Jin) · 15+ years in adult education and research.
+**Credentials and verified background:** Dr. phil. (Germany, magna cum laude), Candidate of Economic Sciences (Russia), Practical psychologist (MPGU diploma, 1080h), Certified Neurointegration Trainer, Certified Health Qigong Instructor (Ba Duan Jin), 15+ years in adult education and research.
 
 **Common reasons to reach out:**
 - Emotional and professional burnout, chronic fatigue.

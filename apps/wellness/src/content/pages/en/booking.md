@@ -19,7 +19,7 @@ publicationScope: public
 3. Clients in Russia receive a YooKassa link in RUB converted from EUR at the Central Bank rate on the invoice date (the message shows both the EUR amount and the fixed RUB amount). Other countries receive an invoice for an international bank transfer or PayPal.
 4. After payment is confirmed, I will send you a private Google Calendar link to select a convenient meeting slot.
 
-The first meeting lasts 60 minutes and costs €100 online or €120 in person. Online meetings are available to adults aged 18+ worldwide where permitted by applicable law; in-person meetings take place in Belgrade.
+The initial consultation lasts 60 minutes (€100 online / €120 in person). The practice is dedicated to adult clients (18+). Online consultations are available worldwide where permitted by applicable law; in-person sessions take place in Belgrade.
 
 For cancellation more than 24 hours in advance, the client chooses a refund or rescheduling. For late cancellation or no-show, payment is retained; exceptional circumstances are considered individually.
 
