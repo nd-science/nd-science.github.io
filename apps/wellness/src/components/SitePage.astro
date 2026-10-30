@@ -162,54 +162,64 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 >
   {
     isHome ? (
-      <section class="hero">
-        <div class="hero-layout">
-          <div class="hero-content">
-            <h1>{entry.data.h1}</h1>
-            <p class="page-meta">{authorLine}</p>
-            <div class="prose">
-              <Content />
-            </div>
-            {(cta || ctaSecondary) && (
-              <div class="cta-block">
-                {cta && (
-                  <a class="button" href={cta.href}>
-                    {cta.label}
-                  </a>
-                )}
-                {ctaSecondary && (
-                  <a class="button secondary" href={ctaSecondary.href}>
-                    {ctaSecondary.label}
-                  </a>
-                )}
+      <>
+        <section class="hero">
+          <div class="hero-layout">
+            <div class="hero-content">
+              <span class="hero-eyebrow">{copy.siteLabel}</span>
+              <h1>{entry.data.h1}</h1>
+              <p class="hero-lead">{entry.data.summary}</p>
+              <div class="hero-pricing-pill">
+                <span class="price-highlight">{locale === "ru" ? "100 € онлайн · 120 € очно" : "€100 online · €120 in person"}</span>
+                <span class="duration-highlight">{locale === "ru" ? "60 минут · Индивидуально" : "60 minutes · Individual"}</span>
               </div>
-            )}
-          </div>
-          <aside class="hero-media" aria-label={locale === "ru" ? "Портрет Наталии Долговой" : "Portrait of Natalia Dolgova"}>
-            <div class="portrait-card">
-              <div class="portrait-frame">
-                <div class="portrait-placeholder" aria-hidden="true">
-                  <div class="portrait-mark">ND</div>
-                  <p class="portrait-name">{nataliaProfile.displayName[locale]}</p>
-                  <p class="portrait-title">
-                    {locale === "ru"
-                      ? "Dr. phil. · Практический психолог · Тренер по нейроинтеграции"
-                      : "Dr. phil. · Practical Psychologist · Neurointegration Trainer"}
-                  </p>
+              {(cta || ctaSecondary) && (
+                <div class="cta-block">
+                  {cta && (
+                    <a class="button button--primary" href={cta.href}>
+                      {cta.label}
+                    </a>
+                  )}
+                  {ctaSecondary && (
+                    <a class="button secondary" href={ctaSecondary.href}>
+                      {ctaSecondary.label}
+                    </a>
+                  )}
+                </div>
+              )}
+              <p class="page-meta">{authorLine}</p>
+            </div>
+            <aside class="hero-media" aria-label={locale === "ru" ? "Портрет Наталии Долговой" : "Portrait of Natalia Dolgova"}>
+              <div class="portrait-card">
+                <div class="portrait-frame">
+                  <div class="portrait-placeholder" aria-hidden="true">
+                    <div class="portrait-mark">ND</div>
+                    <p class="portrait-name">{nataliaProfile.displayName[locale]}</p>
+                    <p class="portrait-title">
+                      {locale === "ru"
+                        ? "Dr. phil. · Практический психолог · Тренер по нейроинтеграции"
+                        : "Dr. phil. · Practical Psychologist · Neurointegration Trainer"}
+                    </p>
+                  </div>
+                </div>
+                <div class="portrait-caption">
+                  <span class="portrait-pill">
+                    {locale === "ru" ? "Мозг · Психика · Тело" : "Brain · Psyche · Body"}
+                  </span>
+                  <span class="portrait-location">
+                    {locale === "ru" ? "Онлайн по всему миру · Очно в Белграде" : "Online worldwide · In person in Belgrade"}
+                  </span>
                 </div>
               </div>
-              <div class="portrait-caption">
-                <span class="portrait-pill">
-                  {locale === "ru" ? "Мозг · Психика · Тело" : "Brain · Psyche · Body"}
-                </span>
-                <span class="portrait-location">
-                  {locale === "ru" ? "Онлайн по всему миру · Очно в Белграде" : "Online worldwide · In person in Belgrade"}
-                </span>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </section>
+            </aside>
+          </div>
+        </section>
+        <section class="page-section hero-narrative-section">
+          <div class="section-inner prose">
+            <Content />
+          </div>
+        </section>
+      </>
     ) : (
       <section class="page-section">
         <div class="section-inner">

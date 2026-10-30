@@ -207,7 +207,7 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
                   href={item.href}
                   aria-current={item.href === currentPath ? "page" : undefined}
                 >
-                  {item.label}
+                  <span>{item.label}</span>
                 </a>
               </li>
             ))
@@ -264,7 +264,7 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
               {navItems.map((item) => (
                 <li><a href={item.href}>{item.label}</a></li>
               ))}
-              <li><a href={`/${locale}/sitemap.xml`}>{locale === "ru" ? "Карта сайта (Sitemap)" : "Sitemap"}</a></li>
+              <li><a href={`/${locale}/sitemap/`}>{locale === "ru" ? "Карта сайта" : "Sitemap"}</a></li>
             </ul>
           </div>
 
@@ -316,12 +316,13 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
     </footer>
     <script is:inline>
       (() => {
+        const nav = document.querySelector('.page-nav');
         const activeTab = document.querySelector('.page-tabs a[aria-current="page"]');
-        if (activeTab) {
+        if (nav && activeTab && nav.scrollWidth > nav.clientWidth) {
           const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-          activeTab.scrollIntoView({
-            block: 'nearest',
-            inline: 'center',
+          const targetLeft = activeTab.offsetLeft - (nav.clientWidth / 2) + (activeTab.offsetWidth / 2);
+          nav.scrollTo({
+            left: Math.max(0, targetLeft),
             behavior: prefersReducedMotion ? 'instant' : 'smooth'
           });
         }

@@ -1,0 +1,150 @@
+---
+import BaseLayout from "@natali/ui/BaseLayout.astro";
+import { wellnessSiteConfig } from "../../site-config";
+import { wellnessCopy } from "../../i18n";
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: "ru" } },
+    { params: { locale: "en" } },
+  ];
+}
+
+const { locale } = Astro.params as { locale: "ru" | "en" };
+const copy = wellnessCopy[locale];
+const paths = { ru: "/ru/sitemap/", en: "/en/sitemap/" };
+const currentPath = `/${locale}/sitemap/`;
+const isRu = locale === "ru";
+
+const breadcrumbs = [
+  { label: isRu ? "Карта сайта" : "Site Map" },
+];
+
+const categories = isRu
+  ? [
+      {
+        title: "Основные разделы",
+        items: [
+          { href: "/ru/", label: "Главная страница", desc: "Интегративный подход к саморегуляции: Мозг · Психика · Тело" },
+          { href: "/ru/about/", label: "О практике и методе", desc: "Профессиональный путь Наталии Долговой, квалификации и принципы" },
+          { href: "/ru/for-individuals/", label: "Для частных клиентов (Форматы и цены)", desc: "Индивидуальные консультации, сопровождение и пакетные программы" },
+          { href: "/ru/booking/", label: "Запись и контакты", desc: "Установочная встреча, форма обращения, Telegram, B17 и реестр тренеров" },
+          { href: "/ru/faq/", label: "Частые вопросы (FAQ)", desc: "Подготовка к консультации, конфиденциальность, онлайн и очные встречи" },
+          { href: "/ru/resources/", label: "Открытые материалы", desc: "Telegram-канал @natalicompass, методические материалы и лист ожидания" },
+        ],
+      },
+      {
+        title: "Направления и практики",
+        items: [
+          { href: "/ru/practices/psychology/", label: "Психологическое консультирование", desc: "Работа с тревогой, выгоранием, самокритикой и адаптацией" },
+          { href: "/ru/practices/neurointegration/", label: "Нейроинтеграция", desc: "Прикладная система управления ресурсом и вниманием на основе нейробиологии" },
+          { href: "/ru/practices/breathing/", label: "Дыхательные практики", desc: "Освоение физиологических дыхательных протоколов для стрессоустойчивости" },
+          { href: "/ru/practices/movement-qigong/", label: "Движение и цигун", desc: "Оздоровительный цигун Ба Дуань Цзин: мягкая синхронизация движения и дыхания" },
+          { href: "/ru/practices/play-and-story/", label: "Игра, метафора и история", desc: "Работа с ролями, сюжетами и метафорическими картами" },
+        ],
+      },
+      {
+        title: "Программы и B2B",
+        items: [
+          { href: "/ru/programs/stress-recovery/", label: "Восстановление при стрессе и выгорании", desc: "Комплексная программа поэтапного выхода из хронического истощения" },
+          { href: "/ru/for-organizations/", label: "Для организаций и команд", desc: "Корпоративные воркшопы по стресс-менеджменту и профилактике выгорания" },
+        ],
+      },
+      {
+        title: "Правовая информация и документы",
+        items: [
+          { href: "https://disk.yandex.ru/i/kHnE1PbPWDsADA", label: "Договор-оферта ↗", desc: "Публичные условия оказания консультационных и информационных услуг" },
+          { href: "https://disk.yandex.ru/i/BYRuqg6yed5EvA", label: "Информированное согласие ↗", desc: "Границы психологической помощи, конфиденциальность и взаимные обязательства" },
+          { href: "https://disk.yandex.ru/i/15FgjGfGxgZ6MQ", label: "Политика обработки ПДн ↗", desc: "Защита и правила обработки персональных данных" },
+          { href: "/ru/sitemap.xml", label: "XML Sitemap (для поисковых роботов)", desc: "Машиночитаемый индекс канонических страниц сайта" },
+        ],
+      },
+    ]
+  : [
+      {
+        title: "Main Sections",
+        items: [
+          { href: "/en/", label: "Home Page", desc: "Integrative approach to self-regulation: Brain · Psyche · Body" },
+          { href: "/en/about/", label: "About Practice & Method", desc: "Natalia Dolgova's background, qualifications, and principles" },
+          { href: "/en/for-individuals/", label: "For Individuals (Formats & Pricing)", desc: "Individual consultations, ongoing support, and session packages" },
+          { href: "/en/booking/", label: "Booking & Contacts", desc: "Introductory session, contact options, Telegram, and credentials" },
+          { href: "/en/faq/", label: "Frequently Asked Questions (FAQ)", desc: "Preparation for consultations, confidentiality, online and in-person sessions" },
+          { href: "/en/resources/", label: "Open Resources", desc: "Telegram channel, open materials, and waiting list" },
+        ],
+      },
+      {
+        title: "Practices & Methodologies",
+        items: [
+          { href: "/en/practices/psychology/", label: "Psychological Counselling", desc: "Addressing anxiety, burnout, self-criticism, and life transitions" },
+          { href: "/en/practices/neurointegration/", label: "Neurointegration", desc: "Applied neurobiology for resource management and emotional stability" },
+          { href: "/en/practices/breathing/", label: "Breathwork Practices", desc: "Physiological breath protocols for nervous system regulation" },
+          { href: "/en/practices/movement-qigong/", label: "Movement & Health Qigong", desc: "Ba Duan Jin: gentle coordination of movement, breath, and awareness" },
+          { href: "/en/practices/play-and-story/", label: "Play, Metaphor & Narrative", desc: "Exploration through narrative reframing and metaphorical methods" },
+        ],
+      },
+      {
+        title: "Programs & Organizations",
+        items: [
+          { href: "/en/programs/stress-recovery/", label: "Stress & Burnout Recovery", desc: "Structured program to restore resources and manage cognitive load" },
+          { href: "/en/for-organizations/", label: "For Organizations & Teams", desc: "Corporate workshops on stress resilience and burnout prevention" },
+        ],
+      },
+      {
+        title: "Legal & System Documents",
+        items: [
+          { href: "https://disk.yandex.ru/i/kHnE1PbPWDsADA", label: "Service Agreement ↗", desc: "Standard terms and conditions for consulting services" },
+          { href: "https://disk.yandex.ru/i/BYRuqg6yed5EvA", label: "Informed Consent ↗", desc: "Scope of practice, boundaries, and client privacy" },
+          { href: "https://disk.yandex.ru/i/15FgjGfGxgZ6MQ", label: "Privacy Policy ↗", desc: "Personal data handling and privacy terms" },
+          { href: "/en/sitemap.xml", label: "XML Sitemap (for search engines)", desc: "Machine-readable canonical index of site pages" },
+        ],
+      },
+    ];
+---
+
+<BaseLayout
+  locale={locale}
+  theme="wellness"
+  siteLabel={copy.siteLabel}
+  title={`${isRu ? "Карта сайта" : "Site Map"} · ${wellnessSiteConfig.name}`}
+  description={isRu ? "Полная структура разделов и страниц сайта Наталии Долговой." : "Full sitemap and directory of Natalia Dolgova's wellness website."}
+  paths={paths}
+  fallbackSiteUrl={copy.fallbackSiteUrl}
+  navItems={copy.nav}
+  currentPath={currentPath}
+  breadcrumbs={breadcrumbs}
+  footerText={copy.footer}
+>
+  <section class="page-hero">
+    <div class="section-inner">
+      <span class="hero-eyebrow">{copy.siteLabel}</span>
+      <h1>{isRu ? "Карта сайта" : "Site Map"}</h1>
+      <p class="hero-lead">
+        {isRu
+          ? "Все разделы, направления практики, программы и документы сайта в едином структурированном оглавлении."
+          : "Complete directory of all sections, practice areas, programs, and documents in one structured overview."}
+      </p>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="section-inner">
+      <div class="sitemap-grid">
+        {categories.map((category) => (
+          <div class="sitemap-category">
+            <h2>{category.title}</h2>
+            <ul class="sitemap-list">
+              {category.items.map((item) => (
+                <li>
+                  <a class="sitemap-item-link" href={item.href}>
+                    {item.label}
+                  </a>
+                  <p class="sitemap-item-desc">{item.desc}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,24 +1,62 @@
 ---
 import type { CollectionEntry } from "astro:content";
-interface Props { items: CollectionEntry<"publications">[]; locale: "ru" | "en" }
+
+interface Props {
+  items: CollectionEntry<"publications">[];
+  locale: "ru" | "en";
+}
+
 const { items, locale } = Astro.props;
 const sorted = [...items].sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
 const types = [...new Set(sorted.map((item) => item.data.type))];
+
+const typeLabels: Record<"ru" | "en", Record<string, string>> = {
+  ru: {
+    journal_article: "Статьи в журналах",
+    conference_paper: "Материалы конференций",
+    thesis: "Диссертации и авторефераты",
+    book_chapter: "Главы книг",
+    working_paper: "Рабочие доклады",
+    monograph: "Монографии",
+  },
+  en: {
+    journal_article: "Journal Articles",
+    conference_paper: "Conference Papers",
+    thesis: "Dissertations & Theses",
+    book_chapter: "Book Chapters",
+    working_paper: "Working Papers",
+    monograph: "Monographs",
+  },
+};
+
+function formatType(type: string): string {
+  return typeLabels[locale]?.[type] || type.replaceAll("_", " ");
+}
 ---
 <div class="filter-bar" aria-label={locale === "ru" ? "Фильтры публикаций" : "Publication filters"}>
-  <div class="field"><label for="publication-type">{locale === "ru" ? "Тип" : "Type"}</label><select id="publication-type" data-publication-filter><option value="all">{locale === "ru" ? "Все" : "All"}</option>{types.map((type) => <option value={type}>{type.replaceAll("_", " ")}</option>)}</select></div>
+  <div class="field">
+    <label for="publication-type">{locale === "ru" ? "Тип публикации:" : "Publication type:"}</label>
+    <select id="publication-type" data-publication-filter>
+      <option value="all">{locale === "ru" ? "Все типы публикаций" : "All publication types"}</option>
+      {types.map((type) => (
+        <option value={type}>{formatType(type)}</option>
+      ))}
+    </select>
+  </div>
 </div>
 <p><strong>Natalia Dolgova, published also as Nataliia Ovchinnikova.</strong></p>
 <ul class="publication-list" data-publication-list>
-  {sorted.map((item) => <li class="publication-item" data-type={item.data.type}>
-    <span class="publication-title">{item.data.title}</span>
-    <span>{item.data.authors.join(", ")}</span>
-    <span class="publication-meta">{item.data.year} · {item.data.type.replaceAll("_", " ")} · {item.data.venue} · {item.data.language}</span>
-    <div class="publication-links">
-      {item.data.doi && <a href={`https://doi.org/${item.data.doi}`} rel="noreferrer">DOI</a>}
-      {item.data.url && <a href={item.data.url} rel="noreferrer">{locale === "ru" ? "Источник" : "Source"}</a>}
-    </div>
-  </li>)}
+  {sorted.map((item) => (
+    <li class="publication-item" data-type={item.data.type}>
+      <span class="publication-title">{item.data.title}</span>
+      <span>{item.data.authors.join(", ")}</span>
+      <span class="publication-meta">{item.data.year} · {formatType(item.data.type)} · {item.data.venue} · {item.data.language.toUpperCase()}</span>
+      <div class="publication-links">
+        {item.data.doi && <a href={`https://doi.org/${item.data.doi}`} target="_blank" rel="noopener noreferrer">DOI ↗</a>}
+        {item.data.url && <a href={item.data.url} target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Источник ↗" : "Source ↗"}</a>}
+      </div>
+    </li>
+  ))}
 </ul>
 <script>
   const filter = document.querySelector<HTMLSelectElement>("[data-publication-filter]");

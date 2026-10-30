@@ -1,0 +1,50 @@
+---
+import BaseLayout from "@natali/ui/BaseLayout.astro";
+import { scienceSiteConfig } from "../site-config";
+import { scienceCopy } from "../i18n";
+
+const locale = "ru";
+const copy = scienceCopy[locale];
+const paths = { ru: "/ru/", en: "/en/" };
+const currentPath = "/404/";
+---
+
+<BaseLayout
+  locale={locale}
+  theme="science"
+  siteLabel={copy.siteLabel}
+  title={`404: Страница не найдена · ${scienceSiteConfig.name}`}
+  description="Запрашиваемая страница не найдена. Перейдите на главную страницу или ознакомьтесь с публикациями и исследованиями."
+  paths={paths}
+  fallbackSiteUrl={scienceSiteConfig.fallbackUrl}
+  navItems={copy.nav}
+  currentPath={currentPath}
+  footerText={copy.footer}
+>
+  <section class="page-section error-section">
+    <div class="section-inner error-layout">
+      <div class="error-badge" aria-hidden="true">404</div>
+      <h1>Страница не найдена</h1>
+      <p class="error-lead">
+        Запрашиваемый документ или страница не найдены. Вы можете вернуться на главную страницу или перейти к ключевым разделам:
+      </p>
+      <div class="error-actions">
+        <a class="button button--primary" href="/ru/">Главная страница</a>
+        <a class="button secondary" href="/ru/publications/">Публикации</a>
+        <a class="button secondary" href="/ru/research/">Исследования</a>
+        <a class="button secondary" href="/ru/contact/">Контакты</a>
+        <a class="button secondary" href="/ru/sitemap/">Карта сайта</a>
+      </div>
+      <div class="error-bilingual-note">
+        <p>Looking for English content?</p>
+        <div class="error-en-links">
+          <a href="/en/">Home →</a>
+          <a href="/en/publications/">Publications →</a>
+          <a href="/en/research/">Research →</a>
+          <a href="/en/contact/">Contact →</a>
+          <a href="/en/sitemap/">Site Map →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

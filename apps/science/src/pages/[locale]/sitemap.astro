@@ -1,0 +1,139 @@
+---
+import BaseLayout from "@natali/ui/BaseLayout.astro";
+import { scienceSiteConfig } from "../../site-config";
+import { scienceCopy } from "../../i18n";
+import { professionalIdentifiers } from "@natali/profile";
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: "ru" } },
+    { params: { locale: "en" } },
+  ];
+}
+
+const { locale } = Astro.params as { locale: "ru" | "en" };
+const copy = scienceCopy[locale];
+const paths = { ru: "/ru/sitemap/", en: "/en/sitemap/" };
+const currentPath = `/${locale}/sitemap/`;
+const isRu = locale === "ru";
+
+const breadcrumbs = [
+  { label: isRu ? "Карта сайта" : "Site Map" },
+];
+
+const categories = isRu
+  ? [
+      {
+        title: "Основные разделы",
+        items: [
+          { href: "/ru/", label: "Главная страница", desc: "Академический профиль: профессиональное образование и подготовка преподавателей" },
+          { href: "/ru/about/", label: "Биография и траектория", desc: "Научный путь Наталии Долговой, исследовательские институты и опыт" },
+          { href: "/ru/research/", label: "Исследования", desc: "Фокус на восприятии эффективности и трансформации инженерно-педагогического образования" },
+          { href: "/ru/research/dissertation/", label: "Кандидатская диссертация", desc: "Докторское исследование (Dr. phil., Flensburg): онлайн-курсы для преподавателей СПО" },
+          { href: "/ru/publications/", label: "Публикации", desc: "Рецензируемые статьи, доклады конференций, главы в монографиях и отчеты" },
+          { href: "/ru/conferences/", label: "Конференции", desc: "Выступления на международных и российских научных форумах" },
+          { href: "/ru/education/", label: "Образование и дипломы", desc: "Степени Dr. phil. (Германия) и к.э.н. (Россия), дипломы и сертификаты" },
+          { href: "/ru/projects/", label: "Научные проекты", desc: "Исследовательские инициативы, цифровые среды и грантовые программы" },
+          { href: "/ru/expert-services/", label: "Экспертные услуги", desc: "Академический консалтинг, рецензирование и образовательные решения" },
+          { href: "/ru/for-organizations/", label: "Для организаций", desc: "Институциональное сотрудничество с университетами и колледжами" },
+          { href: "/ru/contact/", label: "Контакты", desc: "Форма экспертного запроса, каналы связи и социальные сети" },
+        ],
+      },
+      {
+        title: "Научные профили и идентификаторы",
+        items: [
+          { href: professionalIdentifiers.orcidUrl, label: "ORCID: 0000-0003-0816-2103 ↗", desc: "Открытый международный реестр исследователей" },
+          { href: `https://www.scopus.com/authid/detail.uri?authorId=${professionalIdentifiers.scopusAuthorId}`, label: `Scopus Author ID: ${professionalIdentifiers.scopusAuthorId} ↗`, desc: "Профиль автора в библиографической базе Scopus (Elsevier)" },
+          { href: `https://www.webofscience.com/wos/author/record/${professionalIdentifiers.researcherId}`, label: `ResearcherID: ${professionalIdentifiers.researcherId} ↗`, desc: "Web of Science профиль исследователя" },
+          { href: "https://www.linkedin.com/in/natalidolgova", label: "LinkedIn: natalidolgova ↗", desc: "Профессиональная сеть академических контактов" },
+        ],
+      },
+      {
+        title: "Служебные файлы",
+        items: [
+          { href: "/ru/sitemap.xml", label: "XML Sitemap (для поисковых систем)", desc: "Машиночитаемый индекс страниц сайта" },
+        ],
+      },
+    ]
+  : [
+      {
+        title: "Main Sections",
+        items: [
+          { href: "/en/", label: "Home Page", desc: "Academic profile: vocational education and educator preparation" },
+          { href: "/en/about/", label: "Biography & Academic Path", desc: "Natalia Dolgova's academic background, research institutions, and experience" },
+          { href: "/en/research/", label: "Research", desc: "Focus on perceived course effectiveness and TVET educator preparation" },
+          { href: "/en/research/dissertation/", label: "Doctoral Dissertation", desc: "PhD research (Dr. phil., Flensburg): online preparation of engineering educators" },
+          { href: "/en/publications/", label: "Publications", desc: "Peer-reviewed articles, conference proceedings, book chapters, and reports" },
+          { href: "/en/conferences/", label: "Conferences", desc: "Presentations at international research symposiums and congresses" },
+          { href: "/en/education/", label: "Education & Credentials", desc: "Dr. phil. (Germany) and Candidate of Sciences (Russia), verified credentials" },
+          { href: "/en/projects/", label: "Research Projects", desc: "Educational research initiatives, digital learning environments, and grants" },
+          { href: "/en/expert-services/", label: "Expert Services", desc: "Academic consulting, review, and learning design solutions" },
+          { href: "/en/for-organizations/", label: "For Organizations", desc: "Institutional cooperation with universities, colleges, and research bodies" },
+          { href: "/en/contact/", label: "Contact", desc: "Expert inquiry form, direct communication channels, and profiles" },
+        ],
+      },
+      {
+        title: "Research Identifiers & Profiles",
+        items: [
+          { href: professionalIdentifiers.orcidUrl, label: "ORCID: 0000-0003-0816-2103 ↗", desc: "Open Researcher and Contributor ID registry" },
+          { href: `https://www.scopus.com/authid/detail.uri?authorId=${professionalIdentifiers.scopusAuthorId}`, label: `Scopus Author ID: ${professionalIdentifiers.scopusAuthorId} ↗`, desc: "Scopus author profile and citation record" },
+          { href: `https://www.webofscience.com/wos/author/record/${professionalIdentifiers.researcherId}`, label: `ResearcherID: ${professionalIdentifiers.researcherId} ↗`, desc: "Web of Science researcher profile" },
+          { href: "https://www.linkedin.com/in/natalidolgova", label: "LinkedIn: natalidolgova ↗", desc: "Professional network of academic contacts" },
+        ],
+      },
+      {
+        title: "System Files",
+        items: [
+          { href: "/en/sitemap.xml", label: "XML Sitemap (for search engines)", desc: "Machine-readable index of canonical pages" },
+        ],
+      },
+    ];
+---
+
+<BaseLayout
+  locale={locale}
+  theme="science"
+  siteLabel={copy.siteLabel}
+  title={`${isRu ? "Карта сайта" : "Site Map"} · ${scienceSiteConfig.name}`}
+  description={isRu ? "Полная структура разделов и страниц академического сайта Наталии Долговой." : "Full sitemap and directory of Natalia Dolgova's academic website."}
+  paths={paths}
+  fallbackSiteUrl={scienceSiteConfig.fallbackUrl}
+  navItems={copy.nav}
+  currentPath={currentPath}
+  breadcrumbs={breadcrumbs}
+  footerText={copy.footer}
+>
+  <section class="page-hero">
+    <div class="section-inner">
+      <span class="hero-eyebrow">{copy.siteLabel}</span>
+      <h1>{isRu ? "Карта сайта" : "Site Map"}</h1>
+      <p class="hero-lead">
+        {isRu
+          ? "Все разделы, научные направления, диссертация, публикации и профили исследователя в едином оглавлении."
+          : "Complete directory of all sections, research areas, dissertation, publications, and scholar profiles."}
+      </p>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="section-inner">
+      <div class="sitemap-grid">
+        {categories.map((category) => (
+          <div class="sitemap-category">
+            <h2>{category.title}</h2>
+            <ul class="sitemap-list">
+              {category.items.map((item) => (
+                <li>
+                  <a class="sitemap-item-link" href={item.href}>
+                    {item.label}
+                  </a>
+                  <p class="sitemap-item-desc">{item.desc}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
