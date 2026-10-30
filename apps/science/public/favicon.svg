@@ -1,4 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Science">
-  <rect width="64" height="64" rx="12" fill="#e8eef8"/>
-  <path d="M23 14h18v5l-5 8v7l11 15H17l11-15v-7l-5-8v-5Zm7 18-7 11h18l-7-11h-4Z" fill="#315e96"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Nataliia Dolgova · Science">
+  <defs>
+    <linearGradient id="coolBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#EDF2F7"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#coolBg)" stroke="#CBD5E1" stroke-width="2"/>
+  <text x="32" y="42" font-family="'Fraunces', Georgia, 'Times New Roman', serif" font-weight="700" font-size="31" letter-spacing="1" fill="#0A192F" text-anchor="middle">ND</text>
+  <circle cx="32" cy="51" r="2.5" fill="#0284C7"/>
 </svg>
