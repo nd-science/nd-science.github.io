@@ -161,7 +161,10 @@ const pageTitle = isHome
   fallbackSiteUrl={copy.fallbackSiteUrl}
   navItems={copy.nav}
   currentPath={currentPath}
-  crossSite={route === "about" ? { label: copy.crossSiteLabel, href: `${scienceOrigin}/${locale}/about/` } : undefined}
+  crossSite={route === "about" ? {
+    label: copy.crossSiteLabel,
+    href: `${scienceOrigin}/${locale}/about/`,
+  } : undefined}
   breadcrumbs={isHome ? undefined : breadcrumbs}
   jsonLd={jsonLd}
   footerText={copy.footer}
