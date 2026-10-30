@@ -1421,6 +1421,18 @@
     overflow: hidden;
   }
 
+  .cred-heading {
+    margin-block-end: 1rem;
+    font-size: clamp(1.25rem, 2vw, 1.55rem);
+    color: var(--heading);
+  }
+
+  .subsection-title {
+    margin-block: 2.75rem 1rem;
+    font-size: clamp(1.25rem, 2vw, 1.55rem);
+    color: var(--heading);
+  }
+
   .cred-list,
   .talk-list,
   .url-list {

@@ -5,7 +5,7 @@ const { locale } = Astro.props;
 const items = credentials.filter((item) => item.sites.includes("science") && item.publicationScope === "public").sort((a, b) => b.year - a.year);
 const roles = experience.filter((item) => item.sites.includes("science") && item.publicationScope === "public").sort((a, b) => b.startDate.localeCompare(a.startDate));
 ---
-<h3>{locale === "ru" ? "Образование и ученые степени" : "Education and academic degrees"}</h3>
+<h3 class="cred-heading">{locale === "ru" ? "Образование и ученые степени" : "Education and academic degrees"}</h3>
 <ul class="cred-list">{items.map((item) => <li class="cred-item"><span class="cred-period">{item.startDate && item.endDate ? `${item.startDate}–${item.endDate}` : item.year}</span><div><strong>{item.title[locale]}</strong><p>{item.issuer[locale]}</p></div></li>)}</ul>
 <h3 class="subsection-title">{locale === "ru" ? "Профессиональная хронология" : "Professional timeline"}</h3>
 <ul class="cred-list">{roles.map((item) => <li class="cred-item"><span class="cred-period">{item.startDate}{item.endDate ? `–${item.endDate}` : "–"}</span><div><strong>{item.role[locale]}</strong><p>{item.organisation[locale]}</p><p>{item.summary[locale]}</p></div></li>)}</ul>

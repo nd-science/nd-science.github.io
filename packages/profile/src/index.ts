@@ -252,7 +252,9 @@ export const professionalIdentifiers = {
   orcid: "0000-0003-0816-2103",
   orcidUrl: "https://orcid.org/0000-0003-0816-2103",
   researcherId: "A-9484-2016",
+  researcherIdUrl: "https://www.webofscience.com/wos/author/record/A-9484-2016",
   scopusAuthorId: "57202091034",
+  scopusUrl: "https://www.scopus.com/authid/detail.uri?authorId=57202091034",
 } as const;
 
 export interface PublicResource {
