@@ -19,7 +19,7 @@ export const scienceCopy = {
       name: "Имя", organisation: "Организация", role: "Роль", email: "Email для ответа", language: "Язык", projectType: "Тип проекта", result: "Ожидаемый результат", audience: "Аудитория", timeline: "Сроки", budget: "Бюджетный диапазон", comment: "Комментарий", consent: "Я согласен(на) на обработку данных для ответа на запрос.", submit: "Отправить запрос", honeypot: "Не заполняйте это поле",
       notConnected: {
         title: "Прямая связь для обсуждения проектов",
-        intro: "Пока веб-форма настраивается, экспертные запросы можно направить напрямую через личные сообщения или академические каналы:",
+        intro: "Для обсуждения исследовательских, аналитических и образовательных проектов напишите напрямую через личные сообщения или академические каналы:",
         telegramBtn: "Написать Наталии в Telegram (@natali_tvet_pro)",
         telegramUrl: "https://t.me/natali_tvet_pro",
         linkedinLabel: "Профиль в LinkedIn",
@@ -69,7 +69,7 @@ export const scienceCopy = {
       name: "Name", organisation: "Organisation", role: "Role", email: "Reply email", language: "Language", projectType: "Project type", result: "Intended result", audience: "Audience", timeline: "Timeline", budget: "Budget range", comment: "Comment", consent: "I agree to data processing in order to receive a response.", submit: "Submit an enquiry", honeypot: "Do not fill this field in",
       notConnected: {
         title: "Direct contact for project inquiries",
-        intro: "While the enquiry form is being configured, expert proposals can be sent directly via messaging or academic networks:",
+        intro: "To discuss research, analytical or educational collaboration, message directly via messaging or academic networks:",
         telegramBtn: "Message Nataliia on Telegram (@natali_tvet_pro)",
         telegramUrl: "https://t.me/natali_tvet_pro",
         linkedinLabel: "LinkedIn Profile",

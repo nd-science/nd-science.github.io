@@ -14,4 +14,4 @@ publicationScope: public
 
 **Nataliia Dolgova, published also as Nataliia Ovchinnikova.** Publications under both surnames belong to the same professional author profile.
 
-Local publication PDFs are added only where hosting is permitted. The h-index is shown separately by database and only with a profile link and as-of date; until those details are available, it is omitted.
+The complete corpus of 64 publications and monographs is indexed in the [Russian Science Citation Index / eLibrary](https://www.elibrary.ru/author_items.asp?authorid=687073&show_refs=1) (AuthorID: 687073, 475 citations, h-index = 12). Below is a selected bibliography of peer-reviewed research in vocational educator preparation, digital transformation, and higher education governance, alongside verified citation metrics.

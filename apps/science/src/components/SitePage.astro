@@ -115,8 +115,9 @@ const pageTitle = isHome
         <SectionHeading {...copy.sections.profiles} />
         <ul class="profile-list">
           <li><span class="profile-name">ORCID</span><a href={professionalIdentifiers.orcidUrl} target="_blank" rel="noopener noreferrer">{professionalIdentifiers.orcid} ↗</a></li>
-          <li><span class="profile-name">ResearcherID</span><a href={professionalIdentifiers.researcherIdUrl} target="_blank" rel="noopener noreferrer">{professionalIdentifiers.researcherId} ↗</a></li>
           <li><span class="profile-name">Scopus Author ID</span><a href={professionalIdentifiers.scopusUrl} target="_blank" rel="noopener noreferrer">{professionalIdentifiers.scopusAuthorId} ↗</a></li>
+          <li><span class="profile-name">РИНЦ / eLibrary</span><a href={professionalIdentifiers.elibraryUrl} target="_blank" rel="noopener noreferrer">{professionalIdentifiers.elibraryAuthorId} ↗</a></li>
+          <li><span class="profile-name">ResearcherID</span><a href={professionalIdentifiers.researcherIdUrl} target="_blank" rel="noopener noreferrer">{professionalIdentifiers.researcherId} ↗</a></li>
           <li><span class="profile-name">LinkedIn</span><a href="https://www.linkedin.com/in/natalidolgova" target="_blank" rel="noopener noreferrer">natalidolgova ↗</a></li>
         </ul>
         <div class="metrics-block">
@@ -152,11 +153,6 @@ const pageTitle = isHome
               </tbody>
             </table>
           </div>
-          <p class="metrics-disclaimer">
-            {locale === "ru"
-              ? "* Наукометрические показатели публикуются строго раздельно по независимым базам данных с указанием даты проверки. Расхождение в h-index (Scopus: h = 2, OpenAlex: h = 3) обусловлено разницей в охвате индексируемых источников (OpenAlex индексирует массив ранних публикаций)."
-              : "* Bibliometric metrics are reported strictly separately by citation database with verified audit dates. The variance in h-index (Scopus: h = 2, OpenAlex: h = 3) stems from differing index coverage (OpenAlex includes earlier publications)."}
-          </p>
         </div>
       </div>
     </section>
