@@ -224,6 +224,9 @@ export const nataliaProfile: PublicProfile = {
   },
 };
 
+/** Канонический стабильный URI сущности Person для Schema.org JSON-LD (AUD-P1-032). */
+export const PERSON_CANONICAL_ID = "https://orcid.org/0000-0003-0816-2103#person";
+
 /** Пять опорных фактов из профессиональной карты. */
 export const keyFacts: LocalizedText[] = [
   {
@@ -438,8 +441,17 @@ export const wellnessDirectContacts = {
 /** Идентификаторы, пригодные для schema.org `sameAs`. */
 export const sameAsLinks: string[] = [
   professionalIdentifiers.orcidUrl,
+  professionalIdentifiers.googleScholarUrl,
+  professionalIdentifiers.scopusUrl,
+  professionalIdentifiers.researcherIdUrl,
+  professionalIdentifiers.elibraryUrl,
   "https://www.linkedin.com/in/natalidolgova",
   "https://www.youtube.com/Natalicompass",
+  "https://www.b17.ru/dolgova_nataliya/",
+  "https://trainer.neurointegration.org/profile/966067701912-nataliya-dolgova",
+  "https://t.me/natalicompass",
+  "https://macau.uni-kiel.de/receive/macau_mods_00002008",
+  "https://www.researchgate.net/profile/Natalia-Dolgova-2",
 ];
 
 export const credentials: Credential[] = [

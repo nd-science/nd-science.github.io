@@ -50,6 +50,9 @@ export function buildSeo(input: SeoInput) {
 }
 
 export interface PersonJsonLdDetails {
+  id?: string;
+  url?: string;
+  image?: string;
   jobTitle?: string;
   alternateName?: string;
   knowsAbout?: string[];
@@ -65,11 +68,15 @@ export function createPersonJsonLd(
   const person: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": details?.id || "https://orcid.org/0000-0003-0816-2103#person",
     name: profile.displayName[locale],
-    url: pageUrl,
+    url: details?.url || pageUrl,
     knowsLanguage: profile.languages,
   };
 
+  if (details?.image) {
+    person.image = details.image;
+  }
   if (details?.jobTitle) {
     person.jobTitle = details.jobTitle;
   }
@@ -115,6 +122,8 @@ export function createWebPageJsonLd(input: {
   url: string;
   locale: Locale;
   dateModified?: string;
+  authorId?: string;
+  authorName?: string;
 }) {
   const page: Record<string, unknown> = {
     "@context": "https://schema.org",
@@ -123,6 +132,11 @@ export function createWebPageJsonLd(input: {
     description: input.description,
     url: input.url,
     inLanguage: input.locale,
+    author: {
+      "@type": "Person",
+      "@id": input.authorId || "https://orcid.org/0000-0003-0816-2103#person",
+      name: input.authorName || (input.locale === "ru" ? "Наталия Долгова" : "Nataliia Dolgova"),
+    },
   };
   if (input.dateModified) {
     page.dateModified = input.dateModified;

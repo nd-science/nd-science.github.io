@@ -1,4 +1,4 @@
-import { nataliaProfile } from "@natali/profile";
+import { nataliaProfile, PERSON_CANONICAL_ID } from "@natali/profile";
 import { absoluteUrl } from "@natali/seo";
 import type { CollectionEntry } from "astro:content";
 
@@ -48,6 +48,7 @@ export function servicesJsonLd(
           description: item.data.task[locale],
           provider: {
             "@type": "Person",
+            "@id": PERSON_CANONICAL_ID,
             name: nataliaProfile.displayName[locale],
           },
           ...(prices.length > 0
@@ -83,6 +84,7 @@ export function webPageJsonLd(input: {
     dateModified: input.dateModified,
     author: {
       "@type": "Person",
+      "@id": PERSON_CANONICAL_ID,
       name: nataliaProfile.displayName[input.locale],
     },
   };

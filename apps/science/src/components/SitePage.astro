@@ -1,6 +1,6 @@
 ---
 import { getCollection, render, type CollectionEntry } from "astro:content";
-import { nataliaProfile, professionalIdentifiers, sameAsLinks, verifiedMetrics } from "@natali/profile";
+import { nataliaProfile, PERSON_CANONICAL_ID, professionalIdentifiers, sameAsLinks, verifiedMetrics } from "@natali/profile";
 import BaseLayout from "@natali/ui/BaseLayout.astro";
 import SectionHeading from "@natali/ui/SectionHeading.astro";
 import { absoluteUrl, createWebPageJsonLd, formatUpdated } from "@natali/seo";
@@ -21,11 +21,80 @@ const currentPath = isHome ? `/${locale}/` : `/${locale}/${route}/`;
 const paths = { ru: isHome ? "/ru/" : `/ru/${route}/`, en: isHome ? "/en/" : `/en/${route}/` };
 const localizeHref = (href: string) => href.startsWith("/") ? `/${locale}${href}` : href;
 const siteUrl = import.meta.env.PUBLIC_SITE_URL || scienceSiteConfig.fallbackUrl;
-const jsonLd: Record<string, unknown>[] = [createWebPageJsonLd({ name: entry.data.h1, description: entry.data.seoDescription, url: absoluteUrl(siteUrl, currentPath), locale, dateModified: entry.data.updatedAt.toISOString() })];
-if (route === "publications") publications.forEach((publication) => jsonLd.push({ "@context": "https://schema.org", "@type": "ScholarlyArticle", headline: publication.data.title, author: publication.data.authors, datePublished: String(publication.data.year), isPartOf: publication.data.venue, identifier: publication.data.doi ? `https://doi.org/${publication.data.doi}` : publication.data.url }));
-if (route === "projects") jsonLd.push({ "@context": "https://schema.org", "@type": "ResearchProject", name: locale === "ru" ? "Факторы воспринимаемой эффективности онлайн-подготовки педагогов СПО" : "Factors shaping the perceived effectiveness of online preparation for TVET educators", member: { "@type": "Person", name: nataliaProfile.displayName[locale] } });
-if (route === "expert-services") jsonLd.push({ "@context": "https://schema.org", "@type": "Service", name: locale === "ru" ? "Исследовательские и образовательные услуги" : "Research and education services", provider: { "@type": "Person", name: nataliaProfile.displayName[locale] } });
-if (route === "research/dissertation") jsonLd.push({ "@context": "https://schema.org", "@type": "Thesis", name: "Key Factors of Online Course Perceived Effectiveness for Preparing TVET Engineering Teachers in Russia", author: { "@type": "Person", name: "Nataliia Dolgova" }, datePublished: "2025", url: "https://www.zhb-flensburg.de/dissert/dolgova" });
+const jsonLd: Record<string, unknown>[] = [
+  createWebPageJsonLd({
+    name: entry.data.h1,
+    description: entry.data.seoDescription,
+    url: absoluteUrl(siteUrl, currentPath),
+    locale,
+    dateModified: entry.data.updatedAt.toISOString(),
+  }),
+];
+if (route === "publications") {
+  publications.forEach((publication) =>
+    jsonLd.push({
+      "@context": "https://schema.org",
+      "@type": "ScholarlyArticle",
+      headline: publication.data.title,
+      author: {
+        "@type": "Person",
+        "@id": PERSON_CANONICAL_ID,
+        name: nataliaProfile.displayName[locale],
+        alternateName: "Nataliia Ovchinnikova",
+      },
+      datePublished: String(publication.data.year),
+      isPartOf: publication.data.venue,
+      identifier: publication.data.doi
+        ? `https://doi.org/${publication.data.doi}`
+        : publication.data.url,
+    }),
+  );
+}
+if (route === "projects") {
+  jsonLd.push({
+    "@context": "https://schema.org",
+    "@type": "ResearchProject",
+    name:
+      locale === "ru"
+        ? "Факторы воспринимаемой эффективности онлайн-подготовки педагогов СПО"
+        : "Factors shaping the perceived effectiveness of online preparation for TVET educators",
+    member: {
+      "@type": "Person",
+      "@id": PERSON_CANONICAL_ID,
+      name: nataliaProfile.displayName[locale],
+    },
+  });
+}
+if (route === "expert-services") {
+  jsonLd.push({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name:
+      locale === "ru"
+        ? "Исследовательские и образовательные услуги"
+        : "Research and education services",
+    provider: {
+      "@type": "Person",
+      "@id": PERSON_CANONICAL_ID,
+      name: nataliaProfile.displayName[locale],
+    },
+  });
+}
+if (route === "research/dissertation") {
+  jsonLd.push({
+    "@context": "https://schema.org",
+    "@type": "Thesis",
+    name: "Key Factors of Online Course Perceived Effectiveness for Preparing TVET Engineering Teachers in Russia",
+    author: {
+      "@type": "Person",
+      "@id": PERSON_CANONICAL_ID,
+      name: "Nataliia Dolgova",
+      alternateName: "Nataliia Ovchinnikova",
+    },
+    datePublished: "2025",
+    url: "https://www.zhb-flensburg.de/dissert/dolgova",
+  });
+}
 const wellnessOrigin = (import.meta.env.PUBLIC_WELLNESS_SITE_URL || copy.crossSiteHrefBase).replace(/\/$/, "");
 const crossSite = route === "about" ? {
   label: copy.crossSiteLabel,
@@ -46,7 +115,7 @@ const pageTitle = isHome
   title={pageTitle} description={entry.data.seoDescription}
   {paths} fallbackSiteUrl={scienceSiteConfig.fallbackUrl} navItems={copy.nav} {currentPath} {crossSite}
   breadcrumbs={isHome ? undefined : [{ label: entry.data.h1 }]}
-  personDetails={{ jobTitle: nataliaProfile.scienceRole[locale], alternateName: "Nataliia Ovchinnikova", knowsAbout: ["vocational education", "adult learning", "TVET educator training", "digital transformation in education"], sameAs: sameAsLinks }}
+  personDetails={{ id: PERSON_CANONICAL_ID, jobTitle: nataliaProfile.scienceRole[locale], alternateName: "Nataliia Ovchinnikova", knowsAbout: ["vocational education", "adult learning", "TVET educator training", "digital transformation in education", "technology transfer"], sameAs: sameAsLinks }}
   {jsonLd} footerText={copy.footer}
 >
   <section class={isHome ? "hero" : "hero page-hero"}>

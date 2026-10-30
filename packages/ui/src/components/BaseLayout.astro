@@ -67,12 +67,15 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || fallbackSiteUrl;
 const status: SiteStatus =
   import.meta.env.PUBLIC_SITE_STATUS === "public" ? "public" : "draft";
 const seo = buildSeo({ siteUrl, locale, paths, status });
-const socialImage = ogImage || absoluteUrl(siteUrl, "/favicon.svg");
+const socialImage = ogImage || absoluteUrl(siteUrl, "/images/natalia-portrait.png");
 const personJsonLd = createPersonJsonLd(
   nataliaProfile,
   locale,
   seo.canonical,
-  personDetails,
+  {
+    image: absoluteUrl(siteUrl, "/images/natalia-portrait.png"),
+    ...personDetails,
+  },
 );
 
 const labels =
@@ -145,13 +148,19 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
     <meta property="og:url" content={seo.canonical} />
     <meta property="og:locale" content={locale === "ru" ? "ru_RU" : "en_US"} />
     <meta property="og:image" content={socialImage} />
+    <meta property="og:image:alt" content={locale === "ru" ? "Наталия Долгова" : "Nataliia Dolgova"} />
+    <meta property="og:image:width" content="800" />
+    <meta property="og:image:height" content="945" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={locale === "ru" ? "Наталия Долгова" : "Nataliia Dolgova"} />
     <meta name="google-site-verification" content={import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION || "od8PTNpX3EwB1eK7vjlpEAYKrfkwkxFKHj0X-Y4csXc"} />
     <meta name="yandex-verification" content={theme === "wellness" ? "7369f633f79a694f" : "80f02dc8bb2d1a79"} />
-    <meta name="msvalidate.01" content={import.meta.env.PUBLIC_BING_SITE_VERIFICATION || "bing-verification-pending"} />
+    {import.meta.env.PUBLIC_BING_SITE_VERIFICATION && (
+      <meta name="msvalidate.01" content={import.meta.env.PUBLIC_BING_SITE_VERIFICATION} />
+    )}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="canonical" href={seo.canonical} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
