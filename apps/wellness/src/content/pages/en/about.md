@@ -1,8 +1,8 @@
 ---
 route: about
 locale: en
-seoTitle: About Natalia Dolgova
-seoDescription: Natalia Dolgova’s education, qualifications, experience and principles of practice.
+seoTitle: About Nataliia Dolgova
+seoDescription: Nataliia Dolgova’s education, qualifications, experience and principles of practice.
 h1: A research perspective combined with individual practice
 summary: Research and adult-learning experience combined with psychology, neurointegration, breathing and movement.
 audience: [public]

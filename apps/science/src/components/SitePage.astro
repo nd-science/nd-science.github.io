@@ -1,6 +1,6 @@
 ---
 import { getCollection, render, type CollectionEntry } from "astro:content";
-import { nataliaProfile, professionalIdentifiers, sameAsLinks } from "@natali/profile";
+import { nataliaProfile, professionalIdentifiers, sameAsLinks, verifiedMetrics } from "@natali/profile";
 import BaseLayout from "@natali/ui/BaseLayout.astro";
 import SectionHeading from "@natali/ui/SectionHeading.astro";
 import { absoluteUrl, createWebPageJsonLd, formatUpdated } from "@natali/seo";
@@ -25,7 +25,7 @@ const jsonLd: Record<string, unknown>[] = [createWebPageJsonLd({ name: entry.dat
 if (route === "publications") publications.forEach((publication) => jsonLd.push({ "@context": "https://schema.org", "@type": "ScholarlyArticle", headline: publication.data.title, author: publication.data.authors, datePublished: String(publication.data.year), isPartOf: publication.data.venue, identifier: publication.data.doi ? `https://doi.org/${publication.data.doi}` : publication.data.url }));
 if (route === "projects") jsonLd.push({ "@context": "https://schema.org", "@type": "ResearchProject", name: locale === "ru" ? "Факторы воспринимаемой эффективности онлайн-подготовки педагогов СПО" : "Factors shaping the perceived effectiveness of online preparation for TVET educators", member: { "@type": "Person", name: nataliaProfile.displayName[locale] } });
 if (route === "expert-services") jsonLd.push({ "@context": "https://schema.org", "@type": "Service", name: locale === "ru" ? "Исследовательские и образовательные услуги" : "Research and education services", provider: { "@type": "Person", name: nataliaProfile.displayName[locale] } });
-if (route === "research/dissertation") jsonLd.push({ "@context": "https://schema.org", "@type": "Thesis", name: "Key Factors of Online Course Perceived Effectiveness for Preparing TVET Engineering Teachers in Russia", author: { "@type": "Person", name: "Natalia Dolgova" }, datePublished: "2025", url: "https://www.zhb-flensburg.de/dissert/dolgova" });
+if (route === "research/dissertation") jsonLd.push({ "@context": "https://schema.org", "@type": "Thesis", name: "Key Factors of Online Course Perceived Effectiveness for Preparing TVET Engineering Teachers in Russia", author: { "@type": "Person", name: "Nataliia Dolgova" }, datePublished: "2025", url: "https://www.zhb-flensburg.de/dissert/dolgova" });
 const wellnessOrigin = (import.meta.env.PUBLIC_WELLNESS_SITE_URL || copy.crossSiteHrefBase).replace(/\/$/, "");
 const crossSite = route === "about" ? { label: copy.crossSiteLabel, href: `${wellnessOrigin}/${locale}/about/` } : undefined;
 const endpoint = import.meta.env.PUBLIC_FORMS_ENABLED === "true" ? "/api/enquiry" : undefined;
@@ -50,7 +50,6 @@ const pageTitle = isHome
     {isHome ? (
       <div class="hero-layout">
         <div class="hero-content">
-          <p class="eyebrow">{scienceSiteConfig.name}</p>
           <h1>{entry.data.h1}</h1>
           <p class="hero-copy">{entry.data.summary}</p>
           {(cta || secondary) && (
@@ -61,7 +60,7 @@ const pageTitle = isHome
           )}
           <p class="page-meta">{copy.updatedPrefix}: {formatUpdated(entry.data.updatedAt, locale)}</p>
         </div>
-        <aside class="hero-media" aria-label={locale === "ru" ? "Академический профиль Наталии Долговой" : "Academic profile of Natalia Dolgova"}>
+        <aside class="hero-media" aria-label={locale === "ru" ? "Академический профиль Наталии Долговой" : "Academic profile of Nataliia Dolgova"}>
           <div class="portrait-card">
             <div class="portrait-frame">
               <div class="portrait-placeholder" aria-hidden="true">
@@ -87,7 +86,6 @@ const pageTitle = isHome
       </div>
     ) : (
       <div class="hero-content">
-        <p class="eyebrow">{scienceSiteConfig.name}</p>
         <h1>{entry.data.h1}</h1>
         <p class="hero-copy">{entry.data.summary}</p>
         {(cta || secondary) && (
@@ -103,6 +101,57 @@ const pageTitle = isHome
   <section class="page-section"><div class="section-inner prose"><Content /></div></section>
   {entry.data.sections.includes("credentials") && <section class="page-section"><div class="section-inner"><SectionHeading {...copy.sections.credentials} /><ScienceProfile {locale} /></div></section>}
   {entry.data.sections.includes("publications") && <section class="page-section"><div class="section-inner"><SectionHeading {...copy.sections.publications} /><PublicationList items={publications} {locale} /></div></section>}
-  {entry.data.sections.includes("profiles") && <section class="page-section"><div class="section-inner"><SectionHeading {...copy.sections.profiles} /><ul class="profile-list"><li><span class="profile-name">ORCID</span><a href={professionalIdentifiers.orcidUrl} target="_blank" rel="noopener noreferrer">{professionalIdentifiers.orcid} ↗</a></li><li><span class="profile-name">ResearcherID</span><a href={professionalIdentifiers.researcherIdUrl} target="_blank" rel="noopener noreferrer">{professionalIdentifiers.researcherId} ↗</a></li><li><span class="profile-name">Scopus Author ID</span><a href={professionalIdentifiers.scopusUrl} target="_blank" rel="noopener noreferrer">{professionalIdentifiers.scopusAuthorId} ↗</a></li><li><span class="profile-name">LinkedIn</span><a href="https://www.linkedin.com/in/natalidolgova" target="_blank" rel="noopener noreferrer">natalidolgova ↗</a></li></ul></div></section>}
+  {entry.data.sections.includes("profiles") && (
+    <section class="page-section">
+      <div class="section-inner">
+        <SectionHeading {...copy.sections.profiles} />
+        <ul class="profile-list">
+          <li><span class="profile-name">ORCID</span><a href={professionalIdentifiers.orcidUrl} target="_blank" rel="noopener noreferrer">{professionalIdentifiers.orcid} ↗</a></li>
+          <li><span class="profile-name">ResearcherID</span><a href={professionalIdentifiers.researcherIdUrl} target="_blank" rel="noopener noreferrer">{professionalIdentifiers.researcherId} ↗</a></li>
+          <li><span class="profile-name">Scopus Author ID</span><a href={professionalIdentifiers.scopusUrl} target="_blank" rel="noopener noreferrer">{professionalIdentifiers.scopusAuthorId} ↗</a></li>
+          <li><span class="profile-name">LinkedIn</span><a href="https://www.linkedin.com/in/natalidolgova" target="_blank" rel="noopener noreferrer">natalidolgova ↗</a></li>
+        </ul>
+        <div class="metrics-block">
+          <h3 class="metrics-table-title">{locale === "ru" ? "Зафиксированные наукометрические показатели" : "Verified bibliometric indicators"}</h3>
+          <div class="table-container">
+            <table class="metrics-table">
+              <thead>
+                <tr>
+                  <th scope="col">{locale === "ru" ? "База данных" : "Database"}</th>
+                  <th scope="col" style="text-align: center;">h-index</th>
+                  <th scope="col" style="text-align: center;">{locale === "ru" ? "Публикаций" : "Publications"}</th>
+                  <th scope="col" style="text-align: center;">{locale === "ru" ? "Цитирований" : "Citations"}</th>
+                  <th scope="col">{locale === "ru" ? "Дата проверки" : "As of"}</th>
+                  <th scope="col">{locale === "ru" ? "Охват и профиль" : "Coverage & Source"}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {verifiedMetrics.map((m) => (
+                  <tr>
+                    <td><strong>{m.database}</strong></td>
+                    <td style="text-align: center;"><span class="metric-badge">{m.hIndex}</span></td>
+                    <td style="text-align: center;">{m.documents}</td>
+                    <td style="text-align: center;">{m.citations}</td>
+                    <td class="metric-date">{m.checkedAt}</td>
+                    <td>
+                      <p class="metric-note">{m.notes[locale]}</p>
+                      <a class="metric-link" href={m.databaseUrl} target="_blank" rel="noopener noreferrer">
+                        {locale === "ru" ? "Профиль в базе" : "View source profile"} ↗
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="metrics-disclaimer">
+            {locale === "ru"
+              ? "* Наукометрические показатели публикуются строго раздельно по независимым базам данных с указанием даты проверки. Расхождение в h-index (Scopus: h = 2, OpenAlex: h = 3) обусловлено разницей в охвате индексируемых источников (OpenAlex индексирует массив ранних публикаций)."
+              : "* Bibliometric metrics are reported strictly separately by citation database with verified audit dates. The variance in h-index (Scopus: h = 2, OpenAlex: h = 3) stems from differing index coverage (OpenAlex includes earlier publications)."}
+          </p>
+        </div>
+      </div>
+    </section>
+  )}
   {entry.data.sections.includes("contact-form") && <section class="page-section" id="enquiry"><div class="section-inner"><SectionHeading {...copy.sections.form} /><ScienceEnquiryForm {locale} {endpoint} {turnstileSiteKey} /></div></section>}
 </BaseLayout>

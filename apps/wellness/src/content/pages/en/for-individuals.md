@@ -2,7 +2,7 @@
 route: for-individuals
 locale: en
 seoTitle: Individual work for adults
-seoDescription: Natalia Dolgova’s consultations and programmes for adults 18+, online and in person in Belgrade.
+seoDescription: Nataliia Dolgova’s consultations and programmes for adults 18+, online and in person in Belgrade.
 h1: Individual work for adults
 summary: A paid first meeting, a five-session package and four-week support.
 audience: [B2C]

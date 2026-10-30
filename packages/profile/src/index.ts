@@ -211,7 +211,7 @@ export interface PublicProfile {
 export const nataliaProfile: PublicProfile = {
   displayName: {
     ru: "Наталия Долгова",
-    en: "Natalia Dolgova",
+    en: "Nataliia Dolgova",
   },
   languages: ["ru", "en"],
   wellnessRole: {
@@ -256,6 +256,44 @@ export const professionalIdentifiers = {
   scopusAuthorId: "57202091034",
   scopusUrl: "https://www.scopus.com/authid/detail.uri?authorId=57202091034",
 } as const;
+
+export interface ScientificMetric {
+  database: string;
+  databaseUrl: string;
+  hIndex: number;
+  documents: number;
+  citations: number;
+  checkedAt: string;
+  notes: LocalizedText;
+}
+
+/** Подтверждённые наукометрические показатели по состоянию на 29.10.2026. */
+export const verifiedMetrics: ScientificMetric[] = [
+  {
+    database: "Scopus (Elsevier)",
+    databaseUrl: "https://www.scopus.com/authid/detail.uri?authorId=57202091034",
+    hIndex: 2,
+    documents: 7,
+    citations: 9,
+    checkedAt: "2026-10-29",
+    notes: {
+      ru: "Рецензируемые публикации и международные цитирования (Scopus Preview)",
+      en: "Peer-reviewed publications and international citations (Scopus Preview)",
+    },
+  },
+  {
+    database: "OpenAlex",
+    databaseUrl: "https://openalex.org/authors/A5054879320",
+    hIndex: 3,
+    documents: 29,
+    citations: 20,
+    checkedAt: "2026-10-29",
+    notes: {
+      ru: "Открытый международный библиографический каталог (включая массив ранних публикаций)",
+      en: "Open international bibliographic catalogue (including earlier career publications)",
+    },
+  },
+];
 
 export interface PublicResource {
   id: string;

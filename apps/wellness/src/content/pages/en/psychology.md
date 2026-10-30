@@ -2,7 +2,7 @@
 route: practices/psychology
 locale: en
 seoTitle: Psychological consultation
-seoDescription: Natalia Dolgova’s psychological consultation with a clear structure and an agreed request.
+seoDescription: Nataliia Dolgova’s psychological consultation with a clear structure and an agreed request.
 h1: Psychological consultation with a clear structure
 summary: Work with your request, context, thoughts, emotions and actions.
 audience: [B2C]

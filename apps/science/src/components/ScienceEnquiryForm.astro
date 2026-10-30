@@ -51,7 +51,20 @@ const form = scienceCopy[locale].form;
     <div class="field"><label for="science-timeline">{form.timeline}</label><input id="science-timeline" name="timeline" required /></div>
     <div class="field"><label for="science-budget">{form.budget}</label><select id="science-budget" name="budgetRange" required>{scienceCopy[locale].budgetOptions.map((option) => <option value={option.value}>{option.label}</option>)}</select></div>
     <div class="field"><label for="science-comment">{form.comment}</label><textarea id="science-comment" name="comment" maxlength="2000"></textarea></div>
-    <div class="checkbox-field"><input id="science-consent" name="consent" type="checkbox" value="yes" required /><label for="science-consent">{form.consent}</label></div>
+    <div class="checkbox-field">
+      <input id="science-consent" name="consent" type="checkbox" value="yes" required />
+      <label for="science-consent">
+        {locale === "ru" ? (
+          <>
+            Я принимаю условия <a href="/ru/privacy/" target="_blank">Политики конфиденциальности</a> и даю <a href="/ru/consent/" target="_blank">Согласие на обработку персональных данных</a> для ответа на запрос.
+          </>
+        ) : (
+          <>
+            I accept the <a href="/en/privacy/" target="_blank">Privacy Policy</a> and provide <a href="/en/consent/" target="_blank">Consent to personal data processing</a> to receive a response.
+          </>
+        )}
+      </label>
+    </div>
     <div class="cf-turnstile" data-sitekey={turnstileSiteKey}></div>
     <button class="button" type="submit">{form.submit}</button>
     <p class="form-status" role="status" aria-live="polite" data-form-status></p>

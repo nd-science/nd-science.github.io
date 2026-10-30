@@ -257,10 +257,11 @@
   .page-nav {
     position: relative;
     overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: clip;
     padding: 0.35rem clamp(1rem, 4vw, 4rem) 0;
-    scrollbar-width: none;
+    scrollbar-width: none !important;
     -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
   }
 
   @media (max-width: 899px) {
@@ -272,9 +273,9 @@
   }
 
   .page-nav::-webkit-scrollbar {
-    display: none;
-    width: 0;
-    height: 0;
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
   }
 
   .page-tabs,
@@ -301,17 +302,17 @@
     align-items: end;
   }
 
-  /* Folder Tabs: classic file-folder divider tab with slanted left shoulder / ---- | */
+  /* Folder Tabs: Base styles */
   .page-tabs a,
   .nav-list a {
     position: relative;
     display: inline-flex;
     align-items: center;
-    min-height: 2.5rem;
-    padding: 0.5rem 0.85rem 0.5rem 1.25rem;
+    justify-content: center;
+    min-height: 2.45rem;
     color: var(--muted-text);
     background: transparent;
-    font-size: 0.86rem;
+    font-size: clamp(0.8rem, 0.85vw, 0.86rem);
     font-weight: 700;
     text-decoration: none;
     transition: color 140ms ease;
@@ -319,13 +320,12 @@
     z-index: 1;
   }
 
-  /* Outer shape: acts as the 1px border for / ---- | */
+  /* Outer shape: acts as the 1px border */
   .page-tabs a::before,
   .nav-list a::before {
     content: "";
     position: absolute;
     inset: 0;
-    clip-path: polygon(14px 0%, calc(100% - 3px) 0%, 100% 3px, 100% 100%, 0% 100%);
     background: transparent;
     transition: background-color 140ms ease;
     pointer-events: none;
@@ -338,11 +338,50 @@
     content: "";
     position: absolute;
     inset: 1px 1px 0 1px;
-    clip-path: polygon(13px 0%, calc(100% - 3px) 0%, 100% 3px, 100% 100%, 0% 100%);
     background: transparent;
     transition: background-color 140ms ease;
     pointer-events: none;
     z-index: -1;
+  }
+
+  /* 1. Первая вкладка («Главная»): классический скос папки справа | ---- \ */
+  .page-tabs li:first-child a,
+  .nav-list li:first-child a {
+    padding: 0.45rem clamp(1.15rem, 1.4vw, 1.45rem) 0.45rem clamp(0.75rem, 1vw, 1.05rem);
+    border-top-left-radius: 6px;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 100%, 0 100%);
+  }
+
+  .page-tabs li:first-child a::before,
+  .nav-list li:first-child a::before {
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 100%, 0 100%);
+    border-top-left-radius: 6px;
+  }
+
+  .page-tabs li:first-child a::after,
+  .nav-list li:first-child a::after {
+    clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 100%, 0 100%);
+    border-top-left-radius: 5px;
+  }
+
+  /* 2. Остальные вкладки: скос слева / ---- | */
+  .page-tabs li:not(:first-child) a,
+  .nav-list li:not(:first-child) a {
+    padding: 0.45rem clamp(0.65rem, 0.9vw, 0.85rem) 0.45rem clamp(1.05rem, 1.3vw, 1.35rem);
+    border-top-right-radius: 6px;
+    clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .page-tabs li:not(:first-child) a::before,
+  .nav-list li:not(:first-child) a::before {
+    clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%);
+    border-top-right-radius: 6px;
+  }
+
+  .page-tabs li:not(:first-child) a::after,
+  .nav-list li:not(:first-child) a::after {
+    clip-path: polygon(13px 0, 100% 0, 100% 100%, 0 100%);
+    border-top-right-radius: 5px;
   }
 
   .page-tabs a:hover,
@@ -1611,6 +1650,89 @@
     font-weight: 700;
     text-decoration: underline;
     text-underline-offset: 0.25em;
+  }
+
+  .metrics-block {
+    margin-block-start: 1.75rem;
+    padding: clamp(1.2rem, 2vw, 1.6rem);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-small);
+  }
+
+  .metrics-table-title {
+    margin-block-end: 1rem;
+    font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+    color: var(--heading);
+  }
+
+  .table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .metrics-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    text-align: left;
+  }
+
+  .metrics-table th,
+  .metrics-table td {
+    padding: 0.75rem 0.9rem;
+    border-block-end: 1px solid var(--border);
+    vertical-align: middle;
+  }
+
+  .metrics-table th {
+    color: var(--heading);
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    background: var(--surface);
+    white-space: nowrap;
+  }
+
+  .metric-badge {
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    font-weight: 700;
+    font-family: ui-monospace, "Cascadia Mono", monospace;
+    font-size: 1rem;
+    color: var(--accent-strong);
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-small);
+  }
+
+  .metric-date {
+    font-family: ui-monospace, "Cascadia Mono", monospace;
+    color: var(--muted-text);
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  .metric-note {
+    font-size: 0.85rem;
+    color: var(--muted-text);
+    margin: 0;
+  }
+
+  .metric-link {
+    display: inline-block;
+    margin-block-start: 0.25rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-strong);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .metrics-disclaimer {
+    margin-block-start: 1rem;
+    font-size: 0.82rem;
+    color: var(--muted-text);
+    line-height: 1.5;
   }
 
   /* Error & 404 State */

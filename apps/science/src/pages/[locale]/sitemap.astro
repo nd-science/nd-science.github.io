@@ -49,6 +49,13 @@ const categories = isRu
         ],
       },
       {
+        title: "Правовая информация",
+        items: [
+          { href: "/ru/privacy/", label: "Политика обработки персональных данных", desc: "Правила сбора, защиты и хранения контактных данных" },
+          { href: "/ru/consent/", label: "Согласие на обработку персональных данных", desc: "Условия направления экспертных и исследовательских запросов" },
+        ],
+      },
+      {
         title: "Служебные файлы",
         items: [
           { href: "/sitemap-index.xml", label: "XML Sitemap (для поисковых систем)", desc: "Машиночитаемый индекс страниц сайта" },
@@ -60,7 +67,7 @@ const categories = isRu
         title: "Main Sections",
         items: [
           { href: "/en/", label: "Home Page", desc: "Academic profile: vocational education and educator preparation" },
-          { href: "/en/about/", label: "Biography & Academic Path", desc: "Natalia Dolgova's academic background, research institutions, and experience" },
+          { href: "/en/about/", label: "Biography & Academic Path", desc: "Nataliia Dolgova's academic background, research institutions, and experience" },
           { href: "/en/research/", label: "Research", desc: "Focus on perceived course effectiveness and TVET educator preparation" },
           { href: "/en/research/dissertation/", label: "Doctoral Dissertation", desc: "PhD research (Dr. phil., Flensburg): online preparation of engineering educators" },
           { href: "/en/publications/", label: "Publications", desc: "Peer-reviewed articles, conference proceedings, book chapters, and reports" },
@@ -82,6 +89,13 @@ const categories = isRu
         ],
       },
       {
+        title: "Legal & Policies",
+        items: [
+          { href: "/en/privacy/", label: "Privacy Policy", desc: "Personal data handling and confidentiality terms" },
+          { href: "/en/consent/", label: "Data Processing Consent", desc: "Terms of consent for submitting project enquiries" },
+        ],
+      },
+      {
         title: "System Files",
         items: [
           { href: "/sitemap-index.xml", label: "XML Sitemap (for search engines)", desc: "Machine-readable index of canonical pages" },
@@ -95,7 +109,7 @@ const categories = isRu
   theme="science"
   siteLabel={copy.siteLabel}
   title={`${isRu ? "Карта сайта" : "Site Map"} · ${scienceSiteConfig.name}`}
-  description={isRu ? "Полная структура разделов и страниц академического сайта Наталии Долговой." : "Full sitemap and directory of Natalia Dolgova's academic website."}
+  description={isRu ? "Полная структура разделов и страниц академического сайта Наталии Долговой." : "Full sitemap and directory of Nataliia Dolgova's academic website."}
   paths={paths}
   fallbackSiteUrl={scienceSiteConfig.fallbackUrl}
   navItems={copy.nav}

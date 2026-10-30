@@ -2,7 +2,7 @@
 route: programs/stress-recovery
 locale: en
 seoTitle: Four weeks of work with stress and overload
-seoDescription: Natalia Dolgova’s personal four-week support programme priced at €600.
+seoDescription: Nataliia Dolgova’s personal four-week support programme priced at €600.
 h1: Four weeks of work with stress and overload
 summary: A personal format for restoring resources and developing sustainable change.
 audience: [B2C]

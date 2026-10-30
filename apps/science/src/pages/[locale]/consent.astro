@@ -1,0 +1,105 @@
+---
+import BaseLayout from "@natali/ui/BaseLayout.astro";
+import { scienceSiteConfig } from "../../site-config";
+import { scienceCopy } from "../../i18n";
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: "ru" } },
+    { params: { locale: "en" } },
+  ];
+}
+
+const { locale } = Astro.params as { locale: "ru" | "en" };
+const copy = scienceCopy[locale];
+const paths = { ru: "/ru/consent/", en: "/en/consent/" };
+const currentPath = `/${locale}/consent/`;
+const isRu = locale === "ru";
+
+const breadcrumbs = [
+  { label: isRu ? "Согласие на обработку данных" : "Data Processing Consent" },
+];
+---
+
+<BaseLayout
+  locale={locale}
+  theme="science"
+  siteLabel={copy.siteLabel}
+  title={`${isRu ? "Согласие на обработку персональных данных" : "Data Processing Consent"} · ${scienceSiteConfig.name}`}
+  description={isRu ? "Согласие на обработку персональных данных при направлении экспертного запроса через сайт Наталии Долговой." : "Consent to personal data processing when submitting an expert inquiry to Natalia Dolgova."}
+  paths={paths}
+  fallbackSiteUrl={scienceSiteConfig.fallbackUrl}
+  navItems={copy.nav}
+  currentPath={currentPath}
+  breadcrumbs={breadcrumbs}
+  footerText={copy.footer}
+>
+  <section class="page-hero">
+    <div class="section-inner">
+      <span class="hero-eyebrow">{copy.siteLabel} · {isRu ? "Правовая информация" : "Legal Information"}</span>
+      <h1>{isRu ? "Согласие на обработку персональных данных" : "Data Processing Consent"}</h1>
+      <p class="hero-lead">
+        {isRu
+          ? "Условия предоставления и обработки персональных данных при отправке формы сотрудничества и запроса экспертных услуг."
+          : "Terms of consent for submitting project enquiries and receiving academic collaboration proposals."}
+      </p>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="section-inner legal-layout">
+      <div class="legal-actions-bar">
+        <span class="legal-doc-date">{isRu ? "Действующая редакция · Октябрь 2026 г." : "Current Edition · October 2026"}</span>
+      </div>
+
+      <div class="legal-prose">
+        {isRu ? (
+          <>
+            <p><strong>Отправляя форму обратной связи на сайте nd-science.github.io, я свободно, своей волей и в своем интересе подтверждаю следующее:</strong></p>
+            <ol>
+              <li><strong>Добровольность:</strong> Я предоставляю свои персональные данные добровольно и подтверждаю их достоверность.</li>
+              <li><strong>Состав данных:</strong> Я даю согласие на обработку указанных мной данных: фамилии, имени, отчества, адреса электронной почты, названия организации, должности/роли, а также сведений о планируемом проекте и сопутствующего комментария.</li>
+              <li><strong>Оператор:</strong> Оператором обработки является Самозанятая Долгова Наталия Эдуардовна (ИНН 575210528203).</li>
+              <li><strong>Цель обработки:</strong> Обработка осуществляется исключительно для рассмотрения моего обращения, подготовки и направления ответа, согласования брифа и условий экспертного, образовательного или исследовательского сотрудничества.</li>
+              <li><strong>Действия с данными:</strong> Согласие распространяется на сбор, систематизацию, накопление, хранение, уточнение, использование и удаление данных как с применением средств автоматизации, так и без них.</li>
+              <li><strong>Нераспространение:</strong> Данные не подлежат распространению или передаче третьим лицам без моего отдельного согласия, за исключением требований законодательства РФ.</li>
+              <li><strong>Срок действия и отзыв:</strong> Согласие действует до достижения целей обработки или до момента его отзыва. Согласие может быть отозвано в любой момент путем направления электронного сообщения по адресу: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a>.</li>
+            </ol>
+
+            <div class="legal-requisites">
+              <h3>Реквизиты оператора</h3>
+              <p>
+                <strong>Самозанятая Долгова Наталия Эдуардовна</strong><br />
+                ИНН: 575210528203<br />
+                Электронная почта: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+                Telegram: <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+              </p>
+            </div>
+          </>
+        ) : (
+          <>
+            <p><strong>By submitting the enquiry form on nd-science.github.io, I voluntarily and knowingly give my consent to the following:</strong></p>
+            <ol>
+              <li><strong>Voluntary Submission:</strong> I confirm that the data provided is accurate and submitted voluntarily.</li>
+              <li><strong>Data Scope:</strong> I consent to the processing of my name, email address, institutional affiliation, job title, and project brief details.</li>
+              <li><strong>Controller:</strong> The data controller is self-employed Natalia Eduardovna Dolgova (Tax ID: 575210528203).</li>
+              <li><strong>Purpose:</strong> Data is collected and processed exclusively to review my collaboration enquiry, discuss project requirements, and provide a tailored response.</li>
+              <li><strong>Non-Disclosure:</strong> Data will not be shared with third parties without my prior written consent, except where required by law.</li>
+              <li><strong>Revocation:</strong> This consent is valid until the inquiry is concluded or revoked. You may revoke consent at any time by emailing: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a>.</li>
+            </ol>
+
+            <div class="legal-requisites">
+              <h3>Operator Details</h3>
+              <p>
+                <strong>Self-employed Natalia E. Dolgova</strong><br />
+                Tax ID (INN): 575210528203<br />
+                Email: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+                Telegram: <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+              </p>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

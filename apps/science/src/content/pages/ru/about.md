@@ -16,4 +16,4 @@ publicationScope: public
 
 В 2014 году я получила степень кандидата экономических наук. В 2026 году успешно завершила докторскую подготовку в Europa-Universität Flensburg (Германия) и получила степень Dr. phil. с итоговой оценкой magna cum laude. Моё образование также включает базовую экономику, юриспруденцию (диплом с отличием) и магистратуру НИУ ВШЭ по направлению «Управление в высшем образовании».
 
-**Авторский профиль:** Natalia Dolgova, published also as Nataliia Ovchinnikova.
+**Авторский профиль:** Nataliia Dolgova, published also as Nataliia Ovchinnikova.

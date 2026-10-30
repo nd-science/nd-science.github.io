@@ -1,8 +1,8 @@
 ---
 route: conferences
 locale: en
-seoTitle: Natalia Dolgova’s conferences and presentations
-seoDescription: Natalia Dolgova’s presentations and participation in professional research communities.
+seoTitle: Nataliia Dolgova’s conferences and presentations
+seoDescription: Nataliia Dolgova’s presentations and participation in professional research communities.
 h1: Presentations and professional communities
 summary: Speaking topics in vocational education, educator preparation and online learning.
 ctaLabel: Discuss conference participation

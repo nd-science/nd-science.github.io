@@ -1,7 +1,7 @@
 ---
 route: home
 locale: en
-seoTitle: Natalia Dolgova — Vocational Education Researcher
+seoTitle: Nataliia Dolgova — Vocational Education Researcher
 seoDescription: Dr. phil., Candidate of Economic Sciences, researcher in vocational education and adult learning, educator and programme designer.
 h1: Research in vocational education and adult learning
 summary: Research, teaching, programme design and support for educational change.
