@@ -88,7 +88,9 @@ export const wellnessCopy = {
     forms: {
       private: {
         name: "Имя",
-        contact: "Email для ответа",
+        contact: "Контакт для связи (Telegram, WhatsApp, Email или телефон)",
+        contactPlaceholder: "@username в Telegram, WhatsApp (+7 / +381...) или email",
+        contactHint: "Укажите удобный для вас способ — Наталия ответит именно туда.",
         language: "Язык встреч",
         timezone: "Часовой пояс",
         format: "Предпочтительный формат",
@@ -105,7 +107,9 @@ export const wellnessCopy = {
       organisation: {
         organisation: "Организация",
         role: "Ваша роль",
-        contact: "Email для ответа",
+        contact: "Контакт для связи (Telegram, WhatsApp, Email или телефон)",
+        contactPlaceholder: "@username в Telegram, WhatsApp, телефон или email",
+        contactHint: "Укажите удобный способ связи для обсуждения брифа.",
         language: "Язык",
         groupSize: "Размер группы",
         task: "Задача",
@@ -233,7 +237,9 @@ export const wellnessCopy = {
     forms: {
       private: {
         name: "Name",
-        contact: "Reply email",
+        contact: "Contact info (Telegram, WhatsApp, Email, or Phone)",
+        contactPlaceholder: "@username on Telegram, WhatsApp (+7 / +381...), or email",
+        contactHint: "Enter your preferred channel — Natalia will reply directly there.",
         language: "Meeting language",
         timezone: "Time zone",
         format: "Preferred format",
@@ -249,7 +255,9 @@ export const wellnessCopy = {
       organisation: {
         organisation: "Organisation",
         role: "Your role",
-        contact: "Reply email",
+        contact: "Contact info (Telegram, WhatsApp, Email, or Phone)",
+        contactPlaceholder: "@username on Telegram, WhatsApp, phone, or email",
+        contactHint: "Enter your preferred channel to discuss the brief.",
         language: "Language",
         groupSize: "Group size",
         task: "Task",

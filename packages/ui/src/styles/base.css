@@ -1091,6 +1091,16 @@
     margin-block-start: 1rem;
   }
 
+  .prose h2 {
+    font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+    margin-block: 2.25rem 0.75rem;
+  }
+
+  .prose h3 {
+    font-size: clamp(1.18rem, 1.9vw, 1.4rem);
+    margin-block: 1.85rem 0.6rem;
+  }
+
   .prose ul,
   .prose ol {
     padding-inline-start: 1.4rem;

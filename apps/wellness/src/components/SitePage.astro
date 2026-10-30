@@ -141,7 +141,8 @@ const scienceOrigin = (
 
 const authorLine = `${nataliaProfile.displayName[locale]} · ${copy.updatedPrefix} ${formatUpdated(entry.data.updatedAt, locale)}`;
 const enquiryEndpoint =
-  import.meta.env.PUBLIC_FORMS_ENABLED === "true" ? "/api/enquiry" : undefined;
+  import.meta.env.PUBLIC_ENQUIRY_WEBHOOK_URL ||
+  "https://script.google.com/macros/s/AKfycbzeq7In-ycmZ-Fw7Sl2LTpVcltlaFePSIGrLnZlEVxhNMsMyyaBxNaYtn2ac6u10zmeGQ/exec";
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 const pageTitle = isHome
   ? entry.data.seoTitle
