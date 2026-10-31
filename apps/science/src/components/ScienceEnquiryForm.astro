@@ -94,13 +94,13 @@ const form = scienceCopy[locale].form;
   .direct-contact-header h3 {
     margin: 0 0 0.5rem;
     color: var(--heading);
-    font-size: 1.35rem;
+    font-size: var(--text-h3-sub);
   }
   .direct-contact-intro {
     margin: 0;
     color: var(--text);
-    font-size: 1rem;
-    line-height: 1.5;
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
   }
   .direct-contact-action {
     display: flex;
@@ -113,8 +113,8 @@ const form = scienceCopy[locale].form;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 1rem;
-    font-weight: 700;
+    font-size: var(--text-base);
+    font-weight: var(--weight-bold);
     text-decoration: none;
     padding: 0.75rem 1.4rem;
   }
@@ -123,19 +123,19 @@ const form = scienceCopy[locale].form;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
     color: var(--muted-text);
   }
   .direct-contact-secondary a {
     color: var(--accent-strong);
-    font-weight: 600;
+    font-weight: var(--weight-semibold);
   }
   .direct-contact-checklist {
     background: color-mix(in oklch, var(--background) 50%, var(--surface));
     border-inline-start: 3px solid var(--accent-strong);
     padding: 0.9rem 1.25rem;
     border-radius: 4px;
-    font-size: 0.92rem;
+    font-size: var(--text-sm);
   }
   .direct-contact-checklist ul {
     margin: 0.4rem 0 0.6rem;

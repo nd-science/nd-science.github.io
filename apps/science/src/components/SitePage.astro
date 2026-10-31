@@ -3,7 +3,7 @@ import { getCollection, render, type CollectionEntry } from "astro:content";
 import { nataliaProfile, PERSON_CANONICAL_ID, professionalIdentifiers, sameAsLinks, verifiedMetrics } from "@natali/profile";
 import BaseLayout from "@natali/ui/BaseLayout.astro";
 import SectionHeading from "@natali/ui/SectionHeading.astro";
-import { absoluteUrl, createWebPageJsonLd, formatUpdated } from "@natali/seo";
+import { absoluteUrl, createWebPageJsonLd } from "@natali/seo";
 import { scienceCopy } from "../i18n";
 import { scienceSiteConfig } from "../site-config";
 import ScienceProfile from "./ScienceProfile.astro";
@@ -130,7 +130,6 @@ const pageTitle = isHome
               {secondary && <a class="button secondary" href={secondary.href}>{secondary.label}</a>}
             </div>
           )}
-          <p class="page-meta">{copy.updatedPrefix}: {formatUpdated(entry.data.updatedAt, locale)}</p>
         </div>
         <aside class="hero-media" aria-label={locale === "ru" ? "Академический профиль Наталии Долговой" : "Academic profile of Nataliia Dolgova"}>
           <div class="portrait-card">
@@ -174,7 +173,6 @@ const pageTitle = isHome
             {secondary && <a class="button secondary" href={secondary.href}>{secondary.label}</a>}
           </div>
         )}
-        <p class="page-meta">{copy.updatedPrefix}: {formatUpdated(entry.data.updatedAt, locale)}</p>
       </div>
     )}
   </section>

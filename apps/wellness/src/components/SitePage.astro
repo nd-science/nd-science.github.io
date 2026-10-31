@@ -1,6 +1,6 @@
 ---
 import { credentials, nataliaProfile, PERSON_CANONICAL_ID } from "@natali/profile";
-import { absoluteUrl, formatUpdated } from "@natali/seo";
+import { absoluteUrl } from "@natali/seo";
 import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import BaseLayout from "@natali/ui/BaseLayout.astro";
@@ -139,7 +139,6 @@ const scienceOrigin = (
   import.meta.env.PUBLIC_SCIENCE_SITE_URL || copy.crossSiteHrefBase
 ).replace(/\/+$/, "");
 
-const authorLine = `${nataliaProfile.displayName[locale]}, ${copy.updatedPrefix} ${formatUpdated(entry.data.updatedAt, locale)}`;
 const enquiryEndpoint =
   import.meta.env.PUBLIC_ENQUIRY_WEBHOOK_URL ||
   "https://script.google.com/macros/s/AKfycbzeq7In-ycmZ-Fw7Sl2LTpVcltlaFePSIGrLnZlEVxhNMsMyyaBxNaYtn2ac6u10zmeGQ/exec";
@@ -211,7 +210,6 @@ const pageTitle = isHome
                   )}
                 </div>
               )}
-              <p class="page-meta">{authorLine}</p>
             </div>
             <aside class="hero-media" aria-label={locale === "ru" ? "Портрет Наталии Долговой" : "Portrait of Nataliia Dolgova"}>
               <div class="portrait-card">
@@ -253,29 +251,33 @@ const pageTitle = isHome
         </section>
       </>
     ) : (
-      <section class="page-section">
-        <div class="section-inner">
-          <h1>{entry.data.h1}</h1>
-          <p class="page-meta">{authorLine}</p>
-          <div class="prose">
+      <>
+        <section class="hero page-hero">
+          <div class="hero-content">
+            <h1>{entry.data.h1}</h1>
+            <p class="hero-lead">{entry.data.summary}</p>
+            {(cta || ctaSecondary) && (
+              <div class="cta-block">
+                {cta && (
+                  <a class="button button--primary" href={cta.href}>
+                    {cta.label}
+                  </a>
+                )}
+                {ctaSecondary && (
+                  <a class="button secondary" href={ctaSecondary.href}>
+                    {ctaSecondary.label}
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+        </section>
+        <section class="page-section">
+          <div class="section-inner prose">
             <Content />
           </div>
-          {(cta || ctaSecondary) && (
-            <div class="cta-block">
-              {cta && (
-                <a class="button" href={cta.href}>
-                  {cta.label}
-                </a>
-              )}
-              {ctaSecondary && (
-                <a class="button secondary" href={ctaSecondary.href}>
-                  {ctaSecondary.label}
-                </a>
-              )}
-            </div>
-          )}
-        </div>
-      </section>
+        </section>
+      </>
     )
   }
 
