@@ -101,7 +101,20 @@ const organisationForm = copy.forms.organisation;
       </>
     )}
 
-    <div class="checkbox-field"><input id={`consent-${variant}`} name="consent" type="checkbox" value="yes" required /><label for={`consent-${variant}`}>{variant === "private" ? privateForm.consent : organisationForm.consent}</label></div>
+    <div class="checkbox-field">
+      <input id={`consent-${variant}`} name="consent" type="checkbox" value="yes" required />
+      <label for={`consent-${variant}`}>
+        {locale === "ru" ? (
+          <>
+            Я согласен(на) на <a href={`/${locale}/privacy/`} target="_blank" rel="noopener noreferrer">обработку персональных данных</a> для ответа на обращение.
+          </>
+        ) : (
+          <>
+            I agree to the <a href={`/${locale}/privacy/`} target="_blank" rel="noopener noreferrer">processing of personal data</a> in order to respond to this enquiry.
+          </>
+        )}
+      </label>
+    </div>
     {turnstileSiteKey && <div class="cf-turnstile" data-sitekey={turnstileSiteKey}></div>}
     <div><button type="submit" class="button">{variant === "private" ? privateForm.submit : organisationForm.submit}</button></div>
     <p class="form-status" role="status" aria-live="polite" data-form-status></p>

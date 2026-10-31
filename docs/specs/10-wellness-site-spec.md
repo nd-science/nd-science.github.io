@@ -167,7 +167,7 @@ My work combines psychological consultation, neurointegration, breathing, moveme
 
 **What you can bring:** overload and burnout; stress and difficulty relaxing; sleep and evening overactivation; concentration and decisions; adapting after relocation; professional and life transitions; sustainable habits and self-regulation.
 
-**CTA:** Book a paid first consultation
+**CTA:** Book a paid consultation
 
 **Secondary CTA:** Explore all formats
 
@@ -477,7 +477,7 @@ Online meetings are available in Russian and English. In-person meetings take pl
 
 **Is this therapy or training?** It depends on the service. Psychological consultation focuses on an individual request; neurointegration, breathing and qigong include learning specific tools.
 
-**Can I start with one meeting?** Yes. Further work is discussed together after the first consultation; a package is not required.
+**Can I start with one meeting?** Yes. Further work is discussed together after the consultation; a package is not required.
 
 **How many meetings will I need?** The number depends on the request, goal and feedback. The approach is oriented towards short-term work with one agreed request.
 

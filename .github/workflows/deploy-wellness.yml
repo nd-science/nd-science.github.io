@@ -3,6 +3,14 @@ name: Deploy Wellness to GitHub Pages
 on:
   push:
     branches: [main]
+    paths:
+      - 'apps/wellness/**'
+      - 'packages/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'tsconfig.json'
+      - '.github/workflows/deploy-wellness.yml'
   workflow_dispatch:
 
 permissions:
@@ -12,7 +20,7 @@ permissions:
 
 concurrency:
   group: pages-wellness
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:

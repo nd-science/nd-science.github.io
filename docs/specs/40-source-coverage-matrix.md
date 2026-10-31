@@ -200,7 +200,7 @@
 | Учебная нагрузка | Более 3000 часов занятий | More than 3,000 teaching hours |
 | Публикации | 100+ публикаций | 100+ publications |
 | Психологическая консультация | Индивидуальная психологическая консультация | Individual psychological consultation |
-| Первая встреча | Платная первая консультация, 60 минут | Paid first consultation, 60 minutes |
+| Первая встреча | Платная консультация, 60 минут | Paid consultation, 60 minutes |
 | Цена онлайн | €100 онлайн | €100 online |
 | Цена очно | €120 очно в Белграде | €120 in person in Belgrade |
 | Серия консультаций | Пакет из пяти встреч | Five-session package |
@@ -213,7 +213,7 @@
 | Метафорические карты | Образная рефлексия и обсуждение ассоциаций | Image-based reflection and exploration of associations |
 | География | Онлайн по всему миру; очно в Белграде | Online worldwide; in person in Belgrade |
 | Языки | Русский и английский | Russian and English |
-| Основной Wellness CTA | Записаться на платную первую консультацию | Book a paid first consultation |
+| Основной Wellness CTA | Записаться на платную консультацию | Book a paid consultation |
 | Основной Science CTA | Обсудить исследовательский или образовательный проект | Discuss a research or education project |
 | Диссертация | Факторы воспринимаемой эффективности онлайн-подготовки педагогов инженерных направлений СПО | Factors shaping the perceived effectiveness of online preparation for TVET engineering educators |
 | Научные методы | Количественный, качественный и смешанный анализ; опросы, интервью, триангуляция и систематизация литературы | Quantitative, qualitative and mixed-methods analysis; surveys, interviews, triangulation and literature synthesis |

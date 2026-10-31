@@ -3,6 +3,14 @@ name: Deploy Science to GitHub Pages
 on:
   push:
     branches: [main]
+    paths:
+      - 'apps/science/**'
+      - 'packages/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'tsconfig.json'
+      - '.github/workflows/deploy-science.yml'
   workflow_dispatch:
 
 permissions:
@@ -12,7 +20,7 @@ permissions:
 
 concurrency:
   group: pages-science
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:

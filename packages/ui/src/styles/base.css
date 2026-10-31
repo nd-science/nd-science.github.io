@@ -1478,6 +1478,17 @@
     font-weight: var(--weight-medium);
   }
 
+  .enquiry-form .checkbox-field label a {
+    color: var(--accent-strong);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.15s ease;
+  }
+
+  .enquiry-form .checkbox-field label a:hover {
+    color: var(--accent);
+  }
+
   .enquiry-form .field-hint {
     color: var(--muted-text);
     font-size: var(--text-xs);

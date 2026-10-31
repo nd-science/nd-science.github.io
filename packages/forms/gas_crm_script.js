@@ -436,7 +436,7 @@ function testTelegram() {
     date: Utilities.formatDate(new Date(), "Europe/Belgrade", "dd.MM.yyyy HH:mm"),
     name: "Тестовый Клиент",
     contact: "@telegram_user / +7 (999) 000-00-00",
-    service: "Первая консультация (100 €)",
+    service: "Консультация (100 €)",
     timezone: "Москва (UTC+3)",
     request: "Проверка связки сайта, Google Таблицы и Telegram-бота."
   });

@@ -3,12 +3,20 @@ name: Monorepo CI
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'docs/**'
+      - '*.md'
   pull_request:
     branches: [main]
   workflow_dispatch:
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   validate:
+    if: github.repository == 'wellnessnd/wellnessnd.github.io' || github.repository_owner == 'wellnessnd'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
