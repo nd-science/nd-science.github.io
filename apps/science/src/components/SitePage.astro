@@ -78,6 +78,11 @@ if (route === "expert-services") {
       "@id": PERSON_CANONICAL_ID,
       name: nataliaProfile.displayName[locale],
     },
+    areaServed: {
+      "@type": "AdministrativeArea",
+      name: locale === "ru" ? "Международное сотрудничество" : "International Collaboration",
+    },
+    availableLanguage: ["ru", "en"],
   });
 }
 if (route === "research/dissertation") {
@@ -90,6 +95,15 @@ if (route === "research/dissertation") {
       "@id": PERSON_CANONICAL_ID,
       name: "Nataliia Dolgova",
       alternateName: "Nataliia Ovchinnikova",
+    },
+    sourceOrganization: {
+      "@type": "CollegeOrUniversity",
+      name: "Europa-Universität Flensburg",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Flensburg",
+        addressCountry: "DE",
+      },
     },
     datePublished: "2025",
     url: "https://www.zhb-flensburg.de/dissert/dolgova",

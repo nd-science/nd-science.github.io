@@ -1,5 +1,5 @@
 ---
-import { credentials, nataliaProfile, PERSON_CANONICAL_ID } from "@natali/profile";
+import { credentials, nataliaProfile, PERSON_CANONICAL_ID, sameAsLinks } from "@natali/profile";
 import { absoluteUrl } from "@natali/seo";
 import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
@@ -176,13 +176,7 @@ const pageTitle = isHome
       "qigong",
       "breathwork",
     ],
-    sameAs: [
-      "https://www.b17.ru/dolgova_nataliya/",
-      "https://trainer.neurointegration.org/profile/966067701912-nataliya-dolgova",
-      "https://t.me/natalicompass",
-      "https://www.linkedin.com/in/natalidolgova",
-      "https://orcid.org/0000-0003-0816-2103",
-    ],
+    sameAs: sameAsLinks,
   }}
   jsonLd={jsonLd}
   footerText={copy.footer}

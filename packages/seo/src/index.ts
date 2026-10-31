@@ -174,8 +174,26 @@ export function robotsTxt(status: SiteStatus, siteUrl: string): string {
   }
 
   return [
+    "# Traditional Search Engines & AI Search Crawlers (Allowed)",
     "User-agent: *",
     "Allow: /",
+    "",
+    "# AI Training Scrapers & Bulk Dataset Crawlers (Disallowed per DEC-AI-03)",
+    "User-agent: GPTBot",
+    "Disallow: /",
+    "",
+    "User-agent: CCBot",
+    "Disallow: /",
+    "",
+    "User-agent: Google-Extended",
+    "Disallow: /",
+    "",
+    "User-agent: anthropic-ai",
+    "Disallow: /",
+    "",
+    "User-agent: ClaudeBot",
+    "Disallow: /",
+    "",
     `Sitemap: ${absoluteUrl(siteUrl, "/sitemap-index.xml")}`,
     "",
   ].join("\n");
