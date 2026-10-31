@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config";
 
 const site = process.env.PUBLIC_SITE_URL || "https://wellness.invalid";
 
+// Trigger deployment with Yandex verification: 7369f633f79a694f
 export default defineConfig({
   site,
   trailingSlash: "always",
