@@ -454,6 +454,68 @@ export const sameAsLinks: string[] = [
   "https://www.researchgate.net/profile/Natalia-Dolgova-2",
 ];
 
+export interface GeoLocation {
+  city?: LocalizedText;
+  country: LocalizedText;
+  countryCode: string;
+  timezone?: string;
+  serviceModes: DeliveryMode[];
+  workingHours?: {
+    days: string[];
+    opens: string;
+    closes: string;
+  };
+  policy: LocalizedText;
+}
+
+/** Географическое позиционирование практики (DEC-GEO-01). */
+export const practiceLocations = {
+  belgrade: {
+    city: { ru: "Белград", en: "Belgrade" },
+    country: { ru: "Сербия", en: "Serbia" },
+    countryCode: "RS",
+    timezone: "Europe/Belgrade",
+    serviceModes: ["in_person"] as DeliveryMode[],
+    workingHours: {
+      days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      opens: "07:00",
+      closes: "23:00",
+    },
+    policy: {
+      ru: "Очные встречи в Белграде проводятся по предварительной записи. Точный адрес кабинета согласуется персонально после подтверждения запроса.",
+      en: "In-person sessions in Belgrade take place by prior appointment. The exact address is confirmed individually after booking.",
+    },
+  },
+  online: {
+    coverage: { ru: "По всему миру", en: "Worldwide" },
+    languages: ["ru", "en"] as Locale[],
+    serviceModes: ["online"] as DeliveryMode[],
+    policy: {
+      ru: "Онлайн-консультации и программы проводятся по видеосвязи на русском и английском языках.",
+      en: "Online consultations and programmes are conducted via video link in Russian and English.",
+    },
+  },
+} as const;
+
+/** Институциональные академические локации (Science). */
+export const academicLocations = [
+  {
+    institution: { ru: "Европейский университет Фленсбурга", en: "Europa-Universität Flensburg" },
+    city: { ru: "Фленсбург", en: "Flensburg" },
+    country: { ru: "Германия", en: "Germany" },
+    countryCode: "DE",
+    role: { ru: "Докторантура (Dr. phil., magna cum laude)", en: "Doctoral research (Dr. phil., magna cum laude)" },
+  },
+  {
+    institution: { ru: "Московский педагогический государственный университет", en: "Moscow Pedagogical State University" },
+    city: { ru: "Москва", en: "Moscow" },
+    country: { ru: "Россия", en: "Russia" },
+    countryCode: "RU",
+    role: { ru: "Профессиональная переподготовка (Практическая психология)", en: "Professional retraining (Practical Psychology)" },
+  },
+] as const;
+
+
 export const credentials: Credential[] = [
   {
     id: "ranhighs-finance",

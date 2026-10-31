@@ -67,7 +67,7 @@
 | AUD-P1-025 | Science | Определить границу «избранные» vs «полный список» | summary и UI не обещают полный реестр при шести записях; roadmap полного импорта зафиксирован |
 | AUD-P1-026 | Science | Добавить citation export | BibTeX/RIS/plain citation совпадает с записью и проверен для DOI entries |
 | AUD-P1-027 | Science | Показать метрики только с base + as-of date | каждая метрика имеет базу, профиль, значение, дату и владельца обновления |
-| AUD-P1-028 | оба | Сверить внешние профили | матрица Aqulas/B17/PsyBalkans/TenChat/ORCID/LinkedIn/WoS/Scopus: имя, роль, цены, виды опыта, контакты, URL; изменения внешних площадок — только с разрешения |
+| AUD-P1-028 | оба | Сверить внешние профили | матрица Aqulas/B17/PsyBalkans/TenChat/ORCID/LinkedIn/WoS/Scopus: имя, роль, цены, виды опыта, контакты, URL; изменения внешних площадок — только с разрешения | ✅ Выполнено (TSK-TODO-27, DEC-033, docs/sources/external-profiles-matrix-2026.md) |
 
 ## 5. P1 — SEO и structured data
 
@@ -90,7 +90,7 @@
 | --- | --- | --- | --- |
 | AUD-P1-040 | оба | Принять crawler policy | отдельно описаны Googlebot, Bingbot, YandexBot, OAI-SearchBot, GPTBot, ChatGPT-User; search и training decisions не смешаны |
 | AUD-P1-041 | оба | Создать identity source block | полное имя, variants, портрет, роли, stable @id, profiles, updated date; RU/EN смысл совпадает |
-| AUD-P1-042 | оба | Добавить as-of и provenance для количественных фактов | 40+, 100+, 2000+ и другие цифры имеют дату и страницу-источник/методику |
+| AUD-P1-042 | оба | Добавить as-of и provenance для количественных фактов | 40+, 100+, 2000+ и другие цифры имеют дату и страницу-источник/методику | Закрыто (DEC-033: метрики содержат checkedAt/URL, дипломы — часы и даты в @natali/profile; over-engineering исключён) |
 | AUD-P1-043 | оба | Добавить author/source/update patterns | на экспертных страницах явно видны автор, дата, первичные профили/источники; JSON-LD совпадает |
 | AUD-P1-044 | оба | Проверить agent-readable DOM | важный контент и условия доступны без hover/modal; формы имеют labels/status; нет скрытой agent-only версии |
 | AUD-P1-045 | Science | Создать отдельные URL для основных публикаций/проектов | URL имеет цитату, abstract/summary, DOI/source, author entity и related topics |

@@ -51,12 +51,65 @@ export function servicesJsonLd(
             "@id": PERSON_CANONICAL_ID,
             name: nataliaProfile.displayName[locale],
           },
+          areaServed: item.data.delivery.includes("in_person")
+            ? [
+                {
+                  "@type": "City",
+                  name: locale === "ru" ? "Белград" : "Belgrade",
+                },
+                {
+                  "@type": "AdministrativeArea",
+                  name: locale === "ru" ? "Онлайн по всему миру" : "Worldwide (Online)",
+                },
+              ]
+            : [
+                {
+                  "@type": "AdministrativeArea",
+                  name: locale === "ru" ? "Онлайн по всему миру" : "Worldwide (Online)",
+                },
+              ],
+          availableLanguage: ["ru", "en"],
+          hoursAvailable: {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday",
+            ],
+            opens: "07:00",
+            closes: "23:00",
+          },
           ...(prices.length > 0
             ? {
                 offers: prices.map((price) => ({
                   "@type": "Offer",
                   price: price.amount,
                   priceCurrency: price.currency,
+                  description:
+                    price.delivery === "in_person"
+                      ? locale === "ru"
+                        ? "Очно в Белграде"
+                        : "In person in Belgrade"
+                      : locale === "ru"
+                        ? "Онлайн"
+                        : "Online",
+                  areaServed:
+                    price.delivery === "in_person"
+                      ? {
+                          "@type": "City",
+                          name: locale === "ru" ? "Белград" : "Belgrade",
+                        }
+                      : {
+                          "@type": "AdministrativeArea",
+                          name:
+                            locale === "ru"
+                              ? "Онлайн по всему миру"
+                              : "Worldwide (Online)",
+                        },
                 })),
               }
             : {}),
