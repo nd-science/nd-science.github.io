@@ -3,14 +3,14 @@ route: practices/psychology
 locale: ru
 seoTitle: Психологическое консультирование
 seoDescription: Психологическое консультирование Наталии Долговой с понятной структурой и согласованным запросом.
-h1: Психологическое консультирование с понятной структурой
-summary: Работа с запросом, контекстом, мыслями, эмоциями и действиями.
+h1: Индивидуальное психологическое консультирование
+summary: Исследование ситуации, снижение эмоционального напряжения и выработка практических решений на основе КПТ, ACT и интегративного подхода.
 audience: [B2C]
 ctaLabel: Записаться на консультацию
 ctaHref: /booking/#enquiry
 relatedServices: [consultation, five-session-package, four-week-support]
 sections: [services]
-updatedAt: 2026-10-29
+updatedAt: 2026-10-31
 publicationScope: public
 ---
 

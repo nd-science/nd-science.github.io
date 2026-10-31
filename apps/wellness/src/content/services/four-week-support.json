@@ -6,7 +6,7 @@
   "duration": { "ru": "4 недели", "en": "4 weeks" },
   "delivery": ["online", "in_person"],
   "price": { "amount": 600, "currency": "EUR", "unit": "programme" },
-  "outcome": { "ru": "Персональный рабочий ритм и набор применимых инструментов.", "en": "A personal working rhythm and a set of usable tools." },
+  "outcome": { "ru": "Комплексное восстановление ресурсов, выход из хронического стресса и персональная система самоподдержки.", "en": "Comprehensive resource recovery, relief from chronic stress and a personal resilience system." },
   "relatedMethods": ["psychology", "neurointegration", "breathing", "movement-qigong"],
   "serviceAvailability": "available",
   "publicationScope": "public",

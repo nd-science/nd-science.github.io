@@ -4,13 +4,13 @@ locale: ru
 seoTitle: Нейроинтеграционное сопровождение
 seoDescription: Нейроинтеграция для саморегуляции, мышления и организации действий.
 h1: Нейроинтеграция для состояния, мышления и действий
-summary: НейроБаланс, НейроСёрфинг и НейроСпринты в работе с согласованным запросом.
+summary: Управление ресурсом нервной системы, преодоление прокрастинации и организация целей короткими циклами без насилия над собой.
 audience: [B2C]
 ctaLabel: Обсудить сопровождение
 ctaHref: /booking/#enquiry
 relatedServices: [neurointegration-support, four-week-support]
 sections: [services]
-updatedAt: 2026-10-29
+updatedAt: 2026-10-31
 publicationScope: public
 ---
 

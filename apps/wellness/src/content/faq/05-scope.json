@@ -1,5 +1,5 @@
 {
-  "question": { "ru": "С какими запросами Наталия не работает?", "en": "Which requests does Nataliia not take?" },
-  "answer": { "ru": "Детские, семейные, клинические и кризисные запросы направляются к соответствующим специалистам. При непосредственной опасности нужно обратиться в местные экстренные службы.", "en": "Child, family, clinical and crisis requests are referred to appropriate specialists. In immediate danger, contact local emergency services." },
+  "question": { "ru": "С какими запросами вы не работаете?", "en": "Which requests do you not take?" },
+  "answer": { "ru": "Я не работаю с детскими, семейными, клиническими и кризисными запросами (включая депрессивные эпизоды клинического уровня, расстройства пищевого поведения и зависимости). Такие запросы требуют помощи профильных врачей. При непосредственной опасности жизни необходимо обратиться в экстренные службы (112).", "en": "I do not take child, family, clinical or crisis requests (including clinical depression, eating disorders and addictions). These require specialized medical care. In immediate danger, contact local emergency services (e.g. 112)." },
   "publicationScope": "public"
 }

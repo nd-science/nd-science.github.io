@@ -8,7 +8,7 @@
     { "amount": 500, "currency": "EUR", "unit": "programme", "delivery": "online" },
     { "amount": 600, "currency": "EUR", "unit": "programme", "delivery": "in_person" }
   ],
-  "outcome": { "ru": "Серия встреч с регулярной обратной связью.", "en": "A series of meetings with regular feedback." },
+  "outcome": { "ru": "Устойчивое снижение тревожности, освоенные навыки саморегуляции и закрепление поддерживающих привычек.", "en": "Sustainable reduction of anxiety, mastered self-regulation tools and reinforced habits." },
   "relatedMethods": ["psychology", "neurointegration"],
   "serviceAvailability": "available",
   "publicationScope": "public",

@@ -3,14 +3,14 @@ route: practices/psychology
 locale: en
 seoTitle: Psychological consultation
 seoDescription: Nataliia Dolgova’s psychological consultation with a clear structure and an agreed request.
-h1: Psychological consultation with a clear structure
-summary: Work with your request, context, thoughts, emotions and actions.
+h1: Individual psychological counselling
+summary: Exploring your situation, reducing emotional distress and developing practical solutions through CBT, ACT and an integrative approach.
 audience: [B2C]
 ctaLabel: Book a consultation
 ctaHref: /booking/#enquiry
 relatedServices: [consultation, five-session-package, four-week-support]
 sections: [services]
-updatedAt: 2026-10-29
+updatedAt: 2026-10-31
 publicationScope: public
 ---
 

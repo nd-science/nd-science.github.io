@@ -9,9 +9,9 @@
     { "amount": 100, "currency": "EUR", "unit": "session", "delivery": "online" },
     { "amount": 120, "currency": "EUR", "unit": "session", "delivery": "in_person" }
   ],
-  "outcome": { "ru": "Понимание формата и согласованный следующий шаг.", "en": "A clear understanding of the format and an agreed next step." },
+  "outcome": { "ru": "Разбор причин перегрузки, первичные практики саморегуляции и персональный план дальнейших действий.", "en": "Analysis of stressors, initial self-regulation tools and a personalized action plan." },
   "relatedMethods": ["psychology", "neurointegration", "breathing", "movement-qigong", "play-and-story"],
   "serviceAvailability": "available",
   "publicationScope": "public",
-  "cta": { "label": { "ru": "Оставить заявку", "en": "Submit an enquiry" }, "href": "/booking/#enquiry" }
+  "cta": { "label": { "ru": "Записаться на консультацию", "en": "Book a consultation" }, "href": "/booking/#enquiry" }
 }

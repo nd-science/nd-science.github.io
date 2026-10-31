@@ -27,12 +27,12 @@ export const wellnessCopy = {
       { href: "/ru/booking/", label: "Контакты" },
     ],
     updatedPrefix: "Обновлено",
-    footer: "Черновой wellness-сайт. Не является медицинской рекомендацией.",
+    footer: "Практика психологического консультирования и нейроинтеграции Наталии Долговой. Услуги не являются медицинской помощью.",
     sections: {
       services: {
         title: "Форматы и стоимость",
         description:
-          "Прозрачные условия, длительность и этапы работы. Индивидуальная практика начинается с первичной установочной консультации.",
+          "Прозрачные условия, длительность и этапы работы. Индивидуальная практика начинается с консультации.",
       } satisfies SectionHeadingCopy,
       methods: {
         title: "Направления работы",
@@ -51,7 +51,7 @@ export const wellnessCopy = {
       enquiry: {
         title: "Форма первичного обращения",
         description:
-          "Короткая форма не собирает диагнозы и подробную историю здоровья.",
+          "Заполните короткую форму — я свяжусь с вами, чтобы обсудить запрос и согласовать удобное время встречи.",
       } satisfies SectionHeadingCopy,
       organisationForm: {
         title: "Корпоративный бриф",
@@ -132,8 +132,8 @@ export const wellnessCopy = {
       ],
       notConnected: {
         title: "Прямая запись и согласование времени",
-        text: "Пока веб-форма настраивается, запись на установочную встречу или обращение по корпоративным программам открыты напрямую в личных сообщениях.",
-        privateTitle: "Прямая запись на установочную встречу",
+        text: "Вы можете записаться на консультацию или задать вопрос напрямую Наталии в Telegram или через профессиональные реестры:",
+        privateTitle: "Прямая запись на консультацию",
         privateIntro: "Напишите Наталии в Telegram для согласования времени и деталей консультации:",
         telegramBtn: "Написать в Telegram: @natali_tvet_pro",
         telegramUrl: "https://t.me/natali_tvet_pro",
@@ -144,7 +144,7 @@ export const wellnessCopy = {
         checklistTitle: "Что указать в сообщении:",
         checklistItems: [
           "Ваше имя и часовой пояс",
-          "Кратко суть запроса (без чувствительных медицинских деталей)",
+          "Кратко суть запроса (без конфиденциальных медицинских подробностей)",
           "Предпочтительный формат: онлайн или очно в Белграде",
         ],
         orgTitle: "Корпоративный запрос и программы для команд",
@@ -176,12 +176,12 @@ export const wellnessCopy = {
       { href: "/en/booking/", label: "Contacts" },
     ],
     updatedPrefix: "Updated",
-    footer: "Draft wellness website. It does not provide medical advice.",
+    footer: "Nataliia Dolgova’s psychological counselling and neurointegration practice. Services are non-medical.",
     sections: {
       services: {
         title: "Formats and pricing",
         description:
-          "Transparent pricing, duration, and structure. Individual work begins with an initial consultation.",
+          "Transparent pricing, duration, and structure. Individual work begins with a consultation.",
       } satisfies SectionHeadingCopy,
       methods: {
         title: "Areas of work",
@@ -200,7 +200,7 @@ export const wellnessCopy = {
       enquiry: {
         title: "Initial enquiry form",
         description:
-          "The short form does not collect diagnoses or a detailed health history.",
+          "Complete the short form and I will contact you to discuss your request and arrange a convenient session time.",
       } satisfies SectionHeadingCopy,
       organisationForm: {
         title: "Organisational brief",
@@ -279,8 +279,8 @@ export const wellnessCopy = {
       ],
       notConnected: {
         title: "Direct booking and consultations",
-        text: "While the web form is being configured, session bookings and corporate inquiries are open directly via messaging.",
-        privateTitle: "Direct booking for an introductory consultation",
+        text: "You can book a consultation or send an inquiry directly to Nataliia on Telegram or via professional directories:",
+        privateTitle: "Direct booking for a consultation",
         privateIntro: "Message Nataliia on Telegram to arrange a convenient time and session details:",
         telegramBtn: "Message on Telegram: @natali_tvet_pro",
         telegramUrl: "https://t.me/natali_tvet_pro",
@@ -291,7 +291,7 @@ export const wellnessCopy = {
         checklistTitle: "What to include in your message:",
         checklistItems: [
           "Your name and time zone",
-          "Brief description of your request (without sensitive medical details)",
+          "Brief description of your request (without confidential medical details)",
           "Preferred format: online or in person in Belgrade",
         ],
         orgTitle: "Corporate inquiries and workshops",

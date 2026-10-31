@@ -60,7 +60,7 @@ const organisationForm = copy.forms.organisation;
 
     {variant === "private" ? (
       <>
-        <input type="hidden" name="service" value={locale === "ru" ? "Установочная консультация (Wellness)" : "Initial consultation (Wellness)"} />
+        <input type="hidden" name="service" value={locale === "ru" ? "Консультация (Wellness)" : "Consultation (Wellness)"} />
         <div class="field">
           <label for="wellness-name">{privateForm.name}</label>
           <input id="wellness-name" name="name" autocomplete="name" required />

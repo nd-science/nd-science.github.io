@@ -3,13 +3,13 @@ route: about
 locale: en
 seoTitle: About Nataliia Dolgova
 seoDescription: Nataliia Dolgova’s education, qualifications, experience and principles of practice.
-h1: A research perspective combined with individual practice
-summary: Research and adult-learning experience combined with psychology, neurointegration, breathing and movement.
+h1: Research background and individual practice
+summary: Research expertise, evidence-informed psychology and gentle body practices for human resilience.
 audience: [public]
 ctaLabel: Choose a way of working
 ctaHref: /for-individuals/
 sections: [credentials]
-updatedAt: 2026-10-29
+updatedAt: 2026-10-31
 publicationScope: public
 ---
 

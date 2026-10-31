@@ -4,13 +4,13 @@ locale: en
 seoTitle: Neurointegration support
 seoDescription: Neurointegration for self-regulation, thinking and organising action.
 h1: Neurointegration for state, thinking and action
-summary: NeuroBalance, NeuroSurfing and NeuroSprints applied to an agreed request.
+summary: Regulating nervous system resources, overcoming procrastination and organising goals in short cycles without self-coercion.
 audience: [B2C]
 ctaLabel: Discuss support
 ctaHref: /booking/#enquiry
 relatedServices: [neurointegration-support, four-week-support]
 sections: [services]
-updatedAt: 2026-10-29
+updatedAt: 2026-10-31
 publicationScope: public
 ---
 

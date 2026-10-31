@@ -394,14 +394,21 @@ function notifyTelegram(lead) {
     return;
   }
 
+  const safeId = String(lead.id || "").replace(/[`]/g, "");
+  const safeContact = String(lead.contact || "").replace(/[`]/g, "");
+  const safeName = escapeMd(lead.name || "Без имени");
+  const safeService = escapeMd(lead.service || "Консультация / Запрос");
+  const safeTimezone = escapeMd(lead.timezone || "Не указан");
+  const safeRequest = escapeMd(lead.request || "—");
+
   const message = 
     "🔔 *Новая заявка с сайта!*\n\n" +
-    "🆔 *Номер:* `" + escapeMd(lead.id) + "`\n" +
-    "👤 *Клиент:* " + escapeMd(lead.name) + "\n" +
-    "📱 *Контакт:* `" + escapeMd(lead.contact) + "`\n" +
-    "🎯 *Формат:* " + escapeMd(lead.service) + "\n" +
-    "🌍 *Часовой пояс:* " + escapeMd(lead.timezone) + "\n" +
-    "💬 *Запрос:*\n_" + escapeMd(lead.request || "—") + "_\n\n" +
+    "🆔 *Номер:* `" + safeId + "`\n" +
+    "👤 *Клиент:* " + safeName + "\n" +
+    "📱 *Контакт:* `" + safeContact + "`\n" +
+    "🎯 *Формат:* " + safeService + "\n" +
+    "🌍 *Часовой пояс:* " + safeTimezone + "\n" +
+    "💬 *Запрос:*\n_" + safeRequest + "_\n\n" +
     "📅 " + lead.date;
 
   const url = "https://api.telegram.org/bot" + token + "/sendMessage";
@@ -442,15 +449,12 @@ function testTelegram() {
   });
 }
 
-function doGet(e) {
-  return HtmlService.createHtmlOutput("Webhook is active.");
-}
-
 function escapeMd(text) {
   if (!text) return "";
-  return String(text).replace(/[_*[\]()~`>#+\-=|{}.!]/g, "\\$&");
+  return String(text).replace(/([_*`\[])/g, "\\$1");
 }
 
 function createJsonResponse(data) {
-  return HtmlService.createHtmlOutput(JSON.stringify(data));
+  return ContentService.createTextOutput(JSON.stringify(data))
+    .setMimeType(ContentService.MimeType.JSON);
 }

@@ -14,7 +14,7 @@ updatedAt: 2026-10-30
 publicationScope: public
 ---
 
-I study how adults develop complex professional skills, how TVET educators are prepared and which conditions make online learning feel effective. My work connects research, teaching, programme design and support for educational change.
+I study how adults develop complex professional skills, how TVET educators are prepared and which conditions contribute to the perceived effectiveness of online learning. My work connects research, teaching, programme design and support for educational change.
 
 **Key facts:** Dr. phil., Europa-Universität Flensburg, magna cum laude; Candidate of Economic Sciences; professional work since 2011; 40+ programmes; 2,000+ educators; 100+ publications; presentations at Russian and international professional events.
 

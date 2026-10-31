@@ -3,12 +3,12 @@ route: about
 locale: en
 seoTitle: Nataliia Dolgova — biography and degrees
 seoDescription: Nataliia Dolgova’s professional biography, degrees, qualifications and researcher identifiers.
-h1: Professional journey
-summary: Education, research and adult development since 2011.
+h1: Academic biography and research trajectory
+summary: Research, teaching, and education programme design since 2011.
 ctaLabel: Explore the research profile
 ctaHref: /research/
 sections: [credentials, profiles]
-updatedAt: 2026-10-29
+updatedAt: 2026-10-31
 publicationScope: public
 ---
 
