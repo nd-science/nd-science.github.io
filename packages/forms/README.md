@@ -33,8 +33,13 @@ packages/forms/
 Файл содержит готовый к развертыванию код Google Apps Script:
 * **`doPost(e)`**: точка входа для внешних POST-запросов (обрабатывает и JSON с сайта, и вебхуки от Telegram).
 * **`recordEnquiryInSheet(data)`**: вставляет строку заявки в Google Таблицу `CRM Заявки — Наталия Долгова` (`1PUybRboQFuNJldodtck2S6aYqHDTQpvkszn3DJlzXM8`) и форматирует ячейки.
-* **`sendTelegramNotification(data)`**: отправляет форматированную карточку лида в Telegram Наталии (`400839444`) и администратору (`5218564894`).
+* **`notifyTelegram(data)`**: отправляет форматированную карточку лида в Telegram специалистам, указанным в настройках.
 * **`handleTelegramUpdate(update)`**: обрабатывает команды (`/start`, `/help`, `/site` и т.д.) и нажатия инлайн-кнопок переключения языка (`show_ru`, `show_en`).
 * **`setupCRM()`**: служебная функция первичного создания столбцов, цветового оформления и выпадающих списков статусов воронки.
+
+### Безопасность и свойства скрипта (Script Properties)
+Секреты и токены **запрещено** хранить в коде репозитория. В Google Apps Script перейдите в **Project Settings (Настройки проекта)** -> **Script Properties (Свойства скрипта)** и добавьте:
+* `TELEGRAM_BOT_TOKEN`: токен бота, перевыпущенный в `@BotFather`.
+* `TELEGRAM_CHAT_ID`: идентификаторы чатов специалистов через запятую (например: `400839444,5218564894`).
 
 > Полное архитектурное описание см. в [docs/architecture/0003-forms-crm-and-telegram-bot.md](../../docs/architecture/0003-forms-crm-and-telegram-bot.md).

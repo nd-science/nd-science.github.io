@@ -3,9 +3,9 @@
  * Таблица: "CRM Заявки — Наталия Долгова"
  */
 
-// 1. НАСТРОЙКИ ПО УМОЛЧАНИЮ (можно также задать в Настройки проекта -> Свойства скрипта)
-const DEFAULT_TG_TOKEN = "REDACTED_TELEGRAM_BOT_TOKEN";
-const DEFAULT_TG_CHAT_ID = "400839444,5218564894";
+// 1. НАСТРОЙКИ (задаются исключительно в: Настройки проекта -> Свойства скрипта)
+//   - TELEGRAM_BOT_TOKEN: токен бота Telegram, полученный от @BotFather
+//   - TELEGRAM_CHAT_ID: ID получателей уведомлений через запятую (например: 400839444,5218564894)
 
 /**
  * Инициализация структуры CRM-таблицы (запустите один раз)
@@ -178,8 +178,11 @@ function doGet(e) {
  */
 function handleTelegramUpdate(update) {
   const scriptProps = PropertiesService.getScriptProperties();
-  const token = scriptProps.getProperty("TELEGRAM_BOT_TOKEN") || DEFAULT_TG_TOKEN;
-  if (!token) return;
+  const token = scriptProps.getProperty("TELEGRAM_BOT_TOKEN");
+  if (!token) {
+    console.warn("handleTelegramUpdate: TELEGRAM_BOT_TOKEN не задан в Свойствах скрипта (Script Properties).");
+    return;
+  }
 
   // 1. Нажатия inline-кнопок
   if (update.callback_query) {
@@ -387,10 +390,11 @@ function sendMessage(token, chatId, text) {
  */
 function notifyTelegram(lead) {
   const scriptProps = PropertiesService.getScriptProperties();
-  const token = scriptProps.getProperty("TELEGRAM_BOT_TOKEN") || DEFAULT_TG_TOKEN;
-  const chatId = scriptProps.getProperty("TELEGRAM_CHAT_ID") || DEFAULT_TG_CHAT_ID;
+  const token = scriptProps.getProperty("TELEGRAM_BOT_TOKEN");
+  const chatId = scriptProps.getProperty("TELEGRAM_CHAT_ID");
 
   if (!token || !chatId) {
+    console.warn("notifyTelegram: TELEGRAM_BOT_TOKEN или TELEGRAM_CHAT_ID не заданы в Свойствах скрипта (Script Properties).");
     return;
   }
 
