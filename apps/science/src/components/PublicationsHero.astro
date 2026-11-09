@@ -1,0 +1,150 @@
+---
+import { verifiedMetrics, type Locale } from "@natali/profile";
+
+interface Props {
+  locale: Locale;
+  title: string;
+  summary: string;
+}
+
+const { locale, title, summary } = Astro.props;
+const proofMetrics = verifiedMetrics.filter((metric) => metric.database === "Google Scholar" || metric.database === "РИНЦ / eLibrary");
+function formatDocuments(count: number): string {
+  if (locale !== "ru") return `${count} publications`;
+  const remainder100 = count % 100;
+  const remainder10 = count % 10;
+  const label = remainder100 >= 11 && remainder100 <= 14
+    ? "публикаций"
+    : remainder10 === 1
+      ? "публикация"
+      : remainder10 >= 2 && remainder10 <= 4
+        ? "публикации"
+        : "публикаций";
+  return `${count} ${label}`;
+}
+const copy = locale === "ru"
+  ? {
+      proof: "Научный профиль",
+      contact: "Обсудить исследовательский или образовательный проект",
+      register: "Смотреть полный реестр",
+      citations: "цитирований",
+    }
+  : {
+      proof: "Research profile",
+      contact: "Discuss a research or education project",
+      register: "View the complete register",
+      citations: "citations",
+    };
+---
+
+<div class="publications-hero">
+  <div class="publications-hero__copy">
+    <p class="publications-hero__eyebrow">{copy.proof}</p>
+    <h1>{title}</h1>
+    <p class="hero-copy">{summary}</p>
+    <div class="actions">
+      <a class="button" href={`/${locale}/contact/#enquiry`}>{copy.contact}</a>
+      <a class="button secondary" href="#bibliographic-register">{copy.register}</a>
+    </div>
+  </div>
+
+  <aside class="publications-hero__metrics" aria-label={copy.proof}>
+    {proofMetrics.map((metric) => (
+      <a href={metric.databaseUrl} target="_blank" rel="noopener noreferrer" class="proof-metric">
+        <span class="proof-metric__source">{metric.database}</span>
+        <span class="proof-metric__value">{formatDocuments(metric.documents)}</span>
+        <span class="proof-metric__detail">{metric.citations} {copy.citations} · h-index {metric.hIndex} <span aria-hidden="true">↗</span></span>
+      </a>
+    ))}
+  </aside>
+</div>
+
+<style>
+  .publications-hero {
+    align-items: end;
+    display: grid;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    grid-template-columns: minmax(0, 1.25fr) minmax(17rem, 0.75fr);
+  }
+
+  .publications-hero__eyebrow {
+    color: var(--accent-strong);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    margin: 0 0 0.8rem;
+    text-transform: uppercase;
+  }
+
+  .publications-hero h1 {
+    margin: 0;
+  }
+
+  .publications-hero .hero-copy {
+    max-inline-size: 42rem;
+  }
+
+  .publications-hero__metrics {
+    border-inline-start: 3px solid var(--accent);
+    display: grid;
+  }
+
+  .proof-metric {
+    border: 1px solid var(--border);
+    border-inline-start: 0;
+    color: var(--text);
+    display: grid;
+    gap: 0.25rem;
+    padding: 1.1rem 1.25rem;
+    text-decoration: none;
+    transition: background-color 160ms ease, color 160ms ease;
+  }
+
+  .proof-metric + .proof-metric {
+    border-block-start: 0;
+  }
+
+  .proof-metric:hover {
+    background: color-mix(in srgb, var(--accent) 8%, var(--card));
+  }
+
+  .proof-metric:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  .proof-metric__source {
+    color: var(--muted-text);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .proof-metric__value {
+    color: var(--heading);
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 1.55rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .proof-metric__value span,
+  .proof-metric__detail {
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 0.86rem;
+    font-weight: 500;
+  }
+
+  .proof-metric__detail {
+    color: var(--accent-strong);
+  }
+
+  @media (max-width: 760px) {
+    .publications-hero {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .proof-metric { transition: none; }
+  }
+</style>

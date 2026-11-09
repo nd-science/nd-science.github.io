@@ -9,6 +9,11 @@ import { scienceSiteConfig } from "../site-config";
 import ScienceProfile from "./ScienceProfile.astro";
 import PublicationList from "./PublicationList.astro";
 import ScienceEnquiryForm from "./ScienceEnquiryForm.astro";
+import ForbesEducation from "./ForbesEducation.astro";
+import PublicationsHero from "./PublicationsHero.astro";
+import PublicationNavigation from "./PublicationNavigation.astro";
+import PublicationHighlights from "./PublicationHighlights.astro";
+import CitationImpact from "./CitationImpact.astro";
 
 interface Props { entry: CollectionEntry<"pages"> }
 const { entry } = Astro.props;
@@ -177,6 +182,8 @@ const pageTitle = isHome
           </div>
         </aside>
       </div>
+    ) : route === "publications" ? (
+      <PublicationsHero {locale} title={entry.data.h1} summary={entry.data.summary} />
     ) : (
       <div class="hero-content">
         <h1>{entry.data.h1}</h1>
@@ -190,11 +197,19 @@ const pageTitle = isHome
       </div>
     )}
   </section>
-  <section class="page-section"><div class="section-inner prose"><Content /></div></section>
+  {route !== "publications" && <section class="page-section"><div class="section-inner prose"><Content /></div></section>}
+  {route === "publications" && (
+    <>
+      <PublicationNavigation {locale} />
+      <section class="page-section"><div class="section-inner"><PublicationHighlights items={publications} {locale} /></div></section>
+      <section class="page-section"><div class="section-inner"><CitationImpact {locale} /></div></section>
+    </>
+  )}
   {entry.data.sections.includes("credentials") && <section class="page-section"><div class="section-inner"><SectionHeading {...copy.sections.credentials} /><ScienceProfile {locale} /></div></section>}
-  {entry.data.sections.includes("publications") && <section class="page-section"><div class="section-inner"><SectionHeading {...copy.sections.publications} /><PublicationList items={publications} {locale} /></div></section>}
+  {entry.data.sections.includes("publications") && <section class="page-section" id="bibliographic-register"><div class="section-inner"><SectionHeading {...copy.sections.publications} /><PublicationList items={publications} {locale} /></div></section>}
+  {entry.data.sections.includes("forbes-education") && <section class="page-section" id="forbes-education"><div class="section-inner"><ForbesEducation {locale} /></div></section>}
   {entry.data.sections.includes("profiles") && (
-    <section class="page-section">
+    <section class="page-section" id="scholarly-profiles">
       <div class="section-inner">
         <SectionHeading {...copy.sections.profiles} />
         <ul class="profile-list">

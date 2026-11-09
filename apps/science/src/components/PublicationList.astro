@@ -32,12 +32,28 @@ const typeLabels: Record<"ru" | "en", Record<string, string>> = {
 function formatType(type: string): string {
   return typeLabels[locale]?.[type] || type.replaceAll("_", " ");
 }
+
+const copy = locale === "ru"
+  ? {
+      filters: "Фильтры публикаций", search: "Поиск по названию, изданию или теме", type: "Тип публикации:", all: "Все типы публикаций",
+      status: (shown: number, total: number) => `Показано ${shown} из ${total} публикаций`, empty: "По вашему запросу публикации не найдены.",
+      source: "Источник ↗", cite: "Цитировать ⎘", citeTitle: "Скопировать библиографическое описание в буфер обмена",
+    }
+  : {
+      filters: "Publication filters", search: "Search by title, venue or topic", type: "Publication type:", all: "All publication types",
+      status: (shown: number, total: number) => `${shown} of ${total} publications shown`, empty: "No publications match your search.",
+      source: "Source ↗", cite: "Cite ⎘", citeTitle: "Copy citation to clipboard",
+    };
 ---
-<div class="filter-bar" aria-label={locale === "ru" ? "Фильтры публикаций" : "Publication filters"}>
+<div class="filter-bar" aria-label={copy.filters}>
+  <div class="field publication-search">
+    <label for="publication-search" class="sr-only">{copy.search}</label>
+    <input id="publication-search" type="search" placeholder={copy.search} data-publication-search />
+  </div>
   <div class="field">
-    <label for="publication-type">{locale === "ru" ? "Тип публикации:" : "Publication type:"}</label>
+    <label for="publication-type">{copy.type}</label>
     <select id="publication-type" data-publication-filter>
-      <option value="all">{locale === "ru" ? "Все типы публикаций" : "All publication types"}</option>
+      <option value="all">{copy.all}</option>
       {types.map((type) => (
         <option value={type}>{formatType(type)}</option>
       ))}
@@ -46,26 +62,41 @@ function formatType(type: string): string {
 </div>
 <ul class="publication-list" data-publication-list>
   {sorted.map((item) => (
-    <li class="publication-item" data-type={item.data.type}>
+    <li class="publication-item" data-type={item.data.type} data-search={`${item.data.title} ${item.data.venue} ${item.data.researchAreas.join(" ")} ${item.data.authors.join(" ")}`.toLowerCase()}>
       <span class="publication-title">{item.data.title}</span>
       <span>{item.data.authors.join(", ")}</span>
       <span class="publication-meta">{item.data.year}, {formatType(item.data.type)}, {item.data.venue}, {item.data.language.toUpperCase()}</span>
       <div class="publication-links">
         {item.data.doi && <a href={`https://doi.org/${item.data.doi}`} target="_blank" rel="noopener noreferrer">DOI ↗</a>}
-        {item.data.url && <a href={item.data.url} target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Источник ↗" : "Source ↗"}</a>}
+        {item.data.url && <a href={item.data.url} target="_blank" rel="noopener noreferrer">{copy.source}</a>}
         <button
           type="button"
           class="cite-button"
           data-copy-cite={`${item.data.authors.join(", ")} (${item.data.year}). ${item.data.title}. ${item.data.venue}.${item.data.doi ? ` https://doi.org/${item.data.doi}` : ""}`}
-          title={locale === "ru" ? "Скопировать библиографическое описание в буфер обмена" : "Copy citation to clipboard"}
+          title={copy.citeTitle}
         >
-          {locale === "ru" ? "Цитировать ⎘" : "Cite ⎘"}
+          {copy.cite}
         </button>
       </div>
     </li>
   ))}
 </ul>
+<p class="publication-status" data-publication-status role="status" aria-live="polite">{copy.status(sorted.length, sorted.length)}</p>
+<p class="publication-empty" data-publication-empty hidden>{copy.empty}</p>
 <style>
+  .sr-only {
+    block-size: 1px;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    inline-size: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+  }
+  .publication-search { flex: 1 1 18rem; }
+  .publication-search input { inline-size: 100%; }
+  .publication-status, .publication-empty { color: var(--muted-text); font-size: var(--text-sm); margin: 1rem 0 0; }
+  .publication-empty { color: var(--heading); font-weight: var(--weight-bold); }
   .cite-button {
     background: transparent;
     border: none;
@@ -85,11 +116,25 @@ function formatType(type: string): string {
 </style>
 <script>
   const filter = document.querySelector<HTMLSelectElement>("[data-publication-filter]");
-  filter?.addEventListener("change", () => {
-    document.querySelectorAll<HTMLElement>("[data-publication-list] [data-type]").forEach((item) => {
-      item.hidden = filter.value !== "all" && item.dataset.type !== filter.value;
+  const search = document.querySelector<HTMLInputElement>("[data-publication-search]");
+  const status = document.querySelector<HTMLElement>("[data-publication-status]");
+  const empty = document.querySelector<HTMLElement>("[data-publication-empty]");
+  const records = Array.from(document.querySelectorAll<HTMLElement>("[data-publication-list] [data-type]"));
+  const currentLocale = document.documentElement.lang;
+  const updateFilters = () => {
+    const searchTerm = search?.value.trim().toLocaleLowerCase() ?? "";
+    let shown = 0;
+    records.forEach((item) => {
+      const matchesType = !filter || filter.value === "all" || item.dataset.type === filter.value;
+      const matchesSearch = !searchTerm || item.dataset.search?.includes(searchTerm);
+      item.hidden = !(matchesType && matchesSearch);
+      if (!item.hidden) shown += 1;
     });
-  });
+    if (status) status.textContent = currentLocale === "ru" ? `Показано ${shown} из ${records.length} публикаций` : `${shown} of ${records.length} publications shown`;
+    if (empty) empty.hidden = shown !== 0;
+  };
+  filter?.addEventListener("change", updateFilters);
+  search?.addEventListener("input", updateFilters);
 
   document.querySelectorAll<HTMLButtonElement>("[data-copy-cite]").forEach((button) => {
     button.addEventListener("click", async () => {

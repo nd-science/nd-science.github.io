@@ -1,0 +1,56 @@
+---
+import type { CollectionEntry } from "astro:content";
+import type { Locale } from "@natali/profile";
+
+interface Props { items: CollectionEntry<"publications">[]; locale: Locale }
+const { items, locale } = Astro.props;
+const highlightIds = ["dissertation", "next-gen-learning", "university-industry-interaction"];
+const highlights = highlightIds.flatMap((id) => items.filter((item) => item.id === id));
+const types: Record<Locale, Record<string, string>> = {
+  ru: { thesis: "Диссертация", journal_article: "Статья в журнале" },
+  en: { thesis: "Doctoral dissertation", journal_article: "Journal article" },
+};
+const copy = locale === "ru"
+  ? { title: "Ключевые работы", description: "Три публикации, которые лучше всего показывают текущую исследовательскую траекторию и её прикладной контекст.", source: "Открыть источник" }
+  : { title: "Key works", description: "Three publications that best represent the current research trajectory and its applied context.", source: "Open source" };
+---
+
+<section class="publication-highlights" id="key-publications" aria-labelledby="key-publications-title">
+  <header>
+    <p class="section-kicker">{locale === "ru" ? "Избранное" : "Selected"}</p>
+    <h2 id="key-publications-title">{copy.title}</h2>
+    <p>{copy.description}</p>
+  </header>
+  <div class="publication-highlights__grid">
+    {highlights.map((item) => {
+      const sourceUrl = item.data.doi ? `https://doi.org/${item.data.doi}` : item.data.url;
+      return (
+        <article class="highlight-card">
+          <div class="highlight-card__meta"><span>{item.data.year}</span><span>{types[locale][item.data.type] || item.data.type}</span></div>
+          <h3>{item.data.title}</h3>
+          <p class="highlight-card__areas">{item.data.researchAreas.join(" · ")}</p>
+          <p class="highlight-card__venue">{item.data.venue}</p>
+          {sourceUrl && <a href={sourceUrl} target="_blank" rel="noopener noreferrer">{copy.source} <span aria-hidden="true">↗</span></a>}
+        </article>
+      );
+    })}
+  </div>
+</section>
+
+<style>
+  .publication-highlights { scroll-margin-top: 5rem; }
+  .publication-highlights header { max-inline-size: 46rem; }
+  .section-kicker { color: var(--accent-strong); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.14em; margin: 0 0 0.7rem; text-transform: uppercase; }
+  .publication-highlights h2 { margin: 0; }
+  .publication-highlights header > p:last-child { color: var(--muted-text); line-height: 1.65; margin-block: 0.8rem 0; }
+  .publication-highlights__grid { display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-block-start: 1.75rem; }
+  .highlight-card { background: var(--card); border: 1px solid var(--border); display: flex; flex-direction: column; min-block-size: 15rem; padding: 1.35rem; }
+  .highlight-card__meta { color: var(--accent-strong); display: flex; font-size: 0.8rem; font-weight: 800; gap: 0.7rem; }
+  .highlight-card__meta span + span { border-inline-start: 1px solid var(--border-strong); padding-inline-start: 0.7rem; }
+  .highlight-card h3 { color: var(--heading); font-family: "Fraunces", Georgia, serif; font-size: 1.28rem; line-height: 1.24; margin: 1rem 0 0.8rem; }
+  .highlight-card__areas { color: var(--muted-text); font-size: 0.88rem; line-height: 1.5; margin: 0; }
+  .highlight-card__venue { color: var(--text); font-size: 0.9rem; line-height: 1.4; margin: auto 0 1rem; padding-block-start: 1.2rem; }
+  .highlight-card a { color: var(--accent-strong); font-size: 0.9rem; font-weight: 700; text-underline-offset: 0.25em; }
+  .highlight-card a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+  @media (max-width: 900px) { .publication-highlights__grid { grid-template-columns: 1fr; } .highlight-card { min-block-size: 0; } }
+</style>

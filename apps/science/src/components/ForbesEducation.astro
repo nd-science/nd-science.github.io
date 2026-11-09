@@ -1,0 +1,188 @@
+---
+import type { Locale } from "@natali/profile";
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+
+const profileUrl = "https://www.forbes.ru/profile/510916-natalia-dolgova";
+const articles = [
+  {
+    year: "2023",
+    title: "Среднее профессиональное образование в Австралии: сертификаты, дипломы и их уровни",
+    url: "https://www.forbes.ru/education/510917-srednee-professional-noe-obrazovanie-v-avstralii-sertifikaty-diplomy-i-ih-urovni",
+  },
+  {
+    year: "2022",
+    title: "Среднее профессиональное образование в Канаде: разнообразие, простота, перспективы",
+    url: "https://www.forbes.ru/education/517521-crednee-professional-noe-obrazovanie-v-kanade-raznoobrazie-prostota-perspektivy",
+  },
+  {
+    year: "2022",
+    title: "Современная система среднего профессионального образования в России",
+    url: "https://www.forbes.ru/education/518989-sovremennaa-sistema-srednego-professional-nogo-obrazovania-v-rossii",
+  },
+] as const;
+
+const copy = locale === "ru"
+  ? {
+      eyebrow: "Авторские материалы",
+      title: "Forbes Education",
+      description: "Избранные публикации Наталии Долговой о системах среднего профессионального образования. Полные тексты доступны на сайте издателя.",
+      articleLabel: "Открыть публикацию",
+      profileLabel: "Все материалы автора в Forbes Education",
+      note: "Заголовки приведены для навигации; материалы и товарные знаки принадлежат соответствующим правообладателям.",
+    }
+  : {
+      eyebrow: "Selected bylines",
+      title: "Forbes Education",
+      description: "Selected articles by Nataliia Dolgova on vocational education systems. Full texts are available on the publisher’s website.",
+      articleLabel: "Read on Forbes",
+      profileLabel: "View all Forbes Education bylines",
+      note: "Titles are provided for navigation; articles and trademarks remain the property of their respective rightsholders.",
+    };
+---
+
+<section class="forbes-feature" aria-labelledby="forbes-education-title">
+  <header class="forbes-feature__intro">
+    <p class="forbes-feature__eyebrow">{copy.eyebrow}</p>
+    <h2 id="forbes-education-title">{copy.title}</h2>
+    <p>{copy.description}</p>
+  </header>
+
+  <ol class="forbes-feature__list">
+    {articles.map((article) => (
+      <li>
+        <a href={article.url} target="_blank" rel="noopener noreferrer" class="forbes-feature__article">
+          <span class="forbes-feature__year">{article.year}</span>
+          <span class="forbes-feature__title">{article.title}</span>
+          <span class="forbes-feature__action">{copy.articleLabel} <span aria-hidden="true">↗</span></span>
+        </a>
+      </li>
+    ))}
+  </ol>
+
+  <footer class="forbes-feature__footer">
+    <a class="button secondary" href={profileUrl} target="_blank" rel="noopener noreferrer">{copy.profileLabel} <span aria-hidden="true">↗</span></a>
+    <p>{copy.note}</p>
+  </footer>
+</section>
+
+<style>
+  .forbes-feature {
+    --forbes-accent: var(--accent);
+    border-block: 1px solid var(--border);
+    padding-block: clamp(2.5rem, 7vw, 5rem);
+  }
+
+  .forbes-feature__intro {
+    max-inline-size: 48rem;
+  }
+
+  .forbes-feature__eyebrow {
+    color: var(--forbes-accent);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    margin-block: 0 0.65rem;
+    text-transform: uppercase;
+  }
+
+  .forbes-feature h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin: 0;
+  }
+
+  .forbes-feature__intro > p:last-child {
+    color: var(--muted-text);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-block: 0.85rem 0;
+  }
+
+  .forbes-feature__list {
+    counter-reset: article;
+    display: grid;
+    gap: 0.75rem;
+    list-style: none;
+    margin: clamp(1.8rem, 4vw, 2.6rem) 0 0;
+    padding: 0;
+  }
+
+  .forbes-feature__article {
+    align-items: baseline;
+    border: 1px solid var(--border);
+    border-inline-start: 3px solid transparent;
+    color: inherit;
+    display: grid;
+    gap: 0.8rem 1.25rem;
+    grid-template-columns: auto 1fr auto;
+    padding: 1.1rem 1.25rem;
+    text-decoration: none;
+    transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+  }
+
+  .forbes-feature__article:hover {
+    background: color-mix(in srgb, var(--accent) 7%, var(--surface));
+    border-color: var(--forbes-accent);
+    border-inline-start-color: var(--forbes-accent);
+    transform: translateX(3px);
+  }
+
+  .forbes-feature__article:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  .forbes-feature__year {
+    color: var(--forbes-accent);
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+
+  .forbes-feature__title {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: clamp(1.1rem, 2vw, 1.32rem);
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .forbes-feature__action {
+    color: var(--forbes-accent);
+    font-size: 0.84rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .forbes-feature__footer {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+    margin-block-start: 1.25rem;
+  }
+
+  .forbes-feature__footer p {
+    color: var(--muted-text);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    margin: 0;
+    max-inline-size: 37rem;
+  }
+
+  @media (max-width: 640px) {
+    .forbes-feature__article {
+      grid-template-columns: auto 1fr;
+    }
+
+    .forbes-feature__action {
+      grid-column: 2;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .forbes-feature__article {
+      transition: none;
+    }
+  }
+</style>

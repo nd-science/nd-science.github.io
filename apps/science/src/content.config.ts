@@ -10,7 +10,7 @@ const pages = defineCollection({
     seoTitle: z.string().min(1), seoDescription: z.string().min(1), h1: z.string().min(1), summary: z.string().min(1),
     ctaLabel: z.string().min(1).optional(), ctaHref: z.string().min(1).optional(),
     ctaSecondaryLabel: z.string().min(1).optional(), ctaSecondaryHref: z.string().min(1).optional(),
-    sections: z.array(z.enum(["credentials", "publications", "contact-form", "profiles"])).default([]),
+    sections: z.array(z.enum(["credentials", "publications", "contact-form", "profiles", "forbes-education"])).default([]),
     updatedAt: z.coerce.date(), publicationScope: publicationScope.default("public"),
   }),
 });

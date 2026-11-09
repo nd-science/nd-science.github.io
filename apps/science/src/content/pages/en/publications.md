@@ -4,11 +4,9 @@ locale: en
 seoTitle: Nataliia Dolgova’s publications
 seoDescription: Selected publications, DOI links and profiles for Nataliia Dolgova, published also as Nataliia Ovchinnikova.
 h1: Selected publications
-summary: A filterable bibliography with a DOI or primary source for every record.
-ctaLabel: Open ORCID
-ctaHref: https://orcid.org/0000-0003-0816-2103
-sections: [publications, profiles]
-updatedAt: 2026-10-30
+summary: Research on vocational education, digital transformation and human-capital development, with verifiable primary sources.
+sections: [publications, forbes-education, profiles]
+updatedAt: 2026-11-09
 publicationScope: public
 ---
 

@@ -1,0 +1,66 @@
+---
+import type { Locale } from "@natali/profile";
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const items = locale === "ru"
+  ? [
+      ["#key-publications", "Ключевые работы"],
+      ["#academic-impact", "Академическое признание"],
+      ["#bibliographic-register", "Полный реестр"],
+      ["#forbes-education", "Forbes Education"],
+      ["#scholarly-profiles", "Научные профили"],
+    ]
+  : [
+      ["#key-publications", "Key works"],
+      ["#academic-impact", "Academic impact"],
+      ["#bibliographic-register", "Complete register"],
+      ["#forbes-education", "Forbes Education"],
+      ["#scholarly-profiles", "Research profiles"],
+    ];
+---
+
+<nav class="publication-nav" aria-label={locale === "ru" ? "Навигация по публикациям" : "Publication navigation"}>
+  <ol>
+    {items.map(([href, label]) => <li><a href={href}>{label}</a></li>)}
+  </ol>
+</nav>
+
+<style>
+  .publication-nav {
+    background: color-mix(in srgb, var(--background) 92%, transparent);
+    border-block: 1px solid var(--border);
+    margin-block: 0 clamp(2.75rem, 6vw, 5rem);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+
+  .publication-nav ol {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    overflow-x: auto;
+    padding: 0.65rem max(1.25rem, calc((100vw - 72rem) / 2));
+    scrollbar-width: thin;
+  }
+
+  .publication-nav a {
+    border-radius: var(--radius-small);
+    color: var(--text);
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 700;
+    padding: 0.62rem 0.78rem;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .publication-nav a:hover { background: var(--surface); }
+  .publication-nav a:focus-visible { outline: 3px solid var(--focus); outline-offset: -2px; }
+
+  @media (max-width: 760px) {
+    .publication-nav { margin-block-end: 2.5rem; }
+    .publication-nav ol { padding-inline: 1rem; }
+  }
+</style>

@@ -1,0 +1,45 @@
+---
+import type { Locale } from "@natali/profile";
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const cards = locale === "ru"
+  ? [
+      ["Журнал «Высшее образование в России»", "ВАК К1 / Scopus", "В исследовании модернизации высшего образования (Кравченко С. А., 2026) работа «Взаимодействие университета с индустрией 2.0» привлекается для анализа форматов партнёрства вузов и работодателей."],
+      ["Вестник РГГУ (Серия «Экономика и управление»)", "ВАК К1", "В исследовании карьерного потенциала обучающихся колледжей и вузов (Фролова И. И., Арсланова С. К., 2026) статья «Университеты как ключевые факторы развития человеческого капитала для экономики регионов» используется в анализе роли институтов в формировании кадрового потенциала."],
+      ["Отраслевые монографии по трансферу технологий", "Академические издания", "Монографии по университетскому технологическому предпринимательству и эффективности центров трансфера технологий используют сравнительный анализ зарубежных моделей трансфера технологий (Овчинникова, Лазаренко, 2021)."],
+      ["Журнал «Креативная экономика»", "ВАК", "В анализе концепций «Университет 3.0» (Смирнов Д. Ю., 2026) статья «Роль современного университета в инновационном развитии региона» рассматривается в контексте трансформации вузов в региональные драйверы инноваций."],
+      ["Международные обзоры управления образованием", "SUSU Bulletin / Scopus", "В комплексном обзоре моделей институционального управления (Loginovskiy O. V., 2025) обобщаются результаты исследований моделей трансфера технологий и инженерного образования."],
+    ]
+  : [
+      ["Higher Education in Russia", "Peer-reviewed Q1 / Scopus", "Studies examining modern higher education ecosystems (Kravchenko S. A., 2026) cite «University–Industry Interaction 2.0» to analyse partnership formats between universities and employers."],
+      ["RSUH Bulletin (Economics & Management)", "Peer-reviewed / RSCI", "Research on student career development and human potential across colleges and universities (Frolova I. I., Arslanova S. K., 2026) references «Universities as Key Drivers of Regional Human Capital...» in its institutional analysis."],
+      ["Academic monographs on technology transfer", "Monographs", "Academic monographs on university technological entrepreneurship and technology-transfer centres use comparative analyses of international technology-transfer models (Ovchinnikova & Lazarenko, 2021)."],
+      ["Journal of Creative Economy", "Peer-reviewed", "Research on University 3.0 transformations (Smirnov D. Yu., 2026) builds upon «The Role of Modern Universities in Regional Innovation Development» in considering regional innovation systems."],
+      ["International education-management reviews", "SUSU Bulletin / Scopus", "A broad review of institutional management models (Loginovskiy O. V., 2025) synthesises research on technology transfer and engineering education."],
+    ];
+const copy = locale === "ru"
+  ? { title: "Академическое признание и контекст цитирований", description: "Выборочные примеры использования работ Наталии Долговой (Овчинниковой) в научной и отраслевой литературе." }
+  : { title: "Academic impact and citation context", description: "Selected examples of how work by Nataliia Dolgova (published as Ovchinnikova) is used in scholarly and sector literature." };
+---
+
+<section class="citation-impact" id="academic-impact" aria-labelledby="academic-impact-title">
+  <header><h2 id="academic-impact-title">{copy.title}</h2><p>{copy.description}</p></header>
+  <div class="citation-impact__grid">
+    {cards.map(([source, badge, body]) => (
+      <article class="citation-impact__card"><div><span>{source}</span><span class="badge">{badge}</span></div><p>{body}</p></article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .citation-impact { scroll-margin-top: 5rem; }
+  .citation-impact header { max-inline-size: 46rem; }
+  .citation-impact h2 { margin: 0; }
+  .citation-impact header p { color: var(--muted-text); line-height: 1.65; margin-block: 0.8rem 0; }
+  .citation-impact__grid { display: grid; gap: 0.8rem; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-block-start: 1.75rem; }
+  .citation-impact__card { background: var(--card); border: 1px solid var(--border); border-inline-start: 3px solid var(--accent); padding: 1rem 1.1rem; }
+  .citation-impact__card > div { align-items: center; display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: space-between; }
+  .citation-impact__card > div > span:first-child { color: var(--heading); font-family: "Fraunces", Georgia, serif; font-weight: 700; }
+  .citation-impact__card p { font-size: 0.92rem; line-height: 1.58; margin: 0.7rem 0 0; }
+  @media (max-width: 760px) { .citation-impact__grid { grid-template-columns: 1fr; } }
+</style>
