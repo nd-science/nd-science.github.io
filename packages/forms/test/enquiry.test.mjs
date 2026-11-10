@@ -22,14 +22,8 @@ function formRequest(kind = "wellness", overrides = {}) {
           locale: "ru",
           name: "Тест",
           organisation: "Организация",
-          role: "Руководитель",
           email: "person@example.test",
-          language: "ru",
-          projectType: "research",
-          intendedResult: "Аналитический отчёт",
-          audience: "Команда",
-          timeline: "Q1",
-          budgetRange: "by-proposal",
+          comment: "Краткий запрос о сотрудничестве",
           consent: "yes",
           "cf-turnstile-response": "token",
         };
@@ -75,9 +69,9 @@ test("rejects a missing adult confirmation", async () => {
   assert.equal(response.status, 422);
 });
 
-test("rejects a missing language choice", async () => {
+test("rejects a missing required comment in Science enquiry", async () => {
   const response = await handleEnquiry(
-    formRequest("science", { language: "" }),
+    formRequest("science", { comment: "" }),
     env,
     "science",
     fetchOk,

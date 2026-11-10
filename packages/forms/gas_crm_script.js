@@ -125,8 +125,10 @@ function isValidEmail(value) {
 function isValidForm(data, site) {
   if (data.consent !== "yes") return false;
   if (site === "science") {
-    return ["name", "organisation", "role", "email", "language", "projectType", "intendedResult", "audience", "timeline", "budgetRange"]
-      .every(function(key) { return formText(data[key]).length > 0; }) && isValidEmail(formText(data.email, 254));
+    var commentVal = formText(data.comment || data.request || data.intendedResult);
+    return ["name", "organisation", "email"].every(function(key) { return formText(data[key]).length > 0; })
+      && commentVal.length > 0
+      && isValidEmail(formText(data.email, 254));
   }
   if (data.enquiryKind === "organisation") {
     return ["organisation", "role", "contact", "language", "request", "audience", "delivery", "timeline"]
@@ -196,16 +198,16 @@ function toStoredLead(data, site) {
     source: "Science",
     name: formText(data.name, 180),
     contact: formText(data.email, 254),
-    service: "Science: " + formText(data.projectType, 180),
-    timezone: "Сроки: " + formText(data.timeline, 180),
+    service: data.projectType ? "Science: " + formText(data.projectType, 180) : "Science: Запрос о сотрудничестве",
+    timezone: data.timeline ? "Сроки: " + formText(data.timeline, 180) : "Не указан",
     request: [
       "Организация: " + formText(data.organisation),
-      "Роль: " + formText(data.role),
-      "Язык: " + formText(data.language),
-      "Результат: " + formText(data.intendedResult),
-      "Аудитория: " + formText(data.audience),
-      "Бюджет: " + formText(data.budgetRange),
-      formText(data.comment) ? "Комментарий: " + formText(data.comment) : ""
+      data.role ? "Роль: " + formText(data.role) : "",
+      data.language ? "Язык: " + formText(data.language) : "",
+      data.intendedResult ? "Результат: " + formText(data.intendedResult) : "",
+      data.audience ? "Аудитория: " + formText(data.audience) : "",
+      data.budgetRange ? "Бюджет: " + formText(data.budgetRange) : "",
+      "Комментарий: " + formText(data.comment || data.request || data.intendedResult)
     ].filter(Boolean).join("\n")
   };
 }

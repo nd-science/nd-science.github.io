@@ -12,7 +12,7 @@ updatedAt: 2026-11-10
 publicationScope: public
 ---
 
-Please include your organisation, role, type of challenge, intended result, audience, language, timeline and budget range. Do not attach confidential information before the working terms have been agreed.
+Please include your name, organisation, reply email and a brief description of your inquiry or comment. Do not attach confidential information before working terms have been agreed.
 
 Suitable enquiries include research, analytics, learning programmes, facilitation and speaking. I respond within three working days. An automatic reply does not constitute project acceptance.
 

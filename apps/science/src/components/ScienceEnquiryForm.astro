@@ -42,18 +42,8 @@ const form = scienceCopy[locale].form;
     <div class="form-honeypot" aria-hidden="true"><label for="science-website">{form.honeypot}</label><input id="science-website" name="website" tabindex={-1} autocomplete="off" /></div>
     <div class="field"><label for="science-name">{form.name}</label><input id="science-name" name="name" autocomplete="name" required /></div>
     <div class="field"><label for="science-organisation">{form.organisation}</label><input id="science-organisation" name="organisation" autocomplete="organization" required /></div>
-    <div class="field"><label for="science-role">{form.role}</label><input id="science-role" name="role" autocomplete="organization-title" required /></div>
     <div class="field"><label for="science-email">{form.email}</label><input id="science-email" name="email" type="email" autocomplete="email" required /></div>
-    <div class="field">
-      <label for="science-language">{form.language}</label>
-      <select id="science-language" name="language" required>{scienceCopy[locale].languageOptions.map((option) => <option value={option.value}>{option.label}</option>)}</select>
-    </div>
-    <div class="field"><label for="science-type">{form.projectType}</label><select id="science-type" name="projectType" required>{scienceCopy[locale].projectTypeOptions.map((option) => <option value={option.value}>{option.label}</option>)}</select></div>
-    <div class="field"><label for="science-result">{form.result}</label><textarea id="science-result" name="intendedResult" maxlength="2000" required></textarea></div>
-    <div class="field"><label for="science-audience">{form.audience}</label><input id="science-audience" name="audience" required /></div>
-    <div class="field"><label for="science-timeline">{form.timeline}</label><input id="science-timeline" name="timeline" required /></div>
-    <div class="field"><label for="science-budget">{form.budget}</label><select id="science-budget" name="budgetRange" required>{scienceCopy[locale].budgetOptions.map((option) => <option value={option.value}>{option.label}</option>)}</select></div>
-    <div class="field"><label for="science-comment">{form.comment}</label><textarea id="science-comment" name="comment" maxlength="2000"></textarea></div>
+    <div class="field"><label for="science-comment">{form.comment}</label><textarea id="science-comment" name="comment" maxlength="2000" required placeholder={locale === "ru" ? "Опишите ваш запрос или тему для сотрудничества…" : "Describe your inquiry or topic for collaboration…"}></textarea></div>
     <div class="checkbox-field">
       <input id="science-consent" name="consent" type="checkbox" value="yes" required />
       <label for="science-consent">

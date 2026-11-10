@@ -191,13 +191,14 @@ export interface ScienceEnquiry {
   locale: Locale;
   name: string;
   organisation: string;
-  role: string;
   email: string;
-  projectType: string;
-  intendedResult: string;
-  audience: string;
-  timeline: string;
-  budgetRange: string;
+  comment: string;
+  role?: string;
+  projectType?: string;
+  intendedResult?: string;
+  audience?: string;
+  timeline?: string;
+  budgetRange?: string;
   consent: true;
 }
 
