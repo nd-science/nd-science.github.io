@@ -27,14 +27,17 @@ for (const [site, routes] of Object.entries(expected)) {
     const text = readFileSync(file, "utf8");
     return { file, locale: frontmatterValue(text, "locale"), route: frontmatterValue(text, "route"), text };
   });
-  for (const locale of ["ru", "en"]) {
+  const siteLocales = site === "science" ? ["ru", "en", "zh"] : ["ru", "en"];
+  for (const locale of siteLocales) {
     const actual = records.filter((record) => record.locale === locale).map((record) => record.route).sort();
     const wanted = [...routes].sort();
     if (JSON.stringify(actual) !== JSON.stringify(wanted)) failures.push(`${site}/${locale}: expected ${wanted.length} routes, found ${actual.length}; routes differ`);
   }
   for (const route of routes) {
-    const pair = records.filter((record) => record.route === route);
-    if (pair.length !== 2) failures.push(`${site}: route ${route} does not have exactly one RU and one EN page`);
+    for (const locale of siteLocales) {
+      const page = records.find((record) => record.route === route && record.locale === locale);
+      if (!page) failures.push(`${site}: route ${route} is missing for locale ${locale}`);
+    }
   }
 }
 
@@ -76,5 +79,5 @@ if (failures.length) {
   console.error(failures.join("\n"));
   process.exitCode = 1;
 } else {
-  console.log("Content validation passed: 13 Wellness and 11 Science routes in RU/EN, canonical models and commercial facts.");
+  console.log("Content validation passed: 13 Wellness (RU/EN) and 11 Science routes (RU/EN/ZH), canonical models and commercial facts.");
 }

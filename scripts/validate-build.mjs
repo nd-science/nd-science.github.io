@@ -9,13 +9,14 @@ const routes = {
 };
 
 for (const [site, siteRoutes] of Object.entries(routes)) {
-  for (const locale of ["ru", "en"]) {
+  const siteLocales = site === "science" ? ["ru", "en", "zh"] : ["ru", "en"];
+  for (const locale of siteLocales) {
     for (const route of siteRoutes) {
       const file = resolve(root, `apps/${site}/dist/${locale}/${route}/index.html`);
       if (!existsSync(file)) { failures.push(`Missing built route: ${site}/${locale}/${route || "home"}`); continue; }
       const html = readFileSync(file, "utf8");
-      for (const token of [
-        `lang="${locale}"`,
+      const expectedTokens = [
+        `lang="${locale === "zh" ? "zh-Hans" : locale}"`,
         "rel=\"canonical\"",
         "hreflang=\"ru\"",
         "hreflang=\"en\"",
@@ -24,14 +25,19 @@ for (const [site, siteRoutes] of Object.entries(routes)) {
         'content="nosniff"',
         'content="strict-origin-when-cross-origin"',
         'name="twitter:card"',
-      ]) {
+      ];
+      if (site === "science") {
+        expectedTokens.push("hreflang=\"zh\"");
+      }
+      for (const token of expectedTokens) {
         if (!html.includes(token)) failures.push(`${site}/${locale}/${route || "home"}: missing ${token}`);
       }
       if (html.includes('h4 class="footer-heading"')) {
         failures.push(`${site}/${locale}/${route || "home"}: obsolete h4 footer heading found`);
       }
-      const otherOrigin = site === "wellness" ? "science.invalid" : "wellness.invalid";
-      if (route !== "about" && html.includes(otherOrigin)) failures.push(`${site}/${locale}/${route || "home"}: cross-site link is allowed only on About`);
+      if (!html.includes('class="footer-cross-site"') && !html.includes("class='footer-cross-site'")) {
+        failures.push(`${site}/${locale}/${route || "home"}: missing footer cross-site link`);
+      }
 
       const distDir = resolve(root, `apps/${site}/dist`);
       const linkRegex = /<a\s+[^>]*?href=["']([^"']+)["']/gi;
@@ -82,7 +88,8 @@ if (!scienceProjects.includes('"@type":"ResearchProject"')) failures.push("Scien
 
 if (process.env.PUBLIC_SITE_STATUS === "public") {
   for (const [site, siteRoutes] of Object.entries(routes)) {
-    for (const locale of ["ru", "en"]) {
+    const siteLocales = site === "science" ? ["ru", "en", "zh"] : ["ru", "en"];
+    for (const locale of siteLocales) {
       for (const route of siteRoutes) {
         const file = resolve(root, `apps/${site}/dist/${locale}/${route}/index.html`);
         if (!existsSync(file)) continue;
@@ -94,4 +101,4 @@ if (process.env.PUBLIC_SITE_STATUS === "public") {
 }
 
 if (failures.length) { console.error(failures.join("\n")); process.exitCode = 1; }
-else console.log("Built-route validation passed for 48 localized pages, canonical/hreflang and structured data.");
+else console.log("Built-route validation passed for localized pages (RU/EN/ZH), canonical/hreflang and structured data.");

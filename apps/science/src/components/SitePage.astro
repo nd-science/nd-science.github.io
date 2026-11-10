@@ -114,11 +114,19 @@ if (route === "research/dissertation") {
     url: "https://www.zhb-flensburg.de/dissert/dolgova",
   });
 }
-const wellnessOrigin = (import.meta.env.PUBLIC_WELLNESS_SITE_URL || copy.crossSiteHrefBase).replace(/\/$/, "");
-const crossSite = route === "about" ? {
+const wellnessOrigin = (
+  import.meta.env.PUBLIC_WELLNESS_SITE_URL ||
+  (copy.crossSiteHrefBase && !copy.crossSiteHrefBase.includes(".invalid") ? copy.crossSiteHrefBase : "https://wellnessnd.github.io")
+).replace(/\/+$/, "");
+
+const crossSiteHref = route === "about"
+  ? `${wellnessOrigin}/${locale}/about/`
+  : `${wellnessOrigin}/${locale}/`;
+
+const crossSite = {
   label: copy.crossSiteLabel,
-  href: `${wellnessOrigin}/${locale}/about/`,
-} : undefined;
+  href: crossSiteHref,
+};
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 const endpoint = turnstileSiteKey
   ? import.meta.env.PUBLIC_ENQUIRY_WEBHOOK_URL || "https://script.google.com/macros/s/AKfycbzeq7In-ycmZ-Fw7Sl2LTpVcltlaFePSIGrLnZlEVxhNMsMyyaBxNaYtn2ac6u10zmeGQ/exec"

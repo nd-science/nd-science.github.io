@@ -63,7 +63,23 @@ const {
   footerText,
 } = Astro.props;
 
+const SUPPORTED_LOCALES: Record<string, { code: string; label: string; htmlLang: string; ogLocale: string }> = {
+  ru: { code: "ru", label: "RU", htmlLang: "ru", ogLocale: "ru_RU" },
+  en: { code: "en", label: "EN", htmlLang: "en", ogLocale: "en_US" },
+};
+
 const siteUrl = import.meta.env.PUBLIC_SITE_URL || fallbackSiteUrl;
+const defaultCrossSiteOrigin = theme === "science"
+  ? (import.meta.env.PUBLIC_WELLNESS_SITE_URL || "https://wellnessnd.github.io").replace(/\/+$/, "")
+  : (import.meta.env.PUBLIC_SCIENCE_SITE_URL || "https://nd-science.github.io").replace(/\/+$/, "");
+
+const effectiveCrossSite = crossSite || {
+  label: theme === "science"
+    ? (locale === "ru" ? "Практика саморегуляции и консультации" : "Wellbeing Practice & Counselling")
+    : (locale === "ru" ? "Академический профиль (Dr. phil.)" : "Academic & Research Profile (Dr. phil.)"),
+  href: `${defaultCrossSiteOrigin}/${locale}/`,
+};
+
 const status: SiteStatus =
   import.meta.env.PUBLIC_SITE_STATUS === "public" ? "public" : "draft";
 const seo = buildSeo({ siteUrl, locale, paths, status });
@@ -78,40 +94,193 @@ const personJsonLd = createPersonJsonLd(
   },
 );
 
-const labels =
-  locale === "ru"
-    ? {
-        skip: "Перейти к содержанию",
-        draft: "Черновик: сайт ещё не выпущен, контент и условия уточняются",
-        nav: "Основная навигация",
-        language: "Язык",
-        breadcrumbs: "Хлебные крошки",
-        home: "Главная",
-        path: "Путь",
-        crossSite: "Перейти на второй сайт Наталии Долговой",
-        statusBadge: "Черновик (noindex)",
-        navHeading: "Навигация",
-        contactsHeading: "Связь и профили",
-        scienceHeading: "Научные профили",
-        legalHeading: "Правовая информация",
-        backToTop: "Наверх",
-      }
-    : {
-        skip: "Skip to content",
-        draft: "Draft: the site has not launched yet; content and terms are being finalised",
-        nav: "Primary navigation",
-        language: "Language",
-        breadcrumbs: "Breadcrumbs",
-        home: "Home",
-        path: "Path",
-        crossSite: "Go to Nataliia Dolgova’s second website",
-        statusBadge: "Draft (noindex)",
-        navHeading: "Navigation",
-        contactsHeading: "Contacts & Profiles",
-        scienceHeading: "Research Identifiers",
-        legalHeading: "Legal & Documents",
-        backToTop: "Back to top",
-      };
+const allLabels: Record<Locale, Record<string, string>> = {
+  ru: {
+    skip: "Перейти к содержанию",
+    draft: "Черновик: сайт ещё не выпущен, контент и условия уточняются",
+    nav: "Основная навигация",
+    language: "Язык",
+    breadcrumbs: "Хлебные крошки",
+    home: "Главная",
+    path: "Путь",
+    crossSite: "Перейти на второй сайт Наталии Долговой",
+    secondSite: "Второй проект Наталии:",
+    statusBadge: "Черновик (noindex)",
+    navHeading: "Навигация",
+    contactsHeading: "Связь и профили",
+    scienceHeading: "Научные профили",
+    legalHeading: "Правовая информация",
+    backToTop: "Наверх",
+    sitemap: "Карта сайта",
+    privacy: "Политика обработки ПДн",
+    consent: "Согласие на обработку ПДн",
+    offer: "Договор-оферта",
+    informedConsent: "Информированное согласие",
+    dissertation: "Диссертация (MACAU)",
+    taxInfo: "Самозанятая Долгова Н. Э., ИНН 575210528203",
+    channel: "Канал",
+    b17: "Анкета B17",
+    trainersRegister: "Реестр тренеров",
+    elibrary: "РИНЦ: 687073",
+  },
+  en: {
+    skip: "Skip to content",
+    draft: "Draft: the site has not launched yet; content and terms are being finalised",
+    nav: "Primary navigation",
+    language: "Language",
+    breadcrumbs: "Breadcrumbs",
+    home: "Home",
+    path: "Path",
+    crossSite: "Go to Nataliia Dolgova’s second website",
+    secondSite: "Nataliia’s second project:",
+    statusBadge: "Draft (noindex)",
+    navHeading: "Navigation",
+    contactsHeading: "Contacts & Profiles",
+    scienceHeading: "Research Identifiers",
+    legalHeading: "Legal & Documents",
+    backToTop: "Back to top",
+    sitemap: "Sitemap",
+    privacy: "Privacy Policy",
+    consent: "Data Consent",
+    offer: "Service Agreement",
+    informedConsent: "Informed Consent",
+    dissertation: "Dissertation Repository",
+    taxInfo: "Self-employed N. E. Dolgova, Tax ID 575210528203",
+    channel: "Channel",
+    b17: "B17 Profile",
+    trainersRegister: "Trainers Register",
+    elibrary: "eLibrary (RSCI): 687073",
+  },
+  zh: {
+    skip: "跳转到主要内容",
+    draft: "草案：网站尚未正式发布，内容与条款正在最终确定中",
+    nav: "主导航",
+    language: "语言",
+    breadcrumbs: "面包屑导航",
+    home: "首页",
+    path: "路径",
+    crossSite: "前往娜塔莉亚·多尔戈娃的身心健康实践网站",
+    statusBadge: "草案 (noindex)",
+    navHeading: "网站导航",
+    contactsHeading: "联系方式与主页",
+    scienceHeading: "学术标识与学者档案",
+    legalHeading: "法律信息与规范",
+    backToTop: "返回顶部",
+    sitemap: "网站地图",
+    privacy: "个人信息保护政策",
+    consent: "数据处理知情同意书",
+    offer: "服务协议",
+    informedConsent: "知情同意书",
+    dissertation: "博士论文库 (MACAU)",
+    taxInfo: "自雇专业人员 N. E. Dolgova，税号 575210528203",
+    channel: "频道",
+    b17: "B17 专家主页",
+    trainersRegister: "训练师注册名录",
+    elibrary: "俄罗斯科学引文索引 (eLibrary): 687073",
+  },
+  de: {
+    skip: "Zum Inhalt springen",
+    draft: "Entwurf: Die Website ist noch nicht veröffentlicht; Inhalte und Bedingungen werden finalisiert",
+    nav: "Hauptnavigation",
+    language: "Sprache",
+    breadcrumbs: "Brotkrumen-Navigation",
+    home: "Startseite",
+    path: "Pfad",
+    crossSite: "Zu Nataliia Dolgovas zweiter Website wechseln",
+    statusBadge: "Entwurf (noindex)",
+    navHeading: "Navigation",
+    contactsHeading: "Kontakt & Profile",
+    scienceHeading: "Wissenschaftliche Kennungen",
+    legalHeading: "Rechtliches & Dokumente",
+    backToTop: "Nach oben",
+    sitemap: "Seitenübersicht",
+    privacy: "Datenschutzrichtlinie",
+    consent: "Einwilligung zur Datenverarbeitung",
+    offer: "Dienstleistungsvertrag",
+    informedConsent: "Informierte Einwilligung",
+    dissertation: "Dissertation (MACAU)",
+    taxInfo: "Selbstständige N. E. Dolgova, St.-Nr. 575210528203",
+    channel: "Kanal",
+    b17: "B17 Profil",
+    trainersRegister: "Trainerregister",
+    elibrary: "eLibrary (RSCI): 687073",
+  },
+  fr: {
+    skip: "Aller au contenu principal",
+    draft: "Brouillon : le site n'est pas encore publié, le contenu et les conditions sont en cours de finalisation",
+    nav: "Navigation principale",
+    language: "Langue",
+    breadcrumbs: "Fil d'Ariane",
+    home: "Accueil",
+    path: "Chemin",
+    crossSite: "Aller sur le second site de Nataliia Dolgova",
+    statusBadge: "Brouillon (noindex)",
+    navHeading: "Navigation",
+    contactsHeading: "Contacts & Profils",
+    scienceHeading: "Identifiants de recherche",
+    legalHeading: "Informations légales",
+    backToTop: "Haut de page",
+    sitemap: "Plan du site",
+    privacy: "Politique de confidentialité",
+    consent: "Consentement au traitement des données",
+    offer: "Conditions de service",
+    informedConsent: "Consentement éclairé",
+    dissertation: "Dépôt de thèse (MACAU)",
+    taxInfo: "Indépendante N. E. Dolgova, N° fiscal 575210528203",
+    channel: "Canal",
+    b17: "Profil B17",
+    trainersRegister: "Registre des formateurs",
+    elibrary: "eLibrary (RSCI): 687073",
+  },
+  es: {
+    skip: "Ir al contenido principal",
+    draft: "Borrador: el sitio aún no se ha publicado; el contenido y los términos se están finalizando",
+    nav: "Navegación principal",
+    language: "Idioma",
+    breadcrumbs: "Miga de pan",
+    home: "Inicio",
+    path: "Ruta",
+    crossSite: "Ir al segundo sitio web de Nataliia Dolgova",
+    statusBadge: "Borrador (noindex)",
+    navHeading: "Navegación",
+    contactsHeading: "Contactos y perfiles",
+    scienceHeading: "Identificadores de investigación",
+    legalHeading: "Información legal",
+    backToTop: "Volver arriba",
+    sitemap: "Mapa del sitio",
+    privacy: "Política de privacidad",
+    consent: "Consentimiento de tratamiento de datos",
+    offer: "Contrato de servicios",
+    informedConsent: "Consentimiento informado",
+    dissertation: "Repositorio de tesis (MACAU)",
+    taxInfo: "Autónoma N. E. Dolgova, NIF 575210528203",
+    channel: "Canal",
+    b17: "Perfil B17",
+    trainersRegister: "Registro de entrenadores",
+    elibrary: "eLibrary (RSCI): 687073",
+  },
+};
+
+const labels = allLabels[locale] || allLabels.en;
+
+const footerTaglines: Record<string, Record<Locale, string>> = {
+  wellness: {
+    ru: "Психологическое консультирование, нейроинтеграция, дыхание и оздоровительное движение.",
+    en: "Psychological counselling, neurointegration, breathing and movement.",
+    zh: "心理咨询、神经整合、呼吸实践与身心调养。",
+    de: "Psychologische Beratung, Neurointegration, Atem- und Bewegungspraxis.",
+    fr: "Conseil psychologique, neuro-intégration, respiration et mouvement.",
+    es: "Asesoramiento psicológico, neurointegración, respiración y movimiento.",
+  },
+  science: {
+    ru: "Исследования профессионального образования, подготовка педагогов и обучение взрослых.",
+    en: "Research in vocational education, educator training and adult learning.",
+    zh: "职业教育研究、工程教育师资培训与成人学习。",
+    de: "Forschung in der Berufsbildung, Lehrkräftebildung und Erwachsenenbildung.",
+    fr: "Recherche en formation professionnelle, formation des enseignants et apprentissage des adultes.",
+    es: "Investigación en educación vocacional, formación de docentes y aprendizaje de adultos.",
+  },
+};
 
 const breadcrumbChain = [
   { label: labels.home, href: `/${locale}/` },
@@ -134,7 +303,7 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
 ---
 
 <!doctype html>
-<html lang={locale} data-theme={theme}>
+<html lang={SUPPORTED_LOCALES[locale]?.htmlLang || locale} data-theme={theme}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -146,16 +315,16 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={seo.canonical} />
-    <meta property="og:locale" content={locale === "ru" ? "ru_RU" : "en_US"} />
+    <meta property="og:locale" content={SUPPORTED_LOCALES[locale]?.ogLocale || "en_US"} />
     <meta property="og:image" content={socialImage} />
-    <meta property="og:image:alt" content={locale === "ru" ? "Наталия Долгова" : "Nataliia Dolgova"} />
+    <meta property="og:image:alt" content={nataliaProfile.displayName[locale] || "Nataliia Dolgova"} />
     <meta property="og:image:width" content="800" />
     <meta property="og:image:height" content="945" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
-    <meta name="twitter:image:alt" content={locale === "ru" ? "Наталия Долгова" : "Nataliia Dolgova"} />
+    <meta name="twitter:image:alt" content={nataliaProfile.displayName[locale] || "Nataliia Dolgova"} />
     <meta name="google-site-verification" content={import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION || "od8PTNpX3EwB1eK7vjlpEAYKrfkwkxFKHj0X-Y4csXc"} />
     <meta name="yandex-verification" content={theme === "wellness" ? "7369f633f79a694f" : "80f02dc8bb2d1a79"} />
     {import.meta.env.PUBLIC_BING_SITE_VERIFICATION && (
@@ -211,18 +380,37 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
         </a>
         <div class="header-tools">
           <nav class="locale-switcher language-switcher" aria-label={labels.language}>
-            <a href={paths.ru} lang="ru" aria-current={locale === "ru" ? "page" : undefined}>RU</a>
-            <span class="locale-sep" aria-hidden="true">/</span>
-            <a href={paths.en} lang="en" aria-current={locale === "en" ? "page" : undefined}>EN</a>
+            {
+              Object.keys(paths).map((key, idx) => {
+                const locKey = key as Locale;
+                const locCfg = SUPPORTED_LOCALES[locKey];
+                const href = paths[locKey];
+                if (!locCfg || !href) return null;
+                return (
+                  <>
+                    {idx > 0 && <span class="locale-sep" aria-hidden="true">/</span>}
+                    <a
+                      href={href}
+                      lang={locCfg.htmlLang}
+                      aria-current={locale === locKey ? "page" : undefined}
+                    >
+                      {locCfg.label}
+                    </a>
+                  </>
+                );
+              })
+            }
           </nav>
           {
-            crossSite && (
+            effectiveCrossSite && (
               <a
                 class="cross-site-link"
-                href={crossSite.href}
+                href={effectiveCrossSite.href}
                 aria-label={labels.crossSite}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <span>{crossSite.label}</span>
+                <span>{effectiveCrossSite.label}</span>
                 <span aria-hidden="true">→</span>
               </a>
             )
@@ -275,18 +463,28 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
               <span class="brand-name">{nataliaProfile.displayName[locale]}</span>
             </a>
             <p class="footer-tagline">
-              {theme === "wellness"
-                ? (locale === "ru"
-                  ? "Психологическое консультирование, нейроинтеграция, дыхание и оздоровительное движение."
-                  : "Psychological counselling, neurointegration, breathing and movement.")
-                : (locale === "ru"
-                  ? "Исследования профессионального образования, подготовка педагогов и обучение взрослых."
-                  : "Research in vocational education, educator training and adult learning.")}
+              {footerTaglines[theme]?.[locale] || footerTaglines[theme]?.en}
             </p>
             <div class="footer-status-pill">
               <span class="site-dot" aria-hidden="true"></span>
               <span>{siteLabel}</span>
             </div>
+            {
+              effectiveCrossSite && (
+                <div class="footer-cross-site">
+                  <span class="footer-cross-site-label">{labels.secondSite || (locale === "ru" ? "Второй проект Наталии:" : "Nataliia’s second project:")}</span>
+                  <a
+                    class="footer-cross-site-link"
+                    href={effectiveCrossSite.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span>{effectiveCrossSite.label}</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              )
+            }
           </div>
 
           <div class="footer-col nav-col">
@@ -295,7 +493,16 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
               {navItems.map((item) => (
                 <li><a href={item.href}>{item.label}</a></li>
               ))}
-              <li><a href={`/${locale}/sitemap/`}>{locale === "ru" ? "Карта сайта" : "Sitemap"}</a></li>
+              <li><a href={`/${locale}/sitemap/`}>{labels.sitemap}</a></li>
+              {
+                effectiveCrossSite && (
+                  <li class="footer-nav-cross-site">
+                    <a href={effectiveCrossSite.href} target="_blank" rel="noopener noreferrer">
+                      <span>{effectiveCrossSite.label}</span> ↗
+                    </a>
+                  </li>
+                )
+              }
             </ul>
           </div>
 
@@ -304,15 +511,15 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
             {theme === "wellness" ? (
               <ul class="footer-contact-list">
                 <li><a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">Telegram: @natali_tvet_pro</a></li>
-                <li><a href="https://t.me/natalicompass" target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Канал" : "Channel"}: @natalicompass</a></li>
-                <li><a href="https://www.b17.ru/dolgova_nataliya/" target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Анкета B17" : "B17 Profile"} ↗</a></li>
-                <li><a href="https://trainer.neurointegration.org/profile/966067701912-nataliya-dolgova" target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Реестр тренеров" : "Trainers Register"} ↗</a></li>
+                <li><a href="https://t.me/natalicompass" target="_blank" rel="noopener noreferrer">{labels.channel}: @natalicompass</a></li>
+                <li><a href="https://www.b17.ru/dolgova_nataliya/" target="_blank" rel="noopener noreferrer">{labels.b17} ↗</a></li>
+                <li><a href="https://trainer.neurointegration.org/profile/966067701912-nataliya-dolgova" target="_blank" rel="noopener noreferrer">{labels.trainersRegister} ↗</a></li>
               </ul>
             ) : (
               <ul class="footer-contact-list">
                 <li><a href="https://scholar.google.com/citations?user=BtLwD8UAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a></li>
                 <li><a href="https://orcid.org/0000-0003-0816-2103" target="_blank" rel="noopener noreferrer">ORCID: 0000-0003-0816-2103 ↗</a></li>
-                <li><a href="https://www.elibrary.ru/author_profile.asp?id=687073" target="_blank" rel="noopener noreferrer">{locale === "ru" ? "РИНЦ: 687073 ↗" : "eLibrary (RSCI): 687073 ↗"}</a></li>
+                <li><a href="https://www.elibrary.ru/author_profile.asp?id=687073" target="_blank" rel="noopener noreferrer">{labels.elibrary} ↗</a></li>
                 <li><a href="https://www.scopus.com/authid/detail.uri?authorId=57202091034" target="_blank" rel="noopener noreferrer">Scopus: 57202091034 ↗</a></li>
                 <li><a href="https://www.webofscience.com/wos/author/record/A-9484-2016" target="_blank" rel="noopener noreferrer">ResearcherID: A-9484-2016 ↗</a></li>
                 <li><a href="https://www.linkedin.com/in/natalidolgova" target="_blank" rel="noopener noreferrer">LinkedIn: natalidolgova ↗</a></li>
@@ -326,18 +533,18 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
             <h2 class="footer-heading">{labels.legalHeading}</h2>
             {theme === "wellness" ? (
               <ul class="footer-legal-list">
-                <li><a href={`/${locale}/offer/`}>{locale === "ru" ? "Договор-оферта" : "Service Agreement"}</a></li>
-                <li><a href={`/${locale}/consent/`}>{locale === "ru" ? "Информированное согласие" : "Informed Consent"}</a></li>
-                <li><a href={`/${locale}/privacy/`}>{locale === "ru" ? "Политика обработки ПДн" : "Privacy Policy"}</a></li>
-                <li><span class="tax-info">{locale === "ru" ? "Самозанятая Долгова Н. Э., ИНН 575210528203" : "Self-employed N. E. Dolgova, Tax ID 575210528203"}</span></li>
+                <li><a href={`/${locale}/offer/`}>{labels.offer}</a></li>
+                <li><a href={`/${locale}/consent/`}>{labels.informedConsent}</a></li>
+                <li><a href={`/${locale}/privacy/`}>{labels.privacy}</a></li>
+                <li><span class="tax-info">{labels.taxInfo}</span></li>
               </ul>
             ) : (
               <ul class="footer-legal-list">
-                <li><a href={`/${locale}/privacy/`}>{locale === "ru" ? "Политика обработки ПДн" : "Privacy Policy"}</a></li>
-                <li><a href={`/${locale}/consent/`}>{locale === "ru" ? "Согласие на обработку ПДн" : "Data Consent"}</a></li>
-                <li><a href="https://macau.uni-kiel.de/receive/macau_mods_00002008" target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Диссертация (MACAU)" : "Dissertation Repository"} ↗</a></li>
+                <li><a href={`/${locale}/privacy/`}>{labels.privacy}</a></li>
+                <li><a href={`/${locale}/consent/`}>{labels.consent}</a></li>
+                <li><a href="https://macau.uni-kiel.de/receive/macau_mods_00002008" target="_blank" rel="noopener noreferrer">{labels.dissertation} ↗</a></li>
                 <li><a href="https://www.researchgate.net/profile/Natalia-Dolgova-2" target="_blank" rel="noopener noreferrer">ResearchGate ↗</a></li>
-                <li><span class="tax-info">{locale === "ru" ? "Самозанятая Долгова Н. Э., ИНН 575210528203" : "Self-employed N. E. Dolgova, Tax ID 575210528203"}</span></li>
+                <li><span class="tax-info">{labels.taxInfo}</span></li>
               </ul>
             )}
           </div>
