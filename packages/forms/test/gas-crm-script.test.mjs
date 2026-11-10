@@ -32,8 +32,8 @@ function createRuntime({ turnstileSuccess = true } = {}) {
       formatDate() { return "09.11.2026 12:00"; },
     },
     UrlFetchApp: {
-      fetch(url) {
-        calls.push(String(url));
+      fetch(url, options = {}) {
+        calls.push({ url: String(url), options });
         if (String(url).includes("siteverify")) return { getResponseCode: () => 200, getContentText: () => JSON.stringify({ success: turnstileSuccess, hostname: "wellnessnd.github.io" }) };
         return { getResponseCode: () => 200, getContentText: () => "{}" };
       },
@@ -44,7 +44,7 @@ function createRuntime({ turnstileSuccess = true } = {}) {
   };
   vm.runInNewContext(source, context, { filename: "gas_crm_script.js" });
   const post = (data) => JSON.parse(context.doPost({ postData: { contents: JSON.stringify(data) } }).body);
-  return { calls, post, rows };
+  return { calls, context, post, rows };
 }
 
 function wellnessPayload(overrides = {}) {
@@ -61,8 +61,10 @@ test("Apps Script stores a verified Wellness form and sends its notification", (
   assert.equal(result.ok, true);
   assert.equal(runtime.rows.length, 1);
   assert.match(runtime.rows[0][3], /TEST/);
-  assert.equal(runtime.calls.filter((url) => url.includes("siteverify")).length, 1);
-  assert.equal(runtime.calls.filter((url) => url.includes("api.telegram.org")).length, 1);
+  assert.equal(runtime.calls.filter((call) => call.url.includes("siteverify")).length, 1);
+  const telegram = runtime.calls.find((call) => call.url.includes("api.telegram.org"));
+  assert.ok(telegram);
+  assert.match(JSON.parse(telegram.options.payload).text, /\*Сайт:\* Wellness/);
 });
 
 test("Apps Script ignores a filled honeypot without CRM or Telegram side effects", () => {
@@ -78,5 +80,16 @@ test("Apps Script blocks an invalid Turnstile response before CRM or Telegram", 
   const result = runtime.post(wellnessPayload());
   assert.equal(result.ok, false);
   assert.equal(runtime.rows.length, 0);
-  assert.equal(runtime.calls.filter((url) => url.includes("api.telegram.org")).length, 0);
+  assert.equal(runtime.calls.filter((call) => call.url.includes("api.telegram.org")).length, 0);
+});
+
+test("Apps Script identifies Science as the source in Telegram notifications", () => {
+  const runtime = createRuntime();
+  runtime.context.notifyTelegram({
+    source: "Science", id: "ND-TEST-002", date: "09.11.2026 12:00", name: "Test", contact: "test@example.test",
+    service: "Science: research", timezone: "Timeline", request: "Verification",
+  });
+  const telegram = runtime.calls.find((call) => call.url.includes("api.telegram.org"));
+  assert.ok(telegram);
+  assert.match(JSON.parse(telegram.options.payload).text, /\*Сайт:\* Science/);
 });

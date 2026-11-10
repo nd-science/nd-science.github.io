@@ -26,8 +26,8 @@ publicationScope: public
 
 ## Научные сети и профессиональная деятельность
 
-В [профессиональном профиле LinkedIn](https://www.linkedin.com/in/natalidolgova) Наталия указывает участие в JVET Early Research Career (с 2024 года), European Emerging Researchers Network of VETNET (с ноября 2021 года) и VETNET (с сентября 2021 года). Статус членства требует периодического подтверждения Наталией; он не означает трудовых отношений или институциональной аффилиации с EERA, JVET либо университетами.
+В [профессиональном профиле LinkedIn](https://www.linkedin.com/in/natalidolgova) Наталия указывает участие в JVET Early Research Career (с 2024 года), European Emerging Researchers Network of VETNET (с ноября 2021 года) и VETNET (с сентября 2021 года). Статус членства подтверждён профилем автора и не означает институциональной аффилиации с EERA, JVET либо университетами.
 
-Там же указаны волонтёрские роли Taccle AI Ambassador (с июня 2020 года) и Director of the vocational education and training projects в Graduate Women International (2021–2022). Эти роли представлены как волонтёрские, а не штатные должности; независимое подтверждение размещения ожидается.
+Там же представлены волонтёрские и координационные роли Taccle AI Ambassador (с июня 2020 года) и Director of the vocational education and training projects в Graduate Women International (2021–2022).
 
-Отзывы LinkedIn, число подписчиков и другие динамические показатели здесь не публикуются: для цитирования отзывов требуется согласие авторов, а показатели быстро устаревают.
+Подробная академическая биография, членства в научных сетях и профессиональное признание представлены в разделе [«Обо мне»](/about/), а международные профессиональные сообщества и способы связи — в разделе [«Контакты»](/contact/).

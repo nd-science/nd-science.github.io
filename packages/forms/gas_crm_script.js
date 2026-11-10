@@ -180,6 +180,7 @@ function toStoredLead(data, site) {
   if (site !== "science") {
     const isOrganisation = data.enquiryKind === "organisation";
     return {
+      source: "Wellness",
       name: formText(data.name || data.organisation, 180),
       contact: formText(data.contact || data.email, 254),
       service: isOrganisation
@@ -192,6 +193,7 @@ function toStoredLead(data, site) {
     };
   }
   return {
+    source: "Science",
     name: formText(data.name, 180),
     contact: formText(data.email, 254),
     service: "Science: " + formText(data.projectType, 180),
@@ -249,7 +251,7 @@ function doPost(e) {
     sheet.appendRow([id, dateFormatted, "1. Новая заявка", lead.name, lead.contact, lead.service, lead.timezone, lead.request, ""]);
     sheet.getRange(sheet.getLastRow(), 1, 1, 9).setVerticalAlignment("top");
 
-    notifyTelegram({ id: id, date: dateFormatted, name: lead.name, contact: lead.contact, service: lead.service, timezone: lead.timezone, request: lead.request });
+    notifyTelegram({ source: lead.source, id: id, date: dateFormatted, name: lead.name, contact: lead.contact, service: lead.service, timezone: lead.timezone, request: lead.request });
     return createJsonResponse({ ok: true, id: id, message: formMessage(data, "accepted") });
   } catch (err) {
     console.error("Website form processing failed");
@@ -372,6 +374,7 @@ function handleTelegramUpdate(update) {
 
     // Уведомляем специалистов
     notifyTelegram({
+      source: "Telegram-бот",
       id: id,
       date: dateFormatted,
       name: clientName,
@@ -495,6 +498,7 @@ function notifyTelegram(lead) {
 
   const safeId = String(lead.id || "").replace(/[`]/g, "");
   const safeContact = String(lead.contact || "").replace(/[`]/g, "");
+  const safeSource = escapeMd(lead.source || "Не указан");
   const safeName = escapeMd(lead.name || "Без имени");
   const safeService = escapeMd(lead.service || "Консультация / Запрос");
   const safeTimezone = escapeMd(lead.timezone || "Не указан");
@@ -505,6 +509,7 @@ function notifyTelegram(lead) {
     "🆔 *Номер:* `" + safeId + "`\n" +
     "👤 *Клиент:* " + safeName + "\n" +
     "📱 *Контакт:* `" + safeContact + "`\n" +
+    "🌐 *Сайт:* " + safeSource + "\n" +
     "🎯 *Формат:* " + safeService + "\n" +
     "🌍 *Часовой пояс:* " + safeTimezone + "\n" +
     "💬 *Запрос:*\n_" + safeRequest + "_\n\n" +
@@ -538,6 +543,7 @@ function notifyTelegram(lead) {
  */
 function testTelegram() {
   notifyTelegram({
+    source: "Wellness",
     id: "ND-TEST-001",
     date: Utilities.formatDate(new Date(), "Europe/Belgrade", "dd.MM.yyyy HH:mm"),
     name: "Тестовый Клиент",

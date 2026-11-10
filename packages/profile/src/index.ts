@@ -422,6 +422,44 @@ export const publicResources: PublicResource[] = [
   },
 ];
 
+export interface CommunityGroup {
+  id: string;
+  name: string;
+  platform: "linkedin" | "telegram" | "vk";
+  url: string;
+  role: LocalizedText;
+  description: LocalizedText;
+  audienceScope?: LocalizedText;
+}
+
+/** Профессиональные сообщества и группы Наталии (DEC-042). */
+export const professionalCommunities: CommunityGroup[] = [
+  {
+    id: "whats-in-tvet",
+    name: "What’s in TVET?",
+    platform: "linkedin",
+    url: "https://www.linkedin.com/groups/12713149",
+    role: { ru: "Основатель и модератор", en: "Founder & Moderator" },
+    description: {
+      ru: "Международное экспертное сообщество в сфере профессионального образования и подготовки инженерно-педагогических кадров",
+      en: "International expert community in technical and vocational education, training, and educator preparation",
+    },
+    audienceScope: { ru: "Исследователи, эксперты и преподаватели TVET", en: "TVET researchers, educators, and policy specialists" },
+  },
+  {
+    id: "tvet-league-brics",
+    name: "TVET League BRICS+",
+    platform: "linkedin",
+    url: "https://www.linkedin.com/groups/9504349",
+    role: { ru: "Основатель и координатор", en: "Founder & Coordinator" },
+    description: {
+      ru: "Международная сеть и экспертная площадка сотрудничества в сфере профессионального образования стран БРИКС+",
+      en: "International network and platform for vocational education collaboration across BRICS+ countries",
+    },
+    audienceScope: { ru: "Исследовательские группы и образовательные организации БРИКС+", en: "Research teams and educational institutions across BRICS+" },
+  },
+];
+
 /** Прямые контакты и ссылки из визитки natalicompass.aqulas.me. */
 export const wellnessDirectContacts = {
   telegram1to1: "https://t.me/natali_tvet_pro",

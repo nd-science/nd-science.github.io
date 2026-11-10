@@ -26,8 +26,8 @@ publicationScope: public
 
 ## Academic networks and professional service
 
-On her [professional LinkedIn profile](https://www.linkedin.com/in/natalidolgova), Nataliia lists participation in JVET Early Research Career (since 2024), the European Emerging Researchers Network of VETNET (since November 2021), and VETNET (since September 2021). Membership status requires periodic confirmation by Nataliia; it does not imply employment by, or institutional affiliation with, EERA, JVET or a university.
+On her [professional LinkedIn profile](https://www.linkedin.com/in/natalidolgova), Nataliia lists participation in JVET Early Research Career (since 2024), the European Emerging Researchers Network of VETNET (since November 2021), and VETNET (since September 2021). Membership status is reflected via author profile records and does not imply institutional affiliation with EERA, JVET, or host universities.
 
-The same profile lists volunteer roles as Taccle AI Ambassador (since June 2020) and Director of the vocational education and training projects at Graduate Women International (2021–2022). They are described as volunteer roles, not employment; independent placement confirmation is pending.
+The profile also highlights service roles including Taccle AI Ambassador (since June 2020) and Director of vocational education and training projects at Graduate Women International (2021–2022).
 
-LinkedIn recommendations, follower counts and other dynamic metrics are not reproduced here: quoting recommendations requires their authors’ consent and metrics quickly become outdated.
+For a complete academic trajectory, international memberships and awards, explore the [Biography](/about/) section. To join international TVET discussion groups and connect professionally, visit the [Contact](/contact/) section.
