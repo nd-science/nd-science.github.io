@@ -14,9 +14,10 @@ const { variant, locale, endpoint, turnstileSiteKey } = Astro.props;
 const copy = wellnessCopy[locale];
 const privateForm = copy.forms.private;
 const organisationForm = copy.forms.organisation;
+const activeEndpoint = endpoint && turnstileSiteKey ? endpoint : undefined;
 ---
 
-{!endpoint ? (
+{!activeEndpoint ? (
   <div class="direct-contact-card">
     <div class="direct-contact-header">
       <h3>{variant === "private" ? copy.forms.notConnected.privateTitle : copy.forms.notConnected.orgTitle}</h3>
@@ -50,8 +51,9 @@ const organisationForm = copy.forms.organisation;
     </div>
   </div>
 ) : (
-  <form class="enquiry-form" method="post" action={endpoint} data-enquiry-form>
+  <form class="enquiry-form" method="post" action={activeEndpoint} data-enquiry-form>
     <input type="hidden" name="locale" value={locale} />
+    <input type="hidden" name="site" value="wellness" />
     <input type="hidden" name="enquiryKind" value={variant} />
     <div class="form-honeypot" aria-hidden="true">
       <label for={`website-${variant}`}>{variant === "private" ? privateForm.honeypot : organisationForm.honeypot}</label>
@@ -115,22 +117,28 @@ const organisationForm = copy.forms.organisation;
         )}
       </label>
     </div>
-    {turnstileSiteKey && <div class="cf-turnstile" data-sitekey={turnstileSiteKey}></div>}
+    <div class="cf-turnstile" data-sitekey={turnstileSiteKey}></div>
     <div><button type="submit" class="button">{variant === "private" ? privateForm.submit : organisationForm.submit}</button></div>
     <p class="form-status" role="status" aria-live="polite" data-form-status></p>
 
     <div class="direct-contact-hint">
-      <span>{locale === "ru" ? "Или напишите напрямую в мессенджер:" : "Or message directly:"}</span>
+      <span>{locale === "ru" ? "Прямая связь:" : "Direct contact:"}</span>
       <a class="direct-contact-link" href={copy.forms.notConnected.telegramUrl} target="_blank" rel="noopener noreferrer">
         <span aria-hidden="true">✈️</span>
         <span>{copy.forms.notConnected.telegramBtn}</span>
         <span aria-hidden="true">↗</span>
       </a>
+      {variant === "private" && (
+        <>
+          <a class="direct-contact-link" href={copy.forms.notConnected.b17Url} target="_blank" rel="noopener noreferrer">{copy.forms.notConnected.b17Label} ↗</a>
+          <a class="direct-contact-link" href={copy.forms.notConnected.vkUrl} target="_blank" rel="noopener noreferrer">{copy.forms.notConnected.vkLabel} ↗</a>
+        </>
+      )}
     </div>
   </form>
 )}
 
-{endpoint && turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+{activeEndpoint && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
 <script>
   // Auto-fill selected service from URL param (?service=...)
   const urlParams = new URLSearchParams(window.location.search);
@@ -176,9 +184,10 @@ const organisationForm = copy.forms.organisation;
           headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify(payload),
         });
-        const result = (await response.json()) as { ok?: boolean; message?: string };
+        const result = await response.json().catch(() => ({})) as { ok?: boolean; message?: string };
         if (response.ok && result.ok) {
           form.reset();
+          (window as Window & { turnstile?: { reset: () => void } }).turnstile?.reset();
           if (status) {
             status.className = "form-status form-status--success";
             status.textContent = result.message || (document.documentElement.lang === "ru"
@@ -188,11 +197,12 @@ const organisationForm = copy.forms.organisation;
         } else {
           throw new Error(result.message || "Submission failed");
         }
-      } catch {
+      } catch (error) {
         if (status) {
           status.className = "form-status form-status--error";
-          status.textContent =
-            document.documentElement.lang === "ru"
+          status.textContent = error instanceof Error && error.message
+            ? error.message
+            : document.documentElement.lang === "ru"
               ? "Не удалось отправить заявку через форму. Пожалуйста, напишите Наталии напрямую в Telegram: @natali_tvet_pro"
               : "The enquiry could not be sent. Please message Nataliia directly on Telegram: @natali_tvet_pro";
         }

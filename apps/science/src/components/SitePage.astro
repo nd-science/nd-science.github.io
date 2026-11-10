@@ -119,8 +119,10 @@ const crossSite = route === "about" ? {
   label: copy.crossSiteLabel,
   href: `${wellnessOrigin}/${locale}/about/`,
 } : undefined;
-const endpoint = import.meta.env.PUBLIC_FORMS_ENABLED === "true" ? "/api/enquiry" : undefined;
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+const endpoint = turnstileSiteKey
+  ? import.meta.env.PUBLIC_ENQUIRY_WEBHOOK_URL || "https://script.google.com/macros/s/AKfycbzeq7In-ycmZ-Fw7Sl2LTpVcltlaFePSIGrLnZlEVxhNMsMyyaBxNaYtn2ac6u10zmeGQ/exec"
+  : undefined;
 const cta = entry.data.ctaLabel && entry.data.ctaHref ? { label: entry.data.ctaLabel, href: localizeHref(entry.data.ctaHref) } : undefined;
 const secondary = entry.data.ctaSecondaryLabel && entry.data.ctaSecondaryHref ? { label: entry.data.ctaSecondaryLabel, href: localizeHref(entry.data.ctaSecondaryHref) } : undefined;
 const pageTitle = isHome

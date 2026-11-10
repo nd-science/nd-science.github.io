@@ -36,6 +36,7 @@ const form = scienceCopy[locale].form;
 ) : (
   <form class="enquiry-form" method="post" action={endpoint} data-enquiry-form>
     <input type="hidden" name="locale" value={locale} />
+    <input type="hidden" name="site" value="science" />
     <div class="form-honeypot" aria-hidden="true"><label for="science-website">{form.honeypot}</label><input id="science-website" name="website" tabindex={-1} autocomplete="off" /></div>
     <div class="field"><label for="science-name">{form.name}</label><input id="science-name" name="name" autocomplete="name" required /></div>
     <div class="field"><label for="science-organisation">{form.organisation}</label><input id="science-organisation" name="organisation" autocomplete="organization" required /></div>
@@ -68,16 +69,34 @@ const form = scienceCopy[locale].form;
     <div class="cf-turnstile" data-sitekey={turnstileSiteKey}></div>
     <button class="button" type="submit">{form.submit}</button>
     <p class="form-status" role="status" aria-live="polite" data-form-status></p>
+    <div class="direct-contact-hint">
+      <span>{locale === "ru" ? "Прямая связь:" : "Direct contact:"}</span>
+      <a class="direct-contact-link" href={form.notConnected.telegramUrl} target="_blank" rel="noopener noreferrer">{form.notConnected.telegramBtn} ↗</a>
+      <a class="direct-contact-link" href={form.notConnected.linkedinUrl} target="_blank" rel="noopener noreferrer">{form.notConnected.linkedinLabel} ↗</a>
+    </div>
   </form>
 )}
 {endpoint && turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
 <script>
   document.querySelectorAll<HTMLFormElement>("[data-enquiry-form]").forEach((form) => form.addEventListener("submit", async (event) => {
-    event.preventDefault(); const status = form.querySelector<HTMLElement>("[data-form-status]"); const button = form.querySelector<HTMLButtonElement>("button");
-    if (button) button.disabled = true; if (status) status.textContent = document.documentElement.lang === "ru" ? "Отправляем…" : "Sending…";
-    try { const response = await fetch(form.action, { method: "POST", body: new FormData(form) }); const result = await response.json() as { message?: string }; if (status) status.textContent = result.message ?? ""; if (response.ok) form.reset(); }
-    catch { if (status) status.textContent = document.documentElement.lang === "ru" ? "Не удалось отправить запрос. Попробуйте позже." : "The enquiry could not be sent. Please try again later."; }
-    finally { if (button) button.disabled = false; }
+    event.preventDefault();
+    const status = form.querySelector<HTMLElement>("[data-form-status]");
+    const button = form.querySelector<HTMLButtonElement>("button[type='submit']");
+    const originalButtonText = button?.textContent;
+    if (button) { button.disabled = true; button.textContent = document.documentElement.lang === "ru" ? "Отправляем…" : "Sending…"; }
+    if (status) { status.className = "form-status form-status--loading"; status.textContent = document.documentElement.lang === "ru" ? "Отправляем запрос…" : "Sending enquiry…"; }
+    const payload: Record<string, string> = {};
+    new FormData(form).forEach((value, key) => { if (typeof value === "string") payload[key] = value; });
+    try {
+      const response = await fetch(form.action, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) });
+      const result = await response.json().catch(() => ({})) as { ok?: boolean; message?: string };
+      if (!response.ok || !result.ok) throw new Error(result.message || "Submission failed");
+      form.reset();
+      (window as Window & { turnstile?: { reset: () => void } }).turnstile?.reset();
+      if (status) { status.className = "form-status form-status--success"; status.textContent = result.message || (document.documentElement.lang === "ru" ? "✓ Запрос получен. Наталия ответит в течение трёх рабочих дней." : "✓ Enquiry received. Nataliia will respond within three working days."); }
+    } catch (error) {
+      if (status) { status.className = "form-status form-status--error"; status.textContent = error instanceof Error && error.message ? error.message : (document.documentElement.lang === "ru" ? "Не удалось отправить запрос. Напишите Наталии напрямую в Telegram." : "The enquiry could not be sent. Please message Nataliia directly on Telegram."); }
+    } finally { if (button) { button.disabled = false; if (originalButtonText) button.textContent = originalButtonText; } }
   }));
 </script>
 
@@ -130,6 +149,12 @@ const form = scienceCopy[locale].form;
     color: var(--accent-strong);
     font-weight: var(--weight-semibold);
   }
+  .direct-contact-hint { margin-top: 1.25rem; padding-top: 1rem; border-top: 1px dashed var(--border); display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; font-size: var(--text-sm); color: var(--muted-text); }
+  .direct-contact-link { color: var(--accent-strong); font-weight: var(--weight-semibold); text-decoration: underline; text-underline-offset: 3px; }
+  .form-status { margin-top: 0.75rem; font-size: var(--text-sm); font-weight: var(--weight-medium); }
+  .form-status--success { color: #1b7340; background: #eaf6ee; border: 1px solid #c2e7cc; border-radius: 8px; padding: 0.75rem 1rem; }
+  .form-status--error { color: #a51d24; background: #fdf2f2; border: 1px solid #f8c8c8; border-radius: 8px; padding: 0.75rem 1rem; }
+  .form-status--loading { color: var(--muted-text); font-style: italic; }
   .direct-contact-checklist {
     background: color-mix(in oklch, var(--background) 50%, var(--surface));
     border-inline-start: 3px solid var(--accent-strong);
