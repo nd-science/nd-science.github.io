@@ -8,18 +8,24 @@ export function getStaticPaths() {
     { params: { locale: "ru" } },
     { params: { locale: "en" } },
     { params: { locale: "zh" } },
+    { params: { locale: "de" } },
+    { params: { locale: "fr" } },
+    { params: { locale: "es" } },
   ];
 }
 
-const { locale } = Astro.params as { locale: "ru" | "en" | "zh" };
+const { locale } = Astro.params as { locale: "ru" | "en" | "zh" | "de" | "fr" | "es" };
 const copy = scienceCopy[locale] as any || scienceCopy.en;
-const paths = { ru: "/ru/consent/", en: "/en/consent/", zh: "/zh/consent/" };
+const paths = { ru: "/ru/consent/", en: "/en/consent/", zh: "/zh/consent/", de: "/de/consent/", fr: "/fr/consent/", es: "/es/consent/" };
 const currentPath = `/${locale}/consent/`;
 const isRu = locale === "ru";
 const isZh = locale === "zh";
+const isDe = locale === "de";
+const isFr = locale === "fr";
+const isEs = locale === "es";
 
 const breadcrumbs = [
-  { label: isZh ? "数据处理知情同意书" : isRu ? "Согласие на обработку данных" : "Data Processing Consent" },
+  { label: isEs ? "Consentimiento de tratamiento de datos" : isFr ? "Consentement au traitement des données" : isDe ? "Einwilligung zur Datenverarbeitung" : isZh ? "数据处理知情同意书" : isRu ? "Согласие на обработку данных" : "Data Processing Consent" },
 ];
 ---
 
@@ -27,8 +33,8 @@ const breadcrumbs = [
   locale={locale}
   theme="science"
   siteLabel={copy.siteLabel}
-  title={`${isZh ? "数据处理知情同意书" : isRu ? "Согласие на обработку персональных данных" : "Data Processing Consent"} | ${scienceSiteConfig.name}`}
-  description={isZh ? "通过娜塔莉亚·多尔戈娃学术网站提交合作意向与咨询时的数据处理知情同意书。" : isRu ? "Согласие на обработку персональных данных при направлении экспертного запроса через сайт Наталии Долговой." : "Consent to personal data processing when submitting an expert inquiry to Natalia Dolgova."}
+  title={`${isEs ? "Consentimiento para el tratamiento de datos" : isFr ? "Consentement au traitement des données" : isDe ? "Einwilligung zur Datenverarbeitung" : isZh ? "数据处理知情同意书" : isRu ? "Согласие на обработку персональных данных" : "Data Processing Consent"} | ${scienceSiteConfig.name}`}
+  description={isEs ? "Consentimiento para el tratamiento de datos personales al enviar una solicitud de colaboración en el sitio web académico de Nataliia Dolgova." : isFr ? "Consentement au traitement des données personnelles lors de la soumission d'une demande de collaboration sur le site académique de Nataliia Dolgova." : isDe ? "Einwilligung zur Verarbeitung personenbezogener Daten bei Anfragen über die wissenschaftliche Website von Dr. phil. Nataliia Dolgova." : isZh ? "通过娜塔莉亚·多尔戈娃学术网站提交合作意向与咨询时的数据处理知情同意书。" : isRu ? "Согласие на обработку персональных данных при направлении экспертного запроса через сайт Наталии Долговой." : "Consent to personal data processing when submitting an expert inquiry to Natalia Dolgova."}
   paths={paths}
   fallbackSiteUrl={scienceSiteConfig.fallbackUrl}
   navItems={copy.nav}
@@ -38,10 +44,16 @@ const breadcrumbs = [
 >
   <section class="hero page-hero">
     <div class="section-inner">
-      <span class="hero-eyebrow">{copy.siteLabel} — {isZh ? "法律与合规信息" : isRu ? "Правовая информация" : "Legal Information"}</span>
-      <h1>{isZh ? "数据处理知情同意书" : isRu ? "Согласие на обработку персональных данных" : "Data Processing Consent"}</h1>
+      <span class="hero-eyebrow">{copy.siteLabel} — {isEs ? "Información legal" : isFr ? "Informations légales" : isDe ? "Rechtliche Informationen" : isZh ? "法律与合规信息" : isRu ? "Правовая информация" : "Legal Information"}</span>
+      <h1>{isEs ? "Consentimiento para el tratamiento de datos" : isFr ? "Consentement au traitement des données" : isDe ? "Einwilligung zur Datenverarbeitung" : isZh ? "数据处理知情同意书" : isRu ? "Согласие на обработку персональных данных" : "Data Processing Consent"}</h1>
       <p class="hero-lead">
-        {isZh
+        {isEs
+          ? "Condiciones de envío y tratamiento de datos personales al remitir consultas o solicitudes de colaboración experta."
+          : isFr
+          ? "Conditions de transmission et de traitement des données personnelles lors de l'envoi du formulaire de contact et de demande d'expertise."
+          : isDe
+          ? "Bedingungen für die Bereitstellung und Verarbeitung personenbezogener Daten bei der Einreichung von Kooperations- und Expertenanfragen."
+          : isZh
           ? "在提交项目合作与专家咨询表单时提供和处理个人信息的条款与条件。"
           : isRu
           ? "Условия предоставления и обработки персональных данных при отправке формы сотрудничества и запроса экспертных услуг."
@@ -53,13 +65,82 @@ const breadcrumbs = [
   <section class="page-section">
     <div class="section-inner legal-layout">
       <div class="legal-actions-bar">
-        <span class="legal-doc-date">{isZh ? "当前生效版本：2026年10月" : isRu ? "Действующая редакция: октябрь 2026 г." : "Current Edition: October 2026"}</span>
+        <span class="legal-doc-date">{isEs ? "Edición vigente: octubre de 2026" : isFr ? "Édition en vigueur : octobre 2026" : isDe ? "Gültige Fassung: Oktober 2026" : isZh ? "当前生效版本：2026年10月" : isRu ? "Действующая редакция: октябрь 2026 г." : "Current Edition: October 2026"}</span>
       </div>
 
       <div class="legal-prose">
-        {isZh ? (
+        {isEs ? (
           <>
-            <p><strong>在 nd-science.github.io 网站上提交咨询表单，即表明本人自愿、明确并知情同意以下各项条款：</strong></p>
+            <p><strong>Al enviar el formulario de contacto en el sitio web tvet.si, manifiesto de forma libre, informada e inequívoca mi consentimiento a las siguientes disposiciones:</strong></p>
+            <ol>
+              <li><strong>Carácter voluntario:</strong> Proporciono mis datos personales de manera enteramente voluntaria y garantizo su veracidad y exactitud.</li>
+              <li><strong>Alcance de los datos:</strong> Autorizo el tratamiento de los datos facilitados en el formulario: nombre, apellidos, dirección de correo electrónico, organización o institución, cargo o función, tipología del proyecto, calendario previsto y comentarios descriptivos adicionales.</li>
+              <li><strong>Responsable del tratamiento:</strong> La responsable del tratamiento es la profesional independiente Nataliia Eduardovna Dolgova (NIF / INN: 575210528203).</li>
+              <li><strong>Finalidad del tratamiento:</strong> Los datos se tratan exclusivamente con el fin de evaluar la solicitud de colaboración, mantener las comunicaciones necesarias, elaborar propuestas a medida y remitir una respuesta.</li>
+              <li><strong>Operaciones de tratamiento:</strong> El consentimiento abarca la recopilación, registro, organización, conservación, cotejo, uso y supresión segura de los datos personales, tanto por medios automatizados como no automatizados.</li>
+              <li><strong>No cesión a terceros:</strong> Los datos no serán cedidos ni comunicados a terceros sin consentimiento previo expreso, salvo obligación legal aplicable.</li>
+              <li><strong>Plazo de conservación y revocación:</strong> El consentimiento tiene vigencia desde el envío del formulario hasta la resolución de la consulta o hasta su revocación. El interesado podrá revocar su consentimiento en cualquier momento dirigiendo una comunicación a: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a>.</li>
+            </ol>
+
+            <div class="legal-requisites">
+              <h3>Datos de la responsable</h3>
+              <p>
+                <strong>Nataliia E. Dolgova (Profesional independiente / Professional Taxpayer)</strong><br />
+                Número de identificación fiscal (INN): 575210528203<br />
+                Correo electrónico: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+                Telegram: <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+              </p>
+            </div>
+          </>
+        ) : isFr ? (
+          <>
+            <p><strong>En envoyant le formulaire de contact sur le site tvet.si, je donne librement, de manière éclairée et explicite, mon consentement aux dispositions suivantes :</strong></p>
+            <ol>
+              <li><strong>Caractère volontaire :</strong> Je transmets mes données personnelles de manière volontaire et garantis leur exactitude.</li>
+              <li><strong>Étendue des données :</strong> J'autorise le traitement des informations renseignées dans le formulaire : nom, prénom, adresse de courrier électronique, organisation/institution, fonction/rôle, type de projet envisagé, public cible, calendrier prévisionnel ainsi que les commentaires descriptifs.</li>
+              <li><strong>Responsable du traitement :</strong> Le traitement est assuré par Nataliia Eduardovna Dolgova, exerçant en tant qu'indépendante (statut fiscal de Professional Taxpayer, INN : 575210528203).</li>
+              <li><strong>Finalité du traitement :</strong> Les données sont traitées exclusivement pour l'instruction de ma prise de contact, l'échange sur les besoins du projet, l'établissement d'une proposition sur mesure et l'envoi d'une réponse.</li>
+              <li><strong>Opérations de traitement :</strong> Le consentement couvre la collecte, l'enregistrement, la structuration, la conservation, l'utilisation et la suppression sécurisée des données, avec ou sans procédés automatisés.</li>
+              <li><strong>Non-divulgation :</strong> Aucune donnée n'est cédée ou communiquée à des tiers sans mon accord préalable explicite, hors obligations légales impératives.</li>
+              <li><strong>Durée et droit de retrait :</strong> Ce consentement est valable dès l'envoi du formulaire et jusqu'au traitement complet de la demande ou jusqu'à son retrait. Je peux retirer mon consentement à tout moment par simple message à : <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a>.</li>
+            </ol>
+
+            <div class="legal-requisites">
+              <h3>Coordonnées de la responsable</h3>
+              <p>
+                <strong>Nataliia E. Dolgova (Indépendante / Professional Taxpayer)</strong><br />
+                Numéro fiscal (INN) : 575210528203<br />
+                Courriel : <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+                Telegram : <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+              </p>
+            </div>
+          </>
+        ) : isDe ? (
+          <>
+            <p><strong>Mit dem Absenden des Anfrageformulars auf tvet.si erkläre ich mich freiwillig, informiert und unmissverständlich mit folgenden Bestimmungen einverstanden:</strong></p>
+            <ol>
+              <li><strong>Freiwilligkeit:</strong> Ich stelle meine personenbezogenen Daten freiwillig zur Verfügung und bestätige deren Richtigkeit.</li>
+              <li><strong>Umfang der Daten:</strong> Ich willige in die Verarbeitung der von mir im Formular angegebenen Daten ein: Vor- und Nachname, E-Mail-Adresse, Name der Organisation/Institution, Position/Rolle, Vorhabentyp, geplanter Umfang sowie Projektbeschreibung und begleitende Kommentare.</li>
+              <li><strong>Verantwortliche Stelle:</strong> Verantwortliche für die Datenverarbeitung ist die selbstständige Expertin Dr. phil. Nataliia Eduardovna Dolgova (Steuer-ID / INN: 575210528203).</li>
+              <li><strong>Zweck der Verarbeitung:</strong> Die erhobenen Daten werden ausschließlich verwendet, um meine Kooperationsanfrage zu prüfen, Rückfragen zu klären, ein individuelles Kooperationsangebot zu erstellen und mit mir in Kontakt zu treten.</li>
+              <li><strong>Verarbeitungsschritte:</strong> Die Einwilligung umfasst das Erheben, Erfassen, Speichern, Abgleichen, Nutzen und sichere Löschen der Daten mit und ohne automatisierte Verfahren.</li>
+              <li><strong>Keine Weitergabe an Dritte:</strong> Die Daten werden ohne meine ausdrückliche vorherige Zustimmung nicht an Dritte weitergegeben, es sei denn, dies ist gesetzlich vorgeschrieben.</li>
+              <li><strong>Gültigkeit und Widerrufsrecht:</strong> Diese Einwilligung ist ab dem Absenden des Formulars bis zur Erledigung des Anliegens oder bis zum Widerruf gültig. Ich habe das Recht, meine Einwilligung jederzeit mit Wirkung für die Zukunft per E-Mail an <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a> zu widerrufen.</li>
+            </ol>
+
+            <div class="legal-requisites">
+              <h3>Angaben zur Verantwortlichen</h3>
+              <p>
+                <strong>Dr. phil. Nataliia E. Dolgova (Selbstständige / Professional Taxpayer)</strong><br />
+                Steuer-ID (INN): 575210528203<br />
+                E-Mail: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+                Telegram: <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+              </p>
+            </div>
+          </>
+        ) : isZh ? (
+          <>
+            <p><strong>在 tvet.si 网站上提交咨询表单，即表明本人自愿、明确并知情同意以下各项条款：</strong></p>
             <ol>
               <li><strong>自愿提交：</strong>本人确认自愿提供个人信息，并确保所提供信息的真实性与准确性。</li>
               <li><strong>数据范围：</strong>本人同意处理表单中所填写的个人信息，包括姓名、电子邮箱地址、所属机构/单位名称、职务/角色，以及项目类型、预期目标、受众规模、预算周期及相关说明留言。</li>
@@ -83,7 +164,7 @@ const breadcrumbs = [
           </>
         ) : isRu ? (
           <>
-            <p><strong>Отправляя форму обратной связи на сайте nd-science.github.io, я свободно, своей волей и в своем интересе подтверждаю следующее:</strong></p>
+            <p><strong>Отправляя форму обратной связи на сайте tvet.si, я свободно, своей волей и в своем интересе подтверждаю следующее:</strong></p>
             <ol>
               <li><strong>Добровольность:</strong> Я предоставляю свои персональные данные добровольно и подтверждаю их достоверность.</li>
               <li><strong>Состав данных:</strong> Я даю согласие на обработку указанных мной данных: фамилии, имени, отчества, адреса электронной почты, названия организации, должности/роли, а также сведений о планируемом проекте и сопутствующего комментария.</li>
@@ -106,7 +187,7 @@ const breadcrumbs = [
           </>
         ) : (
           <>
-            <p><strong>By submitting the enquiry form on nd-science.github.io, I voluntarily and knowingly give my consent to the following:</strong></p>
+            <p><strong>By submitting the enquiry form on tvet.si, I voluntarily and knowingly give my consent to the following:</strong></p>
             <ol>
               <li><strong>Voluntary Submission:</strong> I confirm that the data provided is accurate and submitted voluntarily.</li>
               <li><strong>Data Scope:</strong> I consent to the processing of my name, email address, institutional affiliation, job title, and project brief details.</li>

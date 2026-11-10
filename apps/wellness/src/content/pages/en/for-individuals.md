@@ -20,4 +20,4 @@ An individual consultation lasts 60 minutes. We meet, review the working terms, 
 
 Prices are €100 online and €120 in person; the five-session package is €500 online and €600 in person. Corporate workshops and team wellbeing sessions are also available for organisations (details in the For organisations section). Support between sessions is provided only when it is part of the selected format.
 
-The practice is dedicated to individual work with adult clients (18+). Online consultations are available worldwide where permitted by applicable law; in-person sessions take place in Belgrade. I do not work with children or adolescents, nor do I take family, clinical, or crisis cases.
+The practice is dedicated to individual work with adult clients aged 18 and older. Online consultations are available worldwide where permitted by applicable law; in-person sessions take place in Belgrade. I do not work with children or adolescents, nor do I take family, clinical, or crisis cases.

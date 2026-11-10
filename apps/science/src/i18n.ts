@@ -2,7 +2,7 @@ import type { Locale } from "@natali/profile";
 
 export const scienceCopy: Record<string, any> = {
   ru: {
-    siteLabel: "Science", fallbackSiteUrl: "https://science.invalid", crossSiteCategory: "Саморегуляция и здоровье", crossSiteLabel: "Наталия о саморегуляции и здоровье", crossSiteHrefBase: "https://wellness.invalid",
+    siteLabel: "Science", fallbackSiteUrl: "https://tvet.si", crossSiteCategory: "Саморегуляция и здоровье", crossSiteLabel: "Наталия о саморегуляции и здоровье", crossSiteHrefBase: "https://natalicompass.com",
     nav: [
       { href: "/ru/", label: "Главная" }, { href: "/ru/about/", label: "Биография" }, { href: "/ru/research/", label: "Исследования" },
       { href: "/ru/publications/", label: "Публикации" }, { href: "/ru/education/", label: "Образование" }, { href: "/ru/projects/", label: "Проекты" },
@@ -52,7 +52,7 @@ export const scienceCopy: Record<string, any> = {
     ],
   },
   en: {
-    siteLabel: "Science", fallbackSiteUrl: "https://science.invalid", crossSiteCategory: "Wellbeing & Practice", crossSiteLabel: "Nataliia on wellbeing and self-regulation", crossSiteHrefBase: "https://wellness.invalid",
+    siteLabel: "Science", fallbackSiteUrl: "https://tvet.si", crossSiteCategory: "Wellbeing & Practice", crossSiteLabel: "Nataliia on wellbeing and self-regulation", crossSiteHrefBase: "https://natalicompass.com",
     nav: [
       { href: "/en/", label: "Home" }, { href: "/en/about/", label: "Biography" }, { href: "/en/research/", label: "Research" },
       { href: "/en/publications/", label: "Publications" }, { href: "/en/education/", label: "Education" }, { href: "/en/projects/", label: "Projects" },
@@ -102,7 +102,7 @@ export const scienceCopy: Record<string, any> = {
     ],
   },
   zh: {
-    siteLabel: "Science", fallbackSiteUrl: "https://science.invalid", crossSiteLabel: "身心健康实践与咨询", crossSiteHrefBase: "https://wellness.invalid",
+    siteLabel: "Science", fallbackSiteUrl: "https://tvet.si", crossSiteLabel: "身心健康实践与咨询", crossSiteHrefBase: "https://natalicompass.com",
     nav: [
       { href: "/zh/", label: "首页" }, { href: "/zh/about/", label: "学者履历" }, { href: "/zh/research/", label: "学术研究" },
       { href: "/zh/publications/", label: "学术出版物" }, { href: "/zh/education/", label: "教育背景" }, { href: "/zh/projects/", label: "研究项目" },
@@ -150,6 +150,159 @@ export const scienceCopy: Record<string, any> = {
       { value: "under-2500", label: "2,500 欧元以下" },
       { value: "2500-7500", label: "2,500 – 7,500 欧元" },
       { value: "over-7500", label: "7,500 欧元以上" },
+    ],
+  },
+  de: {
+    siteLabel: "Science", fallbackSiteUrl: "https://tvet.si", crossSiteLabel: "Selbstregulationspraxis und Beratung", crossSiteHrefBase: "https://natalicompass.com",
+    nav: [
+      { href: "/de/", label: "Startseite" }, { href: "/de/about/", label: "Biografie" }, { href: "/de/research/", label: "Forschung" },
+      { href: "/de/publications/", label: "Publikationen" }, { href: "/de/education/", label: "Bildung" }, { href: "/de/projects/", label: "Projekte" },
+      { href: "/de/expert-services/", label: "Dienstleistungen" }, { href: "/de/contact/", label: "Kontakt" },
+    ],
+    updatedPrefix: "Aktualisiert", footer: "Wissenschaftliches und gutachterliches Profil von Nataliia Dolgova.",
+    sections: {
+      credentials: { title: "Qualifikationen und akademischer Werdegang", description: "Wissenschaftliche Abschlüsse und chronologische Forschungsstationen." },
+      publications: { title: "Bibliografisches Verzeichnis", description: "Arbeiten unter den Namen Dolgova und Ovchinnikova gehören zum selben Autorinnenprofil." },
+      profiles: { title: "Wissenschaftliche Profile und Kennzahlen", description: "Forscherprofile in internationalen Fachdatenbanken und verifizierte Bibliometrie." },
+      form: { title: "Kooperationsbriefing", description: "Bitte hängen Sie keine Manuskripte, personenbezogenen Daten von Studienteilnehmern oder vertraulichen Unterlagen an." },
+    },
+    form: {
+      name: "Name", organisation: "Organisation", role: "Rolle", email: "E-Mail für Rückmeldung", language: "Bevorzugte Sprache", projectType: "Projekttyp", result: "Erwartetes Ergebnis", audience: "Zielgruppe", timeline: "Zeitrahmen", budget: "Budgetrahmen", comment: "Kommentar oder Anliegen", consent: "Ich willige in die Datenverarbeitung zur Beantwortung meiner Anfrage ein.", submit: "Anfrage absenden", honeypot: "Dieses Feld bitte nicht ausfüllen",
+      notConnected: {
+        title: "Direkter Kontakt für Projektanfragen",
+        intro: "Zur Besprechung von Forschungsprojekten, Analysen oder Weiterbildungsprogrammen schreiben Sie mir gerne direkt per Messenger oder über akademische Netzwerke:",
+        telegramBtn: "Nataliia auf Telegram kontaktieren (@natali_tvet_pro)",
+        telegramUrl: "https://t.me/natali_tvet_pro",
+        linkedinLabel: "LinkedIn-Profil",
+        linkedinUrl: "https://www.linkedin.com/in/natalidolgova",
+        checklistTitle: "Empfohlene Angaben für Ihre erste Nachricht:",
+        checklistItems: [
+          "Organisation und Ihre Funktion / Rolle",
+          "Art des Vorhabens: Forschung, Analytik, Programmentwicklung, Moderation oder Vortrag",
+          "Geplanter Zeitrahmen, Zielgruppe und Format (online / in Präsenz)",
+        ],
+        responseTime: "Rückmeldung auf relevante Anfragen innerhalb von drei Arbeitstagen.",
+      },
+    },
+    languageOptions: [
+      { value: "ru", label: "Russisch" },
+      { value: "en", label: "Englisch" },
+      { value: "de", label: "Deutsch" },
+    ],
+    projectTypeOptions: [
+      { value: "research", label: "Forschung" },
+      { value: "analytics", label: "Analytik & Gutachten" },
+      { value: "programme-design", label: "Programmentwicklung" },
+      { value: "facilitation", label: "Moderation" },
+      { value: "speaking", label: "Fachvortrag" },
+    ],
+    budgetOptions: [
+      { value: "not-set", label: "Noch nicht festgelegt" },
+      { value: "under-2500", label: "Unter 2.500 €" },
+      { value: "2500-7500", label: "2.500 € – 7.500 €" },
+      { value: "over-7500", label: "Über 7.500 €" },
+    ],
+  },
+  fr: {
+    siteLabel: "Science", fallbackSiteUrl: "https://tvet.si", crossSiteLabel: "Pratique d'autorégulation et bien-être", crossSiteHrefBase: "https://natalicompass.com",
+    nav: [
+      { href: "/fr/", label: "Accueil" }, { href: "/fr/about/", label: "Biographie" }, { href: "/fr/research/", label: "Recherche" },
+      { href: "/fr/publications/", label: "Publications" }, { href: "/fr/education/", label: "Formation" }, { href: "/fr/projects/", label: "Projets" },
+      { href: "/fr/expert-services/", label: "Services" }, { href: "/fr/contact/", label: "Contact" },
+    ],
+    updatedPrefix: "Mis à jour", footer: "Profil académique et d'expertise de Nataliia Dolgova.",
+    sections: {
+      credentials: { title: "Diplômes et parcours académique", description: "Titres universitaires et étapes de recherche vérifiés." },
+      publications: { title: "Répertoire bibliographique", description: "Les travaux publiés sous les noms Dolgova et Ovchinnikova appartiennent au même profil d'auteure." },
+      profiles: { title: "Profils scientifiques et indicateurs", description: "Profils de chercheuse dans les bases internationales et bibliométrie vérifiée." },
+      form: { title: "Demande de collaboration", description: "Veuillez ne pas inclure de manuscrits confidentiels ou de données personnelles de participants de recherche." },
+    },
+    form: {
+      name: "Nom", organisation: "Organisation", role: "Fonction / Rôle", email: "Courriel de contact", language: "Langue souhaitée", projectType: "Type de projet", result: "Résultat attendu", audience: "Public cible", timeline: "Calendrier", budget: "Budget envisagé", comment: "Commentaire ou description du projet", consent: "J'accepte le traitement de mes données personnelles pour répondre à ma demande.", submit: "Envoyer la demande", honeypot: "Ne pas remplir ce champ",
+      notConnected: {
+        title: "Contact direct pour vos projets",
+        intro: "Pour échanger sur des projets de recherche, des analyses ou la conception de programmes de formation, écrivez-moi directement :",
+        telegramBtn: "Contacter Nataliia sur Telegram (@natali_tvet_pro)",
+        telegramUrl: "https://t.me/natali_tvet_pro",
+        linkedinLabel: "Profil LinkedIn",
+        linkedinUrl: "https://www.linkedin.com/in/natalidolgova",
+        checklistTitle: "Éléments recommandés pour votre premier message :",
+        checklistItems: [
+          "Votre organisation et votre fonction / rôle",
+          "Nature du projet : recherche, analyse, ingénierie pédagogique, animation ou conférence",
+          "Calendrier prévisionnel, public cible et format (en ligne / présentiel)",
+        ],
+        responseTime: "Réponse aux demandes pertinentes sous trois jours ouvrés.",
+      },
+    },
+    languageOptions: [
+      { value: "ru", label: "Russe" },
+      { value: "en", label: "Anglais" },
+      { value: "fr", label: "Français" },
+    ],
+    projectTypeOptions: [
+      { value: "research", label: "Recherche" },
+      { value: "analytics", label: "Analyse et expertise" },
+      { value: "programme-design", label: "Ingénierie de programmes" },
+      { value: "facilitation", label: "Animation d'ateliers" },
+      { value: "speaking", label: "Conférence invitée" },
+    ],
+    budgetOptions: [
+      { value: "not-set", label: "Non défini" },
+      { value: "under-2500", label: "Moins de 2 500 €" },
+      { value: "2500-7500", label: "2 500 € – 7 500 €" },
+      { value: "over-7500", label: "Plus de 7 500 €" },
+    ],
+  },
+  es: {
+    siteLabel: "Science", fallbackSiteUrl: "https://tvet.si", crossSiteLabel: "Práctica de autorregulación y bienestar", crossSiteHrefBase: "https://natalicompass.com",
+    nav: [
+      { href: "/es/", label: "Inicio" }, { href: "/es/about/", label: "Biografía" }, { href: "/es/research/", label: "Investigación" },
+      { href: "/es/publications/", label: "Publicaciones" }, { href: "/es/education/", label: "Formación" }, { href: "/es/projects/", label: "Proyectos" },
+      { href: "/es/expert-services/", label: "Servicios" }, { href: "/es/contact/", label: "Contacto" },
+    ],
+    updatedPrefix: "Actualizado", footer: "Perfil académico y pericial de Nataliia Dolgova.",
+    sections: {
+      credentials: { title: "Títulos académicos y trayectoria", description: "Grados universitarios y etapas de investigación verificados." },
+      publications: { title: "Registro bibliográfico", description: "Las publicaciones bajo los nombres Dolgova y Ovchinnikova corresponden al mismo perfil de autora." },
+      profiles: { title: "Perfiles científicos e indicadores", description: "Perfiles de investigadora en bases internacionales y bibliometría verificada." },
+      form: { title: "Solicitud de colaboración", description: "Por favor, no adjunte manuscritos confidenciales ni datos personales de participantes de investigación." },
+    },
+    form: {
+      name: "Nombre", organisation: "Organización", role: "Cargo / Función", email: "Correo electrónico de contacto", language: "Idioma de preferencia", projectType: "Tipo de proyecto", result: "Resultado esperado", audience: "Público objetivo", timeline: "Plazos previstos", budget: "Presupuesto estimado", comment: "Comentario o descripción del proyecto", consent: "Acepto el tratamiento de mis datos personales para responder a mi solicitud.", submit: "Enviar solicitud", honeypot: "No rellene este campo",
+      notConnected: {
+        title: "Contacto directo para proyectos",
+        intro: "Para dialogar sobre proyectos de investigación, análisis o diseño de programas formativos, escríbame directamente:",
+        telegramBtn: "Contactar a Nataliia en Telegram (@natali_tvet_pro)",
+        telegramUrl: "https://t.me/natali_tvet_pro",
+        linkedinLabel: "Perfil en LinkedIn",
+        linkedinUrl: "https://www.linkedin.com/in/natalidolgova",
+        checklistTitle: "Datos recomendados para su primer mensaje:",
+        checklistItems: [
+          "Su organización y su cargo / función",
+          "Naturaleza del proyecto: investigación, análisis, diseño formativo, facilitación o ponencia",
+          "Plazos previstos, público destinatario y formato (online / presencial)",
+        ],
+        responseTime: "Respuesta a consultas relevantes en un plazo de tres días hábiles.",
+      },
+    },
+    languageOptions: [
+      { value: "ru", label: "Ruso" },
+      { value: "en", label: "Inglés" },
+      { value: "es", label: "Español" },
+    ],
+    projectTypeOptions: [
+      { value: "research", label: "Investigación" },
+      { value: "analytics", label: "Análisis y peritaje" },
+      { value: "programme-design", label: "Diseño de programas" },
+      { value: "facilitation", label: "Facilitación de talleres" },
+      { value: "speaking", label: "Ponencia invitada" },
+    ],
+    budgetOptions: [
+      { value: "not-set", label: "Por definir" },
+      { value: "under-2500", label: "Menos de 2.500 €" },
+      { value: "2500-7500", label: "2.500 € – 7.500 €" },
+      { value: "over-7500", label: "Más de 7.500 €" },
     ],
   },
 } satisfies Partial<Record<Locale, unknown>>;

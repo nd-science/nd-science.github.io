@@ -27,6 +27,9 @@ const paths = {
   ru: isHome ? "/ru/" : `/ru/${route}/`,
   en: isHome ? "/en/" : `/en/${route}/`,
   zh: isHome ? "/zh/" : `/zh/${route}/`,
+  de: isHome ? "/de/" : `/de/${route}/`,
+  fr: isHome ? "/fr/" : `/fr/${route}/`,
+  es: isHome ? "/es/" : `/es/${route}/`,
 };
 const localizeHref = (href: string) => href.startsWith("/") ? `/${locale}${href}` : href;
 const siteUrl = import.meta.env.PUBLIC_SITE_URL || scienceSiteConfig.fallbackUrl;
@@ -68,6 +71,12 @@ if (route === "projects") {
         ? "Факторы воспринимаемой эффективности онлайн-подготовки педагогов СПО"
         : (locale as string) === "zh"
         ? "俄罗斯职业院校工程教育师资在线培训感知有效性关键影响因素"
+        : (locale as string) === "de"
+        ? "Schlüsselfaktoren der wahrgenommenen Wirksamkeit von Online-Kursen für Berufsschullehrkräfte"
+        : (locale as string) === "fr"
+        ? "Facteurs déterminants de l'efficacité perçue de la formation en ligne pour les enseignants de l'EFTP"
+        : (locale as string) === "es"
+        ? "Factores determinantes de la eficacia percibida de la formación en línea para docentes de EFTP"
         : "Factors shaping the perceived effectiveness of online preparation for TVET educators",
     member: {
       "@type": "Person",
@@ -85,6 +94,12 @@ if (route === "expert-services") {
         ? "Исследовательские и образовательные услуги"
         : (locale as string) === "zh"
         ? "学术科研与教育培训咨询服务"
+        : (locale as string) === "de"
+        ? "Forschungs- und Bildungsdienstleistungen"
+        : (locale as string) === "fr"
+        ? "Services de recherche et d'expertise en éducation"
+        : (locale as string) === "es"
+        ? "Servicios de investigación y consultoría experta en educación"
         : "Research and education services",
     provider: {
       "@type": "Person",
@@ -93,9 +108,9 @@ if (route === "expert-services") {
     },
     areaServed: {
       "@type": "AdministrativeArea",
-      name: locale === "ru" ? "Международное сотрудничество" : locale === "zh" ? "国际学术合作" : "International Collaboration",
+      name: locale === "ru" ? "Международное сотрудничество" : locale === "zh" ? "国际学术合作" : locale === "de" ? "Internationale Zusammenarbeit" : locale === "fr" ? "Coopération internationale" : locale === "es" ? "Cooperación internacional" : "International Collaboration",
     },
-    availableLanguage: ["ru", "en", "zh"],
+    availableLanguage: ["ru", "en", "zh", "de", "fr", "es"],
   });
 }
 if (route === "research/dissertation") {
@@ -124,7 +139,7 @@ if (route === "research/dissertation") {
 }
 const wellnessOrigin = (
   import.meta.env.PUBLIC_WELLNESS_SITE_URL ||
-  (copy.crossSiteHrefBase && !copy.crossSiteHrefBase.includes(".invalid") ? copy.crossSiteHrefBase : "https://wellnessnd.github.io")
+  (copy.crossSiteHrefBase && !copy.crossSiteHrefBase.includes(".invalid") ? copy.crossSiteHrefBase : "https://natalicompass.com")
 ).replace(/\/+$/, "");
 
 const crossSiteHref = route === "about"
@@ -169,7 +184,7 @@ const pageTitle = isHome
             </div>
           )}
         </div>
-        <aside class="hero-media" aria-label={locale === "ru" ? "Академический профиль Наталии Долговой" : locale === "zh" ? "娜塔莉亚·多尔戈娃的学术档案" : "Academic profile of Nataliia Dolgova"}>
+        <aside class="hero-media" aria-label={locale === "ru" ? "Академический профиль Наталии Долговой" : locale === "zh" ? "娜塔莉亚·多尔戈娃的学术档案" : locale === "de" ? "Wissenschaftliches Profil von Nataliia Dolgova" : locale === "fr" ? "Profil académique de Nataliia Dolgova" : locale === "es" ? "Perfil académico de Nataliia Dolgova" : "Academic profile of Nataliia Dolgova"}>
           <div class="portrait-card">
             <div class="portrait-frame">
               <img
@@ -178,6 +193,12 @@ const pageTitle = isHome
                   ? "Наталия Долгова — Dr. phil. (magna cum laude), исследователь образования"
                   : (locale as string) === "zh"
                   ? "娜塔莉亚·多尔戈娃 — 哲学博士 (magna cum laude)，职业教育学者"
+                  : (locale as string) === "de"
+                  ? "Nataliia Dolgova — Dr. phil. (magna cum laude), Bildungsforscherin"
+                  : (locale as string) === "fr"
+                  ? "Nataliia Dolgova — Dr. phil. (magna cum laude), chercheuse en éducation"
+                  : (locale as string) === "es"
+                  ? "Nataliia Dolgova — Dr. phil. (magna cum laude), investigadora en educación"
                   : "Nataliia Dolgova — Dr. phil. (magna cum laude), TVET Researcher"}
                 width="440"
                 height="520"
@@ -193,6 +214,12 @@ const pageTitle = isHome
                   ? "Dr. phil. (magna cum laude), к.э.н., исследователь образования"
                   : (locale as string) === "zh"
                   ? "哲学博士 (magna cum laude)，经济学副博士，职业教育学者"
+                  : (locale as string) === "de"
+                  ? "Dr. phil. (magna cum laude), Cand. Sc., Bildungsforscherin"
+                  : (locale as string) === "fr"
+                  ? "Dr. phil. (magna cum laude), docteure en sciences écon., chercheuse en éducation"
+                  : (locale as string) === "es"
+                  ? "Dr. phil. (magna cum laude), doctora en ciencias económicas, investigadora en educación"
                   : "Dr. phil. (magna cum laude), Cand. Sc., TVET Researcher"}
               </p>
               <span class="portrait-pill">
@@ -236,7 +263,7 @@ const pageTitle = isHome
       <div class="section-inner">
         <SectionHeading {...copy.sections.profiles} />
         <ul class="profile-list">
-          <li><span class="profile-name">Google Scholar</span><a href={professionalIdentifiers.googleScholarUrl} target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Профиль цитирований" : (locale as string) === "zh" ? "引文档案" : "Citation profile"} ↗</a></li>
+          <li><span class="profile-name">Google Scholar</span><a href={professionalIdentifiers.googleScholarUrl} target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Профиль цитирований" : (locale as string) === "zh" ? "引文档案" : (locale as string) === "de" ? "Zitationsprofil" : (locale as string) === "fr" ? "Profil de citations" : (locale as string) === "es" ? "Perfil de citas" : "Citation profile"} ↗</a></li>
           <li><span class="profile-name">РИНЦ / eLibrary</span><a href={professionalIdentifiers.elibraryUrl} target="_blank" rel="noopener noreferrer">{professionalIdentifiers.elibraryAuthorId} ↗</a></li>
           <li><span class="profile-name">ORCID</span><a href={professionalIdentifiers.orcidUrl} target="_blank" rel="noopener noreferrer">{professionalIdentifiers.orcid} ↗</a></li>
           <li><span class="profile-name">Scopus Author ID</span><a href={professionalIdentifiers.scopusUrl} target="_blank" rel="noopener noreferrer">{professionalIdentifiers.scopusAuthorId} ↗</a></li>
@@ -244,31 +271,31 @@ const pageTitle = isHome
           <li><span class="profile-name">LinkedIn</span><a href="https://www.linkedin.com/in/natalidolgova" target="_blank" rel="noopener noreferrer">natalidolgova ↗</a></li>
         </ul>
         <div class="metrics-block">
-          <p class="metrics-table-caption"><strong>{locale === "ru" ? "Сводные наукометрические показатели" : (locale as string) === "zh" ? "综合科研文献计量指标" : "Summary bibliometric indicators"}</strong> &mdash; <span>{locale === "ru" ? "верифицировано по официальным профилям автора" : (locale as string) === "zh" ? "经作者官方数据库档案核实" : "verified via author profiles"}</span></p>
-          <div class="table-container" tabindex="0" role="region" aria-label={locale === "ru" ? "Таблица наукометрических показателей" : (locale as string) === "zh" ? "科研计量指标汇总表" : "Bibliometric indicators table"}>
+          <p class="metrics-table-caption"><strong>{locale === "ru" ? "Сводные наукометрические показатели" : (locale as string) === "zh" ? "综合科研文献计量指标" : (locale as string) === "de" ? "Wissenschaftsmetrische Kennzahlen" : (locale as string) === "fr" ? "Indicateurs bibliométriques de synthèse" : (locale as string) === "es" ? "Indicadores bibliométricos de síntesis" : "Summary bibliometric indicators"}</strong> &mdash; <span>{locale === "ru" ? "верифицировано по официальным профилям автора" : (locale as string) === "zh" ? "经作者官方数据库档案核实" : (locale as string) === "de" ? "über offizielle Autorenprofile verifiziert" : (locale as string) === "fr" ? "vérifié via les profils d'auteure officiels" : (locale as string) === "es" ? "verificado mediante perfiles de autora oficiales" : "verified via author profiles"}</span></p>
+          <div class="table-container" tabindex="0" role="region" aria-label={locale === "ru" ? "Таблица наукометрических показателей" : (locale as string) === "zh" ? "科研计量指标汇总表" : (locale as string) === "de" ? "Tabelle wissenschaftsmetrischer Kennzahlen" : (locale as string) === "fr" ? "Tableau des indicateurs bibliométriques" : (locale as string) === "es" ? "Tabla de indicadores bibliométricos" : "Bibliometric indicators table"}>
             <table class="metrics-table">
               <thead>
                 <tr>
-                  <th scope="col">{locale === "ru" ? "База данных" : (locale as string) === "zh" ? "数据库" : "Database"}</th>
+                  <th scope="col">{locale === "ru" ? "База данных" : (locale as string) === "zh" ? "数据库" : (locale as string) === "de" ? "Datenbank" : (locale as string) === "fr" ? "Base de données" : (locale as string) === "es" ? "Base de datos" : "Database"}</th>
                   <th scope="col" style="text-align: center;">h-index</th>
-                  <th scope="col" style="text-align: center;">{locale === "ru" ? "Публикаций" : (locale as string) === "zh" ? "出版物" : "Publications"}</th>
-                  <th scope="col" style="text-align: center;">{locale === "ru" ? "Цитирований" : (locale as string) === "zh" ? "引用次数" : "Citations"}</th>
-                  <th scope="col">{locale === "ru" ? "Дата проверки" : (locale as string) === "zh" ? "核查日期" : "As of"}</th>
-                  <th scope="col">{locale === "ru" ? "Охват и профиль" : (locale as string) === "zh" ? "收录范围与档案" : "Coverage & Source"}</th>
+                  <th scope="col" style="text-align: center;">{locale === "ru" ? "Публикаций" : (locale as string) === "zh" ? "出版物" : (locale as string) === "de" ? "Publikationen" : (locale as string) === "fr" ? "Publications" : (locale as string) === "es" ? "Publicaciones" : "Publications"}</th>
+                  <th scope="col" style="text-align: center;">{locale === "ru" ? "Цитирований" : (locale as string) === "zh" ? "引用次数" : (locale as string) === "de" ? "Zitationen" : (locale as string) === "fr" ? "Citations" : (locale as string) === "es" ? "Citas" : "Citations"}</th>
+                  <th scope="col">{locale === "ru" ? "Дата проверки" : (locale as string) === "zh" ? "核查日期" : (locale as string) === "de" ? "Stand" : (locale as string) === "fr" ? "Date de vérification" : (locale as string) === "es" ? "Fecha de verificación" : "As of"}</th>
+                  <th scope="col">{locale === "ru" ? "Охват и профиль" : (locale as string) === "zh" ? "收录范围与档案" : (locale as string) === "de" ? "Abdeckung & Quelle" : (locale as string) === "fr" ? "Périmètre & Source" : (locale as string) === "es" ? "Cobertura y fuente" : "Coverage & Source"}</th>
                 </tr>
               </thead>
               <tbody>
                 {verifiedMetrics.map((m) => (
                   <tr>
-                    <td data-label={locale === "ru" ? "База данных" : (locale as string) === "zh" ? "数据库" : "Database"}><strong>{m.database}</strong></td>
+                    <td data-label={locale === "ru" ? "База данных" : (locale as string) === "zh" ? "数据库" : (locale as string) === "de" ? "Datenbank" : (locale as string) === "fr" ? "Base de données" : (locale as string) === "es" ? "Base de datos" : "Database"}><strong>{m.database}</strong></td>
                     <td data-label="h-index" style="text-align: center;"><span class="metric-badge">{m.hIndex}</span></td>
-                    <td data-label={locale === "ru" ? "Публикаций" : (locale as string) === "zh" ? "出版物" : "Publications"} style="text-align: center;">{m.documents}</td>
-                    <td data-label={locale === "ru" ? "Цитирований" : (locale as string) === "zh" ? "引用次数" : "Citations"} style="text-align: center;">{m.citations}</td>
-                    <td data-label={locale === "ru" ? "Дата проверки" : (locale as string) === "zh" ? "核查日期" : "As of"} class="metric-date">{m.checkedAt}</td>
-                    <td data-label={locale === "ru" ? "Охват и профиль" : (locale as string) === "zh" ? "收录范围与档案" : "Coverage & Source"}>
+                    <td data-label={locale === "ru" ? "Публикаций" : (locale as string) === "zh" ? "出版物" : (locale as string) === "de" ? "Publikationen" : (locale as string) === "fr" ? "Publications" : (locale as string) === "es" ? "Publicaciones" : "Publications"} style="text-align: center;">{m.documents}</td>
+                    <td data-label={locale === "ru" ? "Цитирований" : (locale as string) === "zh" ? "引用次数" : (locale as string) === "de" ? "Zitationen" : (locale as string) === "fr" ? "Citations" : (locale as string) === "es" ? "Citas" : "Citations"} style="text-align: center;">{m.citations}</td>
+                    <td data-label={locale === "ru" ? "Дата проверки" : (locale as string) === "zh" ? "核查日期" : (locale as string) === "de" ? "Stand" : (locale as string) === "fr" ? "Date de vérification" : (locale as string) === "es" ? "Fecha de verificación" : "As of"} class="metric-date">{m.checkedAt}</td>
+                    <td data-label={locale === "ru" ? "Охват и профиль" : (locale as string) === "zh" ? "收录范围与档案" : (locale as string) === "de" ? "Abdeckung & Quelle" : (locale as string) === "fr" ? "Périmètre & Source" : (locale as string) === "es" ? "Cobertura y fuente" : "Coverage & Source"}>
                       <p class="metric-note">{m.notes[locale] || m.notes.en || m.notes.ru}</p>
                       <a class="metric-link" href={m.databaseUrl} target="_blank" rel="noopener noreferrer">
-                        {locale === "ru" ? "Профиль в базе" : (locale as string) === "zh" ? "查看原始档案" : "View source profile"} ↗
+                        {locale === "ru" ? "Профиль в базе" : (locale as string) === "zh" ? "查看原始档案" : (locale as string) === "de" ? "Profil in der Datenbank" : (locale as string) === "fr" ? "Profil dans la base" : (locale as string) === "es" ? "Perfil en la base" : "View source profile"} ↗
                       </a>
                     </td>
                   </tr>

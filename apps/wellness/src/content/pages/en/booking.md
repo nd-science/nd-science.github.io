@@ -19,7 +19,7 @@ publicationScope: public
 3. Payment is completed online: you will receive a secure card payment link (supporting both international and Russian bank cards) or direct transfer details.
 4. Once payment is confirmed, we arrange a convenient consultation day and time via Telegram or email.
 
-The consultation lasts 60 minutes (€100 online / €120 in person). The practice is dedicated to adult clients (18+). Online consultations are available worldwide where permitted by applicable law; in-person sessions take place in Belgrade.
+The consultation lasts 60 minutes (€100 online / €120 in person). The practice is dedicated to adult clients aged 18 and older. Online consultations are available worldwide where permitted by applicable law; in-person sessions take place in Belgrade.
 
 For cancellation more than 24 hours in advance, the client chooses a refund or rescheduling. For late cancellation or no-show, payment is retained; exceptional circumstances are considered individually.
 

@@ -51,8 +51,8 @@ jobs:
       - name: Build Wellness application
         env:
           PUBLIC_SITE_STATUS: draft
-          PUBLIC_SITE_URL: https://wellnessnd.github.io
-          PUBLIC_SCIENCE_SITE_URL: https://nd-science.github.io
+          PUBLIC_SITE_URL: https://natalicompass.com
+          PUBLIC_SCIENCE_SITE_URL: https://tvet.si
           PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.PUBLIC_TURNSTILE_SITE_KEY }}
         run: pnpm --filter @natali/wellness build
 

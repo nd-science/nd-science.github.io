@@ -1,7 +1,7 @@
 import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 
-const site = process.env.PUBLIC_SITE_URL || "https://wellness.invalid";
+const site = process.env.PUBLIC_SITE_URL || "https://natalicompass.com";
 
 // Trigger deployment with Yandex verification: 7369f633f79a694f
 export default defineConfig({

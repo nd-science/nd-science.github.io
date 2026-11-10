@@ -14,8 +14,8 @@ const copyData = {
     siteLabel: "Wellness",
     crossSiteCategory: "Наука и образование",
     crossSiteLabel: "Наталия о науке и исследованиях",
-    crossSiteHrefBase: "https://science.invalid",
-    fallbackSiteUrl: "https://wellness.invalid",
+    crossSiteHrefBase: "https://tvet.si",
+    fallbackSiteUrl: "https://natalicompass.com",
     nav: [
       { href: "/ru/", label: "Главная" },
       { href: "/ru/for-individuals/", label: "Для частных клиентов" },
@@ -157,8 +157,8 @@ const copyData = {
     siteLabel: "Wellness",
     crossSiteCategory: "Research & Academia",
     crossSiteLabel: "Nataliia on research and education",
-    crossSiteHrefBase: "https://science.invalid",
-    fallbackSiteUrl: "https://wellness.invalid",
+    crossSiteHrefBase: "https://tvet.si",
+    fallbackSiteUrl: "https://natalicompass.com",
     nav: [
       { href: "/en/", label: "Home" },
       { href: "/en/for-individuals/", label: "For individuals" },

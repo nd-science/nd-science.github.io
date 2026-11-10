@@ -9,21 +9,150 @@ export function getStaticPaths() {
     { params: { locale: "ru" } },
     { params: { locale: "en" } },
     { params: { locale: "zh" } },
+    { params: { locale: "de" } },
+    { params: { locale: "fr" } },
+    { params: { locale: "es" } },
   ];
 }
 
-const { locale } = Astro.params as { locale: "ru" | "en" | "zh" };
+const { locale } = Astro.params as { locale: "ru" | "en" | "zh" | "de" | "fr" | "es" };
 const copy = scienceCopy[locale] as any || scienceCopy.en;
-const paths = { ru: "/ru/sitemap/", en: "/en/sitemap/", zh: "/zh/sitemap/" };
+const paths = { ru: "/ru/sitemap/", en: "/en/sitemap/", zh: "/zh/sitemap/", de: "/de/sitemap/", fr: "/fr/sitemap/", es: "/es/sitemap/" };
 const currentPath = `/${locale}/sitemap/`;
 const isRu = locale === "ru";
 const isZh = locale === "zh";
+const isDe = locale === "de";
+const isFr = locale === "fr";
+const isEs = locale === "es";
 
 const breadcrumbs = [
-  { label: isZh ? "网站地图" : isRu ? "Карта сайта" : "Site Map" },
+  { label: isEs ? "Mapa del sitio" : isFr ? "Plan du site" : isDe ? "Sitemap" : isZh ? "网站地图" : isRu ? "Карта сайта" : "Site Map" },
 ];
 
-const categories = isZh
+const categories = isEs
+  ? [
+      {
+        title: "Secciones principales",
+        items: [
+          { href: "/es/", label: "Página principal", desc: "Perfil científico: educación y formación profesional y preparación del profesorado técnico" },
+          { href: "/es/about/", label: "Biografía y trayectoria", desc: "Trayectoria académica de Nataliia Dolgova, instituciones de investigación y experiencia" },
+          { href: "/es/research/", label: "Líneas de investigación", desc: "Eficacia percibida de cursos en línea y cualificación docente en el sector de la EFTP" },
+          { href: "/es/research/dissertation/", label: "Tesis doctoral", desc: "Investigación doctoral (Dr. phil., Flensburg): formación en línea para docentes de EFTP" },
+          { href: "/es/publications/", label: "Publicaciones científicas", desc: "Artículos con revisión por pares, actas de congresos, capítulos de libros e informes" },
+          { href: "/es/conferences/", label: "Congresos y ponencias", desc: "Comunicaciones y ponencias en congresos científicos internacionales" },
+          { href: "/es/education/", label: "Formación y títulos", desc: "Dr. phil. (Alemania) y doctorado en ciencias económicas (Rusia), titulaciones verificadas" },
+          { href: "/es/projects/", label: "Proyectos de investigación", desc: "Iniciativas de investigación educativa, entornos de aprendizaje digital y proyectos financiados" },
+          { href: "/es/expert-services/", label: "Servicios de consultoría experta", desc: "Asesoramiento académico, evaluación por pares y diseño instruccional" },
+          { href: "/es/for-organizations/", label: "Para organizaciones", desc: "Cooperación institucional con universidades, centros de formación técnica y redes educativas" },
+          { href: "/es/contact/", label: "Contacto", desc: "Formulario de contacto, canales de comunicación directa y perfiles académicos" },
+        ],
+      },
+      {
+        title: "Identificadores y perfiles de investigación",
+        items: [
+          { href: professionalIdentifiers.orcidUrl, label: "ORCID: 0000-0003-0816-2103 ↗", desc: "Registro internacional abierto de investigadores" },
+          { href: `https://www.scopus.com/authid/detail.uri?authorId=${professionalIdentifiers.scopusAuthorId}`, label: `Scopus Author ID: ${professionalIdentifiers.scopusAuthorId} ↗`, desc: "Perfil de autora en la base Scopus (Elsevier)" },
+          { href: `https://www.webofscience.com/wos/author/record/${professionalIdentifiers.researcherId}`, label: `ResearcherID: ${professionalIdentifiers.researcherId} ↗`, desc: "Perfil de investigadora en Web of Science" },
+          { href: "https://www.linkedin.com/in/natalidolgova", label: "LinkedIn: natalidolgova ↗", desc: "Red profesional y académica de contactos" },
+        ],
+      },
+      {
+        title: "Información legal y privacidad",
+        items: [
+          { href: "/es/privacy/", label: "Política de privacidad", desc: "Normas de recopilación, tratamiento y protección de datos personales" },
+          { href: "/es/consent/", label: "Consentimiento de tratamiento de datos", desc: "Condiciones aplicables al envío de solicitudes de colaboración y proyectos" },
+        ],
+      },
+      {
+        title: "Archivos del sistema",
+        items: [
+          { href: "/sitemap-index.xml", label: "Mapa del sitio XML (para motores de búsqueda)", desc: "Índice procesable de todas las páginas canónicas del sitio" },
+        ],
+      },
+    ]
+  : isFr
+  ? [
+      {
+        title: "Rubriques principales",
+        items: [
+          { href: "/fr/", label: "Page d'accueil", desc: "Profil scientifique : formation professionnelle et préparation des formateurs techniques" },
+          { href: "/fr/about/", label: "Biographie et parcours", desc: "Parcours académique de Nataliia Dolgova, affiliations et expériences de recherche" },
+          { href: "/fr/research/", label: "Axes de recherche", desc: "Efficacité perçue des cours en ligne et qualification des enseignants de l'EFTP" },
+          { href: "/fr/research/dissertation/", label: "Thèse de doctorat", desc: "Recherche doctorale (Dr. phil., Flensburg) : préparation en ligne des enseignants de l'EFTP" },
+          { href: "/fr/publications/", label: "Publications scientifiques", desc: "Articles avec comité de lecture, actes de colloques, chapitres d'ouvrages et rapports" },
+          { href: "/fr/conferences/", label: "Conférences et communications", desc: "Interventions et présentations lors de congrès scientifiques internationaux" },
+          { href: "/fr/education/", label: "Formation et diplômes", desc: "Dr. phil. (Allemagne) et doctorat en économie (Russie), compétences vérifiées" },
+          { href: "/fr/projects/", label: "Projets de recherche", desc: "Initiatives de recherche en éducation, environnements numériques et programmes financés" },
+          { href: "/fr/expert-services/", label: "Services d'expertise", desc: "Conseil scientifique, évaluation par les pairs et ingénierie pédagogique" },
+          { href: "/fr/for-organizations/", label: "Pour les organisations", desc: "Coopération institutionnelle avec universités, établissements techniques et réseaux d'éducation" },
+          { href: "/fr/contact/", label: "Contact", desc: "Formulaire de contact, canaux directs et réseaux académiques" },
+        ],
+      },
+      {
+        title: "Identifiants et profils de recherche",
+        items: [
+          { href: professionalIdentifiers.orcidUrl, label: "ORCID: 0000-0003-0816-2103 ↗", desc: "Registre international ouvert des chercheurs et contributeurs" },
+          { href: `https://www.scopus.com/authid/detail.uri?authorId=${professionalIdentifiers.scopusAuthorId}`, label: `Scopus Author ID: ${professionalIdentifiers.scopusAuthorId} ↗`, desc: "Profil d'auteure dans la base Scopus (Elsevier)" },
+          { href: `https://www.webofscience.com/wos/author/record/${professionalIdentifiers.researcherId}`, label: `ResearcherID: ${professionalIdentifiers.researcherId} ↗`, desc: "Profil de chercheuse Web of Science" },
+          { href: "https://www.linkedin.com/in/natalidolgova", label: "LinkedIn: natalidolgova ↗", desc: "Réseau professionnel et académique" },
+        ],
+      },
+      {
+        title: "Informations légales & Confidentialité",
+        items: [
+          { href: "/fr/privacy/", label: "Politique de confidentialité", desc: "Principes de collecte, de traitement et de protection des données personnelles" },
+          { href: "/fr/consent/", label: "Consentement au traitement des données", desc: "Conditions applicables à la soumission de demandes de collaboration" },
+        ],
+      },
+      {
+        title: "Fichiers système",
+        items: [
+          { href: "/sitemap-index.xml", label: "Plan du site XML (pour moteurs de recherche)", desc: "Index machine de l'ensemble des pages canoniques" },
+        ],
+      },
+    ]
+  : isDe
+  ? [
+      {
+        title: "Hauptbereiche",
+        items: [
+          { href: "/de/", label: "Startseite", desc: "Wissenschaftliches Profil: Berufspädagogik und Vorbereitung von Lehrenden im Ingenieurbereich" },
+          { href: "/de/about/", label: "Biografie und Werdegang", desc: "Akademischer Werdegang von Nataliia Dolgova, Forschungseinrichtungen und Erfahrungen" },
+          { href: "/de/research/", label: "Forschungsschwerpunkte", desc: "Wahrgenommene Kurswirksamkeit und Qualifizierung von Berufsschullehrkräften" },
+          { href: "/de/research/dissertation/", label: "Dissertation", desc: "Doktorarbeit (Dr. phil., Flensburg): Online-Vorbereitung von Ingenieurpädagogen im TVET-Sektor" },
+          { href: "/de/publications/", label: "Publikationen", desc: "Peer-Review-Fachaufsätze, Konferenzbeiträge, Buchkapitel und Forschungsberichte" },
+          { href: "/de/conferences/", label: "Konferenzen", desc: "Vorträge und Präsentationen auf internationalen und nationalen Wissenschaftsforen" },
+          { href: "/de/education/", label: "Ausbildung und Abschlüsse", desc: "Dr. phil. (Deutschland) und Kandidatin der Wirtschaftswissenschaften (Russland), verifizierte Qualifikationen" },
+          { href: "/de/projects/", label: "Forschungsprojekte", desc: "Bildungsforschungsinitiativen, digitale Lernumgebungen und geförderte Programme" },
+          { href: "/de/expert-services/", label: "Expertendienstleistungen", desc: "Wissenschaftliche Beratung, Fachgutachten und didaktisches Design" },
+          { href: "/de/for-organizations/", label: "Für Organisationen", desc: "Institutionelle Zusammenarbeit mit Universitäten, Hochschulen und Bildungsnetzwerken" },
+          { href: "/de/contact/", label: "Kontakt", desc: "Expertenanfrage, direkte Kommunikationswege und akademische Profile" },
+        ],
+      },
+      {
+        title: "Wissenschaftliche Identifikatoren & Profile",
+        items: [
+          { href: professionalIdentifiers.orcidUrl, label: "ORCID: 0000-0003-0816-2103 ↗", desc: "Offenes internationales Forscher- und Autorenregister" },
+          { href: `https://www.scopus.com/authid/detail.uri?authorId=${professionalIdentifiers.scopusAuthorId}`, label: `Scopus Author ID: ${professionalIdentifiers.scopusAuthorId} ↗`, desc: "Autorenprofil in der Scopus-Datenbank (Elsevier)" },
+          { href: `https://www.webofscience.com/wos/author/record/${professionalIdentifiers.researcherId}`, label: `ResearcherID: ${professionalIdentifiers.researcherId} ↗`, desc: "Web of Science Forscherprofil" },
+          { href: "https://www.linkedin.com/in/natalidolgova", label: "LinkedIn: natalidolgova ↗", desc: "Fachliches und akademisches Netzwerk" },
+        ],
+      },
+      {
+        title: "Rechtliches & Datenschutz",
+        items: [
+          { href: "/de/privacy/", label: "Datenschutzerklärung", desc: "Grundsätze der Erhebung, Verarbeitung und des Schutzes personenbezogener Daten" },
+          { href: "/de/consent/", label: "Einwilligung zur Datenverarbeitung", desc: "Bedingungen für die Übermittlung von Projektanfragen und Kooperationen" },
+        ],
+      },
+      {
+        title: "Systemdateien",
+        items: [
+          { href: "/sitemap-index.xml", label: "XML-Sitemap (für Suchmaschinen)", desc: "Maschinenlesbarer Index aller kanonischen Webseiten" },
+        ],
+      },
+    ]
+  : isZh
   ? [
       {
         title: "主要栏目",
@@ -151,8 +280,8 @@ const categories = isZh
   locale={locale}
   theme="science"
   siteLabel={copy.siteLabel}
-  title={`${isZh ? "网站地图" : isRu ? "Карта сайта" : "Site Map"} | ${scienceSiteConfig.name}`}
-  description={isZh ? "娜塔莉亚·多尔戈娃学术网站的完整页面目录与栏目架构。" : isRu ? "Полная структура разделов и страниц академического сайта Наталии Долговой." : "Full sitemap and directory of Nataliia Dolgova's academic website."}
+  title={`${isEs ? "Mapa del sitio" : isFr ? "Plan du site" : isDe ? "Sitemap" : isZh ? "网站地图" : isRu ? "Карта сайта" : "Site Map"} | ${scienceSiteConfig.name}`}
+  description={isEs ? "Índice completo de todas las secciones y páginas del sitio web académico de Nataliia Dolgova." : isFr ? "Répertoire complet de l'ensemble des rubriques et pages du site académique de Nataliia Dolgova." : isDe ? "Vollständige Übersicht aller Bereiche und Seiten der akademischen Website von Dr. phil. Nataliia Dolgova." : isZh ? "娜塔莉亚·多尔戈娃学术网站的完整页面目录与栏目架构。" : isRu ? "Полная структура разделов и страниц академического сайта Наталии Долговой." : "Full sitemap and directory of Nataliia Dolgova's academic website."}
   paths={paths}
   fallbackSiteUrl={scienceSiteConfig.fallbackUrl}
   navItems={copy.nav}
@@ -163,9 +292,15 @@ const categories = isZh
   <section class="hero page-hero">
     <div class="section-inner">
       <span class="hero-eyebrow">{copy.siteLabel}</span>
-      <h1>{isZh ? "网站地图" : isRu ? "Карта сайта" : "Site Map"}</h1>
+      <h1>{isEs ? "Mapa del sitio" : isFr ? "Plan du site" : isDe ? "Sitemap" : isZh ? "网站地图" : isRu ? "Карта сайта" : "Site Map"}</h1>
       <p class="hero-lead">
-        {isZh
+        {isEs
+          ? "Todas las secciones principales, líneas de investigación, tesis doctoral, publicaciones y perfiles de investigadora en un directorio unificado."
+          : isFr
+          ? "Toutes les rubriques principales, axes de recherche, thèse, publications et profils scientifiques réunis dans un index unique."
+          : isDe
+          ? "Alle Hauptbereiche, Forschungsschwerpunkte, Dissertation, Publikationen und Wissenschaftsprofile in einer einheitlichen Übersicht."
+          : isZh
           ? "全站所有主要栏目、研究方向、博士论文、学术出版物及学者档案的统一索引。"
           : isRu
           ? "Все разделы, научные направления, диссертация, публикации и профили исследователя в едином оглавлении."

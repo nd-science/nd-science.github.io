@@ -45,6 +45,27 @@ export interface SiteConfig {
   responseTimeWorkingDays: number;
 }
 
+export const SITE_CONFIGS: Record<SiteKey, SiteConfig> = {
+  wellness: {
+    key: "wellness",
+    name: "Nataliia Dolgova | Wellness",
+    theme: "wellness",
+    defaultLocale: "ru",
+    locales: ["ru", "en"],
+    fallbackUrl: "https://natalicompass.com",
+    responseTimeWorkingDays: 3,
+  },
+  science: {
+    key: "science",
+    name: "Nataliia Dolgova | Science",
+    theme: "science",
+    defaultLocale: "ru",
+    locales: ["ru", "en", "zh", "de", "fr", "es"],
+    fallbackUrl: "https://tvet.si",
+    responseTimeWorkingDays: 3,
+  },
+};
+
 export interface LocalizedText {
   ru: string;
   en: string;

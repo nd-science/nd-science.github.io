@@ -2,13 +2,37 @@
 import type { Locale } from "@natali/profile";
 interface Props { locale: Locale }
 const { locale } = Astro.props;
-const items = locale === "zh"
+const items = locale === "es"
+  ? [
+      ["#key-publications", "Trabajos clave"],
+      ["#academic-impact", "Impacto científico"],
+      ["#bibliographic-register", "Registro bibliográfico"],
+      ["#forbes-education", "Forbes Education"],
+      ["#scholarly-profiles", "Perfiles científicos"],
+    ]
+  : locale === "zh"
   ? [
       ["#key-publications", "代表性学术成果"],
       ["#academic-impact", "学术影响力与同行引文"],
       ["#bibliographic-register", "完整学术出版名录"],
       ["#forbes-education", "Forbes Education 专栏"],
       ["#scholarly-profiles", "学术标识与学者档案"],
+    ]
+  : locale === "de"
+  ? [
+      ["#key-publications", "Zentrale Arbeiten"],
+      ["#academic-impact", "Wissenschaftliche Wirkung"],
+      ["#bibliographic-register", "Vollständiges Publikationsverzeichnis"],
+      ["#forbes-education", "Forbes Education"],
+      ["#scholarly-profiles", "Wissenschaftsprofile"],
+    ]
+  : locale === "fr"
+  ? [
+      ["#key-publications", "Travaux clés"],
+      ["#academic-impact", "Impact scientifique"],
+      ["#bibliographic-register", "Répertoire bibliographique"],
+      ["#forbes-education", "Forbes Education"],
+      ["#scholarly-profiles", "Profils scientifiques"],
     ]
   : locale === "ru"
   ? [
@@ -27,7 +51,7 @@ const items = locale === "zh"
     ];
 ---
 
-<nav class="publication-nav" aria-label={(locale as string) === "zh" ? "学术成果页面导航" : locale === "ru" ? "Навигация по публикациям" : "Publication navigation"}>
+<nav class="publication-nav" aria-label={(locale as string) === "es" ? "Navegación de publicaciones" : (locale as string) === "zh" ? "学术成果页面导航" : locale === "de" ? "Navigation der Publikationen" : locale === "fr" ? "Navigation des publications" : locale === "ru" ? "Навигация по публикациям" : "Publication navigation"}>
   <ol>
     {items.map(([href, label]) => <li><a href={href}>{label}</a></li>)}
   </ol>

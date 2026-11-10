@@ -36,17 +36,59 @@ const typeLabels: Partial<Record<Locale, Record<string, string>>> = {
     working_paper: "工作论文与专题报告",
     monograph: "专著",
   },
+  de: {
+    journal_article: "Zeitschriftenaufsätze",
+    conference_paper: "Konferenzbeiträge",
+    thesis: "Dissertationen",
+    book_chapter: "Buchkapitel",
+    working_paper: "Arbeitspapiere",
+    monograph: "Monografien",
+  },
+  fr: {
+    journal_article: "Articles de revues",
+    conference_paper: "Actes de colloques",
+    thesis: "Thèses de doctorat",
+    book_chapter: "Chapitres d'ouvrages",
+    working_paper: "Documents de travail",
+    monograph: "Monographies",
+  },
+  es: {
+    journal_article: "Artículos de revistas",
+    conference_paper: "Actas de congresos",
+    thesis: "Tesis doctorales",
+    book_chapter: "Capítulos de libros",
+    working_paper: "Documentos de trabajo",
+    monograph: "Monografías",
+  },
 };
 
 function formatType(type: string): string {
   return typeLabels[locale]?.[type] || typeLabels.en?.[type] || type.replaceAll("_", " ");
 }
 
-const copy = (locale as string) === "zh"
+const copy = (locale as string) === "es"
+  ? {
+      filters: "Filtros de publicaciones", search: "Buscar por título, revista o temática", type: "Tipo de publicación:", all: "Todos los tipos",
+      status: (shown: number, total: number) => `${shown} de ${total} publicaciones mostradas`, empty: "No se encontraron publicaciones que coincidan con la búsqueda.",
+      source: "Fuente ↗", cite: "Citar ⎘", citeTitle: "Copiar cita bibliográfica al portapapeles",
+    }
+  : (locale as string) === "zh"
   ? {
       filters: "出版物筛选", search: "按标题、出版刊物或研究主题检索", type: "出版物类型：", all: "全部文献类型",
       status: (shown: number, total: number) => `显示 ${total} 篇中的 ${shown} 篇文献`, empty: "未找到符合检索条件的文献。",
       source: "查看原文 ↗", cite: "引用 ⎘", citeTitle: "复制文献引用格式到剪贴板",
+    }
+  : (locale as string) === "de"
+  ? {
+      filters: "Publikationsfilter", search: "Nach Titel, Publikationsort oder Thema suchen", type: "Publikationstyp:", all: "Alle Publikationstypen",
+      status: (shown: number, total: number) => `${shown} von ${total} Publikationen angezeigt`, empty: "Keine Publikationen entsprechen Ihren Suchkriterien.",
+      source: "Quelle ↗", cite: "Zitieren ⎘", citeTitle: "Bibliografischen Nachweis in die Zwischenablage kopieren",
+    }
+  : (locale as string) === "fr"
+  ? {
+      filters: "Filtres de publications", search: "Rechercher par titre, revue ou thématique", type: "Type de publication :", all: "Tous les types",
+      status: (shown: number, total: number) => `${shown} sur ${total} publications affichées`, empty: "Aucune publication ne correspond à vos critères de recherche.",
+      source: "Source ↗", cite: "Citer ⎘", citeTitle: "Copier la référence bibliographique dans le presse-papiers",
     }
   : locale === "ru"
   ? {
@@ -145,7 +187,17 @@ const copy = (locale as string) === "zh"
       item.hidden = !(matchesType && matchesSearch);
       if (!item.hidden) shown += 1;
     });
-    if (status) status.textContent = currentLocale === "zh-Hans" || currentLocale === "zh" ? `显示 ${records.length} 篇中的 ${shown} 篇文献` : currentLocale === "ru" ? `Показано ${shown} из ${records.length} публикаций` : `${shown} of ${records.length} publications shown`;
+    if (status) status.textContent = currentLocale === "es"
+      ? `${shown} de ${records.length} publicaciones mostradas`
+      : currentLocale === "zh-Hans" || currentLocale === "zh"
+      ? `显示 ${records.length} 篇中的 ${shown} 篇文献`
+      : currentLocale === "de"
+      ? `${shown} von ${records.length} Publikationen angezeigt`
+      : currentLocale === "fr"
+      ? `${shown} sur ${records.length} publications affichées`
+      : currentLocale === "ru"
+      ? `Показано ${shown} из ${records.length} публикаций`
+      : `${shown} of ${records.length} publications shown`;
     if (empty) empty.hidden = shown !== 0;
   };
   filter?.addEventListener("change", updateFilters);
@@ -158,7 +210,7 @@ const copy = (locale as string) === "zh"
       try {
         await navigator.clipboard.writeText(text);
         const original = button.innerText;
-        button.innerText = original.includes("引用") ? "已复制！" : original.includes("Цитировать") ? "Скопировано!" : "Copied!";
+        button.innerText = original.includes("Citar") ? "¡Copiado!" : original.includes("引用") ? "已复制！" : original.includes("Zitieren") ? "Kopiert!" : original.includes("Citer") ? "Copié !" : original.includes("Цитировать") ? "Скопировано!" : "Copied!";
         setTimeout(() => {
           button.innerText = original;
         }, 2000);

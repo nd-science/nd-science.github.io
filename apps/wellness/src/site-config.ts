@@ -6,6 +6,6 @@ export const wellnessSiteConfig: SiteConfig = {
   theme: "wellness",
   defaultLocale: "ru",
   locales: ["ru", "en"],
-  fallbackUrl: "https://wellness.invalid",
+  fallbackUrl: "https://natalicompass.com",
   responseTimeWorkingDays: 3,
 };

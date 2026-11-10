@@ -43,11 +43,23 @@ const form = ((scienceCopy as any)[locale] || scienceCopy.en).form;
     <div class="field"><label for="science-name">{form.name}</label><input id="science-name" name="name" autocomplete="name" required /></div>
     <div class="field"><label for="science-organisation">{form.organisation}</label><input id="science-organisation" name="organisation" autocomplete="organization" required /></div>
     <div class="field"><label for="science-email">{form.email}</label><input id="science-email" name="email" type="email" autocomplete="email" required /></div>
-    <div class="field"><label for="science-comment">{form.comment}</label><textarea id="science-comment" name="comment" maxlength="2000" required placeholder={locale === "zh" ? "请简要描述您的咨询需求、研究课题或拟探讨的合作方向…" : locale === "ru" ? "Опишите ваш запрос или тему для сотрудничества…" : "Describe your inquiry or topic for collaboration…"}></textarea></div>
+    <div class="field"><label for="science-comment">{form.comment}</label><textarea id="science-comment" name="comment" maxlength="2000" required placeholder={locale === "es" ? "Describa brevemente su consulta, tema de investigación o propuesta de colaboración…" : locale === "zh" ? "请简要描述您的咨询需求、研究课题或拟探讨的合作方向…" : locale === "de" ? "Beschreiben Sie Ihr Anliegen, Forschungsthema oder die geplante Zusammenarbeit…" : locale === "fr" ? "Décrivez brièvement votre projet, thématique de recherche ou besoin de collaboration…" : locale === "ru" ? "Опишите ваш запрос или тему для сотрудничества…" : "Describe your inquiry or topic for collaboration…"}></textarea></div>
     <div class="checkbox-field">
       <input id="science-consent" name="consent" type="checkbox" value="yes" required />
       <label for="science-consent">
-        {locale === "zh" ? (
+        {locale === "es" ? (
+          <>
+            Acepto la <a href="/es/privacy/" target="_blank" rel="noopener noreferrer">política de privacidad</a> y otorgo mi <a href="/es/consent/" target="_blank" rel="noopener noreferrer">consentimiento para el tratamiento de datos</a> para recibir una respuesta.
+          </>
+        ) : locale === "fr" ? (
+          <>
+            J'accepte la <a href="/fr/privacy/" target="_blank" rel="noopener noreferrer">politique de confidentialité</a> et donne mon <a href="/fr/consent/" target="_blank" rel="noopener noreferrer">consentement au traitement de mes données</a> pour recevoir une réponse.
+          </>
+        ) : locale === "de" ? (
+          <>
+            Ich stimme der <a href="/de/privacy/" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a> zu und erteile meine <a href="/de/consent/" target="_blank" rel="noopener noreferrer">Einwilligung zur Datenverarbeitung</a> zur Beantwortung meiner Anfrage.
+          </>
+        ) : locale === "zh" ? (
           <>
             我同意<a href="/zh/privacy/" target="_blank" rel="noopener noreferrer">个人信息保护政策</a>并提供<a href="/zh/consent/" target="_blank" rel="noopener noreferrer">数据处理知情同意</a>以接收回复。
           </>
@@ -66,7 +78,7 @@ const form = ((scienceCopy as any)[locale] || scienceCopy.en).form;
     <button class="button" type="submit">{form.submit}</button>
     <p class="form-status" role="status" aria-live="polite" data-form-status></p>
     <div class="direct-contact-hint">
-      <span>{locale === "zh" ? "直接联系：" : locale === "ru" ? "Прямая связь:" : "Direct contact:"}</span>
+      <span>{locale === "es" ? "Contacto directo:" : locale === "zh" ? "直接联系：" : locale === "de" ? "Direkter Kontakt:" : locale === "fr" ? "Contact direct :" : locale === "ru" ? "Прямая связь:" : "Direct contact:"}</span>
       <a class="direct-contact-link" href={form.notConnected.telegramUrl} target="_blank" rel="noopener noreferrer">{form.notConnected.telegramBtn} ↗</a>
       <a class="direct-contact-link" href={form.notConnected.linkedinUrl} target="_blank" rel="noopener noreferrer">{form.notConnected.linkedinLabel} ↗</a>
       <a class="direct-contact-link" href="mailto:nataliia.e.ovchinnikova@gmail.com">Email ↗</a>
@@ -80,10 +92,13 @@ const form = ((scienceCopy as any)[locale] || scienceCopy.en).form;
     const status = form.querySelector<HTMLElement>("[data-form-status]");
     const button = form.querySelector<HTMLButtonElement>("button[type='submit']");
     const originalButtonText = button?.textContent;
+    const isEs = document.documentElement.lang === "es";
     const isZh = document.documentElement.lang === "zh-Hans" || document.documentElement.lang === "zh";
+    const isDe = document.documentElement.lang === "de";
+    const isFr = document.documentElement.lang === "fr";
     const isRu = document.documentElement.lang === "ru";
-    if (button) { button.disabled = true; button.textContent = isZh ? "正在提交…" : isRu ? "Отправляем…" : "Sending…"; }
-    if (status) { status.className = "form-status form-status--loading"; status.textContent = isZh ? "正在提交合作咨询…" : isRu ? "Отправляем запрос…" : "Sending enquiry…"; }
+    if (button) { button.disabled = true; button.textContent = isEs ? "Enviando…" : isZh ? "正在提交…" : isDe ? "Wird gesendet…" : isFr ? "Envoi en cours…" : isRu ? "Отправляем…" : "Sending…"; }
+    if (status) { status.className = "form-status form-status--loading"; status.textContent = isEs ? "Enviando solicitud…" : isZh ? "正在提交合作咨询…" : isDe ? "Anfrage wird gesendet…" : isFr ? "Envoi de votre demande…" : isRu ? "Отправляем запрос…" : "Sending enquiry…"; }
     const payload: Record<string, string> = {};
     new FormData(form).forEach((value, key) => { if (typeof value === "string") payload[key] = value; });
     try {
@@ -92,9 +107,9 @@ const form = ((scienceCopy as any)[locale] || scienceCopy.en).form;
       if (!response.ok || !result.ok) throw new Error(result.message || "Submission failed");
       form.reset();
       (window as Window & { turnstile?: { reset: () => void } }).turnstile?.reset();
-      if (status) { status.className = "form-status form-status--success"; status.textContent = result.message || (isZh ? "✓ 咨询已送达。娜塔莉亚将在三个工作日内回复。" : isRu ? "✓ Запрос получен. Наталия ответит в течение трёх рабочих дней." : "✓ Enquiry received. Nataliia will respond within three working days."); }
+      if (status) { status.className = "form-status form-status--success"; status.textContent = result.message || (isEs ? "✓ Solicitud recibida. Nataliia responderá en un plazo de tres días hábiles." : isZh ? "✓ 咨询已送达。娜塔莉亚将在三个工作日内回复。" : isDe ? "✓ Anfrage erhalten. Nataliia wird innerhalb von drei Werktagen antworten." : isFr ? "✓ Demande bien reçue. Nataliia vous répondra sous trois jours ouvrés." : isRu ? "✓ Запрос получен. Наталия ответит в течение трёх рабочих дней." : "✓ Enquiry received. Nataliia will respond within three working days."); }
     } catch (error) {
-      if (status) { status.className = "form-status form-status--error"; status.textContent = error instanceof Error && error.message ? error.message : (isZh ? "提交失败。请直接通过 Telegram 联系娜塔莉亚。" : isRu ? "Не удалось отправить запрос. Напишите Наталии напрямую в Telegram." : "The enquiry could not be sent. Please message Nataliia directly on Telegram."); }
+      if (status) { status.className = "form-status form-status--error"; status.textContent = error instanceof Error && error.message ? error.message : (isEs ? "No se pudo enviar la solicitud. Por favor, contacte a Nataliia directamente en Telegram." : isZh ? "提交失败。请直接通过 Telegram 联系娜塔莉亚。" : isDe ? "Anfrage konnte nicht gesendet werden. Bitte kontaktieren Sie Nataliia direkt über Telegram." : isFr ? "Échec de l'envoi de la demande. Veuillez contacter Nataliia directement sur Telegram." : isRu ? "Не удалось отправить запрос. Напишите Наталии напрямую в Telegram." : "The enquiry could not be sent. Please message Nataliia directly on Telegram."); }
     } finally { if (button) { button.disabled = false; if (originalButtonText) button.textContent = originalButtonText; } }
   }));
 </script>

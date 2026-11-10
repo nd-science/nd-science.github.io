@@ -10,9 +10,18 @@ const types: Partial<Record<Locale, Record<string, string>>> = {
   ru: { thesis: "Диссертация", journal_article: "Статья в журнале" },
   en: { thesis: "Doctoral dissertation", journal_article: "Journal article" },
   zh: { thesis: "博士学位论文", journal_article: "期刊论文" },
+  de: { thesis: "Doktorarbeit", journal_article: "Zeitschriftenaufsatz" },
+  fr: { thesis: "Thèse doctorale", journal_article: "Article de revue" },
+  es: { thesis: "Tesis doctoral", journal_article: "Artículo de revista" },
 };
-const copy = (locale as string) === "zh"
+const copy = (locale as string) === "es"
+  ? { title: "Trabajos clave", description: "Tres publicaciones que ilustran con mayor claridad la trayectoria de investigación actual y su contexto aplicado.", source: "Abrir fuente" }
+  : (locale as string) === "zh"
   ? { title: "代表性学术成果", description: "三项最具代表性的学术出版物，体现当前的学术研究路径及其应用情境。", source: "查看原文" }
+  : (locale as string) === "de"
+  ? { title: "Zentrale Arbeiten", description: "Drei Publikationen, die den aktuellen Forschungsschwerpunkt und dessen Anwendungskontext besonders verdeutlichen.", source: "Quelle öffnen" }
+  : (locale as string) === "fr"
+  ? { title: "Travaux clés", description: "Trois publications illustrant le mieux la trajectoire de recherche actuelle et son contexte appliqué.", source: "Consulter la source" }
   : locale === "ru"
   ? { title: "Ключевые работы", description: "Три публикации, которые лучше всего показывают текущую исследовательскую траекторию и её прикладной контекст.", source: "Открыть источник" }
   : { title: "Key works", description: "Three publications that best represent the current research trajectory and its applied context.", source: "Open source" };
@@ -20,7 +29,7 @@ const copy = (locale as string) === "zh"
 
 <section class="publication-highlights" id="key-publications" aria-labelledby="key-publications-title">
   <header>
-    <p class="section-kicker">{(locale as string) === "zh" ? "精选成果" : locale === "ru" ? "Избранное" : "Selected"}</p>
+    <p class="section-kicker">{(locale as string) === "es" ? "Selección" : (locale as string) === "zh" ? "精选成果" : (locale as string) === "de" ? "Ausgewählt" : (locale as string) === "fr" ? "Sélection" : locale === "ru" ? "Избранное" : "Selected"}</p>
     <h2 id="key-publications-title">{copy.title}</h2>
     <p>{copy.description}</p>
   </header>

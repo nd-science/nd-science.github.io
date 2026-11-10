@@ -9,7 +9,7 @@ const routes = {
 };
 
 for (const [site, siteRoutes] of Object.entries(routes)) {
-  const siteLocales = site === "science" ? ["ru", "en", "zh"] : ["ru", "en"];
+  const siteLocales = site === "science" ? ["ru", "en", "zh", "de", "fr", "es"] : ["ru", "en"];
   for (const locale of siteLocales) {
     for (const route of siteRoutes) {
       const file = resolve(root, `apps/${site}/dist/${locale}/${route}/index.html`);
@@ -20,7 +20,7 @@ for (const [site, siteRoutes] of Object.entries(routes)) {
         "rel=\"canonical\"",
         "hreflang=\"ru\"",
         "hreflang=\"en\"",
-        ...(site === "science" ? ['hreflang="zh"'] : []),
+        ...(site === "science" ? ['hreflang="zh"', 'hreflang="de"', 'hreflang="fr"', 'hreflang="es"'] : []),
         '"@type":"Person"',
         'id="main-content" tabindex="-1"',
         'content="nosniff"',
@@ -79,6 +79,15 @@ for (const site of ["wellness", "science"]) {
     if (site === "science" && !rootHtml.includes('href="/zh/"')) {
       failures.push(`${site}/index.html: missing zh localized fallback link`);
     }
+    if (site === "science" && !rootHtml.includes('href="/de/"')) {
+      failures.push(`${site}/index.html: missing de localized fallback link`);
+    }
+    if (site === "science" && !rootHtml.includes('href="/fr/"')) {
+      failures.push(`${site}/index.html: missing fr localized fallback link`);
+    }
+    if (site === "science" && !rootHtml.includes('href="/es/"')) {
+      failures.push(`${site}/index.html: missing es localized fallback link`);
+    }
   }
 }
 
@@ -89,7 +98,7 @@ if (!scienceProjects.includes('"@type":"ResearchProject"')) failures.push("Scien
 
 if (process.env.PUBLIC_SITE_STATUS === "public") {
   for (const [site, siteRoutes] of Object.entries(routes)) {
-    const siteLocales = site === "science" ? ["ru", "en", "zh"] : ["ru", "en"];
+    const siteLocales = site === "science" ? ["ru", "en", "zh", "de", "fr", "es"] : ["ru", "en"];
     for (const locale of siteLocales) {
       for (const route of siteRoutes) {
         const file = resolve(root, `apps/${site}/dist/${locale}/${route}/index.html`);
@@ -102,4 +111,4 @@ if (process.env.PUBLIC_SITE_STATUS === "public") {
 }
 
 if (failures.length) { console.error(failures.join("\n")); process.exitCode = 1; }
-else console.log("Built-route validation passed for 59 localized pages, canonical/hreflang and structured data.");
+else console.log("Built-route validation passed for localized pages (including RU/EN/ZH/DE/FR/ES), canonical/hreflang and structured data.");

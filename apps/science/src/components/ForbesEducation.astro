@@ -23,7 +23,16 @@ const articles = [
   },
 ] as const;
 
-const copy = (locale as string) === "zh"
+const copy = (locale as string) === "es"
+  ? {
+      eyebrow: "Artículos y tribunas de opinión",
+      title: "Forbes Education",
+      description: "Selección de artículos de Nataliia Dolgova sobre sistemas de educación y formación técnico-profesional. Los textos íntegros pueden consultarse en el sitio web de la editorial.",
+      articleLabel: "Leer en Forbes",
+      profileLabel: "Ver todos los artículos de la autora en Forbes Education",
+      note: "Los títulos se proporcionan con fines de navegación; los contenidos y marcas pertenecen a sus respectivos titulares.",
+    }
+  : (locale as string) === "zh"
   ? {
       eyebrow: "专栏精选文章",
       title: "Forbes Education",
@@ -31,6 +40,24 @@ const copy = (locale as string) === "zh"
       articleLabel: "阅读原文",
       profileLabel: "查看作者在 Forbes Education 的全部专栏文章",
       note: "文章标题供导航参考；文章版权及商标归属原出版机构。",
+    }
+  : (locale as string) === "de"
+  ? {
+      eyebrow: "Ausgewählte Fachbeiträge",
+      title: "Forbes Education",
+      description: "Ausgewählte Veröffentlichungen von Nataliia Dolgova über Berufsbildungssysteme. Die vollständigen Texte sind auf der Website des Herausgebers verfügbar.",
+      articleLabel: "Auf Forbes lesen",
+      profileLabel: "Alle Autorenbeiträge bei Forbes Education anzeigen",
+      note: "Die Titel dienen der Orientierung; Artikel und Marken sind Eigentum der jeweiligen Rechteinhaber.",
+    }
+  : (locale as string) === "fr"
+  ? {
+      eyebrow: "Articles et chroniques",
+      title: "Forbes Education",
+      description: "Sélection d'articles de Nataliia Dolgova sur les systèmes d'enseignement professionnel et technique. Les textes intégraux sont consultables sur le site de l'éditeur.",
+      articleLabel: "Lire sur Forbes",
+      profileLabel: "Voir toutes les contributions sur Forbes Education",
+      note: "Les titres sont mentionnés à titre de référence ; les articles et marques demeurent la propriété de leurs ayants droit.",
     }
   : locale === "ru"
   ? {

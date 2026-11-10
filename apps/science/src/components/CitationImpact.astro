@@ -2,13 +2,37 @@
 import type { Locale } from "@natali/profile";
 interface Props { locale: Locale }
 const { locale } = Astro.props;
-const cards = (locale as string) === "zh"
+const cards = (locale as string) === "es"
+  ? [
+      ["Revista «Educación superior en Rusia»", "Revisión por pares / Scopus", "En estudios sobre la modernización de la educación superior (Kravchenko S. A., 2026), el trabajo «Interacción universidad-empresa 2.0» se analiza para examinar los modelos de cooperación entre universidades y empleadores."],
+      ["Boletín de la RSUH (Economía y Gestión)", "Revisión por pares / RSCI", "En investigaciones sobre el potencial profesional del alumnado en institutos técnicos y universidades (Frolova I. I., Arslanova S. K., 2026), el artículo «Las universidades como motores del capital humano regional...» se incorpora en el análisis institucional."],
+      ["Monografías sobre transferencia tecnológica", "Monografías científicas", "Monografías académicas dedicadas al emprendimiento tecnológico universitario y centros de transferencia toman como base el análisis comparado de modelos internacionales (Ovchinnikova & Lazarenko, 2021)."],
+      ["Revista «Economía Creativa»", "Revisión por pares", "Las investigaciones en torno al modelo «Universidad 3.0» (Smirnov D. Yu., 2026) fundamentan sus conclusiones sobre ecosistemas regionales en el trabajo «El papel de la universidad moderna en el desarrollo innovador regional»."],
+      ["Revisiones internacionales de gestión educativa", "SUSU Bulletin / Scopus", "Una revisión integral sobre modelos de gobernanza institucional (Loginovskiy O. V., 2025) recopila resultados en materia de transferencia de tecnología y pedagogía de la ingeniería."],
+    ]
+  : (locale as string) === "zh"
   ? [
       ["《俄罗斯高等教育》期刊", "同行评审权威期刊 / Scopus", "在关于高等教育现代化的前沿研究中（Kravchenko S. A., 2026），论文《大学与产业界协同 2.0》被重点引用，用于深入剖析大学与雇主间的战略合作模式。"],
       ["俄罗斯国立人文大学学报（经济与管理辑）", "核心期刊 / 俄罗斯科学引文索引", "在关于职业院校及高校青年学生职业发展潜力的研究中（Frolova I. I., Arslanova S. K., 2026），论文《大学作为区域经济人力资本发展的关键引擎》被用于分析高等教育机构在区域人才生态中的制度性功能。"],
       ["技术转移与产业协同专业学术专著", "学术专著出版物", "在关于大学技术创业与技术转移中心运营效能的学术专著中，多处参考了国际技术转移模式比较分析的研究成果（Ovchinnikova & Lazarenko, 2021）。"],
       ["《创意经济》期刊", "同行评审核心期刊", "在关于“大学 3.0”创新转型的理论探讨中（Smirnov D. Yu., 2026），论文《现代大学在区域创新发展中的角色》被引用为论证大学转型为区域创新驱动核心的关键依据。"],
       ["国际教育管理与治理学术综述", "南乌拉尔大学学报 / Scopus", "在关于高校制度治理模式的系统性学术综述中（Loginovskiy O. V., 2025），综合评述了技术转移模式与工程教育改革领域的研究成果。"],
+    ]
+  : (locale as string) === "de"
+  ? [
+      ["Zeitschrift «Hochschulbildung in Russland»", "Peer-Reviewed / Scopus", "In Studien zur Modernisierung der Hochschulbildung (Kravchenko S. A., 2026) wird die Arbeit «Zusammenarbeit zwischen Universität und Industrie 2.0» herangezogen, um Partnerschaftsmodelle zwischen Hochschulen und Arbeitgebern zu analysieren."],
+      ["RGGU-Mitteilungen (Wirtschaft & Management)", "Peer-Reviewed / RSCI", "In Forschungsarbeiten zum beruflichen Potenzial von Studierenden an Fachschulen und Hochschulen (Frolova I. I., Arslanova S. K., 2026) wird der Beitrag «Universitäten als Schlüsselfaktoren der Humankapitalentwicklung...» in die institutionelle Analyse einbezogen."],
+      ["Fachmonografien zum Technologietransfer", "Wissenschaftliche Monografien", "Wissenschaftliche Monografien über universitäres technologisches Unternehmertum und Transferzentren stützen sich auf vergleichende Analysen internationaler Technologietransfermodelle (Ovchinnikova & Lazarenko, 2021)."],
+      ["Zeitschrift «Kreative Wirtschaft»", "Peer-Reviewed", "Forschungsarbeiten zu Transformationskonzepten «Universität 3.0» (Smirnov D. Yu., 2026) bauen auf «Die Rolle der modernen Universität in der regionalen Innovationsentwicklung» bei der Betrachtung regionaler Innovationssysteme auf."],
+      ["Internationale Bildungsmanagement-Übersichten", "SUSU Bulletin / Scopus", "Ein umfassender Überblick über institutionelle Steuerungsmodelle (Loginovskiy O. V., 2025) fasst Forschungsergebnisse zu Technologietransfer und Ingenieurpädagogik zusammen."],
+    ]
+  : (locale as string) === "fr"
+  ? [
+      ["Revue « Enseignement supérieur en Russie »", "Comité de lecture / Scopus", "Dans des études sur la modernisation de l'enseignement supérieur (Kravchenko S. A., 2026), l'article « Interaction université-industrie 2.0 » est cité pour analyser les modèles de partenariat entre universités et employeurs."],
+      ["Bulletin de la RSUH (Économie & Gestion)", "Comité de lecture / RSCI", "Dans des recherches sur le potentiel de carrière des étudiants d'établissements techniques et universitaires (Frolova I. I., Arslanova S. K., 2026), l'article « Les universités, moteurs du capital humain régional » est mobilisé dans l'analyse institutionnelle."],
+      ["Monographies sur le transfert technologique", "Monographies académiques", "Des monographies scientifiques portant sur l'entrepreneuriat technologique universitaire et les centres de transfert s'appuient sur l'analyse comparative des modèles internationaux (Ovchinnikova & Lazarenko, 2021)."],
+      ["Revue « Économie Créative »", "Comité de lecture", "Les analyses relatives aux transformations vers l'« Université 3.0 » (Smirnov D. Yu., 2026) s'appuient sur « Le rôle de l'université moderne dans le développement innovant de la région » concernant les écosystèmes régionaux."],
+      ["Revues internationales de gouvernance", "SUSU Bulletin / Scopus", "Une revue systématique des modèles de gouvernance institutionnelle (Loginovskiy O. V., 2025) synthétise les résultats de recherche sur le transfert technologique et la pédagogie des ingénieurs."],
     ]
   : locale === "ru"
   ? [
@@ -25,8 +49,14 @@ const cards = (locale as string) === "zh"
       ["Journal of Creative Economy", "Peer-reviewed", "Research on University 3.0 transformations (Smirnov D. Yu., 2026) builds upon «The Role of Modern Universities in Regional Innovation Development» in considering regional innovation systems."],
       ["International education-management reviews", "SUSU Bulletin / Scopus", "A broad review of institutional management models (Loginovskiy O. V., 2025) synthesises research on technology transfer and engineering education."],
     ];
-const copy = (locale as string) === "zh"
+const copy = (locale as string) === "es"
+  ? { title: "Impacto científico y contexto de citas", description: "Ejemplos seleccionados de la recepción e impacto de las investigaciones de Nataliia Dolgova (publicada como Ovchinnikova) en la literatura académica y sectorial." }
+  : (locale as string) === "zh"
   ? { title: "学术影响力与同行引文背景", description: "娜塔莉亚·多尔戈娃（以 Ovchinnikova 署名发表）的研究成果在权威学术文献与行业出版物中的代表性引用范例。" }
+  : (locale as string) === "de"
+  ? { title: "Wissenschaftliche Wirkung und Zitationskontext", description: "Ausgewählte Beispiele für die Rezeption der Arbeiten von Nataliia Dolgova (publiziert unter Ovchinnikova) in der Fach- und Branchenliteratur." }
+  : (locale as string) === "fr"
+  ? { title: "Impact scientifique et contexte des citations", description: "Exemples représentatifs de la réception des travaux de Nataliia Dolgova (publiée sous le nom d'Ovchinnikova) dans la littérature académique." }
   : locale === "ru"
   ? { title: "Академическое признание и контекст цитирований", description: "Выборочные примеры использования работ Наталии Долговой (Овчинниковой) в научной и отраслевой литературе." }
   : { title: "Academic impact and citation context", description: "Selected examples of how work by Nataliia Dolgova (published as Ovchinnikova) is used in scholarly and sector literature." };

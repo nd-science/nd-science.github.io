@@ -66,8 +66,8 @@ const {
 
 const siteUrl = import.meta.env.PUBLIC_SITE_URL || fallbackSiteUrl;
 const defaultCrossSiteOrigin = theme === "science"
-  ? (import.meta.env.PUBLIC_WELLNESS_SITE_URL || "https://wellnessnd.github.io").replace(/\/+$/, "")
-  : (import.meta.env.PUBLIC_SCIENCE_SITE_URL || "https://nd-science.github.io").replace(/\/+$/, "");
+  ? (import.meta.env.PUBLIC_WELLNESS_SITE_URL || "https://natalicompass.com").replace(/\/+$/, "")
+  : (import.meta.env.PUBLIC_SCIENCE_SITE_URL || "https://tvet.si").replace(/\/+$/, "");
 
 const effectiveCrossSite: CrossSiteLink = crossSite || {
   category: theme === "science"

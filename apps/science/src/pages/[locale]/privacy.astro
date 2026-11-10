@@ -8,18 +8,24 @@ export function getStaticPaths() {
     { params: { locale: "ru" } },
     { params: { locale: "en" } },
     { params: { locale: "zh" } },
+    { params: { locale: "de" } },
+    { params: { locale: "fr" } },
+    { params: { locale: "es" } },
   ];
 }
 
-const { locale } = Astro.params as { locale: "ru" | "en" | "zh" };
+const { locale } = Astro.params as { locale: "ru" | "en" | "zh" | "de" | "fr" | "es" };
 const copy = scienceCopy[locale] as any || scienceCopy.en;
-const paths = { ru: "/ru/privacy/", en: "/en/privacy/", zh: "/zh/privacy/" };
+const paths = { ru: "/ru/privacy/", en: "/en/privacy/", zh: "/zh/privacy/", de: "/de/privacy/", fr: "/fr/privacy/", es: "/es/privacy/" };
 const currentPath = `/${locale}/privacy/`;
 const isRu = locale === "ru";
 const isZh = locale === "zh";
+const isDe = locale === "de";
+const isFr = locale === "fr";
+const isEs = locale === "es";
 
 const breadcrumbs = [
-  { label: isZh ? "个人信息保护政策" : isRu ? "Политика конфиденциальности" : "Privacy Policy" },
+  { label: isEs ? "Política de privacidad" : isFr ? "Politique de confidentialité" : isDe ? "Datenschutzerklärung" : isZh ? "个人信息保护政策" : isRu ? "Политика конфиденциальности" : "Privacy Policy" },
 ];
 ---
 
@@ -27,8 +33,8 @@ const breadcrumbs = [
   locale={locale}
   theme="science"
   siteLabel={copy.siteLabel}
-  title={`${isZh ? "个人信息与数据保护政策" : isRu ? "Политика обработки персональных данных" : "Privacy Policy"} | ${scienceSiteConfig.name}`}
-  description={isZh ? "通过娜塔莉亚·多尔戈娃学术网站提交合作意向与咨询时的个人数据处理与隐私保护政策。" : isRu ? "Политика обработки и защиты персональных данных при направлении экспертных запросов через академический сайт Наталии Долговой." : "Personal data processing and privacy policy for expert and research inquiries to Natalia Dolgova."}
+  title={`${isEs ? "Política de privacidad" : isFr ? "Politique de confidentialité" : isDe ? "Datenschutzerklärung" : isZh ? "个人信息与数据保护政策" : isRu ? "Политика обработки персональных данных" : "Privacy Policy"} | ${scienceSiteConfig.name}`}
+  description={isEs ? "Principios de tratamiento y protección de datos personales en el envío de consultas de colaboración a través del sitio académico de Nataliia Dolgova." : isFr ? "Principes de traitement et de protection des données personnelles lors de l'envoi de demandes de collaboration sur le site académique de Nataliia Dolgova." : isDe ? "Grundsätze der Verarbeitung und des Schutzes personenbezogener Daten bei Projektanfragen über die akademische Website von Nataliia Dolgova." : isZh ? "通过娜塔莉亚·多尔戈娃学术网站提交合作意向与咨询时的个人数据处理与隐私保护政策。" : isRu ? "Политика обработки и защиты персональных данных при направлении экспертных запросов через академический сайт Наталии Долговой." : "Personal data processing and privacy policy for expert and research inquiries to Natalia Dolgova."}
   paths={paths}
   fallbackSiteUrl={scienceSiteConfig.fallbackUrl}
   navItems={copy.nav}
@@ -38,10 +44,16 @@ const breadcrumbs = [
 >
   <section class="hero page-hero">
     <div class="section-inner">
-      <span class="hero-eyebrow">{copy.siteLabel} — {isZh ? "法律与合规信息" : isRu ? "Правовая информация" : "Legal Information"}</span>
-      <h1>{isZh ? "个人信息与数据保护政策" : isRu ? "Политика обработки персональных данных" : "Privacy Policy"}</h1>
+      <span class="hero-eyebrow">{copy.siteLabel} — {isEs ? "Información legal" : isFr ? "Informations légales" : isDe ? "Rechtliche Informationen" : isZh ? "法律与合规信息" : isRu ? "Правовая информация" : "Legal Information"}</span>
+      <h1>{isEs ? "Política de privacidad" : isFr ? "Politique de confidentialité" : isDe ? "Datenschutzerklärung" : isZh ? "个人信息与数据保护政策" : isRu ? "Политика обработки персональных данных" : "Privacy Policy"}</h1>
       <p class="hero-lead">
-        {isZh
+        {isEs
+          ? "Criterios y procedimientos de recogida, tratamiento y protección de datos personales al utilizar el sitio web académico y remitir el formulario de contacto."
+          : isFr
+          ? "Principes et modalités de collecte, de traitement et de protection des données personnelles lors de l'utilisation du site scientifique et de l'envoi du formulaire de contact."
+          : isDe
+          ? "Grundsätze der Erhebung, Verarbeitung und des Schutzes personenbezogener Daten bei der Nutzung der wissenschaftlichen Website und der Übermittlung von Projektanfragen."
+          : isZh
           ? "在访问本学术网站及通过专家咨询表单提交合作意向时，个人数据的收集、处理、存储与保护原则。"
           : isRu
           ? "Порядок обработки, хранения и защиты персональных данных при использовании академического сайта и отправке форм экспертного сотрудничества."
@@ -53,14 +65,167 @@ const breadcrumbs = [
   <section class="page-section">
     <div class="section-inner legal-layout">
       <div class="legal-actions-bar">
-        <span class="legal-doc-date">{isZh ? "当前生效版本：2026年10月" : isRu ? "Действующая редакция: октябрь 2026 г." : "Current Edition: October 2026"}</span>
+        <span class="legal-doc-date">{isEs ? "Edición vigente: octubre de 2026" : isFr ? "Édition en vigueur : octobre 2026" : isDe ? "Gültige Fassung: Oktober 2026" : isZh ? "当前生效版本：2026年10月" : isRu ? "Действующая редакция: октябрь 2026 г." : "Current Edition: October 2026"}</span>
       </div>
 
       <div class="legal-prose">
-        {isZh ? (
+        {isEs ? (
+          <>
+            <h2>1. Disposiciones generales</h2>
+            <p>1.1. La presente Política de Privacidad regula el tratamiento y la protección de los datos personales de personas físicas y representantes institucionales que remiten solicitudes de colaboración a través del sitio <strong>tvet.si</strong>.</p>
+            <p>
+              <strong>Responsable del tratamiento de datos:</strong><br />
+              Nataliia Eduardovna Dolgova (autónoma / régimen de Professional Taxpayer)<br />
+              Número de identificación fiscal (INN): 575210528203<br />
+              Correo electrónico: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+              Telegram: <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+            </p>
+            <p>1.2. El tratamiento de los datos se efectúa bajo estricta observancia de la normativa aplicable en materia de protección de datos y el principio general de minimización de datos.</p>
+
+            <h2>2. Fines del tratamiento</h2>
+            <p>Los datos personales se tratan exclusivamente para las siguientes finalidades:</p>
+            <ul>
+              <li>Evaluación de propuestas de investigación conjunta, cooperación académica e iniciativas formativas;</li>
+              <li>Contacto, clarificación de requerimientos de proyecto y delimitación de objetivos y entregables;</li>
+              <li>Envío de información complementaria sobre publicaciones, conferencias y programas de formación.</li>
+            </ul>
+
+            <h2>3. Categorías de datos tratados</h2>
+            <p>Mediante el formulario de contacto pueden recopilarse los siguientes datos:</p>
+            <ul>
+              <li>Nombre, apellidos y cargo o función profesional;</li>
+              <li>Dirección de correo electrónico;</li>
+              <li>Nombre de la entidad u organización académica;</li>
+              <li>Detalles del proyecto (modalidad, destinatarios, cronograma y presupuesto previsto);</li>
+              <li>Comentarios y descripciones facilitados voluntariamente por el usuario.</li>
+            </ul>
+
+            <h2>4. Principios de tratamiento y conservación</h2>
+            <p>4.1. El tratamiento se realiza mediante procedimientos automatizados y manuales seguros, limitándose estrictamente a lo necesario.</p>
+            <p>4.2. Los datos personales no se ceden, comercializan ni transfieren a terceros sin consentimiento previo, salvo imperativo legal o requerimiento técnico de protección contra correo no deseado (anti-spam).</p>
+            <p>4.3. Los datos se conservan únicamente durante el tiempo imprescindible para atender la solicitud de colaboración o hasta que la persona interesada solicite su supresión.</p>
+            <p>4.4. Con el fin de mitigar el spam automatizado, se utiliza Cloudflare Turnstile. Dicho servicio comprueba parámetros técnicos de navegación sin analizar el contenido de los mensajes. Consulte la <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">política de privacidad de Cloudflare ↗</a>.</p>
+
+            <h2>5. Derechos del interesado</h2>
+            <p>Usted puede ejercitar en cualquier momento sus derechos de acceso, rectificación, supresión y revocación del consentimiento mediante correo electrónico dirigido a: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a>.</p>
+
+            <div class="legal-requisites">
+              <h3>Datos de la responsable</h3>
+              <p>
+                <strong>Nataliia E. Dolgova (Profesional autónoma)</strong><br />
+                NIF (INN): 575210528203<br />
+                Régimen: Impuesto sobre la Renta Profesional (Autónoma)<br />
+                Correo electrónico: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+                Telegram: <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+              </p>
+            </div>
+          </>
+        ) : isFr ? (
+          <>
+            <h2>1. Dispositions générales</h2>
+            <p>1.1. La présente politique de confidentialité définit les principes de traitement et de protection des données personnelles des personnes physiques et représentants d'organisations soumettant des demandes de collaboration via le site <strong>tvet.si</strong>.</p>
+            <p>
+              <strong>Responsable du traitement des données :</strong><br />
+              Nataliia Eduardovna Dolgova (statut d'indépendante / Professional Taxpayer)<br />
+              Numéro d'identification fiscale (INN) : 575210528203<br />
+              Courriel : <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+              Telegram : <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+            </p>
+            <p>1.2. Le traitement des données personnelles s'effectue dans le strict respect des réglementations applicables en matière de protection des données et des principes de minimisation des données.</p>
+
+            <h2>2. Finalités du traitement des données</h2>
+            <p>Les données personnelles sont recueillies et traitées exclusivement pour les finalités suivantes :</p>
+            <ul>
+              <li>Examen des demandes de coopération scientifique, de recherche partenariale et d'ingénierie pédagogique ;</li>
+              <li>Prise de contact, échange sur les besoins du projet, cadrage des objectifs et des livrables attendus ;</li>
+              <li>Fourniture d'informations complémentaires relatives aux publications scientifiques, interventions et cursus.</li>
+            </ul>
+
+            <h2>3. Catégories de données traitées</h2>
+            <p>Lors de la soumission du formulaire de contact, les données suivantes peuvent être collectées :</p>
+            <ul>
+              <li>Nom, prénom et fonction / rôle professionnel ;</li>
+              <li>Adresse de courrier électronique ;</li>
+              <li>Nom de l'organisation ou de l'institution universitaire ;</li>
+              <li>Informations relatives au projet (type de collaboration, public cible, calendrier prévisionnel, budget) ;</li>
+              <li>Commentaires ou descriptifs de projet transmis volontairement par l'utilisateur.</li>
+            </ul>
+
+            <h2>4. Principes de traitement et durée de conservation</h2>
+            <p>4.1. Le traitement s'effectue au moyen de procédés automatisés et non automatisés sécurisés, dans la limite stricte du nécessaire.</p>
+            <p>4.2. Les données personnelles ne sont jamais cédées, vendues ou transmises à des tiers sans consentement préalable, sauf obligation légale impérative ou nécessité technique de protection anti-spam du formulaire.</p>
+            <p>4.3. Les données sont conservées uniquement pendant la durée nécessaire au traitement de la demande de collaboration ou jusqu'à demande d'effacement par la personne concernée.</p>
+            <p>4.4. Pour prévenir les abus automatisés et le spam, le service Cloudflare Turnstile est mis en œuvre. Il vérifie des paramètres techniques sans analyser le contenu du message. Pour plus d'informations, consultez la <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">politique de confidentialité de Cloudflare ↗</a>.</p>
+
+            <h2>5. Vos droits</h2>
+            <p>Vous disposez à tout moment d'un droit d'accès à vos données, de rectification, d'effacement et de retrait de votre consentement. Pour exercer ces droits, adressez votre demande à : <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a>.</p>
+
+            <div class="legal-requisites">
+              <h3>Coordonnées de la responsable</h3>
+              <p>
+                <strong>Nataliia E. Dolgova (Indépendante)</strong><br />
+                Numéro fiscal (INN) : 575210528203<br />
+                Statut : Régime fiscal des revenus professionnels (Indépendante)<br />
+                Courriel : <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+                Telegram : <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+              </p>
+            </div>
+          </>
+        ) : isDe ? (
+          <>
+            <h2>1. Allgemeine Bestimmungen</h2>
+            <p>1.1. Diese Datenschutzerklärung regelt die Verarbeitung und den Schutz personenbezogener Daten von Einzelpersonen und Vertretern von Organisationen, die über die Website <strong>tvet.si</strong> Projekt- oder Kooperationsanfragen stellen.</p>
+            <p>
+              <strong>Verantwortliche für die Datenverarbeitung:</strong><br />
+              Selbstständige Natalia Eduardovna Dolgova<br />
+              Steuer-ID / INN: 575210528203<br />
+              E-Mail: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+              Telegram: <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+            </p>
+            <p>1.2. Die Datenverarbeitung erfolgt unter strikter Beachtung der geltenden Datenschutzbestimmungen und der allgemeinen Grundsätze der Datenminimierung.</p>
+
+            <h2>2. Zwecke der Datenverarbeitung</h2>
+            <p>Personenbezogene Daten werden ausschließlich für folgende Zwecke verarbeitet:</p>
+            <ul>
+              <li>Prüfung eingehender Anfragen zu wissenschaftlicher Kooperation, Forschungspartnerschaften und Weiterbildungsinitiativen;</li>
+              <li>Rückmeldung, Klärung von Projektanforderungen, inhaltliche Abstimmung von Zielen und Lieferergebnissen;</li>
+              <li>Bereitstellung ergänzender wissenschaftlicher Informationen zu Publikationen, Curricula und Vorträgen.</li>
+            </ul>
+
+            <h2>3. Kategorien verarbeiteter Daten</h2>
+            <p>Bei der Absendung des Anfrageformulars können folgende Daten erhoben und verarbeitet werden:</p>
+            <ul>
+              <li>Name und Berufsbezeichnung / Funktion;</li>
+              <li>E-Mail-Adresse;</li>
+              <li>Name der Organisation oder Hochschuleinrichtung;</li>
+              <li>Angaben zum Vorhaben, Zielgruppe, Zeitrahmen und Budgetrahmen;</li>
+              <li>vom Nutzer freiwillig übermittelte Anmerkungen oder Projektbeschreibungen.</li>
+            </ul>
+
+            <h2>4. Grundsätze der Datenverarbeitung und Speicherdauer</h2>
+            <p>4.1. Die Verarbeitung erfolgt unter Anwendung sicherer automatisierter sowie manueller Verfahren und beschränkt sich auf das notwendige Maß.</p>
+            <p>4.2. Personenbezogene Daten werden niemals an Dritte verkauft oder unbefugt weitergegeben, es sei denn, dies ist gesetzlich vorgeschrieben oder technisch erforderlich zur Spam- und Bot-Abwehr des Formulars.</p>
+            <p>4.3. Daten werden nur so lange gespeichert, wie es zur Bearbeitung der Kooperationsanfrage erforderlich ist oder bis die betroffene Person die Löschung verlangt.</p>
+            <p>4.4. Zum Schutz vor Spam und automatisierter Übermittlung wird Cloudflare Turnstile eingesetzt. Der Dienst prüft technische Merkmale zur Unterscheidung von Menschen und Bots, verarbeitet jedoch keine Nachrichteninhalte. Einzelheiten finden Sie in der <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Cloudflare-Datenschutzerklärung ↗</a>.</p>
+
+            <h2>5. Ihre Rechte</h2>
+            <p>Sie haben jederzeit das Recht auf Auskunft über Ihre gespeicherten Daten, auf Berichtigung unrichtiger Angaben, auf Löschung sowie auf Widerruf Ihrer Einwilligung. Wenden Sie sich hierzu bitte an: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a>.</p>
+
+            <div class="legal-requisites">
+              <h3>Angaben zur Verantwortlichen</h3>
+              <p>
+                <strong>Selbstständige Natalia E. Dolgova</strong><br />
+                Steuer-ID (INN): 575210528203<br />
+                Status: Steuerpflichtige für berufliche Einkünfte (Selbstständige)<br />
+                E-Mail: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+                Telegram: <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+              </p>
+            </div>
+          </>
+        ) : isZh ? (
           <>
             <h2>1. 总则</h2>
-            <p>1.1. 本政策规定了自然人及机构代表在通过 <strong>nd-science.github.io</strong> 网站提交合作意向与咨询时，个人数据的处理与保护准则。</p>
+            <p>1.1. 本政策规定了自然人及机构代表在通过 <strong>tvet.si</strong> 网站提交合作意向与咨询时，个人数据的处理与保护准则。</p>
             <p>
               <strong>个人数据处理者（运营方）：</strong><br />
               自雇专业人士 娜塔莉亚·多尔戈娃 (Natalia Eduardovna Dolgova)<br />
@@ -111,7 +276,7 @@ const breadcrumbs = [
         ) : isRu ? (
           <>
             <h2>1. Общие положения</h2>
-            <p>1.1. Настоящая Политика определяет порядок обработки и защиты персональных данных физических лиц и представителей организаций, направляющих запросы через сайт <strong>nd-science.github.io</strong>.</p>
+            <p>1.1. Настоящая Политика определяет порядок обработки и защиты персональных данных физических лиц и представителей организаций, направляющих запросы через сайт <strong>tvet.si</strong>.</p>
             <p>
               <strong>Оператор персональных данных:</strong><br />
               Самозанятая Долгова Наталия Эдуардовна<br />
@@ -162,7 +327,7 @@ const breadcrumbs = [
         ) : (
           <>
             <h2>1. General Provisions</h2>
-            <p>1.1. This Privacy Policy governs the processing and protection of personal data submitted by individuals and institutional representatives via <strong>nd-science.github.io</strong>.</p>
+            <p>1.1. This Privacy Policy governs the processing and protection of personal data submitted by individuals and institutional representatives via <strong>tvet.si</strong>.</p>
             <p>
               <strong>Data Controller:</strong><br />
               Self-employed Natalia Eduardovna Dolgova<br />
