@@ -5,7 +5,26 @@
  */
 
 export type Locale = "ru" | "en";
+export type ExtendedLocale = "ru" | "en" | "zh" | "de" | "fr" | "es";
 export type SiteKey = "wellness" | "science";
+
+export interface LocaleConfig {
+  code: string;
+  label: string;
+  htmlLang: string;
+  ogLocale: string;
+  sitemapLang: string;
+  name: string;
+}
+
+export const SUPPORTED_LOCALES: Record<string, LocaleConfig> = {
+  ru: { code: "ru", label: "RU", htmlLang: "ru", ogLocale: "ru_RU", sitemapLang: "ru-RU", name: "Русский" },
+  en: { code: "en", label: "EN", htmlLang: "en", ogLocale: "en_US", sitemapLang: "en", name: "English" },
+  zh: { code: "zh", label: "中文", htmlLang: "zh-Hans", ogLocale: "zh_CN", sitemapLang: "zh-Hans", name: "中文" },
+  de: { code: "de", label: "DE", htmlLang: "de", ogLocale: "de_DE", sitemapLang: "de", name: "Deutsch" },
+  fr: { code: "fr", label: "FR", htmlLang: "fr", ogLocale: "fr_FR", sitemapLang: "fr", name: "Français" },
+  es: { code: "es", label: "ES", htmlLang: "es", ogLocale: "es_ES", sitemapLang: "es", name: "Español" },
+};
 
 export type LifecycleStatus =
   | "completed"
@@ -30,6 +49,11 @@ export interface SiteConfig {
 export interface LocalizedText {
   ru: string;
   en: string;
+  zh?: string;
+  de?: string;
+  fr?: string;
+  es?: string;
+  [key: string]: string | undefined;
 }
 
 export interface Credential {
@@ -213,15 +237,27 @@ export const nataliaProfile: PublicProfile = {
   displayName: {
     ru: "Наталия Долгова",
     en: "Nataliia Dolgova",
+    zh: "娜塔莉亚·多尔戈娃 (Nataliia Dolgova)",
+    de: "Nataliia Dolgova",
+    fr: "Nataliia Dolgova",
+    es: "Nataliia Dolgova",
   },
   languages: ["ru", "en"],
   wellnessRole: {
     ru: "Практический психолог и тренер по нейроинтеграции",
     en: "Practical psychologist and neurointegration trainer",
+    zh: "执业心理咨询师与神经整合训练师",
+    de: "Praktische Psychologin und Neurointegrationstrainerin",
+    fr: "Psychologue praticienne et formatrice en neuro-intégration",
+    es: "Psicóloga práctica y entrenadora de neurointegración",
   },
   scienceRole: {
     ru: "Исследователь профессионального образования и обучения взрослых, Dr. phil., кандидат экономических наук",
     en: "Researcher in vocational education and adult learning, Dr. phil., Candidate of Economic Sciences",
+    zh: "职业教育与成人学习研究者，哲学博士（Dr. phil.），经济学副博士",
+    de: "Forscherin in Berufsbildung und Erwachsenenbildung, Dr. phil., Kandidatin der Wirtschaftswissenschaften",
+    fr: "Chercheuse en formation professionnelle et éducation des adultes, Dr. phil., docteure en sciences économiques",
+    es: "Investigadora en educación vocacional y aprendizaje de adultos, Dr. phil., candidata a doctora en ciencias económicas",
   },
 };
 
@@ -233,22 +269,42 @@ export const keyFacts: LocalizedText[] = [
   {
     ru: "Dr. phil., Europa-Universität Flensburg, 2026, итоговая оценка magna cum laude",
     en: "Dr. phil., Europa-Universität Flensburg, 2026, overall magna cum laude",
+    zh: "德国弗伦斯堡欧罗巴大学哲学博士（Dr. phil.），2026年，优等成绩（magna cum laude）",
+    de: "Dr. phil., Europa-Universität Flensburg, 2026, Gesamtnote magna cum laude",
+    fr: "Dr. phil., Europa-Universität Flensburg, 2026, mention magna cum laude",
+    es: "Dr. phil., Europa-Universität Flensburg, 2026, calificación magna cum laude",
   },
   {
     ru: "Кандидат экономических наук, 2014",
     en: "Candidate of Economic Sciences, 2014",
+    zh: "经济学副博士，2014年",
+    de: "Kandidatin der Wirtschaftswissenschaften, 2014",
+    fr: "Docteure en sciences économiques, 2014",
+    es: "Candidata a doctora en ciencias económicas, 2014",
   },
   {
     ru: "Практический психолог, МПГУ, программа профессиональной переподготовки 1080 часов, 2026",
     en: "Practical psychologist, Moscow Pedagogical State University, 1,080-hour professional retraining programme, 2026",
+    zh: "执业心理学家，莫斯科国立师范大学（MPGU）1080学时专业进修项目，2026年",
+    de: "Praktische Psychologin, Staatliche Pädagogische Universität Moskau, 1.080-stündiges Weiterbildungsprogramm, 2026",
+    fr: "Psychologue praticienne, Université pédagogique d'État de Moscou, programme de requalification de 1080 heures, 2026",
+    es: "Psicóloga práctica, Universidad Pedagógica Estatal de Moscú, programa de readaptación profesional de 1080 horas, 2026",
   },
   {
     ru: "Исследования, преподавание и разработка образовательных программ с 2011 года",
     en: "Research, teaching and education programme design since 2011",
+    zh: "自2011年起从事学术研究、大学教学及教育项目研发",
+    de: "Forschung, Lehre und Bildungsprogrammentwicklung seit 2011",
+    fr: "Recherche, enseignement et conception de programmes de formation depuis 2011",
+    es: "Investigación, docencia y diseño de programas educativos desde 2011",
   },
   {
     ru: "Тренер по нейроинтеграции, профессиональная переподготовка 250 часов, 2024",
     en: "Neurointegration trainer, 250-hour professional retraining programme, 2024",
+    zh: "神经整合训练师，250学时专业进修资质，2024年",
+    de: "Neurointegrationstrainerin, 250-stündiges Weiterbildungsprogramm, 2024",
+    fr: "Formatrice en neuro-intégration, programme de 250 heures, 2024",
+    es: "Entrenadora de neurointegración, programa de 250 horas, 2024",
   },
 ];
 
@@ -288,6 +344,7 @@ export const verifiedMetrics: ScientificMetric[] = [
     notes: {
       ru: "Верифицированный профиль цитирований Google Академии (Europa-Universität Flensburg)",
       en: "Verified Google Scholar citation profile (Europa-Universität Flensburg)",
+      zh: "谷歌学术认证引文档案（弗伦斯堡欧罗巴大学）",
     },
   },
   {
@@ -300,6 +357,7 @@ export const verifiedMetrics: ScientificMetric[] = [
     notes: {
       ru: "Российский индекс научного цитирования (eLibrary.ru): 64 работы, 475 цитирований, публикации по экономике, управлению университетами и образованию",
       en: "Russian Science Citation Index (eLibrary.ru): 64 publications, 475 citations across higher education, management and economics",
+      zh: "俄罗斯科学引文索引 (eLibrary.ru)：64篇文献，475次引用，涵盖高等教育、大学管理与经济学领域",
     },
   },
   {
@@ -312,6 +370,7 @@ export const verifiedMetrics: ScientificMetric[] = [
     notes: {
       ru: "Рецензируемые публикации и международные цитирования (Scopus Preview)",
       en: "Peer-reviewed publications and international citations (Scopus Preview)",
+      zh: "同行评审出版物与国际引文（Scopus Preview）",
     },
   },
   {
@@ -324,6 +383,7 @@ export const verifiedMetrics: ScientificMetric[] = [
     notes: {
       ru: "Открытый международный библиографический каталог (включая массив ранних публикаций)",
       en: "Open international bibliographic catalogue (including earlier career publications)",
+      zh: "开放式国际书目文献库（包含早期学术出版物）",
     },
   },
 ];
@@ -448,24 +508,26 @@ export const professionalCommunities: CommunityGroup[] = [
     name: "What’s in TVET?",
     platform: "linkedin",
     url: "https://www.linkedin.com/groups/12713149",
-    role: { ru: "Основатель и модератор", en: "Founder & Moderator" },
+    role: { ru: "Основатель и модератор", en: "Founder & Moderator", zh: "创始人兼版主" },
     description: {
       ru: "Международное экспертное сообщество в сфере профессионального образования и подготовки инженерно-педагогических кадров",
       en: "International expert community in technical and vocational education, training, and educator preparation",
+      zh: "技术与职业教育培训（TVET）及工程教育师资培养领域的国际专家社区",
     },
-    audienceScope: { ru: "Исследователи, эксперты и преподаватели TVET", en: "TVET researchers, educators, and policy specialists" },
+    audienceScope: { ru: "Исследователи, эксперты и преподаватели TVET", en: "TVET researchers, educators, and policy specialists", zh: "职业教育研究者、专家及教师" },
   },
   {
     id: "tvet-league-brics",
     name: "TVET League BRICS+",
     platform: "linkedin",
     url: "https://www.linkedin.com/groups/9504349",
-    role: { ru: "Основатель и координатор", en: "Founder & Coordinator" },
+    role: { ru: "Основатель и координатор", en: "Founder & Coordinator", zh: "创始人兼协调员" },
     description: {
       ru: "Международная сеть и экспертная площадка сотрудничества в сфере профессионального образования стран БРИКС+",
       en: "International network and platform for vocational education collaboration across BRICS+ countries",
+      zh: "金砖国家+（BRICS+）职业教育与技能培训国际合作网络及专家智库平台",
     },
-    audienceScope: { ru: "Исследовательские группы и образовательные организации БРИКС+", en: "Research teams and educational institutions across BRICS+" },
+    audienceScope: { ru: "Исследовательские группы и образовательные организации БРИКС+", en: "Research teams and educational institutions across BRICS+", zh: "金砖国家+教育机构与科研团队" },
   },
 ];
 
@@ -985,6 +1047,7 @@ export const researchAreas: ResearchArea[] = [
     label: {
       ru: "Устойчивость банковской системы и региональное развитие",
       en: "Banking-system resilience and regional development",
+      zh: "银行系统韧性与区域发展",
     },
   },
   {
@@ -992,6 +1055,7 @@ export const researchAreas: ResearchArea[] = [
     label: {
       ru: "Финансирование и управление образованием",
       en: "Education finance and management",
+      zh: "教育财政与教育治理",
     },
   },
   {
@@ -999,6 +1063,7 @@ export const researchAreas: ResearchArea[] = [
     label: {
       ru: "Международная академическая мобильность",
       en: "International academic mobility",
+      zh: "国际学术流动",
     },
   },
   {
@@ -1006,25 +1071,27 @@ export const researchAreas: ResearchArea[] = [
     label: {
       ru: "Взаимодействие университетов и индустрии",
       en: "University–industry relations",
+      zh: "大学与产业界协同",
     },
   },
   {
     id: "human-capital",
-    label: { ru: "Человеческий капитал", en: "Human capital" },
+    label: { ru: "Человеческий капитал", en: "Human capital", zh: "人力资本" },
   },
   {
     id: "digital-transformation",
-    label: { ru: "Цифровая трансформация", en: "Digital transformation" },
+    label: { ru: "Цифровая трансформация", en: "Digital transformation", zh: "数字化转型" },
   },
   {
     id: "digital-competencies",
-    label: { ru: "Цифровые компетенции", en: "Digital competencies" },
+    label: { ru: "Цифровые компетенции", en: "Digital competencies", zh: "数字素养与数字能力" },
   },
   {
     id: "tvet-educators",
     label: {
       ru: "Профессиональное образование и подготовка педагогов СПО",
       en: "Vocational education and TVET educator preparation",
+      zh: "职业教育与职业院校工程教育师资培训",
     },
   },
   {
@@ -1032,6 +1099,7 @@ export const researchAreas: ResearchArea[] = [
     label: {
       ru: "Воспринимаемая эффективность онлайн-обучения взрослых",
       en: "Perceived effectiveness of online learning for adults",
+      zh: "成人在线学习感知有效性",
     },
   },
   {
@@ -1039,48 +1107,55 @@ export const researchAreas: ResearchArea[] = [
     label: {
       ru: "Образовательные программы и компетентностные модели",
       en: "Learning programmes and competence models",
+      zh: "培养方案与胜任力模型",
     },
   },
 ];
 
 export const researchMethods: LocalizedText[] = [
-  { ru: "Количественный и качественный анализ", en: "Quantitative and qualitative analysis" },
-  { ru: "Опросы", en: "Surveys" },
-  { ru: "Интервью", en: "Interviews" },
-  { ru: "Смешанные методы", en: "Mixed methods" },
-  { ru: "Триангуляция", en: "Triangulation" },
-  { ru: "Систематизация литературы", en: "Literature synthesis" },
+  { ru: "Количественный и качественный анализ", en: "Quantitative and qualitative analysis", zh: "定量与定性分析" },
+  { ru: "Опросы", en: "Surveys", zh: "问卷调查" },
+  { ru: "Интервью", en: "Interviews", zh: "深度访谈" },
+  { ru: "Смешанные методы", en: "Mixed methods", zh: "混合研究方法" },
+  { ru: "Триангуляция", en: "Triangulation", zh: "三角互证法" },
+  { ru: "Систематизация литературы", en: "Literature synthesis", zh: "文献综述与综合" },
 ];
 
 /** Масштаб опыта из профессиональной карты. */
 export const scaleFacts: LocalizedText[] = [
-  { ru: "Профессиональная работа — с июля 2011 года", en: "Professional work since July 2011" },
-  { ru: "Консультирование — с 2019 года", en: "Consulting since 2019" },
+  { ru: "Профессиональная работа — с июля 2011 года", en: "Professional work since July 2011", zh: "从事专业工作始于2011年7月" },
+  { ru: "Консультирование — с 2019 года", en: "Consulting since 2019", zh: "提供专业咨询始于2019年" },
   {
     ru: "Частная психологическая практика — с марта 2026 года",
     en: "Private psychological practice since March 2026",
+    zh: "私人心理咨询实践始于2026年3月",
   },
   {
     ru: "40+ разработанных программ повышения квалификации и подготовки педагогов",
     en: "40+ designed professional-development and educator-training programmes",
+    zh: "研发与设计40余个教师进修与师资培训项目",
   },
-  { ru: "37 образовательных проектов", en: "37 education projects" },
+  { ru: "37 образовательных проектов", en: "37 education projects", zh: "37个教育项目" },
   {
     ru: "2000+ обученных педагогов из 35 регионов",
     en: "2,000+ educators trained across 35 regions",
+    zh: "培训来自35个地区的2000余名教师",
   },
-  { ru: "Более 3000 часов занятий", en: "Over 3,000 hours of teaching" },
+  { ru: "Более 3000 часов занятий", en: "Over 3,000 hours of teaching", zh: "授课与指导超3000课时" },
   {
     ru: "100+ публикаций; выступления на российских и международных профессиональных мероприятиях",
     en: "100+ publications; presentations at Russian and international professional events",
+    zh: "发表100余篇学术出版物；受邀在俄罗斯及国际学术会议发表演讲",
   },
   {
     ru: "18 случаев personal development coaching и индивидуальной аналитической поддержки",
     en: "18 cases of personal development coaching and individual analytical support",
+    zh: "完成18例个人发展教练及个体分析咨询个案",
   },
   {
     ru: "Отдельный проект на 144 часа для 320 преподавателей",
     en: "A separate 144-hour project for 320 educators",
+    zh: "面向320名教师的独立大型144学时进修项目",
   },
 ];
 

@@ -5,6 +5,10 @@ export type SiteStatus = "draft" | "public";
 export interface LocalizedPaths {
   ru: string;
   en: string;
+  zh?: string;
+  de?: string;
+  fr?: string;
+  es?: string;
 }
 
 export interface SeoInput {
@@ -15,7 +19,7 @@ export interface SeoInput {
 }
 
 export interface AlternateLink {
-  hreflang: "ru" | "en" | "x-default";
+  hreflang: string;
   href: string;
 }
 
@@ -32,12 +36,20 @@ export function absoluteUrl(siteUrl: string, path: string): string {
 }
 
 export function buildSeo(input: SeoInput) {
-  const canonical = absoluteUrl(input.siteUrl, input.paths[input.locale]);
-  const alternates: AlternateLink[] = [
-    { hreflang: "ru", href: absoluteUrl(input.siteUrl, input.paths.ru) },
-    { hreflang: "en", href: absoluteUrl(input.siteUrl, input.paths.en) },
-    { hreflang: "x-default", href: absoluteUrl(input.siteUrl, input.paths.ru) },
-  ];
+  const currentPath = input.paths[input.locale] || input.paths.en || input.paths.ru;
+  const canonical = absoluteUrl(input.siteUrl, currentPath);
+  const alternates: AlternateLink[] = [];
+
+  for (const [loc, path] of Object.entries(input.paths)) {
+    if (path) {
+      alternates.push({ hreflang: loc, href: absoluteUrl(input.siteUrl, path) });
+    }
+  }
+
+  const defaultPath = input.paths.ru || input.paths.en;
+  if (defaultPath) {
+    alternates.push({ hreflang: "x-default", href: absoluteUrl(input.siteUrl, defaultPath) });
+  }
 
   return {
     canonical,
@@ -70,7 +82,7 @@ export function createPersonJsonLd(
     "@context": "https://schema.org",
     "@type": "Person",
     "@id": details?.id || "https://orcid.org/0000-0003-0816-2103#person",
-    name: profile.displayName[locale],
+    name: profile.displayName[locale] || profile.displayName.en || profile.displayName.ru,
     url: details?.url || pageUrl,
     knowsLanguage: profile.languages,
   };
@@ -140,7 +152,7 @@ export function createWebPageJsonLd(input: {
     author: {
       "@type": "Person",
       "@id": input.authorId || "https://orcid.org/0000-0003-0816-2103#person",
-      name: input.authorName || (input.locale === "ru" ? "Наталия Долгова" : "Nataliia Dolgova"),
+      name: input.authorName || (input.locale === "ru" ? "Наталия Долгова" : input.locale === "zh" ? "娜塔莉亚·多尔戈娃 (Nataliia Dolgova)" : "Nataliia Dolgova"),
     },
   };
   if (input.dateModified) {
@@ -150,11 +162,12 @@ export function createWebPageJsonLd(input: {
 }
 
 export function localizedValue(value: LocalizedText, locale: Locale): string {
-  return value[locale];
+  return value[locale] || value.en || value.ru || "";
 }
 
 export function formatUpdated(date: Date, locale: Locale): string {
-  return new Intl.DateTimeFormat(locale === "ru" ? "ru-RU" : "en-GB", {
+  const localeTag = locale === "ru" ? "ru-RU" : locale === "zh" ? "zh-Hans" : locale === "de" ? "de-DE" : locale === "fr" ? "fr-FR" : locale === "es" ? "es-ES" : "en-GB";
+  return new Intl.DateTimeFormat(localeTag, {
     dateStyle: "long",
     timeZone: "UTC",
   }).format(date);
@@ -165,7 +178,8 @@ export function formatMoney(
   locale: Locale,
   options?: { maximumFractionDigits?: number },
 ): string {
-  return new Intl.NumberFormat(locale === "ru" ? "ru-RU" : "en-IE", {
+  const localeTag = locale === "ru" ? "ru-RU" : locale === "zh" ? "zh-CN" : locale === "de" ? "de-DE" : locale === "fr" ? "fr-FR" : locale === "es" ? "es-ES" : "en-IE";
+  return new Intl.NumberFormat(localeTag, {
     style: "currency",
     currency: "EUR",
     currencyDisplay: "symbol",

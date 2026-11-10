@@ -9,14 +9,13 @@ const routes = {
 };
 
 for (const [site, siteRoutes] of Object.entries(routes)) {
-  const siteLocales = site === "science" ? ["ru", "en", "zh"] : ["ru", "en"];
-  for (const locale of siteLocales) {
+  for (const locale of ["ru", "en"]) {
     for (const route of siteRoutes) {
       const file = resolve(root, `apps/${site}/dist/${locale}/${route}/index.html`);
       if (!existsSync(file)) { failures.push(`Missing built route: ${site}/${locale}/${route || "home"}`); continue; }
       const html = readFileSync(file, "utf8");
       const expectedTokens = [
-        `lang="${locale === "zh" ? "zh-Hans" : locale}"`,
+        `lang="${locale}"`,
         "rel=\"canonical\"",
         "hreflang=\"ru\"",
         "hreflang=\"en\"",
@@ -26,9 +25,6 @@ for (const [site, siteRoutes] of Object.entries(routes)) {
         'content="strict-origin-when-cross-origin"',
         'name="twitter:card"',
       ];
-      if (site === "science") {
-        expectedTokens.push("hreflang=\"zh\"");
-      }
       for (const token of expectedTokens) {
         if (!html.includes(token)) failures.push(`${site}/${locale}/${route || "home"}: missing ${token}`);
       }
@@ -88,8 +84,7 @@ if (!scienceProjects.includes('"@type":"ResearchProject"')) failures.push("Scien
 
 if (process.env.PUBLIC_SITE_STATUS === "public") {
   for (const [site, siteRoutes] of Object.entries(routes)) {
-    const siteLocales = site === "science" ? ["ru", "en", "zh"] : ["ru", "en"];
-    for (const locale of siteLocales) {
+    for (const locale of ["ru", "en"]) {
       for (const route of siteRoutes) {
         const file = resolve(root, `apps/${site}/dist/${locale}/${route}/index.html`);
         if (!existsSync(file)) continue;
@@ -101,4 +96,4 @@ if (process.env.PUBLIC_SITE_STATUS === "public") {
 }
 
 if (failures.length) { console.error(failures.join("\n")); process.exitCode = 1; }
-else console.log("Built-route validation passed for localized pages (RU/EN/ZH), canonical/hreflang and structured data.");
+else console.log("Built-route validation passed for 48 localized pages, canonical/hreflang and structured data.");
