@@ -367,6 +367,20 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
         } else {
           centerActiveTab();
         }
+        try {
+          const links = document.querySelectorAll('a[href^="http://"], a[href^="https://"]');
+          for (let i = 0; i < links.length; i++) {
+            const a = links[i];
+            const href = a.getAttribute('href') || '';
+            if (!href.includes(window.location.hostname) && !href.includes('.invalid')) {
+              if (!a.getAttribute('target')) a.setAttribute('target', '_blank');
+              const rel = a.getAttribute('rel') || '';
+              if (!rel.includes('noopener')) {
+                a.setAttribute('rel', (rel ? rel + ' ' : '') + 'noopener noreferrer');
+              }
+            }
+          }
+        } catch (_) {}
       })();
     </script>
   </body>

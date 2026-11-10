@@ -32,6 +32,23 @@ for (const [site, siteRoutes] of Object.entries(routes)) {
       }
       const otherOrigin = site === "wellness" ? "science.invalid" : "wellness.invalid";
       if (route !== "about" && html.includes(otherOrigin)) failures.push(`${site}/${locale}/${route || "home"}: cross-site link is allowed only on About`);
+
+      const distDir = resolve(root, `apps/${site}/dist`);
+      const linkRegex = /<a\s+[^>]*?href=["']([^"']+)["']/gi;
+      let match;
+      while ((match = linkRegex.exec(html)) !== null) {
+        const href = match[1];
+        if (href.startsWith('/') && !href.startsWith('//')) {
+          const cleanHref = href.split('#')[0].split('?')[0];
+          if (cleanHref) {
+            let target = resolve(distDir, cleanHref.replace(/^\/+/, ""));
+            if (cleanHref.endsWith('/') || !cleanHref.includes('.')) target = resolve(target, 'index.html');
+            if (!existsSync(target) && !existsSync(resolve(distDir, cleanHref.replace(/^\/+/, "")))) {
+              failures.push(`${site}/${locale}/${route || "home"}: broken internal link: ${href}`);
+            }
+          }
+        }
+      }
     }
   }
 }

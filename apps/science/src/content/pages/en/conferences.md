@@ -30,4 +30,4 @@ On her [professional LinkedIn profile](https://www.linkedin.com/in/natalidolgova
 
 The profile also highlights service roles including Taccle AI Ambassador (since June 2020) and Director of vocational education and training projects at Graduate Women International (2021–2022).
 
-For a complete academic trajectory, international memberships and awards, explore the [Biography](/about/) section. To join international TVET discussion groups and connect professionally, visit the [Contact](/contact/) section.
+For a complete academic trajectory, international memberships and awards, explore the [Biography](/en/about/) section. To join international TVET discussion groups and connect professionally, visit the [Contact](/en/contact/) section.
