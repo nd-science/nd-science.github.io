@@ -20,6 +20,8 @@ const form = scienceCopy[locale].form;
       </a>
       <div class="direct-contact-secondary">
         <a href={form.notConnected.linkedinUrl} target="_blank" rel="noopener noreferrer">{form.notConnected.linkedinLabel} ↗</a>
+        <span aria-hidden="true">/</span>
+        <a href="mailto:nataliia.e.ovchinnikova@gmail.com">Email: nataliia.e.ovchinnikova@gmail.com ↗</a>
       </div>
     </div>
 
@@ -73,6 +75,7 @@ const form = scienceCopy[locale].form;
       <span>{locale === "ru" ? "Прямая связь:" : "Direct contact:"}</span>
       <a class="direct-contact-link" href={form.notConnected.telegramUrl} target="_blank" rel="noopener noreferrer">{form.notConnected.telegramBtn} ↗</a>
       <a class="direct-contact-link" href={form.notConnected.linkedinUrl} target="_blank" rel="noopener noreferrer">{form.notConnected.linkedinLabel} ↗</a>
+      <a class="direct-contact-link" href="mailto:nataliia.e.ovchinnikova@gmail.com">Email ↗</a>
     </div>
   </form>
 )}

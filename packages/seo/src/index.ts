@@ -57,6 +57,7 @@ export interface PersonJsonLdDetails {
   alternateName?: string;
   knowsAbout?: string[];
   sameAs?: string[];
+  email?: string;
 }
 
 export function createPersonJsonLd(
@@ -73,6 +74,10 @@ export function createPersonJsonLd(
     url: details?.url || pageUrl,
     knowsLanguage: profile.languages,
   };
+
+  if (details?.email) {
+    person.email = details.email;
+  }
 
   if (details?.image) {
     person.image = details.image;

@@ -23,4 +23,5 @@ publicationScope: public
 - **Личный профиль LinkedIn (страница для связи)**: [linkedin.com/in/natalidolgova](https://www.linkedin.com/in/natalidolgova) — добавляйтесь в контакты для профессионального взаимодействия (сеть объединяет свыше 9 000 коллег и экспертов по всему миру).
 - **Группа «What’s in TVET?»**: [linkedin.com/groups/12713149](https://www.linkedin.com/groups/12713149) — международное профессиональное сообщество по вопросам развития профессионального образования, методологии и педагогических исследований. [Присоединиться к группе ↗](https://www.linkedin.com/groups/12713149)
 - **Группа «TVET League BRICS+»**: [linkedin.com/groups/9504349](https://www.linkedin.com/groups/9504349) — экспертная площадка и сеть сотрудничества для исследователей и образовательных организаций стран БРИКС+. [Присоединиться к группе ↗](https://www.linkedin.com/groups/9504349)
+- **Электронная почта**: [nataliia.e.ovchinnikova@gmail.com](mailto:nataliia.e.ovchinnikova@gmail.com) — для официальных писем, приглашений к рецензированию и исследовательского сотрудничества.
 - **Прямой Telegram для оперативной связи**: [@natali_tvet_pro](https://t.me/natali_tvet_pro).

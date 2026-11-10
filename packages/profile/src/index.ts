@@ -420,7 +420,15 @@ export const publicResources: PublicResource[] = [
     label: { ru: "Forbes Education Russia", en: "Forbes Education Russia" },
     url: "https://www.forbes.ru/profile/510916-natalia-dolgova",
   },
+  {
+    id: "email",
+    label: { ru: "Email", en: "Email" },
+    url: "mailto:nataliia.e.ovchinnikova@gmail.com",
+  },
 ];
+
+/** Публичный контактный адрес электронной почты (DEC-044). */
+export const publicContactEmail = "nataliia.e.ovchinnikova@gmail.com";
 
 export interface CommunityGroup {
   id: string;

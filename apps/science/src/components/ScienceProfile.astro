@@ -9,3 +9,10 @@ const roles = experience.filter((item) => item.sites.includes("science") && item
 <ul class="cred-list">{items.map((item) => <li class="cred-item"><span class="cred-period">{item.startDate && item.endDate ? `${item.startDate}–${item.endDate}` : item.year}</span><div><strong>{item.title[locale]}</strong><p>{item.issuer[locale]}</p></div></li>)}</ul>
 <h3 class="subsection-title">{locale === "ru" ? "Профессиональная хронология" : "Professional timeline"}</h3>
 <ul class="cred-list">{roles.map((item) => <li class="cred-item"><span class="cred-period">{item.startDate}{item.endDate ? `–${item.endDate}` : "–"}</span><div><strong>{item.role[locale]}</strong><p>{item.organisation[locale]}</p><p>{item.summary[locale]}</p></div></li>)}</ul>
+<p class="credential-notice" style="margin-block-start: 1.25rem; color: var(--muted-text);">
+  <small>
+    {locale === "ru"
+      ? "Документы об ученых степенях и дипломы верифицированы по официальным реестрам и предоставляются институциональным партнерам по запросу."
+      : "Degree certificates and credentials are authenticated via official registries and provided upon institutional request."}
+  </small>
+</p>

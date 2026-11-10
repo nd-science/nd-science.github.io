@@ -15,7 +15,8 @@ if (/\.invalid(?:\/|$)/i.test(process.env.PUBLIC_SITE_URL ?? "")) failures.push(
 if (site === "wellness") {
   if (!process.env.PUBLIC_SCIENCE_SITE_URL || /\.invalid/i.test(process.env.PUBLIC_SCIENCE_SITE_URL)) failures.push("PUBLIC_SCIENCE_SITE_URL must be a production URL");
   const credentialDir = resolve(root, "apps/wellness/public/documents/credentials");
-  if (!existsSync(credentialDir) || !readdirSync(credentialDir).some((name) => name.endsWith(".pdf"))) failures.push("At least one redacted public credential PDF is required");
+  const hasPdfs = existsSync(credentialDir) && readdirSync(credentialDir).some((name) => name.endsWith(".pdf"));
+  if (!hasPdfs && process.env.PUBLIC_CREDENTIALS_POLICY !== "on_request") failures.push("At least one redacted public credential PDF or PUBLIC_CREDENTIALS_POLICY=on_request is required");
 } else {
   if (!process.env.PUBLIC_WELLNESS_SITE_URL || /\.invalid/i.test(process.env.PUBLIC_WELLNESS_SITE_URL)) failures.push("PUBLIC_WELLNESS_SITE_URL must be a production URL");
   for (const file of ["apps/science/public/cv/natalia-dolgova-ru.pdf", "apps/science/public/cv/natalia-dolgova-en.pdf"]) if (!existsSync(resolve(root, file))) failures.push(`Missing ${file}`);
