@@ -222,7 +222,7 @@ const pageTitle = isHome
         </ul>
         <div class="metrics-block">
           <p class="metrics-table-caption"><strong>{locale === "ru" ? "Сводные наукометрические показатели" : "Summary bibliometric indicators"}</strong> &mdash; <span>{locale === "ru" ? "верифицировано по официальным профилям автора" : "verified via author profiles"}</span></p>
-          <div class="table-container">
+          <div class="table-container" tabindex="0" role="region" aria-label={locale === "ru" ? "Таблица наукометрических показателей" : "Bibliometric indicators table"}>
             <table class="metrics-table">
               <thead>
                 <tr>
@@ -237,12 +237,12 @@ const pageTitle = isHome
               <tbody>
                 {verifiedMetrics.map((m) => (
                   <tr>
-                    <td><strong>{m.database}</strong></td>
-                    <td style="text-align: center;"><span class="metric-badge">{m.hIndex}</span></td>
-                    <td style="text-align: center;">{m.documents}</td>
-                    <td style="text-align: center;">{m.citations}</td>
-                    <td class="metric-date">{m.checkedAt}</td>
-                    <td>
+                    <td data-label={locale === "ru" ? "База данных" : "Database"}><strong>{m.database}</strong></td>
+                    <td data-label="h-index" style="text-align: center;"><span class="metric-badge">{m.hIndex}</span></td>
+                    <td data-label={locale === "ru" ? "Публикаций" : "Publications"} style="text-align: center;">{m.documents}</td>
+                    <td data-label={locale === "ru" ? "Цитирований" : "Citations"} style="text-align: center;">{m.citations}</td>
+                    <td data-label={locale === "ru" ? "Дата проверки" : "As of"} class="metric-date">{m.checkedAt}</td>
+                    <td data-label={locale === "ru" ? "Охват и профиль" : "Coverage & Source"}>
                       <p class="metric-note">{m.notes[locale]}</p>
                       <a class="metric-link" href={m.databaseUrl} target="_blank" rel="noopener noreferrer">
                         {locale === "ru" ? "Профиль в базе" : "View source profile"} ↗
