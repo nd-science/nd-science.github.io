@@ -79,19 +79,24 @@
 ## Пакет 4. Регистрация в кабинетах поисковых систем (Вебмастера)
 
 ### Задачи к выполнению:
-- [ ] **4.1. Google Search Console (GSC):**
-  * Добавить все 3 ресурса как **Доменный ресурс** (Domain Property) под аккаунтом `ivan.dolgov.han.dong@gmail.com`.
-  * Подтвердить владение добавлением одной **DNS TXT-записи** в Neoserv для каждого домена (самый надежный способ, покрывающий apex, www и любые поддомены).
-  * Отправить карты сайтов (`sitemap-index.xml`).
-  * Запросить первичную индексацию главных страниц через инструмент «Проверка URL» (Request Indexing).
+- [x] **4.1. Google Search Console (GSC):**
+  * Все 3 ресурса добавлены как **Доменный ресурс** (Domain Property) под аккаунтом `ivan.dolgov.han.dong@gmail.com`:
+    * `tvet.si` (sc-domain:tvet.si) — подтверждён через DNS TXT.
+    * `natalicompass.com` (sc-domain:natalicompass.com) — подтверждён через DNS TXT.
+    * `rudoctors.com` (sc-domain:rudoctors.com) — подтверждён через DNS TXT.
+  * Карты сайтов отправлены:
+    * `https://tvet.si/sitemap-index.xml`
+    * `https://natalicompass.com/sitemap-index.xml`
+    * `https://rudoctors.com/sitemap-index.xml`
 - [ ] **4.2. Яндекс.Вебмастер:**
   * Добавить сайты `https://natalicompass.com`, `https://tvet.si` и `https://rudoctors.com`.
   * Подтвердить права через метатег в `BaseLayout.astro` или DNS TXT.
   * Задать региональную привязку (для RuDoctors: Сербия / Белград; для Wellness: Белград / международный; для Science: международный).
   * Отправить `sitemap-index.xml`.
   * Перепроверить отображение фавиконок в поиске Яндекса.
-- [ ] **4.3. Bing Webmaster Tools:**
-  * Авторизоваться через Google-аккаунт и выполнить импорт всех подтверждённых сайтов из Google Search Console в 1 клик.
+- [x] **4.3. Bing Webmaster Tools:**
+  * Авторизовались через Google-аккаунт `ivan.dolgov.han.dong@gmail.com`.
+  * Выполнен импорт из Google Search Console: все три домена (`natalicompass.com`, `tvet.si`, `rudoctors.com`) успешно добавлены и верифицированы.
 
 ---
 

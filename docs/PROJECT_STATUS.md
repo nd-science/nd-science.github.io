@@ -22,7 +22,7 @@
   - EN: [https://natalicompass.com/en/](https://natalicompass.com/en/)
   - CNAME, DNS (Neoserv), SSL/TLS (Let's Encrypt), Enforce HTTPS активны.
 
-Статус: официальные production-домены физически привязаны и защищены SSL. Email forwarding (`contact@tvet.si` и `hello@natalicompass.com`) и SPF-записи настроены. Cloudflare Turnstile обновлён под новые домены. До подтверждения Наталией сайты остаются в статусе `draft` и `noindex` (поисковые краулеры закрыты). Дорожная карта дальнейших шагов: `docs/operations/post-domain-launch-roadmap.md`.
+Статус: официальные production-домены физически привязаны и защищены SSL. Email forwarding (`contact@tvet.si` и `hello@natalicompass.com`) и SPF-записи настроены. Cloudflare Turnstile обновлён под новые домены. Доменные ресурсы верифицированы через DNS TXT в Google Search Console и Bing Webmaster Tools под аккаунтом `ivan.dolgov.han.dong@gmail.com`, карты сайтов отправлены. До подтверждения Наталией сайты остаются в статусе `draft` и `noindex` (поисковые краулеры закрыты). Дорожная карта дальнейших шагов: `docs/operations/post-domain-launch-roadmap.md`.
 
 ## Источники истины
 
