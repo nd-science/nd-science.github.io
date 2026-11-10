@@ -77,9 +77,9 @@ test("rejects a missing adult confirmation", async () => {
 
 test("rejects a missing language choice", async () => {
   const response = await handleEnquiry(
-    formRequest("wellness", { language: "" }),
+    formRequest("science", { language: "" }),
     env,
-    "wellness",
+    "science",
     fetchOk,
   );
   assert.equal(response.status, 422);

@@ -6,6 +6,17 @@
 // 1. НАСТРОЙКИ (задаются исключительно в: Настройки проекта -> Свойства скрипта)
 //   - TELEGRAM_BOT_TOKEN: токен бота Telegram, полученный от @BotFather
 //   - TELEGRAM_CHAT_ID: ID получателей уведомлений через запятую (например: 400839444,5218564894)
+//   - TURNSTILE_SECRET_KEY: секрет Cloudflare Turnstile для server-side проверки формы
+
+const FORM_MAX_LENGTH = 2000;
+const FORM_CONTACT_LIMIT = 3;
+const FORM_CONTACT_WINDOW_SECONDS = 60 * 60;
+const FORM_GLOBAL_LIMIT = 20;
+const FORM_GLOBAL_WINDOW_SECONDS = 5 * 60;
+const FORM_HOSTNAMES = {
+  wellness: "wellnessnd.github.io",
+  science: "nd-science.github.io"
+};
 
 /**
  * Инициализация структуры CRM-таблицы (запустите один раз)
@@ -77,6 +88,126 @@ function setupCRM() {
   SpreadsheetApp.getUi().alert("CRM-таблица успешно настроена!");
 }
 
+function formText(value, maxLength) {
+  const limit = maxLength || FORM_MAX_LENGTH;
+  return typeof value === "string" ? value.trim().slice(0, limit) : "";
+}
+
+function formLocale(data) {
+  return data.locale === "en" ? "en" : "ru";
+}
+
+function formMessage(data, kind) {
+  const en = formLocale(data) === "en";
+  return {
+    accepted: en
+      ? "Thank you. Your enquiry has been received. This is not a confirmed booking."
+      : "Спасибо. Заявка получена. Это ещё не подтверждённая запись.",
+    invalid: en
+      ? "Please review the required form fields."
+      : "Проверьте обязательные поля формы.",
+    blocked: en
+      ? "We could not verify the submission. Refresh the page and try again."
+      : "Не удалось проверить отправку. Обновите страницу и попробуйте снова.",
+    limited: en
+      ? "Please wait before sending another enquiry."
+      : "Пожалуйста, подождите перед повторной отправкой.",
+    failed: en
+      ? "The enquiry could not be sent. Please try again later."
+      : "Заявка не отправлена. Попробуйте позже."
+  }[kind];
+}
+
+function isValidEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) && value.length <= 254;
+}
+
+function isValidForm(data, site) {
+  if (data.consent !== "yes") return false;
+  if (site === "science") {
+    return ["name", "organisation", "role", "email", "language", "projectType", "intendedResult", "audience", "timeline", "budgetRange"]
+      .every(function(key) { return formText(data[key]).length > 0; }) && isValidEmail(formText(data.email, 254));
+  }
+  if (data.enquiryKind === "organisation") {
+    return ["organisation", "role", "contact", "language", "request", "audience", "delivery", "timeline"]
+      .every(function(key) { return formText(data[key]).length > 0; });
+  }
+  return data.adultConfirmed === "yes" && ["name", "contact", "request"]
+    .every(function(key) { return formText(data[key]).length > 0; });
+}
+
+function verifyTurnstile(token, site) {
+  const secret = PropertiesService.getScriptProperties().getProperty("TURNSTILE_SECRET_KEY");
+  if (!token || !secret || !FORM_HOSTNAMES[site]) return false;
+  try {
+    const response = UrlFetchApp.fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "post",
+      payload: { secret: secret, response: formText(token, 2048) },
+      muteHttpExceptions: true
+    });
+    const result = JSON.parse(response.getContentText());
+    return response.getResponseCode() === 200 && result.success === true && result.hostname === FORM_HOSTNAMES[site];
+  } catch (err) {
+    return false;
+  }
+}
+
+function hashForCache(value) {
+  return Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, value)
+    .map(function(byte) { return ((byte + 256) % 256).toString(16).padStart(2, "0"); })
+    .join("");
+}
+
+function reserveFormSubmission(site, contact) {
+  const lock = LockService.getScriptLock();
+  if (!lock.tryLock(2000)) return false;
+  try {
+    const cache = CacheService.getScriptCache();
+    const contactKey = "form:contact:" + site + ":" + hashForCache(contact.toLowerCase());
+    const globalKey = "form:global:" + site;
+    const contactCount = Number(cache.get(contactKey) || 0);
+    const globalCount = Number(cache.get(globalKey) || 0);
+    if (contactCount >= FORM_CONTACT_LIMIT || globalCount >= FORM_GLOBAL_LIMIT) return false;
+    cache.put(contactKey, String(contactCount + 1), FORM_CONTACT_WINDOW_SECONDS);
+    cache.put(globalKey, String(globalCount + 1), FORM_GLOBAL_WINDOW_SECONDS);
+    return true;
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function toStoredLead(data, site) {
+  if (site !== "science") {
+    const isOrganisation = data.enquiryKind === "organisation";
+    return {
+      name: formText(data.name || data.organisation, 180),
+      contact: formText(data.contact || data.email, 254),
+      service: isOrganisation
+        ? "Wellness organisation: " + formText(data.delivery, 180)
+        : formText(data.service || "Консультация / Запрос", 180),
+      timezone: isOrganisation ? "Сроки: " + formText(data.timeline, 180) : formText(data.timezone, 180),
+      request: isOrganisation
+        ? ["Организация: " + formText(data.organisation), "Роль: " + formText(data.role), "Аудитория: " + formText(data.audience), "Запрос: " + formText(data.request), formText(data.comment) ? "Комментарий: " + formText(data.comment) : ""].filter(Boolean).join("\n")
+        : formText(data.request)
+    };
+  }
+  return {
+    name: formText(data.name, 180),
+    contact: formText(data.email, 254),
+    service: "Science: " + formText(data.projectType, 180),
+    timezone: "Сроки: " + formText(data.timeline, 180),
+    request: [
+      "Организация: " + formText(data.organisation),
+      "Роль: " + formText(data.role),
+      "Язык: " + formText(data.language),
+      "Результат: " + formText(data.intendedResult),
+      "Аудитория: " + formText(data.audience),
+      "Бюджет: " + formText(data.budgetRange),
+      formText(data.comment) ? "Комментарий: " + formText(data.comment) : ""
+    ].filter(Boolean).join("\n")
+  };
+}
+
 /**
  * Обработка входящих запросов (POST Webhook)
  */
@@ -93,72 +224,36 @@ function doPost(e) {
       data = e.parameter;
     }
 
-    // --- 1. ОБРАБОТКА ВХОДЯЩИХ СООБЩЕНИЙ ИЗ TELEGRAM ---
+    // Telegram webhook остаётся независимым от веб-форм.
     if (data.update_id) {
       handleTelegramUpdate(data);
       return HtmlService.createHtmlOutput("OK");
     }
 
-    // --- 2. ОБРАБОТКА ЗАЯВКИ С ВЕБ-САЙТА ---
-    // Антиспам (Honeypot): если скрытое поле заполнено, молча подтверждаем и ничего не пишем
-    if (data.website) {
-      return createJsonResponse({ ok: true, status: "ignored" });
-    }
+    // Honeypot: бот получает нейтральный успех, но CRM и Telegram не затрагиваются.
+    if (formText(data.website)) return createJsonResponse({ ok: true, status: "ignored" });
 
-    // Извлечение полей
-    const name = (data.name || data.organisation || "Без имени").trim();
-    const contact = (data.contact || data.email || data.phone || data.telegram || "Не указан").trim();
-    const service = (data.service || data.serviceName || data.task || "Консультация / Запрос").trim();
-    const timezone = (data.timezone || data.timeline || "Не указан").trim();
-    const requestText = (data.request || data.comment || "").trim();
+    const site = data.site === "science" ? "science" : "wellness";
+    if (!isValidForm(data, site)) return createJsonResponse({ ok: false, message: formMessage(data, "invalid") });
+    if (!verifyTurnstile(data["cf-turnstile-response"], site)) return createJsonResponse({ ok: false, message: formMessage(data, "blocked") });
+
+    const lead = toStoredLead(data, site);
+    if (!reserveFormSubmission(site, lead.contact)) return createJsonResponse({ ok: false, message: formMessage(data, "limited") });
+
     const dateObj = new Date();
     const dateFormatted = Utilities.formatDate(dateObj, "Europe/Belgrade", "dd.MM.yyyy HH:mm");
-    
-    // Генерация уникального ID заявки (например, ND-2610-482)
     const randomSuffix = Math.floor(100 + Math.random() * 900);
     const id = "ND-" + Utilities.formatDate(dateObj, "Europe/Belgrade", "yyMM") + "-" + randomSuffix;
-
-    // Запись в Google Таблицу
     const ss = SpreadsheetApp.getActiveSpreadsheet();
-    let sheet = ss.getSheetByName("Заявки") || ss.getActiveSheet();
-    sheet.appendRow([
-      id,
-      dateFormatted,
-      "1. Новая заявка",
-      name,
-      contact,
-      service,
-      timezone,
-      requestText,
-      "" // Заметки
-    ]);
+    const sheet = ss.getSheetByName("Заявки") || ss.getActiveSheet();
+    sheet.appendRow([id, dateFormatted, "1. Новая заявка", lead.name, lead.contact, lead.service, lead.timezone, lead.request, ""]);
+    sheet.getRange(sheet.getLastRow(), 1, 1, 9).setVerticalAlignment("top");
 
-    // Выравнивание добавленной строки
-    const lastRow = sheet.getLastRow();
-    sheet.getRange(lastRow, 1, 1, 9).setVerticalAlignment("top");
-
-    // Отправка в Telegram специалистам
-    notifyTelegram({
-      id: id,
-      date: dateFormatted,
-      name: name,
-      contact: contact,
-      service: service,
-      timezone: timezone,
-      request: requestText
-    });
-
-    return createJsonResponse({
-      ok: true,
-      id: id,
-      message: "Заявка успешно принята! Наталия свяжется с вами в ближайшее время."
-    });
-
+    notifyTelegram({ id: id, date: dateFormatted, name: lead.name, contact: lead.contact, service: lead.service, timezone: lead.timezone, request: lead.request });
+    return createJsonResponse({ ok: true, id: id, message: formMessage(data, "accepted") });
   } catch (err) {
-    return createJsonResponse({
-      ok: false,
-      error: err.toString()
-    });
+    console.error("Website form processing failed");
+    return createJsonResponse({ ok: false, message: formMessage({}, "failed") });
   }
 }
 

@@ -53,6 +53,7 @@ jobs:
           PUBLIC_SITE_STATUS: draft
           PUBLIC_SITE_URL: https://nd-science.github.io
           PUBLIC_WELLNESS_SITE_URL: https://wellnessnd.github.io
+          PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.PUBLIC_TURNSTILE_SITE_KEY }}
         run: pnpm --filter @natali/science build
 
       - name: Restore previous hashed assets from cache
