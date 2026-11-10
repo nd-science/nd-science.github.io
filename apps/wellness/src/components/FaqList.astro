@@ -8,14 +8,15 @@ interface Props {
 }
 
 const { items, locale } = Astro.props;
+const loc = (locale === "en" ? "en" : "ru") as "ru" | "en";
 ---
 
 <div class="faq-list">
   {
     items.map((item) => (
       <details class="faq-item">
-        <summary>{item.data.question[locale]}</summary>
-        <p>{item.data.answer[locale]}</p>
+        <summary>{item.data.question[loc]}</summary>
+        <p>{item.data.answer[loc]}</p>
       </details>
     ))
   }

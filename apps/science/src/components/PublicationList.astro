@@ -1,16 +1,17 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import type { Locale } from "@natali/profile";
 
 interface Props {
   items: CollectionEntry<"publications">[];
-  locale: "ru" | "en";
+  locale: Locale;
 }
 
 const { items, locale } = Astro.props;
 const sorted = [...items].sort((a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title));
 const types = [...new Set(sorted.map((item) => item.data.type))];
 
-const typeLabels: Record<"ru" | "en", Record<string, string>> = {
+const typeLabels: Partial<Record<Locale, Record<string, string>>> = {
   ru: {
     journal_article: "Статьи в журналах",
     conference_paper: "Материалы конференций",
@@ -27,13 +28,27 @@ const typeLabels: Record<"ru" | "en", Record<string, string>> = {
     working_paper: "Working Papers",
     monograph: "Monographs",
   },
+  zh: {
+    journal_article: "期刊论文",
+    conference_paper: "国际会议论文",
+    thesis: "博士论文与学术答辩",
+    book_chapter: "学术专著章节",
+    working_paper: "工作论文与专题报告",
+    monograph: "专著",
+  },
 };
 
 function formatType(type: string): string {
-  return typeLabels[locale]?.[type] || type.replaceAll("_", " ");
+  return typeLabels[locale]?.[type] || typeLabels.en?.[type] || type.replaceAll("_", " ");
 }
 
-const copy = locale === "ru"
+const copy = (locale as string) === "zh"
+  ? {
+      filters: "出版物筛选", search: "按标题、出版刊物或研究主题检索", type: "出版物类型：", all: "全部文献类型",
+      status: (shown: number, total: number) => `显示 ${total} 篇中的 ${shown} 篇文献`, empty: "未找到符合检索条件的文献。",
+      source: "查看原文 ↗", cite: "引用 ⎘", citeTitle: "复制文献引用格式到剪贴板",
+    }
+  : locale === "ru"
   ? {
       filters: "Фильтры публикаций", search: "Поиск по названию, изданию или теме", type: "Тип публикации:", all: "Все типы публикаций",
       status: (shown: number, total: number) => `Показано ${shown} из ${total} публикаций`, empty: "По вашему запросу публикации не найдены.",
@@ -130,7 +145,7 @@ const copy = locale === "ru"
       item.hidden = !(matchesType && matchesSearch);
       if (!item.hidden) shown += 1;
     });
-    if (status) status.textContent = currentLocale === "ru" ? `Показано ${shown} из ${records.length} публикаций` : `${shown} of ${records.length} publications shown`;
+    if (status) status.textContent = currentLocale === "zh-Hans" || currentLocale === "zh" ? `显示 ${records.length} 篇中的 ${shown} 篇文献` : currentLocale === "ru" ? `Показано ${shown} из ${records.length} публикаций` : `${shown} of ${records.length} publications shown`;
     if (empty) empty.hidden = shown !== 0;
   };
   filter?.addEventListener("change", updateFilters);
@@ -143,7 +158,7 @@ const copy = locale === "ru"
       try {
         await navigator.clipboard.writeText(text);
         const original = button.innerText;
-        button.innerText = original.includes("Цитировать") ? "Скопировано!" : "Copied!";
+        button.innerText = original.includes("引用") ? "已复制！" : original.includes("Цитировать") ? "Скопировано!" : "Copied!";
         setTimeout(() => {
           button.innerText = original;
         }, 2000);

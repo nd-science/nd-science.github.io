@@ -4,12 +4,11 @@
  * Статусы описывают жизненный цикл и публикацию, а не достоверность сведений.
  */
 
-export type Locale = "ru" | "en";
-export type ExtendedLocale = "ru" | "en" | "zh" | "de" | "fr" | "es";
+export type Locale = "ru" | "en" | "zh" | "de" | "fr" | "es";
 export type SiteKey = "wellness" | "science";
 
 export interface LocaleConfig {
-  code: string;
+  code: Locale;
   label: string;
   htmlLang: string;
   ogLocale: string;
@@ -17,7 +16,7 @@ export interface LocaleConfig {
   name: string;
 }
 
-export const SUPPORTED_LOCALES: Record<string, LocaleConfig> = {
+export const SUPPORTED_LOCALES: Record<Locale, LocaleConfig> = {
   ru: { code: "ru", label: "RU", htmlLang: "ru", ogLocale: "ru_RU", sitemapLang: "ru-RU", name: "Русский" },
   en: { code: "en", label: "EN", htmlLang: "en", ogLocale: "en_US", sitemapLang: "en", name: "English" },
   zh: { code: "zh", label: "中文", htmlLang: "zh-Hans", ogLocale: "zh_CN", sitemapLang: "zh-Hans", name: "中文" },

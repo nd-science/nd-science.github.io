@@ -27,7 +27,7 @@ for (const [site, routes] of Object.entries(expected)) {
     const text = readFileSync(file, "utf8");
     return { file, locale: frontmatterValue(text, "locale"), route: frontmatterValue(text, "route"), text };
   });
-  const siteLocales = ["ru", "en"];
+  const siteLocales = site === "science" ? ["ru", "en", "zh"] : ["ru", "en"];
   for (const locale of siteLocales) {
     const actual = records.filter((record) => record.locale === locale).map((record) => record.route).sort();
     const wanted = [...routes].sort();
@@ -79,5 +79,5 @@ if (failures.length) {
   console.error(failures.join("\n"));
   process.exitCode = 1;
 } else {
-  console.log("Content validation passed: 13 Wellness and 11 Science routes in RU/EN, canonical models and commercial facts.");
+  console.log("Content validation passed: 13 Wellness (RU/EN) and 11 Science routes (RU/EN/ZH), canonical models and commercial facts.");
 }

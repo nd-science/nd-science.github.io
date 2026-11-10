@@ -10,6 +10,7 @@ interface Props {
 const { locale, title, summary } = Astro.props;
 const proofMetrics = verifiedMetrics.filter((metric) => metric.database === "Google Scholar" || metric.database === "РИНЦ / eLibrary");
 function formatDocuments(count: number): string {
+  if ((locale as string) === "zh") return `${count} 篇出版物`;
   if (locale !== "ru") return `${count} publications`;
   const remainder100 = count % 100;
   const remainder10 = count % 10;
@@ -22,7 +23,14 @@ function formatDocuments(count: number): string {
         : "публикаций";
   return `${count} ${label}`;
 }
-const copy = locale === "ru"
+const copy = (locale as string) === "zh"
+  ? {
+      proof: "学术档案与科研指标",
+      contact: "探讨科研或教育合作项目",
+      register: "查看完整出版物名录",
+      citations: "次引用",
+    }
+  : locale === "ru"
   ? {
       proof: "Научный профиль",
       contact: "Обсудить исследовательский или образовательный проект",

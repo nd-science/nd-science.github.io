@@ -1,5 +1,5 @@
 ---
-import { nataliaProfile, type Locale } from "@natali/profile";
+import { nataliaProfile, SUPPORTED_LOCALES, type Locale } from "@natali/profile";
 import {
   absoluteUrl,
   buildSeo,
@@ -24,6 +24,7 @@ interface BreadcrumbItem {
 
 interface CrossSiteLink {
   label: string;
+  category?: string | undefined;
   href: string;
 }
 
@@ -63,20 +64,18 @@ const {
   footerText,
 } = Astro.props;
 
-const SUPPORTED_LOCALES: Record<string, { code: string; label: string; htmlLang: string; ogLocale: string }> = {
-  ru: { code: "ru", label: "RU", htmlLang: "ru", ogLocale: "ru_RU" },
-  en: { code: "en", label: "EN", htmlLang: "en", ogLocale: "en_US" },
-};
-
 const siteUrl = import.meta.env.PUBLIC_SITE_URL || fallbackSiteUrl;
 const defaultCrossSiteOrigin = theme === "science"
   ? (import.meta.env.PUBLIC_WELLNESS_SITE_URL || "https://wellnessnd.github.io").replace(/\/+$/, "")
   : (import.meta.env.PUBLIC_SCIENCE_SITE_URL || "https://nd-science.github.io").replace(/\/+$/, "");
 
-const effectiveCrossSite = crossSite || {
+const effectiveCrossSite: CrossSiteLink = crossSite || {
+  category: theme === "science"
+    ? (locale === "ru" ? "Саморегуляция и здоровье" : "Wellbeing & Practice")
+    : (locale === "ru" ? "Наука и образование" : "Research & Academia"),
   label: theme === "science"
-    ? (locale === "ru" ? "Практика саморегуляции и консультации" : "Wellbeing Practice & Counselling")
-    : (locale === "ru" ? "Академический профиль (Dr. phil.)" : "Academic & Research Profile (Dr. phil.)"),
+    ? (locale === "ru" ? "Наталия о саморегуляции и здоровье" : "Nataliia on wellbeing and self-regulation")
+    : (locale === "ru" ? "Наталия о науке и исследованиях" : "Nataliia on research and education"),
   href: `${defaultCrossSiteOrigin}/${locale}/`,
 };
 
@@ -160,6 +159,7 @@ const allLabels: Record<Locale, Record<string, string>> = {
     home: "首页",
     path: "路径",
     crossSite: "前往娜塔莉亚·多尔戈娃的身心健康实践网站",
+    secondSite: "娜塔莉亚的第二个项目：",
     statusBadge: "草案 (noindex)",
     navHeading: "网站导航",
     contactsHeading: "联系方式与主页",
@@ -187,6 +187,7 @@ const allLabels: Record<Locale, Record<string, string>> = {
     home: "Startseite",
     path: "Pfad",
     crossSite: "Zu Nataliia Dolgovas zweiter Website wechseln",
+    secondSite: "Nataliia’s zweites Projekt:",
     statusBadge: "Entwurf (noindex)",
     navHeading: "Navigation",
     contactsHeading: "Kontakt & Profile",
@@ -214,6 +215,7 @@ const allLabels: Record<Locale, Record<string, string>> = {
     home: "Accueil",
     path: "Chemin",
     crossSite: "Aller sur le second site de Nataliia Dolgova",
+    secondSite: "Second projet de Nataliia :",
     statusBadge: "Brouillon (noindex)",
     navHeading: "Navigation",
     contactsHeading: "Contacts & Profils",
@@ -241,6 +243,7 @@ const allLabels: Record<Locale, Record<string, string>> = {
     home: "Inicio",
     path: "Ruta",
     crossSite: "Ir al segundo sitio web de Nataliia Dolgova",
+    secondSite: "Segundo proyecto de Nataliia:",
     statusBadge: "Borrador (noindex)",
     navHeading: "Navegación",
     contactsHeading: "Contactos y perfiles",
@@ -376,7 +379,7 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
       <div class="site-topbar">
         <a class="brand identity" href={`/${locale}/`}>
           <span class="brand-mark identity-mark" aria-hidden="true">ND</span>
-          <span class="brand-name">{nataliaProfile.displayName[locale]}</span>
+          <span class="brand-name">{nataliaProfile.displayName[locale] || nataliaProfile.displayName.en}</span>
         </a>
         <div class="header-tools">
           <nav class="locale-switcher language-switcher" aria-label={labels.language}>
@@ -401,20 +404,6 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
               })
             }
           </nav>
-          {
-            effectiveCrossSite && (
-              <a
-                class="cross-site-link"
-                href={effectiveCrossSite.href}
-                aria-label={labels.crossSite}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span>{effectiveCrossSite.label}</span>
-                <span aria-hidden="true">→</span>
-              </a>
-            )
-          }
         </div>
       </div>
       <nav class="page-nav" aria-label={labels.nav}>
@@ -460,7 +449,7 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
           <div class="footer-col brand-col">
             <a class="brand identity" href={`/${locale}/`}>
               <span class="brand-mark identity-mark" aria-hidden="true">ND</span>
-              <span class="brand-name">{nataliaProfile.displayName[locale]}</span>
+              <span class="brand-name">{nataliaProfile.displayName[locale] || nataliaProfile.displayName.en}</span>
             </a>
             <p class="footer-tagline">
               {footerTaglines[theme]?.[locale] || footerTaglines[theme]?.en}
@@ -472,7 +461,9 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
             {
               effectiveCrossSite && (
                 <div class="footer-cross-site">
-                  <span class="footer-cross-site-label">{labels.secondSite || (locale === "ru" ? "Второй проект Наталии:" : "Nataliia’s second project:")}</span>
+                  {effectiveCrossSite.category && (
+                    <span class="footer-cross-site-label">{effectiveCrossSite.category}</span>
+                  )}
                   <a
                     class="footer-cross-site-link"
                     href={effectiveCrossSite.href}
@@ -551,7 +542,7 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
         </div>
 
         <div class="footer-bottom">
-          <p>© {currentYear} {nataliaProfile.displayName[locale]}. {footerText}</p>
+          <p>© {currentYear} {nataliaProfile.displayName[locale] || nataliaProfile.displayName.en}. {footerText}</p>
           <a class="back-to-top" href="#main-content">↑ {labels.backToTop}</a>
         </div>
       </div>

@@ -2,7 +2,15 @@
 import type { Locale } from "@natali/profile";
 interface Props { locale: Locale }
 const { locale } = Astro.props;
-const cards = locale === "ru"
+const cards = (locale as string) === "zh"
+  ? [
+      ["《俄罗斯高等教育》期刊", "同行评审权威期刊 / Scopus", "在关于高等教育现代化的前沿研究中（Kravchenko S. A., 2026），论文《大学与产业界协同 2.0》被重点引用，用于深入剖析大学与雇主间的战略合作模式。"],
+      ["俄罗斯国立人文大学学报（经济与管理辑）", "核心期刊 / 俄罗斯科学引文索引", "在关于职业院校及高校青年学生职业发展潜力的研究中（Frolova I. I., Arslanova S. K., 2026），论文《大学作为区域经济人力资本发展的关键引擎》被用于分析高等教育机构在区域人才生态中的制度性功能。"],
+      ["技术转移与产业协同专业学术专著", "学术专著出版物", "在关于大学技术创业与技术转移中心运营效能的学术专著中，多处参考了国际技术转移模式比较分析的研究成果（Ovchinnikova & Lazarenko, 2021）。"],
+      ["《创意经济》期刊", "同行评审核心期刊", "在关于“大学 3.0”创新转型的理论探讨中（Smirnov D. Yu., 2026），论文《现代大学在区域创新发展中的角色》被引用为论证大学转型为区域创新驱动核心的关键依据。"],
+      ["国际教育管理与治理学术综述", "南乌拉尔大学学报 / Scopus", "在关于高校制度治理模式的系统性学术综述中（Loginovskiy O. V., 2025），综合评述了技术转移模式与工程教育改革领域的研究成果。"],
+    ]
+  : locale === "ru"
   ? [
       ["Журнал «Высшее образование в России»", "ВАК К1 / Scopus", "В исследовании модернизации высшего образования (Кравченко С. А., 2026) работа «Взаимодействие университета с индустрией 2.0» привлекается для анализа форматов партнёрства вузов и работодателей."],
       ["Вестник РГГУ (Серия «Экономика и управление»)", "ВАК К1", "В исследовании карьерного потенциала обучающихся колледжей и вузов (Фролова И. И., Арсланова С. К., 2026) статья «Университеты как ключевые факторы развития человеческого капитала для экономики регионов» используется в анализе роли институтов в формировании кадрового потенциала."],
@@ -17,7 +25,9 @@ const cards = locale === "ru"
       ["Journal of Creative Economy", "Peer-reviewed", "Research on University 3.0 transformations (Smirnov D. Yu., 2026) builds upon «The Role of Modern Universities in Regional Innovation Development» in considering regional innovation systems."],
       ["International education-management reviews", "SUSU Bulletin / Scopus", "A broad review of institutional management models (Loginovskiy O. V., 2025) synthesises research on technology transfer and engineering education."],
     ];
-const copy = locale === "ru"
+const copy = (locale as string) === "zh"
+  ? { title: "学术影响力与同行引文背景", description: "娜塔莉亚·多尔戈娃（以 Ovchinnikova 署名发表）的研究成果在权威学术文献与行业出版物中的代表性引用范例。" }
+  : locale === "ru"
   ? { title: "Академическое признание и контекст цитирований", description: "Выборочные примеры использования работ Наталии Долговой (Овчинниковой) в научной и отраслевой литературе." }
   : { title: "Academic impact and citation context", description: "Selected examples of how work by Nataliia Dolgova (published as Ovchinnikova) is used in scholarly and sector literature." };
 ---

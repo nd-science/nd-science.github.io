@@ -109,14 +109,15 @@ export async function handleEnquiry(request, env, kind, fetchImpl = fetch) {
   const text = copy[locale];
   if (values.website) return json(202, { ok: true, message: text.accepted });
 
-  if (kind === "science" && !values.comment && values.request) {
+  const isOrganisation = kind === "wellness" && values.enquiryKind === "organisation";
+
+  if ((kind === "science" || isOrganisation) && !values.comment && values.request) {
     values.comment = values.request;
   }
 
-  const isOrganisation = kind === "wellness" && values.enquiryKind === "organisation";
   const requiredFields =
     isOrganisation
-      ? ["organisation", "role", "email", "language", "request", "audience", "delivery", "timeline"]
+      ? ["name", "organisation", "email", "comment"]
       : kind === "wellness"
       ? ["name", "request"]
       : ["name", "organisation", "email", "comment"];

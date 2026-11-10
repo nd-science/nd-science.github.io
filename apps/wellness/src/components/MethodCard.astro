@@ -8,11 +8,12 @@ interface Props {
 }
 
 const { method, locale } = Astro.props;
+const loc = (locale === "en" ? "en" : "ru") as "ru" | "en";
 const href = `/${locale}/practices/${method.id}/`;
 ---
 
 <article class="card">
-  <h3>{method.data.name[locale]}</h3>
-  <p>{method.data.summary[locale]}</p>
-  <p><a href={href}>{method.data.name[locale]} →</a></p>
+  <h3>{method.data.name[loc]}</h3>
+  <p>{method.data.summary[loc]}</p>
+  <p><a href={href}>{method.data.name[loc]} →</a></p>
 </article>

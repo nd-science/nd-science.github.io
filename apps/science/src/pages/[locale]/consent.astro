@@ -7,17 +7,19 @@ export function getStaticPaths() {
   return [
     { params: { locale: "ru" } },
     { params: { locale: "en" } },
+    { params: { locale: "zh" } },
   ];
 }
 
-const { locale } = Astro.params as { locale: "ru" | "en" };
-const copy = scienceCopy[locale];
-const paths = { ru: "/ru/consent/", en: "/en/consent/" };
+const { locale } = Astro.params as { locale: "ru" | "en" | "zh" };
+const copy = scienceCopy[locale] as any || scienceCopy.en;
+const paths = { ru: "/ru/consent/", en: "/en/consent/", zh: "/zh/consent/" };
 const currentPath = `/${locale}/consent/`;
 const isRu = locale === "ru";
+const isZh = locale === "zh";
 
 const breadcrumbs = [
-  { label: isRu ? "Согласие на обработку данных" : "Data Processing Consent" },
+  { label: isZh ? "数据处理知情同意书" : isRu ? "Согласие на обработку данных" : "Data Processing Consent" },
 ];
 ---
 
@@ -25,8 +27,8 @@ const breadcrumbs = [
   locale={locale}
   theme="science"
   siteLabel={copy.siteLabel}
-  title={`${isRu ? "Согласие на обработку персональных данных" : "Data Processing Consent"} | ${scienceSiteConfig.name}`}
-  description={isRu ? "Согласие на обработку персональных данных при направлении экспертного запроса через сайт Наталии Долговой." : "Consent to personal data processing when submitting an expert inquiry to Natalia Dolgova."}
+  title={`${isZh ? "数据处理知情同意书" : isRu ? "Согласие на обработку персональных данных" : "Data Processing Consent"} | ${scienceSiteConfig.name}`}
+  description={isZh ? "通过娜塔莉亚·多尔戈娃学术网站提交合作意向与咨询时的数据处理知情同意书。" : isRu ? "Согласие на обработку персональных данных при направлении экспертного запроса через сайт Наталии Долговой." : "Consent to personal data processing when submitting an expert inquiry to Natalia Dolgova."}
   paths={paths}
   fallbackSiteUrl={scienceSiteConfig.fallbackUrl}
   navItems={copy.nav}
@@ -36,10 +38,12 @@ const breadcrumbs = [
 >
   <section class="hero page-hero">
     <div class="section-inner">
-      <span class="hero-eyebrow">{copy.siteLabel} — {isRu ? "Правовая информация" : "Legal Information"}</span>
-      <h1>{isRu ? "Согласие на обработку персональных данных" : "Data Processing Consent"}</h1>
+      <span class="hero-eyebrow">{copy.siteLabel} — {isZh ? "法律与合规信息" : isRu ? "Правовая информация" : "Legal Information"}</span>
+      <h1>{isZh ? "数据处理知情同意书" : isRu ? "Согласие на обработку персональных данных" : "Data Processing Consent"}</h1>
       <p class="hero-lead">
-        {isRu
+        {isZh
+          ? "在提交项目合作与专家咨询表单时提供和处理个人信息的条款与条件。"
+          : isRu
           ? "Условия предоставления и обработки персональных данных при отправке формы сотрудничества и запроса экспертных услуг."
           : "Terms of consent for submitting project enquiries and receiving academic collaboration proposals."}
       </p>
@@ -49,11 +53,35 @@ const breadcrumbs = [
   <section class="page-section">
     <div class="section-inner legal-layout">
       <div class="legal-actions-bar">
-        <span class="legal-doc-date">{isRu ? "Действующая редакция: октябрь 2026 г." : "Current Edition: October 2026"}</span>
+        <span class="legal-doc-date">{isZh ? "当前生效版本：2026年10月" : isRu ? "Действующая редакция: октябрь 2026 г." : "Current Edition: October 2026"}</span>
       </div>
 
       <div class="legal-prose">
-        {isRu ? (
+        {isZh ? (
+          <>
+            <p><strong>在 nd-science.github.io 网站上提交咨询表单，即表明本人自愿、明确并知情同意以下各项条款：</strong></p>
+            <ol>
+              <li><strong>自愿提交：</strong>本人确认自愿提供个人信息，并确保所提供信息的真实性与准确性。</li>
+              <li><strong>数据范围：</strong>本人同意处理表单中所填写的个人信息，包括姓名、电子邮箱地址、所属机构/单位名称、职务/角色，以及项目类型、预期目标、受众规模、预算周期及相关说明留言。</li>
+              <li><strong>数据处理者：</strong>数据处理运营方为自雇专业人士 娜塔莉亚·多尔戈娃 (Natalia Eduardovna Dolgova，税号 INN: 575210528203)。</li>
+              <li><strong>处理目的：</strong>个人信息仅用于评估与跟进本人的合作咨询、沟通项目需求、讨论合作方案及发送针对性回复。</li>
+              <li><strong>处理方式：</strong>本同意书涵盖采用自动化与非自动化方式进行的收集、记录、整理、存储、核对、使用及安全删除。</li>
+              <li><strong>保密性与不扩散：</strong>未经本人事先明确同意，上述信息绝不向任何第三方转让或共享，适用法律法规强制要求的除外。</li>
+              <li><strong>有效期与撤回：</strong>本同意书自提交之日起生效，持续有效至咨询事项处理完毕或本人撤回同意为止。本人有权随时通过发送邮件至 <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a> 撤回本同意。</li>
+            </ol>
+
+            <div class="legal-requisites">
+              <h3>运营者信息</h3>
+              <p>
+                <strong>自雇人士 娜塔莉亚·多尔戈娃 (Natalia E. Dolgova)</strong><br />
+                税号 (INN): 575210528203<br />
+                法定身份: 职业所得税自雇纳税人<br />
+                电子邮箱: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+                Telegram: <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+              </p>
+            </div>
+          </>
+        ) : isRu ? (
           <>
             <p><strong>Отправляя форму обратной связи на сайте nd-science.github.io, я свободно, своей волей и в своем интересе подтверждаю следующее:</strong></p>
             <ol>

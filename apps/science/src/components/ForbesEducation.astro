@@ -23,7 +23,16 @@ const articles = [
   },
 ] as const;
 
-const copy = locale === "ru"
+const copy = (locale as string) === "zh"
+  ? {
+      eyebrow: "专栏精选文章",
+      title: "Forbes Education",
+      description: "娜塔莉亚·多尔戈娃在福布斯教育专栏关于国际中等职业教育体系的代表性深度分析。全文可在出版商网站查阅。",
+      articleLabel: "阅读原文",
+      profileLabel: "查看作者在 Forbes Education 的全部专栏文章",
+      note: "文章标题供导航参考；文章版权及商标归属原出版机构。",
+    }
+  : locale === "ru"
   ? {
       eyebrow: "Авторские материалы",
       title: "Forbes Education",

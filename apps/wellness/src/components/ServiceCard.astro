@@ -46,7 +46,8 @@ const baseHref = data.cta.href.startsWith("/")
   ? `/${locale}${data.cta.href}`
   : data.cta.href;
 
-const serviceParam = `service=${encodeURIComponent(data.name[locale])}`;
+const loc = (locale === "en" ? "en" : "ru") as "ru" | "en";
+const serviceParam = `service=${encodeURIComponent(data.name[loc])}`;
 const ctaHref = baseHref.includes("#")
   ? baseHref.replace("#", `?${serviceParam}#`)
   : `${baseHref}${baseHref.includes("?") ? "&" : "?"}${serviceParam}`;
@@ -71,33 +72,33 @@ const badgeText = isRecommended
 <article class={`service-card ${isRecommended ? "service-card--featured" : ""}`}>
   <div class="service-card-header">
     {badgeText && <span class={`badge ${isRecommended ? "badge--featured" : ""}`}>{badgeText}</span>}
-    <h3 class="service-card-title">{data.name[locale]}</h3>
+    <h3 class="service-card-title">{data.name[loc]}</h3>
   </div>
 
   <div class="service-price-block">
-    <span class="price-value">{priceText ?? data.priceLabel?.[locale]}</span>
+    <span class="price-value">{priceText ?? data.priceLabel?.[loc]}</span>
   </div>
 
-  <p class="service-task">{data.task[locale]}</p>
+  <p class="service-task">{data.task[loc]}</p>
 
   <ul class="service-features" role="list">
     <li>
       <span class="feature-label">{copy.serviceFields.format}:</span>
-      <span class="feature-value">{deliveryLabel}{data.duration ? `, ${data.duration[locale]}` : ""}</span>
+      <span class="feature-value">{deliveryLabel}{data.duration ? `, ${data.duration[loc]}` : ""}</span>
     </li>
     <li>
       <span class="feature-label">{copy.serviceFields.audience}:</span>
-      <span class="feature-value">{data.audience[locale]}</span>
+      <span class="feature-value">{data.audience[loc]}</span>
     </li>
     <li>
       <span class="feature-label">{copy.serviceFields.outcome}:</span>
-      <span class="feature-value">{data.outcome[locale]}</span>
+      <span class="feature-value">{data.outcome[loc]}</span>
     </li>
   </ul>
 
   <div class="service-card-footer">
     <a class={`button ${isRecommended ? "button--primary" : "button--secondary"}`} href={ctaHref}>
-      {data.cta.label[locale]}
+      {data.cta.label[loc]}
     </a>
   </div>
 </article>

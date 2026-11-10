@@ -9,16 +9,18 @@ const routes = {
 };
 
 for (const [site, siteRoutes] of Object.entries(routes)) {
-  for (const locale of ["ru", "en"]) {
+  const siteLocales = site === "science" ? ["ru", "en", "zh"] : ["ru", "en"];
+  for (const locale of siteLocales) {
     for (const route of siteRoutes) {
       const file = resolve(root, `apps/${site}/dist/${locale}/${route}/index.html`);
       if (!existsSync(file)) { failures.push(`Missing built route: ${site}/${locale}/${route || "home"}`); continue; }
       const html = readFileSync(file, "utf8");
       const expectedTokens = [
-        `lang="${locale}"`,
+        locale === "zh" ? 'lang="zh-Hans"' : `lang="${locale}"`,
         "rel=\"canonical\"",
         "hreflang=\"ru\"",
         "hreflang=\"en\"",
+        ...(site === "science" ? ['hreflang="zh"'] : []),
         '"@type":"Person"',
         'id="main-content" tabindex="-1"',
         'content="nosniff"',
@@ -74,6 +76,9 @@ for (const site of ["wellness", "science"]) {
     if (!rootHtml.includes('href="/ru/"') || !rootHtml.includes('href="/en/"')) {
       failures.push(`${site}/index.html: missing localized fallback links`);
     }
+    if (site === "science" && !rootHtml.includes('href="/zh/"')) {
+      failures.push(`${site}/index.html: missing zh localized fallback link`);
+    }
   }
 }
 
@@ -84,7 +89,8 @@ if (!scienceProjects.includes('"@type":"ResearchProject"')) failures.push("Scien
 
 if (process.env.PUBLIC_SITE_STATUS === "public") {
   for (const [site, siteRoutes] of Object.entries(routes)) {
-    for (const locale of ["ru", "en"]) {
+    const siteLocales = site === "science" ? ["ru", "en", "zh"] : ["ru", "en"];
+    for (const locale of siteLocales) {
       for (const route of siteRoutes) {
         const file = resolve(root, `apps/${site}/dist/${locale}/${route}/index.html`);
         if (!existsSync(file)) continue;
@@ -96,4 +102,4 @@ if (process.env.PUBLIC_SITE_STATUS === "public") {
 }
 
 if (failures.length) { console.error(failures.join("\n")); process.exitCode = 1; }
-else console.log("Built-route validation passed for 48 localized pages, canonical/hreflang and structured data.");
+else console.log("Built-route validation passed for 59 localized pages, canonical/hreflang and structured data.");

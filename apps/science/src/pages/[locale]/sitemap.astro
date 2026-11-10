@@ -8,20 +8,63 @@ export function getStaticPaths() {
   return [
     { params: { locale: "ru" } },
     { params: { locale: "en" } },
+    { params: { locale: "zh" } },
   ];
 }
 
-const { locale } = Astro.params as { locale: "ru" | "en" };
-const copy = scienceCopy[locale];
-const paths = { ru: "/ru/sitemap/", en: "/en/sitemap/" };
+const { locale } = Astro.params as { locale: "ru" | "en" | "zh" };
+const copy = scienceCopy[locale] as any || scienceCopy.en;
+const paths = { ru: "/ru/sitemap/", en: "/en/sitemap/", zh: "/zh/sitemap/" };
 const currentPath = `/${locale}/sitemap/`;
 const isRu = locale === "ru";
+const isZh = locale === "zh";
 
 const breadcrumbs = [
-  { label: isRu ? "Карта сайта" : "Site Map" },
+  { label: isZh ? "网站地图" : isRu ? "Карта сайта" : "Site Map" },
 ];
 
-const categories = isRu
+const categories = isZh
+  ? [
+      {
+        title: "主要栏目",
+        items: [
+          { href: "/zh/", label: "网站首页", desc: "学术主页：职业技术教育培训与工程教育师资培养研究" },
+          { href: "/zh/about/", label: "学者履历与学术历程", desc: "娜塔莉亚·多尔戈娃的学术背景、合作机构与科研经历" },
+          { href: "/zh/research/", label: "学术研究", desc: "聚焦成人在线学习感知有效性与职业教育师资队伍建设" },
+          { href: "/zh/research/dissertation/", label: "博士学位论文", desc: "博士论文研究（德国弗伦斯堡欧罗巴大学 Dr. phil.）：职业院校工程教育师资在线培训" },
+          { href: "/zh/publications/", label: "学术出版物", desc: "同行评审期刊论文、国际会议论文、专著章节与研究报告" },
+          { href: "/zh/conferences/", label: "学术会议报告", desc: "在国际与国家级学术峰会、论坛的特邀演讲与专题报告" },
+          { href: "/zh/education/", label: "教育背景与资格证书", desc: "德国哲学博士（Dr. phil.）与经济学副博士学位，经核实的学术资质" },
+          { href: "/zh/projects/", label: "科研与实践项目", desc: "教育研究计划、数字化学习环境设计与科研资助项目" },
+          { href: "/zh/expert-services/", label: "专业咨询与专家服务", desc: "学术咨询、同行评审、课程研发与专家支持方案" },
+          { href: "/zh/for-organizations/", label: "机构合作", desc: "面向高等院校、职业院校及教育智库的机构级协同合作" },
+          { href: "/zh/contact/", label: "联系方式", desc: "合作意向表单、直接沟通渠道与学术社交网络" },
+        ],
+      },
+      {
+        title: "学术标识与学者档案",
+        items: [
+          { href: professionalIdentifiers.orcidUrl, label: "ORCID: 0000-0003-0816-2103 ↗", desc: "国际学者统一身份标识符档案" },
+          { href: `https://www.scopus.com/authid/detail.uri?authorId=${professionalIdentifiers.scopusAuthorId}`, label: `Scopus Author ID: ${professionalIdentifiers.scopusAuthorId} ↗`, desc: "Scopus (Elsevier) 数据库学者主页与引文记录" },
+          { href: `https://www.webofscience.com/wos/author/record/${professionalIdentifiers.researcherId}`, label: `ResearcherID: ${professionalIdentifiers.researcherId} ↗`, desc: "Web of Science 官方学者档案" },
+          { href: "https://www.linkedin.com/in/natalidolgova", label: "LinkedIn: natalidolgova ↗", desc: "学术与专业社交网络" },
+        ],
+      },
+      {
+        title: "法律与合规信息",
+        items: [
+          { href: "/zh/privacy/", label: "个人信息与数据保护政策", desc: "联系数据与提交信息的收集、保护及存储规范" },
+          { href: "/zh/consent/", label: "数据处理知情同意书", desc: "提交学术合作与专家咨询意向的知情同意条款" },
+        ],
+      },
+      {
+        title: "系统索引文件",
+        items: [
+          { href: "/sitemap-index.xml", label: "XML Sitemap（供搜索引擎检索）", desc: "全站规范页面的机器可读索引" },
+        ],
+      },
+    ]
+  : isRu
   ? [
       {
         title: "Основные разделы",
@@ -108,8 +151,8 @@ const categories = isRu
   locale={locale}
   theme="science"
   siteLabel={copy.siteLabel}
-  title={`${isRu ? "Карта сайта" : "Site Map"} | ${scienceSiteConfig.name}`}
-  description={isRu ? "Полная структура разделов и страниц академического сайта Наталии Долговой." : "Full sitemap and directory of Nataliia Dolgova's academic website."}
+  title={`${isZh ? "网站地图" : isRu ? "Карта сайта" : "Site Map"} | ${scienceSiteConfig.name}`}
+  description={isZh ? "娜塔莉亚·多尔戈娃学术网站的完整页面目录与栏目架构。" : isRu ? "Полная структура разделов и страниц академического сайта Наталии Долговой." : "Full sitemap and directory of Nataliia Dolgova's academic website."}
   paths={paths}
   fallbackSiteUrl={scienceSiteConfig.fallbackUrl}
   navItems={copy.nav}
@@ -120,9 +163,11 @@ const categories = isRu
   <section class="hero page-hero">
     <div class="section-inner">
       <span class="hero-eyebrow">{copy.siteLabel}</span>
-      <h1>{isRu ? "Карта сайта" : "Site Map"}</h1>
+      <h1>{isZh ? "网站地图" : isRu ? "Карта сайта" : "Site Map"}</h1>
       <p class="hero-lead">
-        {isRu
+        {isZh
+          ? "全站所有主要栏目、研究方向、博士论文、学术出版物及学者档案的统一索引。"
+          : isRu
           ? "Все разделы, научные направления, диссертация, публикации и профили исследователя в едином оглавлении."
           : "Complete directory of all sections, research areas, dissertation, publications, and scholar profiles."}
       </p>

@@ -7,7 +7,7 @@ export default defineConfig({
   site,
   trailingSlash: "always",
   i18n: {
-    locales: ["ru", "en"],
+    locales: ["ru", "en", "zh"],
     defaultLocale: "ru",
     routing: {
       prefixDefaultLocale: true,
@@ -18,7 +18,7 @@ export default defineConfig({
     sitemap({
       i18n: {
         defaultLocale: "ru",
-        locales: { ru: "ru-RU", en: "en" },
+        locales: { ru: "ru-RU", en: "en", zh: "zh-Hans" },
       },
     }),
   ],

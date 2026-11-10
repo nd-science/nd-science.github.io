@@ -6,18 +6,21 @@ interface Props { items: CollectionEntry<"publications">[]; locale: Locale }
 const { items, locale } = Astro.props;
 const highlightIds = ["dissertation", "next-gen-learning", "university-industry-interaction"];
 const highlights = highlightIds.flatMap((id) => items.filter((item) => item.id === id));
-const types: Record<Locale, Record<string, string>> = {
+const types: Partial<Record<Locale, Record<string, string>>> = {
   ru: { thesis: "Диссертация", journal_article: "Статья в журнале" },
   en: { thesis: "Doctoral dissertation", journal_article: "Journal article" },
+  zh: { thesis: "博士学位论文", journal_article: "期刊论文" },
 };
-const copy = locale === "ru"
+const copy = (locale as string) === "zh"
+  ? { title: "代表性学术成果", description: "三项最具代表性的学术出版物，体现当前的学术研究路径及其应用情境。", source: "查看原文" }
+  : locale === "ru"
   ? { title: "Ключевые работы", description: "Три публикации, которые лучше всего показывают текущую исследовательскую траекторию и её прикладной контекст.", source: "Открыть источник" }
   : { title: "Key works", description: "Three publications that best represent the current research trajectory and its applied context.", source: "Open source" };
 ---
 
 <section class="publication-highlights" id="key-publications" aria-labelledby="key-publications-title">
   <header>
-    <p class="section-kicker">{locale === "ru" ? "Избранное" : "Selected"}</p>
+    <p class="section-kicker">{(locale as string) === "zh" ? "精选成果" : locale === "ru" ? "Избранное" : "Selected"}</p>
     <h2 id="key-publications-title">{copy.title}</h2>
     <p>{copy.description}</p>
   </header>
@@ -26,7 +29,7 @@ const copy = locale === "ru"
       const sourceUrl = item.data.doi ? `https://doi.org/${item.data.doi}` : item.data.url;
       return (
         <article class="highlight-card">
-          <div class="highlight-card__meta"><span>{item.data.year}</span><span>{types[locale][item.data.type] || item.data.type}</span></div>
+          <div class="highlight-card__meta"><span>{item.data.year}</span><span>{types[locale]?.[item.data.type] || types.en?.[item.data.type] || item.data.type}</span></div>
           <h3>{item.data.title}</h3>
           <p class="highlight-card__areas">{item.data.researchAreas.join(" · ")}</p>
           <p class="highlight-card__venue">{item.data.venue}</p>

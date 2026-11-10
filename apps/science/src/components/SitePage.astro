@@ -23,7 +23,11 @@ const { Content } = await render(entry);
 const publications = (await getCollection("publications", ({ data }) => data.publicationScope === "public"));
 const isHome = route === "home";
 const currentPath = isHome ? `/${locale}/` : `/${locale}/${route}/`;
-const paths = { ru: isHome ? "/ru/" : `/ru/${route}/`, en: isHome ? "/en/" : `/en/${route}/` };
+const paths = {
+  ru: isHome ? "/ru/" : `/ru/${route}/`,
+  en: isHome ? "/en/" : `/en/${route}/`,
+  zh: isHome ? "/zh/" : `/zh/${route}/`,
+};
 const localizeHref = (href: string) => href.startsWith("/") ? `/${locale}${href}` : href;
 const siteUrl = import.meta.env.PUBLIC_SITE_URL || scienceSiteConfig.fallbackUrl;
 const jsonLd: Record<string, unknown>[] = [
@@ -44,7 +48,7 @@ if (route === "publications") {
       author: {
         "@type": "Person",
         "@id": PERSON_CANONICAL_ID,
-        name: nataliaProfile.displayName[locale],
+        name: nataliaProfile.displayName[locale] || nataliaProfile.displayName.en,
         alternateName: "Nataliia Ovchinnikova",
       },
       datePublished: String(publication.data.year),
@@ -62,11 +66,13 @@ if (route === "projects") {
     name:
       locale === "ru"
         ? "Факторы воспринимаемой эффективности онлайн-подготовки педагогов СПО"
+        : (locale as string) === "zh"
+        ? "俄罗斯职业院校工程教育师资在线培训感知有效性关键影响因素"
         : "Factors shaping the perceived effectiveness of online preparation for TVET educators",
     member: {
       "@type": "Person",
       "@id": PERSON_CANONICAL_ID,
-      name: nataliaProfile.displayName[locale],
+      name: nataliaProfile.displayName[locale] || nataliaProfile.displayName.en,
     },
   });
 }
@@ -77,17 +83,19 @@ if (route === "expert-services") {
     name:
       locale === "ru"
         ? "Исследовательские и образовательные услуги"
+        : (locale as string) === "zh"
+        ? "学术科研与教育培训咨询服务"
         : "Research and education services",
     provider: {
       "@type": "Person",
       "@id": PERSON_CANONICAL_ID,
-      name: nataliaProfile.displayName[locale],
+      name: nataliaProfile.displayName[locale] || nataliaProfile.displayName.en,
     },
     areaServed: {
       "@type": "AdministrativeArea",
-      name: locale === "ru" ? "Международное сотрудничество" : "International Collaboration",
+      name: locale === "ru" ? "Международное сотрудничество" : locale === "zh" ? "国际学术合作" : "International Collaboration",
     },
-    availableLanguage: ["ru", "en"],
+    availableLanguage: ["ru", "en", "zh"],
   });
 }
 if (route === "research/dissertation") {
@@ -124,6 +132,7 @@ const crossSiteHref = route === "about"
   : `${wellnessOrigin}/${locale}/`;
 
 const crossSite = {
+  category: copy.crossSiteCategory,
   label: copy.crossSiteLabel,
   href: crossSiteHref,
 };
@@ -144,7 +153,7 @@ const pageTitle = isHome
   title={pageTitle} description={entry.data.seoDescription}
   {paths} fallbackSiteUrl={scienceSiteConfig.fallbackUrl} navItems={copy.nav} {currentPath} {crossSite}
   breadcrumbs={isHome ? undefined : [{ label: entry.data.h1 }]}
-  personDetails={{ id: PERSON_CANONICAL_ID, email: publicContactEmail, jobTitle: nataliaProfile.scienceRole[locale], alternateName: "Nataliia Ovchinnikova", knowsAbout: ["vocational education", "adult learning", "TVET educator training", "digital transformation in education", "technology transfer"], sameAs: sameAsLinks }}
+  personDetails={{ id: PERSON_CANONICAL_ID, email: publicContactEmail, jobTitle: nataliaProfile.scienceRole[locale] || nataliaProfile.scienceRole.en, alternateName: "Nataliia Ovchinnikova", knowsAbout: ["vocational education", "adult learning", "TVET educator training", "digital transformation in education", "technology transfer"], sameAs: sameAsLinks }}
   {jsonLd} footerText={copy.footer}
 >
   <section class={isHome ? "hero" : "hero page-hero"}>
@@ -160,13 +169,15 @@ const pageTitle = isHome
             </div>
           )}
         </div>
-        <aside class="hero-media" aria-label={locale === "ru" ? "Академический профиль Наталии Долговой" : "Academic profile of Nataliia Dolgova"}>
+        <aside class="hero-media" aria-label={locale === "ru" ? "Академический профиль Наталии Долговой" : locale === "zh" ? "娜塔莉亚·多尔戈娃的学术档案" : "Academic profile of Nataliia Dolgova"}>
           <div class="portrait-card">
             <div class="portrait-frame">
               <img
                 src="/images/natalia-portrait.png"
                 alt={locale === "ru"
                   ? "Наталия Долгова — Dr. phil. (magna cum laude), исследователь образования"
+                  : (locale as string) === "zh"
+                  ? "娜塔莉亚·多尔戈娃 — 哲学博士 (magna cum laude)，职业教育学者"
                   : "Nataliia Dolgova — Dr. phil. (magna cum laude), TVET Researcher"}
                 width="440"
                 height="520"
@@ -176,10 +187,12 @@ const pageTitle = isHome
               />
             </div>
             <div class="portrait-caption">
-              <p class="portrait-name">{nataliaProfile.displayName[locale]}</p>
+              <p class="portrait-name">{nataliaProfile.displayName[locale] || nataliaProfile.displayName.en}</p>
               <p class="portrait-title">
                 {locale === "ru"
                   ? "Dr. phil. (magna cum laude), к.э.н., исследователь образования"
+                  : (locale as string) === "zh"
+                  ? "哲学博士 (magna cum laude)，经济学副博士，职业教育学者"
                   : "Dr. phil. (magna cum laude), Cand. Sc., TVET Researcher"}
               </p>
               <span class="portrait-pill">
@@ -223,7 +236,7 @@ const pageTitle = isHome
       <div class="section-inner">
         <SectionHeading {...copy.sections.profiles} />
         <ul class="profile-list">
-          <li><span class="profile-name">Google Scholar</span><a href={professionalIdentifiers.googleScholarUrl} target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Профиль цитирований" : "Citation profile"} ↗</a></li>
+          <li><span class="profile-name">Google Scholar</span><a href={professionalIdentifiers.googleScholarUrl} target="_blank" rel="noopener noreferrer">{locale === "ru" ? "Профиль цитирований" : (locale as string) === "zh" ? "引文档案" : "Citation profile"} ↗</a></li>
           <li><span class="profile-name">РИНЦ / eLibrary</span><a href={professionalIdentifiers.elibraryUrl} target="_blank" rel="noopener noreferrer">{professionalIdentifiers.elibraryAuthorId} ↗</a></li>
           <li><span class="profile-name">ORCID</span><a href={professionalIdentifiers.orcidUrl} target="_blank" rel="noopener noreferrer">{professionalIdentifiers.orcid} ↗</a></li>
           <li><span class="profile-name">Scopus Author ID</span><a href={professionalIdentifiers.scopusUrl} target="_blank" rel="noopener noreferrer">{professionalIdentifiers.scopusAuthorId} ↗</a></li>
@@ -231,31 +244,31 @@ const pageTitle = isHome
           <li><span class="profile-name">LinkedIn</span><a href="https://www.linkedin.com/in/natalidolgova" target="_blank" rel="noopener noreferrer">natalidolgova ↗</a></li>
         </ul>
         <div class="metrics-block">
-          <p class="metrics-table-caption"><strong>{locale === "ru" ? "Сводные наукометрические показатели" : "Summary bibliometric indicators"}</strong> &mdash; <span>{locale === "ru" ? "верифицировано по официальным профилям автора" : "verified via author profiles"}</span></p>
-          <div class="table-container" tabindex="0" role="region" aria-label={locale === "ru" ? "Таблица наукометрических показателей" : "Bibliometric indicators table"}>
+          <p class="metrics-table-caption"><strong>{locale === "ru" ? "Сводные наукометрические показатели" : (locale as string) === "zh" ? "综合科研文献计量指标" : "Summary bibliometric indicators"}</strong> &mdash; <span>{locale === "ru" ? "верифицировано по официальным профилям автора" : (locale as string) === "zh" ? "经作者官方数据库档案核实" : "verified via author profiles"}</span></p>
+          <div class="table-container" tabindex="0" role="region" aria-label={locale === "ru" ? "Таблица наукометрических показателей" : (locale as string) === "zh" ? "科研计量指标汇总表" : "Bibliometric indicators table"}>
             <table class="metrics-table">
               <thead>
                 <tr>
-                  <th scope="col">{locale === "ru" ? "База данных" : "Database"}</th>
+                  <th scope="col">{locale === "ru" ? "База данных" : (locale as string) === "zh" ? "数据库" : "Database"}</th>
                   <th scope="col" style="text-align: center;">h-index</th>
-                  <th scope="col" style="text-align: center;">{locale === "ru" ? "Публикаций" : "Publications"}</th>
-                  <th scope="col" style="text-align: center;">{locale === "ru" ? "Цитирований" : "Citations"}</th>
-                  <th scope="col">{locale === "ru" ? "Дата проверки" : "As of"}</th>
-                  <th scope="col">{locale === "ru" ? "Охват и профиль" : "Coverage & Source"}</th>
+                  <th scope="col" style="text-align: center;">{locale === "ru" ? "Публикаций" : (locale as string) === "zh" ? "出版物" : "Publications"}</th>
+                  <th scope="col" style="text-align: center;">{locale === "ru" ? "Цитирований" : (locale as string) === "zh" ? "引用次数" : "Citations"}</th>
+                  <th scope="col">{locale === "ru" ? "Дата проверки" : (locale as string) === "zh" ? "核查日期" : "As of"}</th>
+                  <th scope="col">{locale === "ru" ? "Охват и профиль" : (locale as string) === "zh" ? "收录范围与档案" : "Coverage & Source"}</th>
                 </tr>
               </thead>
               <tbody>
                 {verifiedMetrics.map((m) => (
                   <tr>
-                    <td data-label={locale === "ru" ? "База данных" : "Database"}><strong>{m.database}</strong></td>
+                    <td data-label={locale === "ru" ? "База данных" : (locale as string) === "zh" ? "数据库" : "Database"}><strong>{m.database}</strong></td>
                     <td data-label="h-index" style="text-align: center;"><span class="metric-badge">{m.hIndex}</span></td>
-                    <td data-label={locale === "ru" ? "Публикаций" : "Publications"} style="text-align: center;">{m.documents}</td>
-                    <td data-label={locale === "ru" ? "Цитирований" : "Citations"} style="text-align: center;">{m.citations}</td>
-                    <td data-label={locale === "ru" ? "Дата проверки" : "As of"} class="metric-date">{m.checkedAt}</td>
-                    <td data-label={locale === "ru" ? "Охват и профиль" : "Coverage & Source"}>
-                      <p class="metric-note">{m.notes[locale]}</p>
+                    <td data-label={locale === "ru" ? "Публикаций" : (locale as string) === "zh" ? "出版物" : "Publications"} style="text-align: center;">{m.documents}</td>
+                    <td data-label={locale === "ru" ? "Цитирований" : (locale as string) === "zh" ? "引用次数" : "Citations"} style="text-align: center;">{m.citations}</td>
+                    <td data-label={locale === "ru" ? "Дата проверки" : (locale as string) === "zh" ? "核查日期" : "As of"} class="metric-date">{m.checkedAt}</td>
+                    <td data-label={locale === "ru" ? "Охват и профиль" : (locale as string) === "zh" ? "收录范围与档案" : "Coverage & Source"}>
+                      <p class="metric-note">{m.notes[locale] || m.notes.en || m.notes.ru}</p>
                       <a class="metric-link" href={m.databaseUrl} target="_blank" rel="noopener noreferrer">
-                        {locale === "ru" ? "Профиль в базе" : "View source profile"} ↗
+                        {locale === "ru" ? "Профиль в базе" : (locale as string) === "zh" ? "查看原始档案" : "View source profile"} ↗
                       </a>
                     </td>
                   </tr>

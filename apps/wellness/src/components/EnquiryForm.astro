@@ -81,25 +81,16 @@ const activeEndpoint = endpoint && turnstileSiteKey ? endpoint : undefined;
       </>
     ) : (
       <>
+        <div class="field"><label for="org-contact-name">{organisationForm.name}</label><input id="org-contact-name" name="name" autocomplete="name" required /></div>
         <div class="field"><label for="org-name">{organisationForm.organisation}</label><input id="org-name" name="organisation" autocomplete="organization" required /></div>
-        <div class="field"><label for="org-role">{organisationForm.role}</label><input id="org-role" name="role" autocomplete="organization-title" required /></div>
         <div class="field">
-          <label for="org-contact">{organisationForm.contact}</label>
-          <input id="org-contact" name="contact" required placeholder={organisationForm.contactPlaceholder} />
-          <span class="field-hint">{organisationForm.contactHint}</span>
+          <label for="org-email">{organisationForm.email}</label>
+          <input id="org-email" name="email" type="email" autocomplete="email" required placeholder="name@example.com" />
         </div>
         <div class="field">
-          <label for="org-language">{organisationForm.language}</label>
-          <select id="org-language" name="language" required>{copy.forms.languageOptions.map((option) => <option value={option.value}>{option.label}</option>)}</select>
+          <label for="org-comment">{organisationForm.comment}</label>
+          <textarea id="org-comment" name="comment" maxlength="2000" required placeholder={locale === "ru" ? "Опишите задачи команды или тему для обсуждения…" : "Describe your team's objectives or topics for collaboration…"}></textarea>
         </div>
-        <div class="field"><label for="org-task">{organisationForm.task}</label><textarea id="org-task" name="request" maxlength="2000" required></textarea></div>
-        <div class="field"><label for="org-audience">{organisationForm.groupSize}</label><input id="org-audience" name="audience" required /></div>
-        <div class="field">
-          <label for="org-delivery">{organisationForm.format}</label>
-          <select id="org-delivery" name="delivery" required>{copy.forms.formatOptions.map((option) => <option value={option.value}>{option.label}</option>)}</select>
-        </div>
-        <div class="field"><label for="org-timeline">{organisationForm.timeline}</label><input id="org-timeline" name="timeline" required /></div>
-        <div class="field"><label for="org-comment">{organisationForm.comment}</label><textarea id="org-comment" name="comment" maxlength="2000"></textarea></div>
       </>
     )}
 

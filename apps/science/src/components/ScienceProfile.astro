@@ -5,13 +5,15 @@ const { locale } = Astro.props;
 const items = credentials.filter((item) => item.sites.includes("science") && item.publicationScope === "public").sort((a, b) => b.year - a.year);
 const roles = experience.filter((item) => item.sites.includes("science") && item.publicationScope === "public").sort((a, b) => b.startDate.localeCompare(a.startDate));
 ---
-<h3 class="cred-heading">{locale === "ru" ? "Образование и ученые степени" : "Education and academic degrees"}</h3>
-<ul class="cred-list">{items.map((item) => <li class="cred-item"><span class="cred-period">{item.startDate && item.endDate ? `${item.startDate}–${item.endDate}` : item.year}</span><div><strong>{item.title[locale]}</strong><p>{item.issuer[locale]}</p></div></li>)}</ul>
-<h3 class="subsection-title">{locale === "ru" ? "Профессиональная хронология" : "Professional timeline"}</h3>
-<ul class="cred-list">{roles.map((item) => <li class="cred-item"><span class="cred-period">{item.startDate}{item.endDate ? `–${item.endDate}` : "–"}</span><div><strong>{item.role[locale]}</strong><p>{item.organisation[locale]}</p><p>{item.summary[locale]}</p></div></li>)}</ul>
+<h3 class="cred-heading">{(locale as string) === "zh" ? "教育背景与学术学位" : locale === "ru" ? "Образование и ученые степени" : "Education and academic degrees"}</h3>
+<ul class="cred-list">{items.map((item) => <li class="cred-item"><span class="cred-period">{item.startDate && item.endDate ? `${item.startDate}–${item.endDate}` : item.year}</span><div><strong>{item.title[locale] || item.title.en}</strong><p>{item.issuer[locale] || item.issuer.en}</p></div></li>)}</ul>
+<h3 class="subsection-title">{(locale as string) === "zh" ? "专业履历时间线" : locale === "ru" ? "Профессиональная хронология" : "Professional timeline"}</h3>
+<ul class="cred-list">{roles.map((item) => <li class="cred-item"><span class="cred-period">{item.startDate}{item.endDate ? `–${item.endDate}` : "–"}</span><div><strong>{item.role[locale] || item.role.en}</strong><p>{item.organisation[locale] || item.organisation.en}</p><p>{item.summary[locale] || item.summary.en}</p></div></li>)}</ul>
 <p class="credential-notice" style="margin-block-start: 1.25rem; color: var(--muted-text);">
   <small>
-    {locale === "ru"
+    {(locale as string) === "zh"
+      ? "学位证书及学术资质经官方注册机构核实，可应学术合作机构的要求提供凭证。"
+      : locale === "ru"
       ? "Документы об ученых степенях и дипломы верифицированы по официальным реестрам и предоставляются институциональным партнерам по запросу."
       : "Degree certificates and credentials are authenticated via official registries and provided upon institutional request."}
   </small>

@@ -9,10 +9,11 @@ interface SectionHeadingCopy {
  * Служебные строки интерфейса Wellness-сайта.
  * Контент страниц хранится в контентных коллекциях (docs/specs/10-wellness-site-spec.md).
  */
-export const wellnessCopy = {
+const copyData = {
   ru: {
     siteLabel: "Wellness",
-    crossSiteLabel: "Академический профиль (Dr. phil.)",
+    crossSiteCategory: "Наука и образование",
+    crossSiteLabel: "Наталия о науке и исследованиях",
     crossSiteHrefBase: "https://science.invalid",
     fallbackSiteUrl: "https://wellness.invalid",
     nav: [
@@ -105,20 +106,13 @@ export const wellnessCopy = {
         honeypot: "Не заполняйте это поле",
       },
       organisation: {
+        name: "Имя",
         organisation: "Организация",
-        role: "Ваша роль",
-        contact: "Контакт для связи (Telegram, WhatsApp, Email или телефон)",
-        contactPlaceholder: "@username в Telegram, WhatsApp, телефон или email",
-        contactHint: "Укажите удобный способ связи для обсуждения брифа.",
-        language: "Язык",
-        groupSize: "Размер группы",
-        task: "Задача",
-        format: "Желаемый формат",
-        timeline: "Сроки",
+        email: "Email для ответа",
         comment: "Комментарий",
         consent:
           "Я согласен(на) на обработку персональных данных для ответа на обращение.",
-        submit: "Отправить бриф",
+        submit: "Отправить запрос",
         honeypot: "Не заполняйте это поле",
       },
       languageOptions: [
@@ -161,7 +155,8 @@ export const wellnessCopy = {
   },
   en: {
     siteLabel: "Wellness",
-    crossSiteLabel: "Academic & Research Profile (Dr. phil.)",
+    crossSiteCategory: "Research & Academia",
+    crossSiteLabel: "Nataliia on research and education",
     crossSiteHrefBase: "https://science.invalid",
     fallbackSiteUrl: "https://wellness.invalid",
     nav: [
@@ -253,19 +248,12 @@ export const wellnessCopy = {
         honeypot: "Do not fill this field in",
       },
       organisation: {
+        name: "Name",
         organisation: "Organisation",
-        role: "Your role",
-        contact: "Contact info (Telegram, WhatsApp, Email, or Phone)",
-        contactPlaceholder: "@username on Telegram, WhatsApp, phone, or email",
-        contactHint: "Enter your preferred channel to discuss the brief.",
-        language: "Language",
-        groupSize: "Group size",
-        task: "Task",
-        format: "Desired format",
-        timeline: "Timeline",
+        email: "Reply email",
         comment: "Comment",
         consent: "I agree to the processing of personal data in order to respond to this enquiry.",
-        submit: "Submit a brief",
+        submit: "Submit an enquiry",
         honeypot: "Do not fill this field in",
       },
       languageOptions: [
@@ -306,4 +294,10 @@ export const wellnessCopy = {
       },
     },
   },
-} satisfies Record<Locale, unknown>;
+};
+
+export const wellnessCopy: Record<Locale, typeof copyData.ru> = new Proxy(copyData as any, {
+  get(target, prop: string) {
+    return target[prop] || target.en || target.ru;
+  },
+});

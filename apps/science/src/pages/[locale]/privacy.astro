@@ -7,17 +7,19 @@ export function getStaticPaths() {
   return [
     { params: { locale: "ru" } },
     { params: { locale: "en" } },
+    { params: { locale: "zh" } },
   ];
 }
 
-const { locale } = Astro.params as { locale: "ru" | "en" };
-const copy = scienceCopy[locale];
-const paths = { ru: "/ru/privacy/", en: "/en/privacy/" };
+const { locale } = Astro.params as { locale: "ru" | "en" | "zh" };
+const copy = scienceCopy[locale] as any || scienceCopy.en;
+const paths = { ru: "/ru/privacy/", en: "/en/privacy/", zh: "/zh/privacy/" };
 const currentPath = `/${locale}/privacy/`;
 const isRu = locale === "ru";
+const isZh = locale === "zh";
 
 const breadcrumbs = [
-  { label: isRu ? "Политика конфиденциальности" : "Privacy Policy" },
+  { label: isZh ? "个人信息保护政策" : isRu ? "Политика конфиденциальности" : "Privacy Policy" },
 ];
 ---
 
@@ -25,8 +27,8 @@ const breadcrumbs = [
   locale={locale}
   theme="science"
   siteLabel={copy.siteLabel}
-  title={`${isRu ? "Политика обработки персональных данных" : "Privacy Policy"} | ${scienceSiteConfig.name}`}
-  description={isRu ? "Политика обработки и защиты персональных данных при направлении экспертных запросов через академический сайт Наталии Долговой." : "Personal data processing and privacy policy for expert and research inquiries to Natalia Dolgova."}
+  title={`${isZh ? "个人信息与数据保护政策" : isRu ? "Политика обработки персональных данных" : "Privacy Policy"} | ${scienceSiteConfig.name}`}
+  description={isZh ? "通过娜塔莉亚·多尔戈娃学术网站提交合作意向与咨询时的个人数据处理与隐私保护政策。" : isRu ? "Политика обработки и защиты персональных данных при направлении экспертных запросов через академический сайт Наталии Долговой." : "Personal data processing and privacy policy for expert and research inquiries to Natalia Dolgova."}
   paths={paths}
   fallbackSiteUrl={scienceSiteConfig.fallbackUrl}
   navItems={copy.nav}
@@ -36,10 +38,12 @@ const breadcrumbs = [
 >
   <section class="hero page-hero">
     <div class="section-inner">
-      <span class="hero-eyebrow">{copy.siteLabel} — {isRu ? "Правовая информация" : "Legal Information"}</span>
-      <h1>{isRu ? "Политика обработки персональных данных" : "Privacy Policy"}</h1>
+      <span class="hero-eyebrow">{copy.siteLabel} — {isZh ? "法律与合规信息" : isRu ? "Правовая информация" : "Legal Information"}</span>
+      <h1>{isZh ? "个人信息与数据保护政策" : isRu ? "Политика обработки персональных данных" : "Privacy Policy"}</h1>
       <p class="hero-lead">
-        {isRu
+        {isZh
+          ? "在访问本学术网站及通过专家咨询表单提交合作意向时，个人数据的收集、处理、存储与保护原则。"
+          : isRu
           ? "Порядок обработки, хранения и защиты персональных данных при использовании академического сайта и отправке форм экспертного сотрудничества."
           : "Principles and procedures of personal data collection, processing, and protection for research inquiries and academic collaboration."}
       </p>
@@ -49,11 +53,62 @@ const breadcrumbs = [
   <section class="page-section">
     <div class="section-inner legal-layout">
       <div class="legal-actions-bar">
-        <span class="legal-doc-date">{isRu ? "Действующая редакция: октябрь 2026 г." : "Current Edition: October 2026"}</span>
+        <span class="legal-doc-date">{isZh ? "当前生效版本：2026年10月" : isRu ? "Действующая редакция: октябрь 2026 г." : "Current Edition: October 2026"}</span>
       </div>
 
       <div class="legal-prose">
-        {isRu ? (
+        {isZh ? (
+          <>
+            <h2>1. 总则</h2>
+            <p>1.1. 本政策规定了自然人及机构代表在通过 <strong>nd-science.github.io</strong> 网站提交合作意向与咨询时，个人数据的处理与保护准则。</p>
+            <p>
+              <strong>个人数据处理者（运营方）：</strong><br />
+              自雇专业人士 娜塔莉亚·多尔戈娃 (Natalia Eduardovna Dolgova)<br />
+              纳税人识别号 (INN): 575210528203<br />
+              电子邮箱: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+              Telegram: <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+            </p>
+            <p>1.2. 个人数据处理严格遵守适用的数据保护法律（包括俄罗斯联邦第 152-ФЗ 号《个人数据法》及通用数据最小化原则）。</p>
+
+            <h2>2. 个人数据处理目的</h2>
+            <p>收集和处理个人数据仅用于以下目的：</p>
+            <ul>
+              <li>评估与处理关于学术研究、专家咨询及教育培训项目的合作咨询；</li>
+              <li>提供反馈、细化项目需求简报、沟通合作周期与交付成果；</li>
+              <li>根据需要提供关于学术出版物、教育计划与学术演讲的进一步补充资料。</li>
+            </ul>
+
+            <h2>3. 处理的数据范围</h2>
+            <p>在提交咨询表单时，运营方可能收集并处理以下信息：</p>
+            <ul>
+              <li>姓名及职务角色；</li>
+              <li>电子邮箱地址 (email)；</li>
+              <li>机构或单位名称；</li>
+              <li>项目类型、目标受众、预计周期及预算范围；</li>
+              <li>用户自愿提供的需求说明或留言文本。</li>
+            </ul>
+
+            <h2>4. 处理条件与数据留存</h2>
+            <p>4.1. 数据处理采用安全的自动化与手动流程，遵循数据最小化原则。</p>
+            <p>4.2. 运营方绝不向任何第三方出售或非法转让个人数据，除非法律另有明确要求或防止恶意自动化垃圾表单提交的技术所需。</p>
+            <p>4.3. 个人数据仅在达成处理目的所需的时间内留存，或直至用户要求删除为止。</p>
+            <p>4.4. 网站表单采用 Cloudflare Turnstile 进行防人机验证防护。该服务仅验证人机识别所需的技术特征，不收集咨询正文内容。详情参见 <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Cloudflare 隐私政策 ↗</a>。</p>
+
+            <h2>5. 用户的权利</h2>
+            <p>用户有权随时申请查阅、更正或删除其个人数据，以及撤回处理同意，可通过发送邮件至：<a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a>。</p>
+
+            <div class="legal-requisites">
+              <h3>运营者信息</h3>
+              <p>
+                <strong>自雇人士 娜塔莉亚·多尔戈娃 (Natalia E. Dolgova)</strong><br />
+                税号 (INN): 575210528203<br />
+                法定身份: 职业所得税自雇纳税人<br />
+                电子邮箱: <a href="mailto:n.e.dolgova@mail.ru">n.e.dolgova@mail.ru</a><br />
+                Telegram: <a href="https://t.me/natali_tvet_pro" target="_blank" rel="noopener noreferrer">@natali_tvet_pro</a>
+              </p>
+            </div>
+          </>
+        ) : isRu ? (
           <>
             <h2>1. Общие положения</h2>
             <p>1.1. Настоящая Политика определяет порядок обработки и защиты персональных данных физических лиц и представителей организаций, направляющих запросы через сайт <strong>nd-science.github.io</strong>.</p>

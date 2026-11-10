@@ -4,9 +4,9 @@ import { z } from "astro/zod";
 
 const publicationScope = z.enum(["public", "internal", "consent_required"]);
 const pages = defineCollection({
-  loader: glob({ base: "./src/content/pages", pattern: "{ru,en}/**/*.md" }),
+  loader: glob({ base: "./src/content/pages", pattern: "{ru,en,zh,de,fr,es}/**/*.md" }),
   schema: z.object({
-    route: z.string().regex(/^[a-z0-9-]+(\/[a-z0-9-]+)*$/), locale: z.enum(["ru", "en"]),
+    route: z.string().regex(/^[a-z0-9-]+(\/[a-z0-9-]+)*$/), locale: z.enum(["ru", "en", "zh", "de", "fr", "es"]),
     seoTitle: z.string().min(1), seoDescription: z.string().min(1), h1: z.string().min(1), summary: z.string().min(1),
     ctaLabel: z.string().min(1).optional(), ctaHref: z.string().min(1).optional(),
     ctaSecondaryLabel: z.string().min(1).optional(), ctaSecondaryHref: z.string().min(1).optional(),
