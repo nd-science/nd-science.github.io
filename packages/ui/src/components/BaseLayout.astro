@@ -329,7 +329,17 @@ const analyticsToken = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
     <meta name="twitter:image" content={socialImage} />
     <meta name="twitter:image:alt" content={nataliaProfile.displayName[locale] || "Nataliia Dolgova"} />
     <meta name="google-site-verification" content={import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION || "od8PTNpX3EwB1eK7vjlpEAYKrfkwkxFKHj0X-Y4csXc"} />
-    <meta name="yandex-verification" content={theme === "wellness" ? "7369f633f79a694f" : "80f02dc8bb2d1a79"} />
+    {theme === "wellness" ? (
+      <>
+        <meta name="yandex-verification" content="8c967dade8fdde99" />
+        <meta name="yandex-verification" content="7369f633f79a694f" />
+      </>
+    ) : (
+      <>
+        <meta name="yandex-verification" content="93943e4841db1496" />
+        <meta name="yandex-verification" content="80f02dc8bb2d1a79" />
+      </>
+    )}
     {import.meta.env.PUBLIC_BING_SITE_VERIFICATION && (
       <meta name="msvalidate.01" content={import.meta.env.PUBLIC_BING_SITE_VERIFICATION} />
     )}
