@@ -5,7 +5,7 @@ import vm from "node:vm";
 
 const source = await readFile(new URL("../gas_crm_script.js", import.meta.url), "utf8");
 
-function createRuntime({ turnstileSuccess = true } = {}) {
+function createRuntime({ turnstileSuccess = true, turnstileHostname = "natalicompass.com" } = {}) {
   const rows = [];
   const cache = new Map();
   const calls = [];
@@ -34,7 +34,7 @@ function createRuntime({ turnstileSuccess = true } = {}) {
     UrlFetchApp: {
       fetch(url, options = {}) {
         calls.push({ url: String(url), options });
-        if (String(url).includes("siteverify")) return { getResponseCode: () => 200, getContentText: () => JSON.stringify({ success: turnstileSuccess, hostname: "wellnessnd.github.io" }) };
+        if (String(url).includes("siteverify")) return { getResponseCode: () => 200, getContentText: () => JSON.stringify({ success: turnstileSuccess, hostname: turnstileHostname }) };
         return { getResponseCode: () => 200, getContentText: () => "{}" };
       },
     },
@@ -84,7 +84,7 @@ test("Apps Script blocks an invalid Turnstile response before CRM or Telegram", 
 });
 
 test("Apps Script identifies Science as the source in Telegram notifications", () => {
-  const runtime = createRuntime();
+  const runtime = createRuntime({ turnstileHostname: "tvet.si" });
   runtime.context.notifyTelegram({
     source: "Science", id: "ND-TEST-002", date: "09.11.2026 12:00", name: "Test", contact: "test@example.test",
     service: "Science: research", timezone: "Timeline", request: "Verification",
@@ -92,4 +92,18 @@ test("Apps Script identifies Science as the source in Telegram notifications", (
   const telegram = runtime.calls.find((call) => call.url.includes("api.telegram.org"));
   assert.ok(telegram);
   assert.match(JSON.parse(telegram.options.payload).text, /\*Сайт:\* Science/);
+});
+
+test("Apps Script accepts Turnstile verification from both custom domain and legacy github.io", () => {
+  const runtimeLegacy = createRuntime({ turnstileHostname: "wellnessnd.github.io" });
+  const resultLegacy = runtimeLegacy.post(wellnessPayload());
+  assert.equal(resultLegacy.ok, true);
+
+  const runtimeCustom = createRuntime({ turnstileHostname: "natalicompass.com" });
+  const resultCustom = runtimeCustom.post(wellnessPayload());
+  assert.equal(resultCustom.ok, true);
+
+  const runtimeUnknown = createRuntime({ turnstileHostname: "phishing-fake.com" });
+  const resultUnknown = runtimeUnknown.post(wellnessPayload());
+  assert.equal(resultUnknown.ok, false);
 });

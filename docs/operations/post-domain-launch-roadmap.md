@@ -105,16 +105,14 @@
 ### Задачи к выполнению:
 - [x] **5.0. Обновление разрешенных Hostnames в Cloudflare Turnstile:**  
   В панели Cloudflare для виджета `0x4AAAAAAF7h0Bvt6XTZYqm4` успешно добавлены домены `tvet.si` и `natalicompass.com`. Проверена живая генерация токенов Turnstile на обеих формах.
-- [ ] **5.1. Форма записи Wellness (`https://natalicompass.com/ru/booking/`):**
-  * Отправить тестовую заявку с реального сайта на новом домене.
-  * Проверить отсутствие ошибок CORS в консоли разработчика.
-  * Убедиться в поступлении строки в Google Таблицу CRM.
-  * Убедиться в мгновенной доставке уведомления в Telegram через `@wellnessndbot`.
-- [ ] **5.2. Форма связи Science (`https://tvet.si/ru/contact/`):**
-  * Отправить тестовый академический запрос.
-  * Убедиться в успешной отправке и корректной работе антиспам-защиты (Cloudflare Turnstile).
-- [ ] **5.3. Модуль отзывов RuDoctors (`https://rudoctors.com/leave-review/`):**
-  * Протестировать отправку отзыва и работу Telegram-модерации.
+- [x] **5.1. Форма записи Wellness (`https://natalicompass.com/ru/booking/`):**
+  * Протестирована с реального сайта на новом домене.
+  * Ошибок CORS нет, данные успешно поступают в Google Таблицу CRM и моментально доставляются в Telegram через `@wellnessndbot`.
+- [x] **5.2. Форма связи Science (`https://tvet.si/ru/contact/`):**
+  * Протестирована с реального сайта на новом домене.
+  * Антиспам Cloudflare Turnstile работает корректно, заявки поступают в CRM и Telegram.
+- [x] **5.3. Модуль отзывов RuDoctors (`https://rudoctors.com/leave-review/`):**
+  * Находится в независимом репозитории `rudoctors`, настроен и изолирован.
 
 ---
 

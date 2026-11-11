@@ -14,9 +14,15 @@ const FORM_CONTACT_WINDOW_SECONDS = 60 * 60;
 const FORM_GLOBAL_LIMIT = 20;
 const FORM_GLOBAL_WINDOW_SECONDS = 5 * 60;
 const FORM_HOSTNAMES = {
-  wellness: "wellnessnd.github.io",
-  science: "nd-science.github.io"
+  wellness: ["natalicompass.com", "wellnessnd.github.io"],
+  science: ["tvet.si", "nd-science.github.io"]
 };
+
+function isAllowedHostname(site, hostname) {
+  const allowed = FORM_HOSTNAMES[site];
+  if (!allowed) return false;
+  return Array.isArray(allowed) ? allowed.indexOf(hostname) !== -1 : allowed === hostname;
+}
 
 /**
  * Инициализация структуры CRM-таблицы (запустите один раз)
@@ -148,7 +154,7 @@ function verifyTurnstile(token, site) {
       muteHttpExceptions: true
     });
     const result = JSON.parse(response.getContentText());
-    return response.getResponseCode() === 200 && result.success === true && result.hostname === FORM_HOSTNAMES[site];
+    return response.getResponseCode() === 200 && result.success === true && isAllowedHostname(site, result.hostname);
   } catch (err) {
     return false;
   }
@@ -323,22 +329,22 @@ function handleTelegramUpdate(update) {
     // Быстрые ссылки по командам
     if (text.startsWith("/site")) {
       sendMessage(token, chatId, userLang === "ru"
-        ? "🌿 Официальный сайт Наталии Долговой (Wellness): https://wellnessnd.github.io/ru/"
-        : "🌿 Official website of Natalia Dolgova (Wellness): https://wellnessnd.github.io/en/");
+        ? "🌿 Официальный сайт Наталии Долговой (Wellness): https://natalicompass.com/ru/"
+        : "🌿 Official website of Nataliia Dolgova (Wellness): https://natalicompass.com/en/");
       return;
     }
 
     if (text.startsWith("/science")) {
       sendMessage(token, chatId, userLang === "ru"
-        ? "🎓 Научный и академический профиль (Science): https://nd-science.github.io/ru/"
-        : "🎓 Scientific and academic profile (Science): https://nd-science.github.io/en/");
+        ? "🎓 Научный и академический профиль (Science): https://tvet.si/ru/"
+        : "🎓 Scientific and academic profile (Science): https://tvet.si/en/");
       return;
     }
 
     if (text.startsWith("/contact")) {
       sendMessage(token, chatId, userLang === "ru"
-        ? "💬 Написать Наталии Долговой напрямую в Telegram: @natali_tvet_pro\n📞 Страница записи на сайте: https://wellnessnd.github.io/ru/booking/"
-        : "💬 Message Natalia Dolgova directly in Telegram: @natali_tvet_pro\n📞 Booking page: https://wellnessnd.github.io/en/booking/");
+        ? "💬 Написать Наталии Долговой напрямую в Telegram: @natali_tvet_pro\n📞 Страница записи на сайте: https://natalicompass.com/ru/booking/"
+        : "💬 Message Nataliia Dolgova directly in Telegram: @natali_tvet_pro\n📞 Booking page: https://natalicompass.com/en/booking/");
       return;
     }
 
@@ -413,15 +419,15 @@ function sendWelcomeMessage(token, chatId, lang) {
 
     keyboard = [
       [
-        { text: "🌐 Сайт Wellness (практика)", url: "https://wellnessnd.github.io/ru/" },
-        { text: "📋 Форматы и цены", url: "https://wellnessnd.github.io/ru/for-individuals/" }
+        { text: "🌐 Сайт Wellness (практика)", url: "https://natalicompass.com/ru/" },
+        { text: "📋 Форматы и цены", url: "https://natalicompass.com/ru/for-individuals/" }
       ],
       [
         { text: "💬 Написать Наталии лично", url: "https://t.me/natali_tvet_pro" },
         { text: "📢 Канал «Компас»", url: "https://t.me/natalicompass" }
       ],
       [
-        { text: "🎓 Научный профиль (Science)", url: "https://nd-science.github.io/ru/" }
+        { text: "🎓 Научный профиль (Science)", url: "https://tvet.si/ru/" }
       ],
       [
         { text: "🇬🇧 Switch to English", callback_data: "show_en" }
@@ -430,25 +436,25 @@ function sendWelcomeMessage(token, chatId, lang) {
   } else {
     text =
       "Hello and welcome! 🌿\n\n" +
-      "This is the official assistant of Natalia Dolgova — psychologist, neurointegration trainer, and somatic wellness practitioner.\n\n" +
+      "This is the official assistant of Nataliia Dolgova — psychologist, neurointegration trainer, and somatic wellness practitioner.\n\n" +
       "How this assistant can help:\n" +
       "• Explore practical approaches and consultation formats\n" +
       "• Check pricing and book a 1:1 session or workshop\n" +
       "• Access scientific publications and educational research\n" +
-      "• Message Natalia directly\n\n" +
+      "• Message Nataliia directly\n\n" +
       "Please choose an option below:";
 
     keyboard = [
       [
-        { text: "🌐 Wellness Website", url: "https://wellnessnd.github.io/en/" },
-        { text: "📋 Formats & Pricing", url: "https://wellnessnd.github.io/en/for-individuals/" }
+        { text: "🌐 Wellness Website", url: "https://natalicompass.com/en/" },
+        { text: "📋 Formats & Pricing", url: "https://natalicompass.com/en/for-individuals/" }
       ],
       [
-        { text: "💬 Message Natalia Directly", url: "https://t.me/natali_tvet_pro" },
+        { text: "💬 Message Nataliia Directly", url: "https://t.me/natali_tvet_pro" },
         { text: "📢 Telegram Channel", url: "https://t.me/natalicompass" }
       ],
       [
-        { text: "🎓 Scientific Profile (Science)", url: "https://nd-science.github.io/en/" }
+        { text: "🎓 Scientific Profile (Science)", url: "https://tvet.si/en/" }
       ],
       [
         { text: "🇷🇺 Переключить на русский", callback_data: "show_ru" }
