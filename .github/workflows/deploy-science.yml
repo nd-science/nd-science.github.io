@@ -50,7 +50,7 @@ jobs:
 
       - name: Build Science application
         env:
-          PUBLIC_SITE_STATUS: draft
+          PUBLIC_SITE_STATUS: public
           PUBLIC_SITE_URL: https://tvet.si
           PUBLIC_WELLNESS_SITE_URL: https://natalicompass.com
           PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.PUBLIC_TURNSTILE_SITE_KEY }}

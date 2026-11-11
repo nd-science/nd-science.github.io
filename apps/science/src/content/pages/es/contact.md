@@ -23,5 +23,5 @@ Para explorar colaboraciones científicas, invitar a comités editoriales o cong
 - **Perfil personal en LinkedIn (Conectar)**: [linkedin.com/in/natalidolgova](https://www.linkedin.com/in/natalidolgova) — conecte directamente para intercambios académicos e institucionales (la red agrupa a más de 9.000 profesionales a nivel mundial).
 - **Grupo «What’s in TVET?»**: [linkedin.com/groups/12713149](https://www.linkedin.com/groups/12713149) — comunidad internacional de debate sobre políticas, pedagogía e investigación en EFTP. [Unirse al grupo ↗](https://www.linkedin.com/groups/12713149)
 - **Grupo «TVET League BRICS+»**: [linkedin.com/groups/9504349](https://www.linkedin.com/groups/9504349) — red internacional de intercambio científico y cooperación formativa en países BRICS+ y el ámbito global. [Unirse al grupo ↗](https://www.linkedin.com/groups/9504349)
-- **Correo electrónico**: [nataliia.e.ovchinnikova@gmail.com](mailto:nataliia.e.ovchinnikova@gmail.com) — para comunicaciones oficiales, dictaminaciones y propuestas de investigación.
+- **Correo electrónico**: [contact@tvet.si](mailto:contact@tvet.si) — para comunicaciones oficiales, dictaminaciones y propuestas de investigación.
 - **Telegram directo para consultas rápidas**: [@natali_tvet_pro](https://t.me/natali_tvet_pro).

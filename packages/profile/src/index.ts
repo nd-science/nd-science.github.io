@@ -504,12 +504,16 @@ export const publicResources: PublicResource[] = [
   {
     id: "email",
     label: { ru: "Email", en: "Email" },
-    url: "mailto:nataliia.e.ovchinnikova@gmail.com",
+    url: "mailto:contact@tvet.si",
   },
 ];
 
-/** Публичный контактный адрес электронной почты (DEC-044). */
-export const publicContactEmail = "nataliia.e.ovchinnikova@gmail.com";
+/** Официальные контактные адреса электронной почты (DEC-044). */
+export const scienceContactEmail = "contact@tvet.si";
+export const wellnessContactEmail = "hello@natalicompass.com";
+export const rudoctorsContactEmail = "info@rudoctors.com";
+export const publicContactEmail = "contact@tvet.si";
+export const ownerPersonalEmail = "nataliia.e.ovchinnikova@gmail.com";
 
 export interface CommunityGroup {
   id: string;

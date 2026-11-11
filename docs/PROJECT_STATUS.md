@@ -1,6 +1,6 @@
 # Текущий статус сайтов Наталии
 
-Актуально на 31 октября 2026 года.
+Актуально на 11 ноября 2026 года.
 
 ## Короткий статус
 
@@ -9,7 +9,7 @@
 - `apps/wellness` — коммерческий сайт практики и wellness-услуг;
 - `apps/science` — академический профиль и экспертное сотрудничество.
 
-Технический каркас и локальные дизайн-прототипы существуют. Канонические профессиональная карта и ТЗ перенесены в Astro-код: оба приложения собирают полные RU/EN-маршруты. Сайты остаются `draft` и `noindex`. Форма заявки Wellness подключена к автономному контуру приёма обращений (Telegram-бот + Google Apps Script Webhook + Google Таблицы CRM, ADR-0003); оплата, календарь и внешняя аналитика остаются в статусе подготовки к публичному релизу.
+Технический каркас и локальные дизайн-прототипы существуют. Канонические профессиональная карта и ТЗ перенесены в Astro-код: оба приложения собирают полные RU/EN-маршруты. Сайты переведены в публичный статус (`PUBLIC_SITE_STATUS=public`): снят noindex, открыт `robots.txt` (`Allow: /` + sitemap), удалена плашка черновика. Форма заявки Wellness подключена к автономному контуру приёма обращений (Telegram-бот + Google Apps Script Webhook + Google Таблицы CRM, ADR-0003); официальная корпоративная почта на доменах настроена через бесплатный forwarding.
 
 ## Рабочие опубликованные адреса
 
@@ -17,12 +17,14 @@
   - RU: [https://tvet.si/ru/](https://tvet.si/ru/)
   - EN: [https://tvet.si/en/](https://tvet.si/en/)
   - CNAME, DNS (Neoserv), SSL/TLS (Let's Encrypt), Enforce HTTPS активны.
+  - Email: `contact@tvet.si` -> пересылка на `nataliia.e.ovchinnikova@gmail.com`.
 - Wellness: **`https://natalicompass.com`** (ранее `https://wellnessnd.github.io`)
   - RU: [https://natalicompass.com/ru/](https://natalicompass.com/ru/)
   - EN: [https://natalicompass.com/en/](https://natalicompass.com/en/)
   - CNAME, DNS (Neoserv), SSL/TLS (Let's Encrypt), Enforce HTTPS активны.
+  - Email: `hello@natalicompass.com` -> пересылка на `nataliia.e.ovchinnikova@gmail.com`.
 
-Статус: официальные production-домены физически привязаны и защищены SSL. Email forwarding (`contact@tvet.si` и `hello@natalicompass.com`) и SPF-записи настроены. Cloudflare Turnstile обновлён под новые домены. Доменные ресурсы верифицированы через DNS TXT в Google Search Console и Bing Webmaster Tools под аккаунтом `ivan.dolgov.han.dong@gmail.com`, карты сайтов отправлены. До подтверждения Наталией сайты остаются в статусе `draft` и `noindex` (поисковые краулеры закрыты). Дорожная карта дальнейших шагов: `docs/operations/post-domain-launch-roadmap.md`.
+Статус: официальные production-домены физически привязаны и защищены SSL. Email forwarding (`contact@tvet.si` и `hello@natalicompass.com`) и SPF-записи настроены, создана инструкция по ответам через Gmail (`docs/operations/email-forwarding-user-guide.md`). Cloudflare Turnstile обновлён под новые домены. Доменные ресурсы верифицированы через DNS TXT в Google Search Console и Bing Webmaster Tools, настраивается Яндекс.Вебмастер (регион Москва). Сайты открыты для поисковых краулеров. Дорожная карта дальнейших шагов: `docs/operations/post-domain-launch-roadmap.md`.
 
 ## Источники истины
 

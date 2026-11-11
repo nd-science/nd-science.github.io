@@ -23,5 +23,5 @@ If you would like to explore academic collaboration, invite to an editorial or c
 - **LinkedIn Personal Profile (Connect)**: [linkedin.com/in/natalidolgova](https://www.linkedin.com/in/natalidolgova) — connect directly for scholarly and institutional networking (the network unites over 9,000 colleagues worldwide).
 - **“What’s in TVET?” Group**: [linkedin.com/groups/12713149](https://www.linkedin.com/groups/12713149) — international community of researchers and educators focusing on TVET policy, pedagogy and research. [Join Group ↗](https://www.linkedin.com/groups/12713149)
 - **“TVET League BRICS+” Group**: [linkedin.com/groups/9504349](https://www.linkedin.com/groups/9504349) — research exchange and educational cooperation network across BRICS+ countries. [Join Group ↗](https://www.linkedin.com/groups/9504349)
-- **Email**: [nataliia.e.ovchinnikova@gmail.com](mailto:nataliia.e.ovchinnikova@gmail.com) — for official correspondence, peer review invitations and research collaboration.
+- **Email**: [contact@tvet.si](mailto:contact@tvet.si) — for official correspondence, peer review invitations and research collaboration.
 - **Direct Telegram for quick communication**: [@natali_tvet_pro](https://t.me/natali_tvet_pro).

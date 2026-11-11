@@ -74,7 +74,7 @@ const activeEndpoint = endpoint && turnstileSiteKey ? endpoint : undefined;
         </div>
         <div class="field">
           <label for="wellness-request">{privateForm.request}</label>
-          <textarea id="wellness-request" name="request" maxlength="2000" required placeholder={locale === "ru" ? "В двух словах опишите вашу ситуацию, с чем хотели бы обратиться или какой вопрос решить…" : "Briefly describe your situation, the challenge you wish to address or your questions…"}></textarea>
+          <textarea id="wellness-request" name="request" maxlength="2000" required placeholder={locale === "ru" ? "В двух словах опишите вашу ситуацию, с чем хотели бы обратиться или какой вопрос решить…" : "Describe your situation, the challenge you wish to address or your questions…"}></textarea>
           <span class="field-hint">{privateForm.requestHint}</span>
         </div>
         <div class="checkbox-field"><input id="wellness-adult" name="adultConfirmed" type="checkbox" value="yes" required /><label for="wellness-adult">{privateForm.adult}</label></div>

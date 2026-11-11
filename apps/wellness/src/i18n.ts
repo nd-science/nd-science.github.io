@@ -97,7 +97,7 @@ const copyData = {
         format: "Предпочтительный формат",
         service: "Услуга",
         servicePlaceholder: "Выберите услугу",
-        request: "Кратко опишите запрос",
+        request: "Опишите запрос",
         requestHint: "Без лишних чувствительных подробностей — уточним детали на встрече.",
         adult: "Мне исполнилось 18 лет.",
         consent:
@@ -240,7 +240,7 @@ const copyData = {
         format: "Preferred format",
         service: "Service",
         servicePlaceholder: "Choose a service",
-        request: "Briefly describe your request",
+        request: "Describe your request",
         requestHint: "Without unnecessary sensitive detail — we will clarify the specifics in the meeting.",
         adult: "I am 18 or older.",
         consent: "I agree to the processing of personal data in order to respond to this enquiry.",

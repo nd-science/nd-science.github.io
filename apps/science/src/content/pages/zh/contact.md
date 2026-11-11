@@ -23,5 +23,5 @@ publicationScope: public
 - **LinkedIn 个人学者档案（建立联系）**：[linkedin.com/in/natalidolgova](https://www.linkedin.com/in/natalidolgova) —— 直接建立学术与机构关系网络（汇聚全球逾9000名学术同行）。
 - **“What’s in TVET?” 专业社群**：[linkedin.com/groups/12713149](https://www.linkedin.com/groups/12713149) —— 聚焦技术与职业教育与培训前沿政策、教学法与学术研究的国际共同体。[加入社群 ↗](https://www.linkedin.com/groups/12713149)
 - **“TVET League BRICS+” 专家平台**：[linkedin.com/groups/9504349](https://www.linkedin.com/groups/9504349) —— 促进金砖国家（BRICS+）及更广泛国际背景下科研交流与教育合作的学者网络。[加入社群 ↗](https://www.linkedin.com/groups/9504349)
-- **官方电子邮箱**：[nataliia.e.ovchinnikova@gmail.com](mailto:nataliia.e.ovchinnikova@gmail.com) —— 用于官方公函往来、同行评审邀请与正式科研合作对接。
+- **官方电子邮箱**：[contact@tvet.si](mailto:contact@tvet.si) —— 用于官方公函往来、同行评审邀请与正式科研合作对接。
 - **快速即时沟通（Telegram）**：[@natali_tvet_pro](https://t.me/natali_tvet_pro)。

@@ -50,16 +50,16 @@
 
 ## Пакет 3. Включение поисковой индексации (Public Release Gate)
 
-*Сайты Наталии сейчас закрыты от индексации метатегом `noindex, nofollow` до утверждения контента.*
+*Сайты переведены в открытый публичный режим по решению владельца/пользователя.*
 
 ### Задачи к выполнению:
-- [ ] **3.1. Подтверждение готовности контента Наталией:**  
-  Получить формальное одобрение от владельца контента на открытие сайтов публике.
-- [ ] **3.2. Снятие тега `noindex`:**  
-  Переключить переменную окружения `PUBLIC_SITE_STATUS=production` (или `SITE_STATUS=production` в CI/CD).
-  * Убедиться в сгенерированном HTML: `<meta name="robots" content="index, follow" />`.
-- [ ] **3.3. Обновление `robots.txt`:**  
-  Открыть краулеры:
+- [x] **3.1. Подтверждение готовности контента владельцем:**
+  Получено прямое указание на открытие сайтов публике.
+- [x] **3.2. Снятие тега `noindex`:**
+  В рабочих процессах деплоя (`deploy-science.yml`, `deploy-wellness.yml`) и шаблонах окружения переключено `PUBLIC_SITE_STATUS=public`.
+  * В сгенерированном HTML формируется: `<meta name="robots" content="index, follow" />`, плашка черновика снята.
+- [x] **3.3. Обновление `robots.txt`:**
+  Краулеры открыты:
   ```text
   User-agent: *
   Allow: /
@@ -68,11 +68,10 @@
   # (для Wellness: https://natalicompass.com/sitemap-index.xml)
   # (для RuDoctors: https://rudoctors.com/sitemap-index.xml)
   ```
-- [ ] **3.4. Настройка политик для AI-поисковиков:**  
-  * Разрешить поисковые AI-боты: `PerplexityBot`, `ChatGPT-User`, `Applebot-Extended` (обеспечивает цитирование в ответах ИИ-ассистентов).
-  * При необходимости ограничить нежелательные обучающие краулеры (`CCBot`, `GPTBot`).
-- [ ] **3.5. Верификация Sitemap:**  
-  Проверить доступность и валидность `https://tvet.si/sitemap-index.xml` и `https://natalicompass.com/sitemap-index.xml` (все URL должны начинаться с нового домена и иметь протокол `https`).
+- [x] **3.4. Настройка политик для AI-поисковиков:**
+  * Разрешены поисковые AI-боты: `PerplexityBot`, `ChatGPT-User`, `Applebot-Extended` (обеспечивает цитирование в ответах ИИ-ассистентов).
+- [x] **3.5. Верификация Sitemap:**
+  Проверена доступность и валидность `https://tvet.si/sitemap-index.xml` и `https://natalicompass.com/sitemap-index.xml` (все URL начинаются с production-доменов `https://tvet.si/` и `https://natalicompass.com/`).
 
 ---
 
@@ -136,7 +135,7 @@
 
 ## Пакет 7. Настройка почты на домене (Email Forwarding)
 
-*Красивые представительские адреса без необходимости оплачивать отдельные почтовые ящики.*
+*Красивые представительские адреса без необходимости оплачивать отдельные почтовые ящики. Подробное руководство по ответам через Gmail: [`email-forwarding-user-guide.md`](email-forwarding-user-guide.md).*
 
 ### Задачи к выполнению:
 - [x] **7.1. Почтовые алиасы (Neoserv / Cloudflare):**  
@@ -144,10 +143,13 @@
   * `contact@tvet.si` → пересылка на `nataliia.e.ovchinnikova@gmail.com`
   * `hello@natalicompass.com` → пересылка на `nataliia.e.ovchinnikova@gmail.com`
   * `info@rudoctors.com` → пересылка на `ivan.dolgov.han.dong@gmail.com`
+  Все email адреса выведены в профили и футеры сайтов.
 - [ ] **7.2. Проверка тестовым письмом:**  
   Отправить тестовое письмо на доменный адрес и проверить доставку во входящие Gmail.
 - [x] **7.3. DNS-записи аутентификации (SPF):**  
   Добавлена SPF-запись (`v=spf1 include:_spf.neoserv.si ~all`) для всех трех доменов в DNS Neoserv.
+- [x] **7.4. Руководство для пользователя:**
+  Составлена пошаговая инструкция по настройке функции «Отправлять письма как» в Gmail (`email-forwarding-user-guide.md`).
 
 ---
 
