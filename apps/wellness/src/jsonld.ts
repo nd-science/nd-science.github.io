@@ -23,11 +23,33 @@ export function faqPageJsonLd(
   };
 }
 
+const keyHubCities = [
+  { ru: "Белград", en: "Belgrade" },
+  { ru: "Лондон", en: "London" },
+  { ru: "Барселона", en: "Barcelona" },
+  { ru: "Берлин", en: "Berlin" },
+  { ru: "Лимасол", en: "Limassol" },
+  { ru: "Тбилиси", en: "Tbilisi" },
+  { ru: "Ереван", en: "Yerevan" },
+  { ru: "Москва", en: "Moscow" },
+];
+
 export function servicesJsonLd(
   items: CollectionEntry<"services">[],
   locale: "ru" | "en",
   pageUrl: string,
 ) {
+  const onlineHubs = [
+    ...keyHubCities.map((city) => ({
+      "@type": "City" as const,
+      name: city[locale],
+    })),
+    {
+      "@type": "AdministrativeArea" as const,
+      name: locale === "ru" ? "Онлайн по всему миру" : "Worldwide (Online)",
+    },
+  ];
+
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -58,16 +80,12 @@ export function servicesJsonLd(
                   name: locale === "ru" ? "Белград" : "Belgrade",
                 },
                 {
-                  "@type": "AdministrativeArea",
-                  name: locale === "ru" ? "Онлайн по всему миру" : "Worldwide (Online)",
+                  "@type": "City",
+                  name: locale === "ru" ? "Лондон" : "London",
                 },
+                ...onlineHubs,
               ]
-            : [
-                {
-                  "@type": "AdministrativeArea",
-                  name: locale === "ru" ? "Онлайн по всему миру" : "Worldwide (Online)",
-                },
-              ],
+            : onlineHubs,
           availableLanguage: ["ru", "en"],
           hoursAvailable: {
             "@type": "OpeningHoursSpecification",
@@ -92,24 +110,24 @@ export function servicesJsonLd(
                   description:
                     price.delivery === "in_person"
                       ? locale === "ru"
-                        ? "Очно в Белграде"
-                        : "In person in Belgrade"
+                        ? "Очно в Белграде (в Лондоне — во время визитов)"
+                        : "In person in Belgrade (or London during visits)"
                       : locale === "ru"
                         ? "Онлайн"
                         : "Online",
                   areaServed:
                     price.delivery === "in_person"
-                      ? {
-                          "@type": "City",
-                          name: locale === "ru" ? "Белград" : "Belgrade",
-                        }
-                      : {
-                          "@type": "AdministrativeArea",
-                          name:
-                            locale === "ru"
-                              ? "Онлайн по всему миру"
-                              : "Worldwide (Online)",
-                        },
+                      ? [
+                          {
+                            "@type": "City",
+                            name: locale === "ru" ? "Белград" : "Belgrade",
+                          },
+                          {
+                            "@type": "City",
+                            name: locale === "ru" ? "Лондон" : "London",
+                          },
+                        ]
+                      : onlineHubs,
                 })),
               }
             : {}),

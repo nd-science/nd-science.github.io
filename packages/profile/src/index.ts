@@ -619,13 +619,34 @@ export const practiceLocations = {
       en: "In-person sessions in Belgrade take place by prior appointment. The exact address is confirmed individually after booking.",
     },
   },
+  london: {
+    city: { ru: "Лондон", en: "London" },
+    country: { ru: "Великобритания", en: "United Kingdom" },
+    countryCode: "GB",
+    timezone: "Europe/London",
+    serviceModes: ["online", "in_person"] as DeliveryMode[],
+    policy: {
+      ru: "Онлайн-консультации для клиентов в Великобритании, а также возможность очных сессий в Лондоне в периоды визитов по предварительной договоренности.",
+      en: "Online consultations for clients in the UK, with occasional in-person sessions in London during visits by prior arrangement.",
+    },
+  },
   online: {
     coverage: { ru: "По всему миру", en: "Worldwide" },
+    keyHubs: [
+      { city: { ru: "Лондон", en: "London" }, country: { ru: "Великобритания", en: "United Kingdom" } },
+      { city: { ru: "Барселона", en: "Barcelona" }, country: { ru: "Испания", en: "Spain" } },
+      { city: { ru: "Берлин", en: "Berlin" }, country: { ru: "Германия", en: "Germany" } },
+      { city: { ru: "Лимасол", en: "Limassol" }, country: { ru: "Кипр", en: "Cyprus" } },
+      { city: { ru: "Тбилиси", en: "Tbilisi" }, country: { ru: "Грузия", en: "Georgia" } },
+      { city: { ru: "Ереван", en: "Yerevan" }, country: { ru: "Армения", en: "Armenia" } },
+      { city: { ru: "Белград", en: "Belgrade" }, country: { ru: "Сербия", en: "Serbia" } },
+      { city: { ru: "Москва", en: "Moscow" }, country: { ru: "Россия", en: "Russia" } },
+    ],
     languages: ["ru", "en"] as Locale[],
     serviceModes: ["online"] as DeliveryMode[],
     policy: {
-      ru: "Онлайн-консультации и программы проводятся по видеосвязи на русском и английском языках.",
-      en: "Online consultations and programmes are conducted via video link in Russian and English.",
+      ru: "Онлайн-консультации и программы проводятся по видеосвязи на русском и английском языках для клиентов по всему миру (включая Лондон, Барселону, Берлин, Лимасол, Тбилиси, Ереван, Белград и Москву).",
+      en: "Online consultations and programmes are conducted via video link in Russian and English for clients worldwide (including London, Barcelona, Berlin, Limassol, Tbilisi, Yerevan, Belgrade, and Moscow).",
     },
   },
 } as const;
