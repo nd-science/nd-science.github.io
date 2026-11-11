@@ -1,8 +1,8 @@
 ---
 route: home
 locale: en
-seoTitle: Nataliia Dolgova — Psychologist and Neurointegration Trainer
-seoDescription: "Psychological counselling, neurointegration, breathwork and health qigong for stress and self-regulation — online and in person in Belgrade."
+seoTitle: Psychologist online & in Belgrade — Nataliia Dolgova | Counselling
+seoDescription: "Psychological counselling online and in person in Belgrade. Evidence-based support for burnout, chronic stress, impostor syndrome, and emotional regulation."
 h1: Restoring energy, mental clarity and resilience without self-coercion
 summary: "An integrative approach to self-regulation: evidence-informed support for stress and burnout through Brain, Psyche, and Body."
 audience: [B2C]
@@ -12,7 +12,7 @@ ctaSecondaryLabel: View formats and pricing
 ctaSecondaryHref: /for-individuals/
 relatedServices: [consultation, four-week-support, five-session-package]
 sections: [services, methods]
-updatedAt: 2026-10-29
+updatedAt: 2026-11-11
 publicationScope: public
 ---
 
@@ -25,8 +25,9 @@ My methodology is rooted in an evidence-based approach, combining practical psyc
 **Credentials and verified background:** Dr. phil. (Germany, magna cum laude), Candidate of Economic Sciences (Russia), Practical psychologist (MPGU diploma, 1080h), Certified Neurointegration Trainer, Certified Health Qigong Instructor (Ba Duan Jin), 15+ years in adult education and research.
 
 **Common reasons to reach out:**
-- Emotional and professional burnout, chronic fatigue.
-- Elevated background anxiety, inner tension, sleep and relaxation difficulties.
-- Difficulties with focus, procrastination, and severe self-criticism.
-- Adjustment after relocation, navigating career and personal transitions.
-- Building sustainable habits and achieving meaningful goals without burnout or self-coercion.
+- **Emotional and professional burnout:** depleted energy, chronic fatigue, and loss of motivation when standard rest no longer restores you.
+- **Chronic stress and anxiety:** inner tension, sleep disruption, difficulty winding down, and persistent cognitive loop thoughts.
+- **Impostor syndrome and self-doubt:** discounting achievements, fear of not meeting expectations in new roles, and harsh self-criticism.
+- **Difficulty focusing and procrastination:** scattered attention, delaying important actions, and lack of clarity.
+- **Adjustment after relocation and life transitions:** migration stress, adapting to new environments, or redefining personal and professional anchors.
+- **Developing self-regulation skills:** establishing sustainable habits and pursuing goals with care, without self-coercion.

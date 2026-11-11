@@ -1,8 +1,8 @@
 ---
 route: practices/neurointegration
 locale: ru
-seoTitle: Нейроинтеграционное сопровождение
-seoDescription: Нейроинтеграция для саморегуляции, мышления и организации действий.
+seoTitle: Нейроинтеграция и управление ресурсом — Наталия Долгова
+seoDescription: "Методы нейроинтеграции и брейн-менеджмента для управления стрессом, преодоления прокрастинации и устойчивой саморегуляции без выгорания."
 h1: Нейроинтеграция для состояния, мышления и действий
 summary: Управление ресурсом нервной системы, преодоление прокрастинации и организация целей короткими циклами без насилия над собой.
 audience: [B2C]
@@ -10,7 +10,7 @@ ctaLabel: Обсудить сопровождение
 ctaHref: /booking/#enquiry
 relatedServices: [neurointegration-support, four-week-support]
 sections: [services]
-updatedAt: 2026-10-31
+updatedAt: 2026-11-11
 publicationScope: public
 ---
 

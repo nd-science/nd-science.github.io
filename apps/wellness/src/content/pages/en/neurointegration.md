@@ -1,8 +1,8 @@
 ---
 route: practices/neurointegration
 locale: en
-seoTitle: Neurointegration support
-seoDescription: Neurointegration for self-regulation, thinking and organising action.
+seoTitle: Neurointegration and cognitive self-regulation — Nataliia Dolgova
+seoDescription: "Neurointegration methods and brain management for stress relief, overcoming procrastination, and sustainable self-regulation without burnout."
 h1: Neurointegration for state, thinking and action
 summary: Regulating nervous system resources, overcoming procrastination and organising goals in short cycles without self-coercion.
 audience: [B2C]
@@ -10,7 +10,7 @@ ctaLabel: Discuss support
 ctaHref: /booking/#enquiry
 relatedServices: [neurointegration-support, four-week-support]
 sections: [services]
-updatedAt: 2026-10-31
+updatedAt: 2026-11-11
 publicationScope: public
 ---
 

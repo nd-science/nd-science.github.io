@@ -41,6 +41,16 @@
 
 ### Техническая основа
 
+- **Системы веб-аналитики (Яндекс.Метрика и Google Analytics 4):**
+  - Созданы и настроены счётчики Яндекс.Метрики с Вебвизором:
+    * Wellness (`natalicompass.com`): `114195782`
+    * Science (`tvet.si`): `114195785`
+    * RuDoctors (`rudoctors.com`): `114195788`
+  - Созданы веб-потоки и получены идентификаторы Google Analytics 4:
+    * Wellness (`natalicompass.com`): `G-WMEXEGNS6X`
+    * Science (`tvet.si`): `G-TT21N6EYKF`
+    * RuDoctors (`rudoctors.com`): `G-RS8CWBWDCB`
+  - Коды счётчиков внедрены в базовые шаблоны (`BaseLayout.astro` и `Layout.astro`), обновлена CSP-политика, подключен трекинг целей кликов и записей в `rudoctors`.
 - Настроен pnpm workspace с Astro 6.4.8 и TypeScript.
 - Созданы независимые приложения `apps/wellness` и `apps/science`.
 - Для обоих приложений существуют RU/EN-контур, draft/noindex, canonical, hreflang, Open Graph и базовая Schema.org-разметка.
@@ -143,6 +153,7 @@
 | DEC-053 | Фиксация языковой архитектуры и сквозная чистовая вычитка обоих сайтов (Antigravity + Codex + OpenCode): 1) по решению пользователя сайт практики `apps/wellness` зафиксирован строго на 2 языках (RU и EN); научный сайт `apps/science` функционирует на 6 языках (RU, EN, ZH, DE, FR, ES); 2) проведена комплексная автоматизированная и экспертная вычитка всех страниц, проверены семантический паритет, фактология, ссылки, якоря, формы, юридические реквизиты и мета-теги; 3) в английских страницах и оферте Wellness устранены остаточные маркеры `(18+)` в пользу уважительной формулировки «adult clients aged 18 and older» в соответствии с DEC-027; 4) целостность подтверждена: 0 битых внутренних ссылок, 0 текстовых аномалий, 0 ошибок сборки и линтинга. |
 | DEC-054 | Проведён повторный технический браузерный аудит трёх площадок (Science, Wellness, RuDoctors, `docs/operations/technical-browser-audit-2026-11-11.md`): подтверждена доступность всех URL из sitemap (84 Science, 34 Wellness, 494 RuDoctors), отсутствие JS-ошибок и корректная генерация Turnstile. Зафиксированы 4 приоритетных задачи P1: оптимизация мобильного LCP (конвертация портрета 1.53 МБ в responsive WebP/AVIF, NAT-PERF-001), исправление SEO-сигналов 404 (добавление noindex и очистка canonical, NAT-SEO-404-001), устранение ложного успеха формы добавления врача в RuDoctors (RD-FORM-001) и очистка robots/llms RuDoctors от устаревшего домена github.io (RD-SEO-001). Задачи внесены в `docs/TODO.md` и Пакет 9 пост-доменной дорожной карты. |
 | DEC-055 | Устранена блокировка доставки заявок с сайтов Наталии (Wellness и Science) в CRM и Telegram-бот `@wellnessndbot`: в Google Apps Script (`1oswEUV9t9UDPo6Xbv9GiJA57ZXAxHweatg_vXK89DOG_VI--kU3c_Tru`) развернута Версия 11 вебхука с поддержкой новых канонических хостов `natalicompass.com` и `tvet.si` в функции валидации Cloudflare Turnstile `isAllowedHostname`. Выполнено сквозное E2E тестирование в BrowserOS Neo на страницах `https://natalicompass.com/ru/booking/` и `https://tvet.si/ru/contact/` — обе формы возвращают статус успеха, заявки записаны в CRM-таблицу, уведомления отправлены в Telegram. |
+| DEC-056 | Проведено исследование реального поискового спроса в Яндекс.Вордстат (ноябрь 2026) через BrowserOS neo, сформировано кластеризованное семантическое ядро (`docs/marketing/semantic-core-and-audience-analysis.md`) и оптимизированы сниппеты (Title/Description) и LSI-блоки ключевых страниц Wellness под подтверждённые запросы («консультации психолога онлайн», «эмоциональное выгорание», «хронический стресс», «синдром самозванца», «цигун для начинающих»). Создана резервная ветка сравнения `backup/pre-seo-optimization-2026-11-11`. Все сборки и тесты пройдены с 0 ошибок. |
 
 ## Что ещё не сделано
 

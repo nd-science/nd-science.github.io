@@ -1,8 +1,8 @@
 ---
 route: booking
 locale: en
-seoTitle: Booking and consultation terms
-seoDescription: Enquiry, manual confirmation, payment, calendar, rescheduling and refunds for Nataliia Dolgova’s consultations.
+seoTitle: Book a psychological consultation — Nataliia Dolgova
+seoDescription: "Book an individual psychological consultation online (€100) or in person in Belgrade (€120). Request review, secure payment, and personal scheduling."
 h1: Book a consultation
 summary: A short enquiry, format confirmation, secure payment and personal scheduling.
 audience: [B2C]
@@ -10,7 +10,7 @@ ctaLabel: Booking options & contacts
 ctaHref: '#enquiry'
 relatedServices: [consultation, five-session-package, four-week-support, neurointegration-support, individual-qigong, group-qigong, breathing-session]
 sections: [enquiry]
-updatedAt: 2026-10-31
+updatedAt: 2026-11-11
 publicationScope: public
 ---
 

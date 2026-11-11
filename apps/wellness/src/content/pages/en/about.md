@@ -1,15 +1,15 @@
 ---
 route: about
 locale: en
-seoTitle: About Nataliia Dolgova
-seoDescription: Nataliia Dolgova’s education, qualifications, experience and principles of practice.
+seoTitle: About Nataliia Dolgova — Psychologist, Dr. phil., Neurointegration Trainer
+seoDescription: "Academic background, verified diplomas (MPGU, Europa-Universität Flensburg), and evidence-based methodology of psychologist Nataliia Dolgova."
 h1: Research background and individual practice
 summary: Research expertise, evidence-informed psychology and gentle body practices for human resilience.
 audience: [public]
 ctaLabel: Choose a way of working
 ctaHref: /for-individuals/
 sections: [credentials]
-updatedAt: 2026-10-31
+updatedAt: 2026-11-11
 publicationScope: public
 ---
 

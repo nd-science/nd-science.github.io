@@ -119,14 +119,18 @@
 ## Пакет 6. Веб-аналитика и мониторинг конверсий
 
 ### Задачи к выполнению:
-- [ ] **6.1. Google Analytics 4 (GA4):**
-  * Создать потоки данных (Data Streams) для `tvet.si`, `natalicompass.com` и `rudoctors.com`.
-  * Подключить Measurement ID в конфигурацию сайтов.
-- [ ] **6.2. Яндекс.Метрика:**
-  * Создать счетчики для русскоязычной аудитории (с включённым Вебвизором).
-  * Настроить цели: «Клик на Telegram», «Отправка формы записи», «Отправка формы связи».
-- [ ] **6.3. Интеграция с Cookie Consent:**
-  * Убедиться, что скрипты аналитики загружаются корректно в соответствии с выбором пользователя в баннере согласия на обработку cookie (GDPR).
+- [x] **6.1. Google Analytics 4 (GA4):**
+  * Созданы веб-потоки данных (Data Streams) для `natalicompass.com` (`G-WMEXEGNS6X`), `tvet.si` (`G-TT21N6EYKF`) и `rudoctors.com` (`G-RS8CWBWDCB`).
+  * Measurement ID подключены в шаблоны `packages/ui/src/components/BaseLayout.astro` и `D:\Projects\rudoctors\site\src\layouts\Layout.astro` с флагом `anonymize_ip: true`.
+- [x] **6.2. Яндекс.Метрика:**
+  * Созданы счетчики с включенным Вебвизором, картой скроллинга и аналитикой форм:
+    - Wellness (`natalicompass.com`): `114195782`
+    - Science (`tvet.si`): `114195785`
+    - RuDoctors (`rudoctors.com`): `114195788`
+  * Коды счетчиков внедрены в кодовые базы Natali и RuDoctors, настроен CSP в `Layout.astro` (`https://mc.yandex.ru`, `https://*.google-analytics.com`, `https://www.googletagmanager.com`).
+  * В `rudoctors` в `src/lib/analytics.ts` подключена автоматическая отправка целей в `ym.reachGoal` и `gtag.event`.
+- [x] **6.3. Интеграция с Cookie Consent и 404:**
+  * Исключена загрузка счетчиков на технических 404 страницах. Скрипты загружаются асинхронно без блокировки рендеринга и LCP.
 
 ---
 

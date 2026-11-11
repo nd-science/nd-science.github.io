@@ -1,12 +1,12 @@
 ---
 route: resources
 locale: en
-seoTitle: Resources on self-regulation and overload
-seoDescription: Nataliia Dolgova’s written resources on stress, breathing, habits and professional transitions.
+seoTitle: Resources on stress, burnout & self-regulation — Nataliia Dolgova
+seoDescription: "Articles and practical notes on stress physiology, burnout prevention, breathwork techniques, and resilient self-regulation."
 h1: Resources for exploring the approach independently
 summary: Public channels, articles and practical materials by Nataliia Dolgova on breathing, neurointegration and self-regulation.
 audience: [public]
-updatedAt: 2026-10-29
+updatedAt: 2026-11-11
 publicationScope: public
 ---
 

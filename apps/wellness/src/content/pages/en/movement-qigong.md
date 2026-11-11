@@ -1,8 +1,8 @@
 ---
 route: practices/movement-qigong
 locale: en
-seoTitle: Health qigong and gentle movement
-seoDescription: Individual and group health qigong sessions online and in person in Belgrade.
+seoTitle: Health Qigong for beginners and gentle movement — Nataliia Dolgova
+seoDescription: "Health Qigong sessions for beginners: gentle exercises to release physical tension, support spinal ease, and restore energy. Online and in person in Belgrade."
 h1: Health qigong and gentle movement
 summary: Gentle movement, breathing and attention adapted to the participant.
 audience: [B2C]
@@ -10,7 +10,7 @@ ctaLabel: Book a session
 ctaHref: /booking/#enquiry
 relatedServices: [individual-qigong, group-qigong]
 sections: [services]
-updatedAt: 2026-10-29
+updatedAt: 2026-11-11
 publicationScope: public
 ---
 

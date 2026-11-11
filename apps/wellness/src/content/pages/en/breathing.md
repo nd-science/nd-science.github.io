@@ -1,8 +1,8 @@
 ---
 route: practices/breathing
 locale: en
-seoTitle: Breathing practices for self-regulation
-seoDescription: Individual selection and gradual learning of breathing practices, with due regard for contraindications.
+seoTitle: Breathwork for stress and anxiety relief — Nataliia Dolgova
+seoDescription: "Breathwork practices for calming the nervous system, stress relief, and deep relaxation. Personalized selection of techniques with contraindications considered."
 h1: Breathing as a practical self-regulation tool
 summary: Individual practice selection, gradual learning and adapted intensity.
 audience: [B2C]
@@ -10,7 +10,7 @@ ctaLabel: Choose an individual session
 ctaHref: /booking/#enquiry
 relatedServices: [breathing-session, four-week-support]
 sections: [services]
-updatedAt: 2026-10-29
+updatedAt: 2026-11-11
 publicationScope: public
 ---
 

@@ -1,20 +1,20 @@
 ---
 route: programs/stress-recovery
 locale: en
-seoTitle: Four weeks of work with stress and overload
-seoDescription: Nataliia Dolgova’s personal four-week support programme priced at €600.
-h1: Four weeks of work with stress and overload
-summary: A structured personal programme for restoring resources, nervous system regulation and sustainable habits.
+seoTitle: Burnout & stress recovery programme — Nataliia Dolgova
+seoDescription: "A 4-week personalised programme for emotional burnout, chronic fatigue and stress. Step-by-step restoration of energy and nervous system balance."
+h1: Programme for burnout recovery and chronic stress management
+summary: A structured personal programme for overcoming burnout, regulating nervous system resources, and establishing resilient self-support habits.
 audience: [B2C]
 ctaLabel: Book the programme
 ctaHref: /booking/#enquiry
 relatedServices: [four-week-support]
 sections: [services]
-updatedAt: 2026-10-31
+updatedAt: 2026-11-11
 publicationScope: public
 ---
 
-A structured four-week personal programme designed to restore energy reserves, reduce chronic stress, and establish a reliable self-regulation system under demanding workloads.
+A structured four-week personal programme designed to restore energy reserves, reduce chronic stress, overcome burnout, and establish a reliable self-regulation system under demanding workloads.
 
 ### Programme Structure
 

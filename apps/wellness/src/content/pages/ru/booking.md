@@ -1,8 +1,8 @@
 ---
 route: booking
 locale: ru
-seoTitle: Запись и условия консультаций
-seoDescription: Заявка, ручное подтверждение, оплата, календарь, перенос и возврат для консультаций Наталии Долговой.
+seoTitle: Запись на консультацию психолога — Наталия Долгова
+seoDescription: "Запись на индивидуальную консультацию психолога онлайн (100 €) и очно в Белграде (120 €). Согласование запроса, безопасная оплата и регламент встреч."
 h1: Запись на консультацию
 summary: Короткая заявка, подтверждение формата, безопасная оплата и согласование времени.
 audience: [B2C]
@@ -10,7 +10,7 @@ ctaLabel: Способы записи и контакты
 ctaHref: '#enquiry'
 relatedServices: [consultation, five-session-package, four-week-support, neurointegration-support, individual-qigong, group-qigong, breathing-session]
 sections: [enquiry]
-updatedAt: 2026-10-31
+updatedAt: 2026-11-11
 publicationScope: public
 ---
 

@@ -1,8 +1,8 @@
 ---
 route: practices/movement-qigong
 locale: ru
-seoTitle: Оздоровительный цигун и мягкое движение
-seoDescription: Индивидуальные и групповые занятия оздоровительным цигун онлайн и очно в Белграде.
+seoTitle: Цигун для начинающих и оздоровительное движение — Наталия Долгова
+seoDescription: "Занятия оздоровительным цигун для начинающих: мягкие упражнения для снятия телесного напряжения, спины и суставов. Онлайн и очно в Белграде."
 h1: Оздоровительный цигун и мягкое движение
 summary: Плавные движения, дыхание и внимание с адаптацией под возможности участника.
 audience: [B2C]
@@ -10,7 +10,7 @@ ctaLabel: Записаться на занятие
 ctaHref: /booking/#enquiry
 relatedServices: [individual-qigong, group-qigong]
 sections: [services]
-updatedAt: 2026-10-29
+updatedAt: 2026-11-11
 publicationScope: public
 ---
 
