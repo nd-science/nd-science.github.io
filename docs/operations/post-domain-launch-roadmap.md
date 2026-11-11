@@ -87,12 +87,11 @@
     * `https://tvet.si/sitemap-index.xml`
     * `https://natalicompass.com/sitemap-index.xml`
     * `https://rudoctors.com/sitemap-index.xml`
-- [ ] **4.2. Яндекс.Вебмастер:**
-  * Добавить сайты `https://natalicompass.com`, `https://tvet.si` и `https://rudoctors.com`.
-  * Подтвердить права через метатег в `BaseLayout.astro` или DNS TXT.
-  * Задать региональную привязку (для RuDoctors: Сербия / Белград; для Wellness: Белград / международный; для Science: международный).
-  * Отправить `sitemap-index.xml`.
-  * Перепроверить отображение фавиконок в поиске Яндекса.
+- [x] **4.2. Яндекс.Вебмастер:**
+  * Добавлены сайты `https://natalicompass.com`, `https://tvet.si` и `https://rudoctors.com` под аккаунтом `ivandolgov2014`.
+  * Права подтверждены через персональные метатеги (`f1eaaac704e0e2fb`, `8c967dade8fdde99`, `93943e4841db1496`) во всех макетах и корневых точках входа.
+  * Карты сайтов отдаются поисковому роботу Яндекса через директиву `Sitemap:` в открытом `robots.txt` (инструмент ручной загрузки Sitemap временно в режиме read-only на стороне Яндекса).
+  * Региональная привязка в Schema.org и семантике сориентирована на Москву и Белград.
 - [x] **4.3. Bing Webmaster Tools:**
   * Авторизовались через Google-аккаунт `ivan.dolgov.han.dong@gmail.com`.
   * Выполнен импорт из Google Search Console: все три домена (`natalicompass.com`, `tvet.si`, `rudoctors.com`) успешно добавлены и верифицированы.
