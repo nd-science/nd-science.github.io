@@ -1,7 +1,7 @@
 ---
 route: education
 locale: fr
-seoTitle: Ingénierie pédagogique et formation des adultes
+seoTitle: Formation des adultes — Nataliia Dolgova
 seoDescription: Expérience de Nataliia Dolgova en formation des adultes, ingénierie de programmes, élaboration de supports et évaluation des compétences.
 h1: Formation des adultes et ingénierie pédagogique
 summary: Plus de 40 programmes, 37 projets éducatifs et plus de 2 000 enseignants formés dans 35 régions.

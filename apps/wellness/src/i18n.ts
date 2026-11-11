@@ -138,7 +138,7 @@ const copyData = {
         checklistTitle: "Что указать в сообщении:",
         checklistItems: [
           "Ваше имя и часовой пояс",
-          "Кратко суть запроса (без конфиденциальных медицинских подробностей)",
+          "Суть запроса (без конфиденциальных медицинских подробностей)",
           "Предпочтительный формат: онлайн или очно в Белграде",
         ],
         orgTitle: "Корпоративный запрос и программы для команд",
@@ -279,7 +279,7 @@ const copyData = {
         checklistTitle: "What to include in your message:",
         checklistItems: [
           "Your name and time zone",
-          "Brief description of your request (without confidential medical details)",
+          "Description of your request (without confidential medical details)",
           "Preferred format: online or in person in Belgrade",
         ],
         orgTitle: "Corporate inquiries and workshops",

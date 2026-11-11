@@ -6,7 +6,7 @@
   "duration": { "ru": "4 недели", "en": "4 weeks" },
   "delivery": ["online", "in_person"],
   "price": { "amount": 600, "currency": "EUR", "unit": "programme" },
-  "outcome": { "ru": "Комплексное восстановление ресурсов, выход из хронического стресса и персональная система самоподдержки.", "en": "Comprehensive resource recovery, relief from chronic stress and a personal resilience system." },
+  "outcome": { "ru": "Индивидуально составленный план саморегуляции и бережной работы со стрессом.", "en": "An individually developed plan for self-regulation and managing stress." },
   "relatedMethods": ["psychology", "neurointegration", "breathing", "movement-qigong"],
   "serviceAvailability": "available",
   "publicationScope": "public",

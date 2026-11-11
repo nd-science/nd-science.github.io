@@ -2,7 +2,7 @@
 route: practices/breathing
 locale: en
 seoTitle: Breathing practices for self-regulation
-seoDescription: Individual selection and gradual learning of breathing practices with contraindications considered.
+seoDescription: Individual selection and gradual learning of breathing practices, with due regard for contraindications.
 h1: Breathing as a practical self-regulation tool
 summary: Individual practice selection, gradual learning and adapted intensity.
 audience: [B2C]

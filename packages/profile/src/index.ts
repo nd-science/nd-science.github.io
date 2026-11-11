@@ -20,9 +20,9 @@ export const SUPPORTED_LOCALES: Record<Locale, LocaleConfig> = {
   ru: { code: "ru", label: "RU", htmlLang: "ru", ogLocale: "ru_RU", sitemapLang: "ru-RU", name: "Русский" },
   en: { code: "en", label: "EN", htmlLang: "en", ogLocale: "en_US", sitemapLang: "en", name: "English" },
   zh: { code: "zh", label: "中文", htmlLang: "zh-Hans", ogLocale: "zh_CN", sitemapLang: "zh-Hans", name: "中文" },
-  de: { code: "de", label: "DE", htmlLang: "de", ogLocale: "de_DE", sitemapLang: "de", name: "Deutsch" },
-  fr: { code: "fr", label: "FR", htmlLang: "fr", ogLocale: "fr_FR", sitemapLang: "fr", name: "Français" },
-  es: { code: "es", label: "ES", htmlLang: "es", ogLocale: "es_ES", sitemapLang: "es", name: "Español" },
+  de: { code: "de", label: "DE", htmlLang: "de", ogLocale: "de_DE", sitemapLang: "de-DE", name: "Deutsch" },
+  fr: { code: "fr", label: "FR", htmlLang: "fr", ogLocale: "fr_FR", sitemapLang: "fr-FR", name: "Français" },
+  es: { code: "es", label: "ES", htmlLang: "es", ogLocale: "es_ES", sitemapLang: "es-ES", name: "Español" },
 };
 
 export type LifecycleStatus =

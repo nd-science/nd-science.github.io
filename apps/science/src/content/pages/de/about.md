@@ -3,7 +3,7 @@ route: about
 locale: de
 seoTitle: Nataliia Dolgova — Biografie und akademische Grade
 seoDescription: Akademische Biografie, Bildungsabschlüsse, wissenschaftliche Stationen und Forscheridentifikatoren von Nataliia Dolgova.
-h1: Akademische Biografie und Forschungstrajektorie
+h1: Akademische Biografie und Forschungslaufbahn
 summary: Forschung, Hochschullehre und Konzeption von Bildungsprogrammen seit 2011.
 ctaLabel: Forschungsprofil erkunden
 ctaHref: /research/
@@ -36,7 +36,7 @@ Fachkolleginnen und -kollegen sowie institutionelle Partner sind herzlich eingel
 
 ## Engagement und gesellschaftliche Verantwortung
 
-- **Taccle AI Botschafterin (Ambassador)** (seit Juni 2020) — Engagement für den verantwortungsvollen Einsatz von Künstlicher Intelligenz und digitaler Didaktik in der Berufsbildung.
+- **Taccle-AI-Botschafterin** (seit Juni 2020) — Engagement für den verantwortungsvollen Einsatz von Künstlicher Intelligenz und digitaler Didaktik in der Berufsbildung.
 - **Graduate Women International** (2021–2022) — Koordinatorin für Berufsbildungs- und Weiterbildungsprojekte (ehrenamtliche Projektarbeit zur Förderung von Frauen im Bildungswesen).
 
 ## Auszeichnungen und akademische Würdigungen

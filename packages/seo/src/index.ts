@@ -1,4 +1,4 @@
-import type { LocalizedText, Locale, PublicProfile } from "@natali/profile";
+import { SUPPORTED_LOCALES, type LocalizedText, type Locale, type PublicProfile } from "@natali/profile";
 
 export type SiteStatus = "draft" | "public";
 
@@ -42,7 +42,11 @@ export function buildSeo(input: SeoInput) {
 
   for (const [loc, path] of Object.entries(input.paths)) {
     if (path) {
-      alternates.push({ hreflang: loc, href: absoluteUrl(input.siteUrl, path) });
+      const locale = loc as Locale;
+      alternates.push({
+        hreflang: SUPPORTED_LOCALES[locale]?.sitemapLang || loc,
+        href: absoluteUrl(input.siteUrl, path),
+      });
     }
   }
 

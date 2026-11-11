@@ -2,7 +2,7 @@
 route: home
 locale: en
 seoTitle: Nataliia Dolgova — Psychologist and Neurointegration Trainer
-seoDescription: "Practical psychology, neurointegration, breathwork and health qigong: evidence-informed support for stress, burnout, and resilience. Online and in person in Belgrade."
+seoDescription: "Psychological counselling, neurointegration, breathwork and health qigong for stress and self-regulation — online and in person in Belgrade."
 h1: Restoring energy, mental clarity and resilience without self-coercion
 summary: "An integrative approach to self-regulation: evidence-informed support for stress and burnout through Brain, Psyche, and Body."
 audience: [B2C]

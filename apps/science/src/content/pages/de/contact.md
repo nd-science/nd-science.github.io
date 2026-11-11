@@ -12,7 +12,7 @@ updatedAt: 2026-11-10
 publicationScope: public
 ---
 
-Bitte geben Sie Ihren Namen, Ihre Organisation, eine E-Mail-Adresse für die Rückmeldung sowie eine kurze Beschreibung Ihres Anliegens an. Bitte übermitteln Sie keine vertraulichen Informationen oder Manuskripte, bevor die Rahmenbedingungen der Zusammenarbeit abgestimmt wurden.
+Bitte geben Sie Ihren Namen, Ihre Organisation, eine E-Mail-Adresse für die Rückmeldung sowie eine Beschreibung Ihres Anliegens an. Bitte übermitteln Sie keine vertraulichen Informationen oder Manuskripte, bevor die Rahmenbedingungen der Zusammenarbeit abgestimmt wurden.
 
 Mögliche Kooperationsbereiche umfassen wissenschaftliche Forschung, Analysen, Konzeption von Weiterbildungsprogrammen, Moderation und Fachvorträge. Ich antworte innerhalb von drei Werktagen. Eine Eingangsbestätigung stellt noch keine Annahme des Projekts dar.
 

@@ -1,7 +1,7 @@
 ---
 route: for-organizations
 locale: es
-seoTitle: Investigación y programas para organizaciones
+seoTitle: Investigación para organizaciones — Nataliia Dolgova
 seoDescription: Cooperación de Nataliia Dolgova con universidades, entidades de formación técnico-profesional y equipos de desarrollo.
 h1: Investigación, programas y cambio educativo
 summary: Una propuesta a medida que establece objetivos, entregables, etapas, calendario y presupuesto.

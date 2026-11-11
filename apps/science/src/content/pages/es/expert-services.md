@@ -1,7 +1,7 @@
 ---
 route: expert-services
 locale: es
-seoTitle: Servicios de investigación y asesoría pericial
+seoTitle: Investigación y asesoría educativa — Nataliia Dolgova
 seoDescription: Servicios de investigación aplicada, estudios analíticos, diseño formativo, facilitación y ponencias ofrecidos por Nataliia Dolgova.
 h1: Servicios de investigación y formación
 summary: Cinco modalidades de colaboración profesional articuladas mediante una propuesta a medida.

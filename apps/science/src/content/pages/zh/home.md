@@ -2,7 +2,7 @@
 route: home
 locale: zh
 seoTitle: 娜塔莉亚·多尔戈娃 — 职业教育与成人学习研究者
-seoDescription: 哲学博士（Dr. phil.，magna cum laude），经济学副博士，专注职业技术教育与培训（TVET）、高校教师发展与教育数字化转型。
+seoDescription: 娜塔莉亚·多尔戈娃是职业技术教育与成人学习研究者，关注教师发展、在线学习与教育数字化转型。
 h1: 职业教育、工程师资培训与成人学习研究
 summary: 开展学术研究、高校教学、课程体系设计与教育变革支持。
 ctaLabel: 商讨科研课题或教育合作

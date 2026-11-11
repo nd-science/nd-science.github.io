@@ -1,7 +1,7 @@
 ---
 route: for-organizations
 locale: fr
-seoTitle: Recherche et programmes pour les organisations
+seoTitle: Recherche pour les organisations — Nataliia Dolgova
 seoDescription: Coopération de Nataliia Dolgova avec les universités, établissements de formation professionnelle, associations académiques et équipes de développement.
 h1: Recherche, programmes et accompagnement institutionnel
 summary: Une proposition sur mesure définissant les objectifs, les livrables, les étapes, le calendrier et le budget.

@@ -1,7 +1,7 @@
 ---
 route: education
 locale: es
-seoTitle: Diseño de programas formativos y formación de adultos
+seoTitle: Programas formativos para adultos — Nataliia Dolgova
 seoDescription: Experiencia de Nataliia Dolgova en aprendizaje de adultos, diseño curricular, desarrollo de materiales e instrumentos de evaluación.
 h1: Formación de adultos y diseño de programas
 summary: Más de 40 programas, 37 proyectos educativos y más de 2.000 docentes capacitados en 35 regiones.

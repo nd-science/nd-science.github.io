@@ -1,7 +1,7 @@
 ---
 route: conferences
 locale: fr
-seoTitle: Réseaux académiques, conférences et distinctions de Nataliia Dolgova
+seoTitle: Réseaux & conférences — Nataliia Dolgova
 seoDescription: Interventions vérifiables, participations à des congrès internationaux et reconnaissances scientifiques de Nataliia Dolgova en sciences de l'éducation.
 h1: Réseaux académiques, conférences et reconnaissance
 summary: Registre vérifié des communications scientifiques et participations à des symposiums internationaux.

@@ -1,7 +1,7 @@
 ---
 route: education
 locale: de
-seoTitle: Konzeption von Bildungsprogrammen und Erwachsenenbildung
+seoTitle: Bildungsprogramme für Erwachsene — Nataliia Dolgova
 seoDescription: Erfahrung von Nataliia Dolgova in der Erwachsenenbildung, Programmkonzeption, Lehrmaterialentwicklung und Kompetenzbewertung.
 h1: Erwachsenenbildung und Bildungsdesign
 summary: Über 40 entwickelte Programme, 37 Bildungsprojekte und Fortbildung von mehr als 2.000 Lehrkräften aus 35 Regionen.

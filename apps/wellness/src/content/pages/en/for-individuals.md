@@ -1,7 +1,7 @@
 ---
 route: for-individuals
 locale: en
-seoTitle: Individual consultations and self-regulation programmes
+seoTitle: Self-regulation counselling & programmes — Nataliia Dolgova
 seoDescription: Individual psychological consultations and self-regulation programmes with Nataliia Dolgova. Online and in person in Belgrade.
 h1: Individual consultations and programmes
 summary: Individual consultations, a five-session series and four-week support.

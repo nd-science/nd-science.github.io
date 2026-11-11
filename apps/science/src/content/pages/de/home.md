@@ -1,7 +1,7 @@
 ---
 route: home
 locale: de
-seoTitle: Nataliia Dolgova — Forscherin in Berufsbildung und Erwachsenenbildung
+seoTitle: Berufsbildung & Erwachsenenbildung — Nataliia Dolgova
 seoDescription: Dr. phil., Kandidatin der Wirtschaftswissenschaften, Forscherin für Berufsbildung und Erwachsenenbildung, Hochschuldozentin und Programmgestalterin.
 h1: Forschung in der Berufsbildung und Erwachsenenbildung
 summary: Wissenschaftliche Forschung, Lehre, Bildungsdesign und Unterstützung von Transformationsprozessen im Bildungswesen.

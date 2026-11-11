@@ -1,7 +1,7 @@
 ---
 route: conferences
 locale: es
-seoTitle: Redes académicas, ponencias y distinciones de Nataliia Dolgova
+seoTitle: Ponencias y redes académicas — Nataliia Dolgova
 seoDescription: Participaciones en congresos, comunicaciones científicas e información transparente del perfil profesional de Nataliia Dolgova.
 h1: Redes académicas, ponencias y reconocimiento
 summary: Registro documentado de participaciones en congresos y conferencias internacionales.

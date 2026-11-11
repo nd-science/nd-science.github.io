@@ -12,7 +12,7 @@ updatedAt: 2026-11-10
 publicationScope: public
 ---
 
-Por favor, indique su nombre, organización, correo electrónico de respuesta y una breve descripción de su consulta o proyecto. Se ruega no adjuntar documentos confidenciales antes de acordar formalmente los términos de colaboración.
+Por favor, indique su nombre, organización, correo electrónico de respuesta y una descripción de su consulta o proyecto. Se ruega no adjuntar documentos confidenciales antes de acordar formalmente los términos de colaboración.
 
 Las solicitudes apropiadas abarcan investigación aplicada, análisis pericial, diseño de programas, facilitación de sesiones y conferencias. Respondo en un plazo de tres días hábiles. El acuse de recibo no implica aceptación contractual del encargo.
 

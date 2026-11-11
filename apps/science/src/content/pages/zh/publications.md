@@ -2,7 +2,7 @@
 route: publications
 locale: zh
 seoTitle: 娜塔莉亚·多尔戈娃的学术出版物
-seoDescription: 娜塔莉亚·多尔戈娃（曾用署名 Nataliia Ovchinnikova）精选学术成果、同行评审期刊论文、DOI链接与文献计量指标。
+seoDescription: 娜塔莉亚·多尔戈娃（曾用署名 Nataliia Ovchinnikova）的精选论文、DOI链接、学术档案与文献计量信息。
 h1: 精选学术出版物与成果
 summary: 职业技术教育、教育数字化转型与人力资本发展领域的研究成果，附可验证的原始出版物链接。
 sections: [publications, forbes-education, profiles]

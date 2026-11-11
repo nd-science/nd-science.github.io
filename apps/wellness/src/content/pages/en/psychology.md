@@ -2,7 +2,7 @@
 route: practices/psychology
 locale: en
 seoTitle: Psychological consultation
-seoDescription: Nataliia Dolgova’s psychological consultation with a clear structure and an agreed request.
+seoDescription: "Structured psychological counselling with Nataliia Dolgova: clarify your focus, agree practical next steps, online or in person in Belgrade."
 h1: Individual psychological counselling
 summary: Exploring your situation, reducing emotional distress and developing practical solutions through CBT, ACT and an integrative approach.
 audience: [B2C]

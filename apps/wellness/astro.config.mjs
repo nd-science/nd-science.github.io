@@ -17,6 +17,7 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
+      filter: (page) => page !== new URL("/", site).toString(),
       i18n: {
         defaultLocale: "ru",
         locales: { ru: "ru-RU", en: "en" },

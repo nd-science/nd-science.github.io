@@ -12,7 +12,7 @@ updatedAt: 2026-11-10
 publicationScope: public
 ---
 
-Veuillez indiquer votre nom, votre organisation, votre courriel de réponse ainsi qu'une brève description de votre besoin ou projet. Merci de ne pas transmettre de documents confidentiels avant l'accord formel sur les termes de la collaboration.
+Veuillez indiquer votre nom, votre organisation, votre courriel de réponse ainsi qu'une description de votre besoin ou projet. Merci de ne pas transmettre de documents confidentiels avant l'accord formel sur les termes de la collaboration.
 
 Les demandes adaptées concernent la recherche appliquée, les études analytiques, la conception de programmes de formation, la facilitation d'ateliers et les conférences. Je réponds sous trois jours ouvrés. La confirmation de réception ne vaut pas engagement contractuel automatique.
 

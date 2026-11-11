@@ -1,7 +1,7 @@
 ---
 route: for-organizations
 locale: de
-seoTitle: Forschung und Programme für Organisationen
+seoTitle: Forschung für Organisationen — Nataliia Dolgova
 seoDescription: Zusammenarbeit von Nataliia Dolgova mit Universitäten, Berufsbildungseinrichtungen, Fachverbänden und Entwicklungsteams.
 h1: Forschung, Programme und Bildungstransformation
 summary: Individuelles Projektangebot zu Aufgabenstellung, Lieferergebnissen, Phasen, Zeitplan und Budget.

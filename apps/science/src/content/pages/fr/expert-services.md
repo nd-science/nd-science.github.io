@@ -1,7 +1,7 @@
 ---
 route: expert-services
 locale: fr
-seoTitle: Services d'expertise et recherche en éducation
+seoTitle: Recherche et expertise éducative — Nataliia Dolgova
 seoDescription: Services de recherche appliquée, études analytiques, ingénierie de formation, facilitation et conférences proposés par Nataliia Dolgova.
 h1: Services d'expertise et de recherche
 summary: Cinq formats de collaboration professionnelle établis sur la base d'un cadrage préalable et d'une proposition sur mesure.

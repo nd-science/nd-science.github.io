@@ -1,7 +1,7 @@
 ---
 route: expert-services
 locale: de
-seoTitle: Wissenschaftliche und bildungsbezogene Dienstleistungen
+seoTitle: Forschungs- und Bildungsberatung — Nataliia Dolgova
 seoDescription: Wissenschaftliche Forschung, Analytik, Programmentwicklung, Moderation und Vorträge von Nataliia Dolgova.
 h1: Wissenschaftliche und bildungsbezogene Dienstleistungen
 summary: Fünf Kooperationsformate auf Basis einer individuellen Aufgabenstellung und Projektvereinbarung.

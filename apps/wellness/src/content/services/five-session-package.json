@@ -8,7 +8,7 @@
     { "amount": 500, "currency": "EUR", "unit": "programme", "delivery": "online" },
     { "amount": 600, "currency": "EUR", "unit": "programme", "delivery": "in_person" }
   ],
-  "outcome": { "ru": "Устойчивое снижение тревожности, освоенные навыки саморегуляции и закрепление поддерживающих привычек.", "en": "Sustainable reduction of anxiety, mastered self-regulation tools and reinforced habits." },
+  "outcome": { "ru": "Работа над навыками саморегуляции и поддерживающими привычками в рамках согласованного запроса.", "en": "Work on self-regulation skills and supportive habits within an agreed focus." },
   "relatedMethods": ["psychology", "neurointegration"],
   "serviceAvailability": "available",
   "publicationScope": "public",

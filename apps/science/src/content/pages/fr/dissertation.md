@@ -1,7 +1,7 @@
 ---
 route: research/dissertation
 locale: fr
-seoTitle: Thèse doctorale de Nataliia Dolgova (Dr. phil., Flensburg)
+seoTitle: Thèse de Nataliia Dolgova (Dr. phil., Flensburg)
 seoDescription: Facteurs déterminants de l'efficacité perçue des cours en ligne pour la préparation des enseignants-ingénieurs de l'EFTP en Russie.
 h1: Facteurs déterminants de l'efficacité perçue des cours en ligne pour les enseignants-ingénieurs de l'EFTP en Russie
 summary: Facteurs clés et conditions institutionnelles de l'efficacité perçue de la formation en ligne des formateurs de l'enseignement professionnel.

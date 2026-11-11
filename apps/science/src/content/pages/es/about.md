@@ -41,5 +41,5 @@ Se invita cordialmente a colegas, investigadores y entidades colaboradoras a uni
 
 ## Distinciones y reconocimiento profesional
 
-- **Premio de becas de conferencia ECER** (2025, 2021) — becas de viaje y asistencia otorgadas por la European Educational Research Association (EERA) para la Conferencia Europea de Investigación Educativa.
+- **Beneficiaria de una beca de la ECER Conference Bursary** (2025, 2021) — becas de viaje y asistencia otorgadas por la European Educational Research Association (EERA) para la Conferencia Europea de Investigación Educativa.
 - **TVET Leader 2021/2022** — reconocida en la categoría *Public Opinion Leader* (según el registro de la comunidad profesional de EFTP en LinkedIn).

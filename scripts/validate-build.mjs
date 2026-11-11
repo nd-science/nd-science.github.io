@@ -7,6 +7,14 @@ const routes = {
   wellness: ["", "about", "for-individuals", "programs/stress-recovery", "practices/psychology", "practices/neurointegration", "practices/breathing", "practices/movement-qigong", "practices/play-and-story", "for-organizations", "resources", "booking", "faq"],
   science: ["", "about", "research", "research/dissertation", "publications", "conferences", "education", "projects", "expert-services", "for-organizations", "contact"],
 };
+const hreflangByLocale = {
+  ru: "ru-RU",
+  en: "en",
+  zh: "zh-Hans",
+  de: "de-DE",
+  fr: "fr-FR",
+  es: "es-ES",
+};
 
 for (const [site, siteRoutes] of Object.entries(routes)) {
   const siteLocales = site === "science" ? ["ru", "en", "zh", "de", "fr", "es"] : ["ru", "en"];
@@ -18,9 +26,14 @@ for (const [site, siteRoutes] of Object.entries(routes)) {
       const expectedTokens = [
         locale === "zh" ? 'lang="zh-Hans"' : `lang="${locale}"`,
         "rel=\"canonical\"",
-        "hreflang=\"ru\"",
-        "hreflang=\"en\"",
-        ...(site === "science" ? ['hreflang="zh"', 'hreflang="de"', 'hreflang="fr"', 'hreflang="es"'] : []),
+        `hreflang="${hreflangByLocale.ru}"`,
+        `hreflang="${hreflangByLocale.en}"`,
+        ...(site === "science" ? [
+          `hreflang="${hreflangByLocale.zh}"`,
+          `hreflang="${hreflangByLocale.de}"`,
+          `hreflang="${hreflangByLocale.fr}"`,
+          `hreflang="${hreflangByLocale.es}"`,
+        ] : []),
         '"@type":"Person"',
         'id="main-content" tabindex="-1"',
         'content="nosniff"',
@@ -61,6 +74,17 @@ for (const site of ["wellness", "science"]) {
   for (const sitemapFile of ["sitemap-index.xml", "sitemap-0.xml"]) {
     const sitemapPath = resolve(root, `apps/${site}/dist/${sitemapFile}`);
     if (!existsSync(sitemapPath)) failures.push(`${site}: missing ${sitemapFile}`);
+  }
+  const sitemap = readFileSync(resolve(root, `apps/${site}/dist/sitemap-0.xml`), "utf8");
+  const origin = site === "wellness" ? "https://natalicompass.com" : "https://tvet.si";
+  if (sitemap.includes(`<loc>${origin}/</loc>`)) {
+    failures.push(`${site}: root noindex redirect must not appear in sitemap-0.xml`);
+  }
+  const sitemapLocales = site === "science" ? ["ru", "en", "zh", "de", "fr", "es"] : ["ru", "en"];
+  for (const locale of sitemapLocales) {
+    if (!sitemap.includes(`<loc>${origin}/${locale}/</loc>`)) {
+      failures.push(`${site}: missing localized home in sitemap-0.xml: /${locale}/`);
+    }
   }
   const rootIndex = resolve(root, `apps/${site}/dist/index.html`);
   if (!existsSync(rootIndex)) {

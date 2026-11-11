@@ -1,7 +1,7 @@
 ---
 route: home
 locale: fr
-seoTitle: Nataliia Dolgova — Chercheuse en formation professionnelle et éducation des adultes
+seoTitle: Formation professionnelle & adultes — Nataliia Dolgova
 seoDescription: Dr. phil., docteure en sciences économiques, chercheuse en formation professionnelle et éducation des adultes, conceptrice de programmes de formation.
 h1: Recherche en formation professionnelle et éducation des adultes
 summary: Recherche scientifique, enseignement, ingénierie pédagogique et accompagnement des transformations éducatives.

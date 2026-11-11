@@ -1,7 +1,7 @@
 ---
 route: conferences
 locale: de
-seoTitle: Konferenzbeiträge, Netzwerke und Auszeichnungen von Nataliia Dolgova
+seoTitle: Konferenzen & Netzwerke — Nataliia Dolgova
 seoDescription: Verifizierbare Vorträge, Konferenzbeiträge und wissenschaftliche Netzwerke von Nataliia Dolgova in der Berufsbildungsforschung.
 h1: Wissenschaftliche Netzwerke, Vorträge und Auszeichnungen
 summary: Dokumentierte Konferenzbeiträge und fachliche Netzwerke mit transparenter Trennung zwischen verifizierten Nachweisen und Selbstangaben.

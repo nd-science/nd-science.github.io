@@ -1,7 +1,7 @@
 ---
 route: research/dissertation
 locale: es
-seoTitle: Tesis doctoral de Nataliia Dolgova (Dr. phil., Flensburg)
+seoTitle: Tesis de Nataliia Dolgova (Dr. phil., Flensburg)
 seoDescription: Factores clave de la eficacia percibida de cursos en línea para la preparación de docentes de ingeniería en EFTP en Rusia.
 h1: Factores clave de la eficacia percibida de cursos en línea para docentes de ingeniería en EFTP en Rusia
 summary: Factores determinantes y condiciones institucionales en la preparación virtual de formadores de la educación técnico-profesional.
