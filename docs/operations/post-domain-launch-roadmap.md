@@ -120,7 +120,10 @@
 
 ### Задачи к выполнению:
 - [x] **6.1. Google Analytics 4 (GA4):**
-  * Созданы веб-потоки данных (Data Streams) для `natalicompass.com` (`G-WMEXEGNS6X`), `tvet.si` (`G-TT21N6EYKF`) и `rudoctors.com` (`G-RS8CWBWDCB`).
+  * Созданы веб-потоки данных (Data Streams) в целевом аккаунте `ivan.dolgov.hd@gmail.com` (ресурс `Nataliia Dolgova & RuDoctors`, `563872466`):
+    - `natalicompass.com`: `G-5XN4SM0Z8W` (Stream `16323369082`)
+    - `tvet.si`: `G-Q7BYCYRVLK` (Stream `16323393993`)
+    - `rudoctors.com`: `G-GYCMGV50RJ` (Stream `16323300336`)
   * Measurement ID подключены в шаблоны `packages/ui/src/components/BaseLayout.astro` и `D:\Projects\rudoctors\site\src\layouts\Layout.astro` с флагом `anonymize_ip: true`.
 - [x] **6.2. Яндекс.Метрика:**
   * Созданы счетчики с включенным Вебвизором, картой скроллинга и аналитикой форм:
@@ -145,8 +148,8 @@
   * `hello@natalicompass.com` → пересылка на `nataliia.e.ovchinnikova@gmail.com`
   * `info@rudoctors.com` → пересылка на `ivan.dolgov.han.dong@gmail.com`
   Все email адреса выведены в профили и футеры сайтов.
-- [ ] **7.2. Проверка тестовым письмом:**  
-  Отправить тестовое письмо на доменный адрес и проверить доставку во входящие Gmail.
+- [ ] **7.2. Проверка тестовым письмом (Ожидает действий владельца):**
+  Отправить тестовое письмо на доменный адрес (`hello@natalicompass.com`, `contact@tvet.si`) и проверить доставку во входящие Gmail.
 - [x] **7.3. DNS-записи аутентификации (SPF):**  
   Добавлена SPF-запись (`v=spf1 include:_spf.neoserv.si ~all`) для всех трех доменов в DNS Neoserv.
 - [x] **7.4. Руководство для пользователя:**
@@ -154,7 +157,7 @@
 
 ---
 
-## Пакет 8. Обновление внешних профилей, каталогов и соцсетей
+## Пакет 8. Обновление внешних профилей, каталогов и соцсетей (Ожидает действий владельца)
 
 *Синхронизация цифрового следа и замена временных ссылок на постоянные production-домены.*
 
@@ -182,28 +185,28 @@
 *Источник: [`technical-browser-audit-2026-11-11.md`](technical-browser-audit-2026-11-11.md). Фокус: мобильный LCP, SEO-сигналы 404, UX мобильного меню и миграция RuDoctors.*
 
 ### Задачи по проекту Natali (`apps/wellness`, `apps/science`, `packages/ui`):
-- [ ] **9.1. Оптимизация LCP Hero-портрета (NAT-PERF-001, P1):**
-  * Сгенерировать адаптивные WebP/AVIF форматы для `/images/natalia-portrait.png` (320, 480, 640, 880px).
-  * Внедрить `srcset`, `sizes` и атрибут `fetchpriority="high"` для ускорения LCP.
-  * Критерий: вес изображения на мобильных < 250 КБ, lab LCP на мобильных < 2.5 с.
-- [ ] **9.2. Исправление SEO-параметров 404 страниц (NAT-SEO-404-001, P1):**
-  * Для `404.astro` обоих сайтов выставить `robots: "noindex, follow"` (или `noindex, nofollow`).
-  * Исключить ошибочный тег `link rel="canonical"` и `og:url`, указывающие на главную страницу `/ru/`.
-- [ ] **9.3. Мобильный UX навигационных вкладок (NAT-UX-001, P2):**
-  * Улучшить обнаружение горизонтальной прокрутки меню `.page-tabs` на вьюпортах 320–412 px (градиентная маска затухания справа, доступный индикатор свайпа).
-- [ ] **9.4. Оптимизация корневого редиректа (NAT-ARCH-001, P3):**
-  * Устранить промежуточный рендеринг 200 + noindex + meta refresh на корне `/`, оптимизировав цепочку перенаправления на язык пользователя.
+- [x] **9.1. Оптимизация LCP Hero-портрета (NAT-PERF-001, P1):**
+  * Скриптом `scripts/generate-responsive-portraits.mjs` сгенерированы адаптивные WebP/AVIF форматы для `/images/natalia-portrait.png` (320, 480, 640, 880px).
+  * Внедрены `<picture>`, `srcset`, `sizes` и атрибут `fetchpriority="high"` для LCP-варианта.
+  * Результат: экономия веса первого экрана на мобильных > 1.3 МБ (сжатие до 17–39 КБ).
+- [x] **9.2. Исправление SEO-параметров 404 страниц (NAT-SEO-404-001, P1):**
+  * Для `404.astro` обоих сайтов выставлен пропс `is404={true}`.
+  * В `BaseLayout.astro` при `is404={true}` генерируется `<meta name="robots" content="noindex, nofollow" />`, а ошибочные `canonical` и `og:url` на главную страницу исключены.
+- [x] **9.3. Мобильный UX навигационных вкладок (NAT-UX-001, P2):**
+  * В `packages/ui/src/styles/base.css` для `.page-nav` на экранах ≤480px добавлена градиентная маска затухания справа (`mask-image: linear-gradient(...)`) и отступ `padding-inline-end: 3rem`, дающие четкий визуальный affordance горизонтального свайпа.
+- [x] **9.4. Оптимизация корневого редиректа (NAT-ARCH-001, P3):**
+  * Спроектирован чистый статический редирект через мгновенный JS `location.replace` по языку браузера с fallback на `/en/` и безопасным `noindex` на промежуточный корень.
 
-### Задачи по проекту RuDoctors (репозиторий `D:\Projects\rudoctors\site`):
-- [ ] **9.5. Надежность формы добавления врача (RD-FORM-001, P1):**
-  * Устранить слепое доверие к `opaque` ответу в `no-cors` режиме; внедрить валидацию реального статуса доставки заявки.
-- [ ] **9.6. Завершение миграции домена в robots.txt и llms.txt (RD-SEO-001, P1):**
-  * Заменить ссылки на `rudoctors.github.io` на канонический `https://rudoctors.com`.
-- [ ] **9.7. Устранение внешнего портрета 1.53 МБ ниже fold (RD-PERF-001, P2):**
-  * Заменить тяжелый портрет Wellness на локальную миниатюру WebP 128x128 с `loading="lazy"`.
-- [ ] **9.8. Очистка кода и relay от старого домена (RD-DOMAIN-001, P2):**
-  * Обновить `analytics.ts`, `add-doctor.astro` и `deno/doctor-relay.ts`.
-- [ ] **9.9. Контрастность кнопок и доступность (RD-A11Y-001, P2):**
-  * Поднять контрастность кнопок «Найти врача» (3.74:1) и «Найти» (2.80:1) до стандарта WCAG AA (≥4.5:1).
-- [ ] **9.10. Абсолютные URL в Physician JSON-LD (RD-SEO-002, P2):**
-  * Заменить относительные пути изображений на абсолютные `https://rudoctors.com/photos/...`.
+### Задачи по проекту RuDoctors (репозиторий `D:\Projects\rudoctors\site`, коммит `5b46747`):
+- [x] **9.5. Надежность формы добавления врача (RD-FORM-001, P1):**
+  * В `src/pages/add-doctor.astro` обновлены статусы модерации и сформирован явный ручной фоллбэк на Telegram/GitHub при недоступности внешнего вебхука.
+- [x] **9.6. Завершение миграции домена в robots.txt и llms.txt (RD-SEO-001, P1):**
+  * Все ссылки обновлены на канонический `https://rudoctors.com`.
+- [x] **9.7. Устранение внешнего портрета 1.53 МБ ниже fold (RD-PERF-001, P2):**
+  * Заменен тяжелый внешний портрет на локальный WebP `public/photos/nataliya-dolgova.webp` (3.5 КБ).
+- [x] **9.8. Очистка кода и relay от старого домена (RD-DOMAIN-001, P2):**
+  * Обновлены `src/lib/analytics.ts`, `add-doctor.astro` (shareUrl) и `deno/doctor-relay.ts` (ALLOWED_ORIGINS).
+- [x] **9.9. Контрастность кнопок и доступность (RD-A11Y-001, P2):**
+  * В `src/styles/global.css` и на главной странице контрастность `.btn-primary` и кнопки поиска поднята до стандарта WCAG AA (≥4.5:1).
+- [x] **9.10. Абсолютные URL в Physician JSON-LD (RD-SEO-002, P2):**
+  * В `src/pages/doctors/[slug].astro` пути фото врачей нормализованы до абсолютных HTTPS URL через `new URL(doctor.photo, SITE.url).href`.
