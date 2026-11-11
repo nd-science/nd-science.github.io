@@ -134,5 +134,26 @@ if (process.env.PUBLIC_SITE_STATUS === "public") {
   }
 }
 
+for (const site of ["wellness", "science"]) {
+  const file404 = resolve(root, `apps/${site}/dist/404.html`);
+  if (!existsSync(file404)) {
+    failures.push(`${site}: missing 404.html`);
+  } else {
+    const html404 = readFileSync(file404, "utf8");
+    if (!html404.includes('content="noindex, nofollow"')) {
+      failures.push(`${site}/404.html: missing content="noindex, nofollow"`);
+    }
+    if (html404.includes('rel="canonical"')) {
+      failures.push(`${site}/404.html: canonical link must not appear on 404 page`);
+    }
+    if (html404.includes('property="og:url"')) {
+      failures.push(`${site}/404.html: og:url must not appear on 404 page`);
+    }
+    if (html404.includes('hreflang=')) {
+      failures.push(`${site}/404.html: alternate hreflang links must not appear on 404 page`);
+    }
+  }
+}
+
 if (failures.length) { console.error(failures.join("\n")); process.exitCode = 1; }
-else console.log("Built-route validation passed for localized pages (including RU/EN/ZH/DE/FR/ES), canonical/hreflang and structured data.");
+else console.log("Built-route validation passed for localized pages (including RU/EN/ZH/DE/FR/ES), canonical/hreflang, 404 SEO and structured data.");

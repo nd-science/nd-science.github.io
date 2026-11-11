@@ -187,25 +187,40 @@ const pageTitle = isHome
         <aside class="hero-media" aria-label={locale === "ru" ? "Академический профиль Наталии Долговой" : locale === "zh" ? "娜塔莉亚·多尔戈娃的学术档案" : locale === "de" ? "Wissenschaftliches Profil von Nataliia Dolgova" : locale === "fr" ? "Profil académique de Nataliia Dolgova" : locale === "es" ? "Perfil académico de Nataliia Dolgova" : "Academic profile of Nataliia Dolgova"}>
           <div class="portrait-card">
             <div class="portrait-frame">
-              <img
-                src="/images/natalia-portrait.png"
-                alt={locale === "ru"
-                  ? "Наталия Долгова — Dr. phil. (magna cum laude), исследователь образования"
-                  : (locale as string) === "zh"
-                  ? "娜塔莉亚·多尔戈娃 — 哲学博士 (magna cum laude)，职业教育学者"
-                  : (locale as string) === "de"
-                  ? "Nataliia Dolgova — Dr. phil. (magna cum laude), Bildungsforscherin"
-                  : (locale as string) === "fr"
-                  ? "Nataliia Dolgova — Dr. phil. (magna cum laude), chercheuse en éducation"
-                  : (locale as string) === "es"
-                  ? "Nataliia Dolgova — Dr. phil. (magna cum laude), investigadora en educación"
-                  : "Nataliia Dolgova — Dr. phil. (magna cum laude), TVET Researcher"}
-                width="440"
-                height="520"
-                loading="eager"
-                decoding="async"
-                class="portrait-img"
-              />
+              <picture class="portrait-picture">
+                <source
+                  type="image/avif"
+                  srcset="/images/natalia-portrait-320w.avif 320w, /images/natalia-portrait-480w.avif 480w, /images/natalia-portrait-640w.avif 640w, /images/natalia-portrait-880w.avif 880w"
+                  sizes="(max-width: 640px) 320px, (max-width: 1024px) 440px, 440px"
+                />
+                <source
+                  type="image/webp"
+                  srcset="/images/natalia-portrait-320w.webp 320w, /images/natalia-portrait-480w.webp 480w, /images/natalia-portrait-640w.webp 640w, /images/natalia-portrait-880w.webp 880w"
+                  sizes="(max-width: 640px) 320px, (max-width: 1024px) 440px, 440px"
+                />
+                <img
+                  src="/images/natalia-portrait-480w.webp"
+                  srcset="/images/natalia-portrait-320w.webp 320w, /images/natalia-portrait-480w.webp 480w, /images/natalia-portrait-640w.webp 640w, /images/natalia-portrait-880w.webp 880w"
+                  sizes="(max-width: 640px) 320px, (max-width: 1024px) 440px, 440px"
+                  alt={locale === "ru"
+                    ? "Наталия Долгова — Dr. phil. (magna cum laude), исследователь образования"
+                    : (locale as string) === "zh"
+                    ? "娜塔莉亚·多尔戈娃 — 哲学博士 (magna cum laude)，职业教育学者"
+                    : (locale as string) === "de"
+                    ? "Nataliia Dolgova — Dr. phil. (magna cum laude), Bildungsforscherin"
+                    : (locale as string) === "fr"
+                    ? "Nataliia Dolgova — Dr. phil. (magna cum laude), chercheuse en éducation"
+                    : (locale as string) === "es"
+                    ? "Nataliia Dolgova — Dr. phil. (magna cum laude), investigadora en educación"
+                    : "Nataliia Dolgova — Dr. phil. (magna cum laude), TVET Researcher"}
+                  width="440"
+                  height="520"
+                  loading="eager"
+                  decoding="async"
+                  fetchpriority="high"
+                  class="portrait-img"
+                />
+              </picture>
             </div>
             <div class="portrait-caption">
               <p class="portrait-name">{nataliaProfile.displayName[locale] || nataliaProfile.displayName.en}</p>

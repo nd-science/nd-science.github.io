@@ -216,17 +216,32 @@ const pageTitle = isHome
             <aside class="hero-media" aria-label={locale === "ru" ? "Портрет Наталии Долговой" : "Portrait of Nataliia Dolgova"}>
               <div class="portrait-card">
                 <div class="portrait-frame">
-                  <img
-                    src="/images/natalia-portrait.png"
-                    alt={locale === "ru"
-                      ? "Наталия Долгова — Dr. phil., практический психолог и тренер по нейроинтеграции"
-                      : "Nataliia Dolgova — Dr. phil., Practical Psychologist and Neurointegration Trainer"}
-                    width="440"
-                    height="520"
-                    loading="eager"
-                    decoding="async"
-                    class="portrait-img"
-                  />
+                  <picture class="portrait-picture">
+                    <source
+                      type="image/avif"
+                      srcset="/images/natalia-portrait-320w.avif 320w, /images/natalia-portrait-480w.avif 480w, /images/natalia-portrait-640w.avif 640w, /images/natalia-portrait-880w.avif 880w"
+                      sizes="(max-width: 640px) 320px, (max-width: 1024px) 440px, 440px"
+                    />
+                    <source
+                      type="image/webp"
+                      srcset="/images/natalia-portrait-320w.webp 320w, /images/natalia-portrait-480w.webp 480w, /images/natalia-portrait-640w.webp 640w, /images/natalia-portrait-880w.webp 880w"
+                      sizes="(max-width: 640px) 320px, (max-width: 1024px) 440px, 440px"
+                    />
+                    <img
+                      src="/images/natalia-portrait-480w.webp"
+                      srcset="/images/natalia-portrait-320w.webp 320w, /images/natalia-portrait-480w.webp 480w, /images/natalia-portrait-640w.webp 640w, /images/natalia-portrait-880w.webp 880w"
+                      sizes="(max-width: 640px) 320px, (max-width: 1024px) 440px, 440px"
+                      alt={locale === "ru"
+                        ? "Наталия Долгова — Dr. phil., практический психолог и тренер по нейроинтеграции"
+                        : "Nataliia Dolgova — Dr. phil., Practical Psychologist and Neurointegration Trainer"}
+                      width="440"
+                      height="520"
+                      loading="eager"
+                      decoding="async"
+                      fetchpriority="high"
+                      class="portrait-img"
+                    />
+                  </picture>
                 </div>
                 <div class="portrait-caption">
                   <p class="portrait-name">{nataliaProfile.displayName[locale]}</p>
