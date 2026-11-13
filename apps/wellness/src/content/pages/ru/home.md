@@ -4,15 +4,15 @@ locale: ru
 seoTitle: Психолог онлайн и очно в Белграде — Наталия Долгова | Консультации
 seoDescription: "Консультации психолога онлайн и очно в Белграде. Доказательная помощь при эмоциональном выгорании, хроническом стрессе и синдроме самозванца."
 h1: Восстановление ресурсов, ясность ума и устойчивость без насилия над собой
-summary: "Интегративный подход к саморегуляции: бережная работа с перегрузкой и выгоранием через связку Мозг, Психика и Тело."
+summary: "Научно обоснованная система восстановления ресурса, управления стрессом и саморегуляции для предпринимателей и экспертов через связку Мозг, Психика и Тело."
 audience: [B2C]
 ctaLabel: Записаться на консультацию
 ctaHref: /booking/#enquiry
 ctaSecondaryLabel: Посмотреть форматы и стоимость
 ctaSecondaryHref: /for-individuals/
 relatedServices: [consultation, four-week-support, five-session-package]
-sections: [services, methods]
-updatedAt: 2026-11-11
+sections: [services, methods, faq]
+updatedAt: 2026-11-13
 publicationScope: public
 ---
 

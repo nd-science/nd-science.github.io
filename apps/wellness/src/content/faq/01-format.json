@@ -1,5 +1,11 @@
 {
-  "question": { "ru": "Это терапия или обучение?", "en": "Is this therapy or training?" },
-  "answer": { "ru": "Формат зависит от услуги. Психологическая консультация работает с индивидуальным запросом; нейроинтеграция, дыхание и цигун включают освоение конкретных инструментов.", "en": "It depends on the service. Psychological consultation focuses on an individual request; neurointegration, breathing and qigong include learning specific tools." },
+  "question": {
+    "ru": "Чем метод нейроинтеграции отличается от классической психотерапии?",
+    "en": "How does neurointegration differ from traditional psychotherapy?"
+  },
+  "answer": {
+    "ru": "Нейроинтеграция базируется на прикладной нейробиологии и работе с состояниями нервной системы. В отличие от длительного анализа прошлого опыта, подход направлен на практическую саморегуляцию здесь и сейчас: мы снижаем физиологический стресс через тело и дыхание, восстанавливаем ресурс мозга и только затем внедряем устойчивые поведенческие стратегии.",
+    "en": "Neurointegration is rooted in applied neuroscience and nervous system states. Rather than focusing on prolonged analysis of past history, this approach targets practical, real-time self-regulation: calming the physiological stress response through body and breathwork, restoring cognitive bandwidth, and establishing sustainable daily habits."
+  },
   "publicationScope": "public"
 }

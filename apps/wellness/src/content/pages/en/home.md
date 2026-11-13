@@ -4,15 +4,15 @@ locale: en
 seoTitle: Psychologist online & in Belgrade — Nataliia Dolgova | Counselling
 seoDescription: "Psychological counselling online and in person in Belgrade. Evidence-based support for burnout, chronic stress, impostor syndrome, and emotional regulation."
 h1: Restoring energy, mental clarity and resilience without self-coercion
-summary: "An integrative approach to self-regulation: evidence-informed support for stress and burnout through Brain, Psyche, and Body."
+summary: "An evidence-based system for resource recovery, stress management, and self-regulation for founders and experts through Brain, Psyche, and Body."
 audience: [B2C]
 ctaLabel: Book a consultation
 ctaHref: /booking/#enquiry
 ctaSecondaryLabel: View formats and pricing
 ctaSecondaryHref: /for-individuals/
 relatedServices: [consultation, four-week-support, five-session-package]
-sections: [services, methods]
-updatedAt: 2026-11-11
+sections: [services, methods, faq]
+updatedAt: 2026-11-13
 publicationScope: public
 ---
 

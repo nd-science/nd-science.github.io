@@ -1,8 +1,8 @@
 ---
 route: home
 locale: en
-seoTitle: Nataliia Dolgova — Vocational Education Researcher
-seoDescription: Dr. phil., Candidate of Economic Sciences, researcher in vocational education and adult learning, educator and programme designer.
+seoTitle: Nataliia Dolgova, PhD — TVET & Vocational Education Researcher | Academic Consulting
+seoDescription: Dr. phil. (magna cum laude), TVET and vocational education researcher, expert in adult learning methodology, online learning effectiveness, and institutional consulting.
 h1: Research in vocational education and adult learning
 summary: Research, teaching, programme design and support for educational change.
 ctaLabel: Discuss a research or education project
@@ -10,7 +10,7 @@ ctaHref: /contact/#enquiry
 ctaSecondaryLabel: View publications
 ctaSecondaryHref: /publications/
 sections: [publications, profiles]
-updatedAt: 2026-10-30
+updatedAt: 2026-11-13
 publicationScope: public
 ---
 

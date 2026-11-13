@@ -1,0 +1,307 @@
+---
+import type { Locale } from "@natali/profile";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const bibtex = `@phdthesis{dolgova2025keyfactors,
+  author       = {Dolgova, Nataliia},
+  title        = {Key Factors of Online Course Perceived Effectiveness for Preparing TVET Engineering Teachers in Russia},
+  school       = {Europa-Universit{\"a}t Flensburg},
+  year         = {2025},
+  type         = {Doctoral dissertation (Dr. phil.)},
+  url          = {https://www.zhb-flensburg.de/dissert/dolgova}
+}`;
+
+const apa = `Dolgova, N. (2025). Key Factors of Online Course Perceived Effectiveness for Preparing TVET Engineering Teachers in Russia (Doctoral dissertation, Europa-Universität Flensburg). Zentrale Hochschulbibliothek Flensburg (MACAU). https://www.zhb-flensburg.de/dissert/dolgova`;
+
+const copy = (locale as string) === "ru"
+  ? {
+      heading: "Академическое цитирование",
+      description: "Библиографическая запись для цитирования докторской диссертации в научных публикациях и отчетах.",
+      copyApa: "Копировать APA",
+      copyBibtex: "Копировать BibTeX",
+      copied: "✓ Скопировано в буфер!",
+      repoLink: "Открыть диссертацию в репозитории ZHB Flensburg / MACAU ↗",
+    }
+  : (locale as string) === "de"
+  ? {
+      heading: "Wissenschaftliche Zitation",
+      description: "Bibliographischer Nachweis zur Zitation der Dissertation in wissenschaftlichen Arbeiten.",
+      copyApa: "APA kopieren",
+      copyBibtex: "BibTeX kopieren",
+      copied: "✓ In die Zwischenablage kopiert!",
+      repoLink: "Dissertation im ZHB Flensburg / MACAU Repositorium öffnen ↗",
+    }
+  : (locale as string) === "zh"
+  ? {
+      heading: "学术引用格式",
+      description: "用于在学术研究论文及报告中引用本博士学位论文的标准文献记录。",
+      copyApa: "复制 APA 格式",
+      copyBibtex: "复制 BibTeX",
+      copied: "✓ 已复制到剪贴板！",
+      repoLink: "在弗伦斯堡大学图书馆 / MACAU 开放学术仓储中查看 ↗",
+    }
+  : (locale as string) === "fr"
+  ? {
+      heading: "Citation académique",
+      description: "Notice bibliographique pour citer la thèse dans les publications de recherche et rapports.",
+      copyApa: "Copier au format APA",
+      copyBibtex: "Copier BibTeX",
+      copied: "✓ Copié dans le presse-papiers !",
+      repoLink: "Consulter la thèse dans le dépôt ZHB Flensburg / MACAU ↗",
+    }
+  : (locale as string) === "es"
+  ? {
+      heading: "Citación académica",
+      description: "Registro bibliográfico para citar la tesis doctoral en publicaciones científicas e informes.",
+      copyApa: "Copiar en APA",
+      copyBibtex: "Copiar BibTeX",
+      copied: "✓ ¡Copiado al portapapeles!",
+      repoLink: "Abrir la tesis en el repositorio ZHB Flensburg / MACAU ↗",
+    }
+  : {
+      heading: "Academic Citation",
+      description: "Bibliographic entry to cite this doctoral dissertation in research publications and institutional reports.",
+      copyApa: "Copy APA",
+      copyBibtex: "Copy BibTeX",
+      copied: "✓ Copied to clipboard!",
+      repoLink: "Open full dissertation in ZHB Flensburg / MACAU repository ↗",
+    };
+---
+
+<section class="dissertation-citation" aria-labelledby="citation-heading">
+  <div class="citation-card">
+    <header class="citation-header">
+      <div>
+        <h2 id="citation-heading" class="citation-title">{copy.heading}</h2>
+        <p class="citation-desc">{copy.description}</p>
+      </div>
+      <div class="citation-button-group">
+        <button
+          type="button"
+          class="button small secondary citation-copy-btn"
+          data-format="apa"
+          data-text={apa}
+          data-copied-msg={copy.copied}
+        >
+          {copy.copyApa}
+        </button>
+        <button
+          type="button"
+          class="button small secondary citation-copy-btn"
+          data-format="bibtex"
+          data-text={bibtex}
+          data-copied-msg={copy.copied}
+        >
+          {copy.copyBibtex}
+        </button>
+      </div>
+    </header>
+
+    <div class="citation-content">
+      <div class="citation-tabs">
+        <button type="button" class="tab-btn active" data-tab="apa">APA (7th ed.)</button>
+        <button type="button" class="tab-btn" data-tab="bibtex">BibTeX</button>
+      </div>
+      <div class="tab-panel active" id="panel-apa">
+        <pre class="citation-code"><code>{apa}</code></pre>
+      </div>
+      <div class="tab-panel" id="panel-bibtex">
+        <pre class="citation-code"><code>{bibtex}</code></pre>
+      </div>
+    </div>
+
+    <footer class="citation-footer">
+      <a
+        href="https://www.zhb-flensburg.de/dissert/dolgova"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="repo-link"
+      >
+        {copy.repoLink}
+      </a>
+    </footer>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Tab switching
+    const tabs = document.querySelectorAll<HTMLButtonElement>(".dissertation-citation .tab-btn");
+    const panels = document.querySelectorAll<HTMLElement>(".dissertation-citation .tab-panel");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.tab;
+        tabs.forEach((t) => t.classList.remove("active"));
+        panels.forEach((p) => p.classList.remove("active"));
+
+        tab.classList.add("active");
+        const activePanel = document.getElementById(`panel-${target}`);
+        if (activePanel) activePanel.classList.add("active");
+      });
+    });
+
+    // Copy buttons
+    const copyBtns = document.querySelectorAll<HTMLButtonElement>(".citation-copy-btn");
+    copyBtns.forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const text = btn.dataset.text;
+        const copiedMsg = btn.dataset.copiedMsg || "✓ Copied!";
+        const originalText = btn.textContent;
+
+        if (text) {
+          try {
+            await navigator.clipboard.writeText(text);
+            btn.textContent = copiedMsg;
+            btn.classList.add("copied");
+            setTimeout(() => {
+              btn.textContent = originalText;
+              btn.classList.remove("copied");
+            }, 2000);
+          } catch (err) {
+            console.error("Clipboard copy failed", err);
+          }
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .dissertation-citation {
+    margin-block-start: 2rem;
+  }
+
+  .citation-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius, 6px);
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  .citation-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-block-end: 1.25rem;
+  }
+
+  .citation-title {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 1.35rem;
+    color: var(--heading);
+    margin: 0 0 0.4rem 0;
+  }
+
+  .citation-desc {
+    color: var(--muted-text);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .citation-button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .citation-copy-btn {
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 0.45rem 0.85rem;
+    transition: all 0.2s ease;
+  }
+
+  .citation-copy-btn.copied {
+    background: #0f766e;
+    color: #ffffff;
+    border-color: #0f766e;
+  }
+
+  .citation-tabs {
+    display: flex;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-block-end: 0.75rem;
+  }
+
+  .tab-btn {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--muted-text);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.4rem 0.8rem;
+    transition: all 0.2s ease;
+  }
+
+  .tab-btn:hover {
+    color: var(--heading);
+  }
+
+  .tab-btn.active {
+    color: var(--heading);
+    border-bottom-color: var(--accent, #1d4ed8);
+  }
+
+  .tab-panel {
+    display: none;
+  }
+
+  .tab-panel.active {
+    display: block;
+  }
+
+  .citation-code {
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1rem;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-x: auto;
+    margin: 0;
+    color: var(--text);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  .citation-footer {
+    margin-block-start: 1.25rem;
+    padding-block-start: 0.75rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.92rem;
+  }
+
+  .repo-link {
+    color: var(--accent, #1d4ed8);
+    text-decoration: underline;
+    font-weight: 500;
+  }
+
+  .repo-link:hover {
+    text-decoration: none;
+  }
+
+  @media (max-width: 640px) {
+    .citation-header {
+      flex-direction: column;
+    }
+    .citation-button-group {
+      width: 100%;
+    }
+  }
+</style>

@@ -357,8 +357,9 @@ const pageTitle = isHome
 
   {
     sections.includes("faq") && (
-      <section class="page-section">
+      <section class="page-section" id="faq">
         <div class="section-inner">
+          {route !== "faq" && <SectionHeading {...copy.sections.faq} />}
           <FaqList items={faq} locale={locale} />
         </div>
       </section>

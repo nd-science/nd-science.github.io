@@ -1,5 +1,11 @@
 {
-  "question": { "ru": "С какими запросами вы не работаете?", "en": "Which requests do you not take?" },
-  "answer": { "ru": "Я не работаю с детскими, семейными, клиническими и кризисными запросами (включая депрессивные эпизоды клинического уровня, расстройства пищевого поведения и зависимости). Такие запросы требуют помощи профильных врачей. При непосредственной опасности жизни необходимо обратиться в экстренные службы (112).", "en": "I do not take child, family, clinical or crisis requests (including clinical depression, eating disorders and addictions). These require specialized medical care. In immediate danger, contact local emergency services (e.g. 112)." },
+  "question": {
+    "ru": "С какими состояниями и запросами вы не работаете?",
+    "en": "Which conditions and issues do you not work with?"
+  },
+  "answer": {
+    "ru": "Я не работаю с клиническими диагнозами (клиническая депрессия, биполярное расстройство, ПТСР), химическими зависимостями, расстройствами пищевого поведения (РПП), а также с детьми и семейными парами. Это сфера клинической медицины и психиатрии. При острой угрозе жизни или здоровью необходимо немедленно обращаться в экстренные службы (112).",
+    "en": "I do not work with clinical diagnoses (clinical depression, bipolar disorder, PTSD), substance dependencies, eating disorders, or with children and couples. These fall under clinical medicine and psychiatry. In acute health or crisis emergencies, please contact emergency services immediately (112)."
+  },
   "publicationScope": "public"
 }

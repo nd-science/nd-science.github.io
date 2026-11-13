@@ -1,5 +1,11 @@
 {
-  "question": { "ru": "Можно заниматься онлайн?", "en": "Can I work online?" },
-  "answer": { "ru": "Да, консультации проводятся онлайн для совершеннолетних клиентов (от 18 лет) по всему миру (включая работу с экспатами в Лондоне, Барселоне, Берлине, Лимасоле, Тбилиси, Ереване, Москве и Белграде). Постоянный очный приём проходит в Белграде, а в Лондоне возможны очные встречи в периоды визитов по предварительной договорённости.", "en": "Yes, online consultations are available for adult clients aged 18 and older worldwide (regularly working with clients in London, Barcelona, Berlin, Limassol, Tbilisi, Yerevan, Moscow, and Belgrade). Regular in-person sessions take place in Belgrade, and occasional sessions in London are possible during visits by prior arrangement." },
+  "question": {
+    "ru": "В каком формате проходят консультации (онлайн и очно в Белграде)?",
+    "en": "What formats are consultations available in (online worldwide & in-person in Belgrade)?"
+  },
+  "answer": {
+    "ru": "Консультации проводятся онлайн для совершеннолетних клиентов (от 18 лет) по всему миру (включая работу с экспатами в Белграде, Лондоне, Берлине, Барселоне, Лимасоле, Тбилиси, Ереване и Москве). Постоянный очный приём проходит в Белграде в оборудованном кабинете по предварительной записи.",
+    "en": "Consultations are conducted online for adult clients (18+) worldwide (frequently working with expats in Belgrade, London, Berlin, Barcelona, Limassol, Tbilisi, Yerevan, and Moscow). Regular in-person sessions are held in Belgrade by advance booking."
+  },
   "publicationScope": "public"
 }

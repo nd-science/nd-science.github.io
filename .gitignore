@@ -18,6 +18,12 @@ Thumbs.db
 /Профессиональная_анкета_*.md
 /исходники/
 
+# Personal verification documents (identity, address proof, private certificates/diplomas)
+docs/sources/*.pdf
+docs/sources/*.jpg
+docs/sources/Nataliia_Dolgova_*
+docs/sources/neurointegration_certificate_*
+
 # Local scratch directory
 scratch/
 

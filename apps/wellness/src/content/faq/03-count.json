@@ -1,5 +1,11 @@
 {
-  "question": { "ru": "Сколько встреч потребуется?", "en": "How many meetings will I need?" },
-  "answer": { "ru": "Количество зависит от запроса, цели и обратной связи. Работа ориентирована на один согласованный запрос.", "en": "The number depends on the request, goal and feedback. The work is organised around one agreed request." },
+  "question": {
+    "ru": "Сколько встреч обычно требуется для ощутимого результата?",
+    "en": "How many sessions are typically needed to see noticeable results?"
+  },
+  "answer": {
+    "ru": "Разовая консультация даёт экспресс-разгрузку, снятие острой тревоги и понятный план действий. Для устойчивых изменений и преодоления хронического выгорания оптимальна четырёхнедельная программа сопровождения (4 встречи плюс поддержка в чате) либо пакет из 5 индивидуальных сессий.",
+    "en": "A single consultation provides immediate relief from acute overwhelm and provides a clear personal plan. For sustainable habit change and overcoming burnout, the four-week neurointegration program (4 sessions plus messaging support) or a 5-session package is recommended."
+  },
   "publicationScope": "public"
 }

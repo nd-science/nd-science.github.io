@@ -1,5 +1,11 @@
 {
-  "question": { "ru": "Можно начать с одной встречи?", "en": "Can I start with one meeting?" },
-  "answer": { "ru": "Да. После консультации продолжение обсуждается совместно; пакет не обязателен.", "en": "Yes. Further work is discussed together after the consultation; a package is not required." },
+  "question": {
+    "ru": "Как проходит первая консультация и можно ли начать с одной встречи?",
+    "en": "How does the first consultation work, and can I start with just one session?"
+  },
+  "answer": {
+    "ru": "Да, вы можете начать с одной разовой встречи. Сессия длится 60 минут в видеоформате (Google Meet/Zoom) или очно в Белграде. Мы подробно разбираем вашу текущую ситуацию, оцениваем уровень нагрузки и стресса, определяем дефициты ресурса и формируем персональную карту дальнейших шагов. Продолжение работы всегда обсуждается совместно; покупка длительных пакетов не обязательна.",
+    "en": "Yes, you can start with a single consultation. The 60-minute session takes place via video call (Google Meet/Zoom) or in person in Belgrade. We explore your current circumstances, diagnose stress levels and cognitive depletion, and establish a personalized recovery plan. Continuing is always mutually agreed upon; committing to a multi-week package is not mandatory."
+  },
   "publicationScope": "public"
 }

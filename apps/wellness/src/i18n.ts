@@ -40,6 +40,11 @@ const copyData = {
         description:
           "Пять направлений, которые можно комбинировать под конкретный запрос.",
       } satisfies SectionHeadingCopy,
+      faq: {
+        title: "Частые вопросы",
+        description:
+          "Ответы о методологии, формате консультаций, подготовке и границах практики.",
+      } satisfies SectionHeadingCopy,
       relatedServices: {
         title: "Форматы работы и цены",
         description: "Форматы, в которых применяется этот подход, и варианты начала работы.",
@@ -182,6 +187,11 @@ const copyData = {
         title: "Areas of work",
         description:
           "Five areas that can be combined around a specific request.",
+      } satisfies SectionHeadingCopy,
+      faq: {
+        title: "Frequently Asked Questions",
+        description:
+          "Answers regarding methodology, session formats, preparation, and practice boundaries.",
       } satisfies SectionHeadingCopy,
       relatedServices: {
         title: "Formats and pricing",
